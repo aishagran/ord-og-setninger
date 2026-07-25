@@ -33,6 +33,14 @@ main{max-width:640px;margin:0 auto;padding:0 1rem;}
 .fargenokkel{display:flex;flex-wrap:wrap;gap:0.55rem;justify-content:center;margin:0 0 0.9rem;padding:0.55rem;background:#faf8ff;border-radius:10px;}
 .fnk{display:flex;align-items:center;gap:0.3rem;font-size:0.75rem;color:var(--muted);}
 .fnk-boks{width:14px;height:14px;border-radius:4px;}
+/* UKENS ORD */
+.vokab-boks{background:linear-gradient(135deg,rgba(232,74,138,0.08),rgba(255,255,255,0));border:2px solid var(--berry);border-radius:14px;padding:0.9rem 1rem;margin:0 0 1rem;}
+.vokab-tittel{font-family:'Baloo 2',cursive;font-size:0.9rem;color:var(--berry);margin-bottom:0.6rem;}
+.vokab-rad{display:flex;align-items:baseline;gap:0.5rem;padding:0.4rem 0;border-bottom:1px solid rgba(232,74,138,0.15);font-size:0.95rem;}
+.vokab-rad:last-child{border-bottom:none;}
+.vokab-ord{font-family:'Baloo 2',cursive;font-weight:800;color:var(--ink);min-width:112px;flex-shrink:0;}
+.vokab-def{color:var(--muted);font-size:0.87rem;}
+
 /* FANER */
 .faner{display:flex;gap:0.4rem;margin-bottom:1rem;}
 .fane{flex:1;background:#fff;border:2px solid var(--grape-light);color:var(--muted);padding:0.65rem 0.3rem;border-radius:12px;font-family:'Baloo 2',cursive;font-weight:700;font-size:0.8rem;cursor:pointer;text-align:center;transition:all 0.15s;}
@@ -113,6 +121,16 @@ main{max-width:640px;margin:0 auto;padding:0 1rem;}
     <div class="mal-tekst"><strong>Tidsbindeord:</strong> først, så, etterpå, til slutt.<br>Etter bindeordet kommer <strong>verbet</strong> med en gang.</div>
   </div>
 
+  <div class="vokab-boks">
+    <div class="vokab-tittel">🎯 Ukens ord</div>
+    <div class="vokab-rad"><span class="vokab-ord">🛰️ satellitt</span><span class="vokab-def">et objekt som går rundt jorda</span></div>
+    <div class="vokab-rad"><span class="vokab-ord">🔄 bane</span><span class="vokab-def">veien rundt jorda i verdensrommet</span></div>
+    <div class="vokab-rad"><span class="vokab-ord">🌍 atmosfære</span><span class="vokab-def">luften rundt jorda</span></div>
+    <div class="vokab-rad"><span class="vokab-ord">🎯 oppdrag</span><span class="vokab-def">en reise med et mål</span></div>
+    <div class="vokab-rad"><span class="vokab-ord">🔬 eksperiment</span><span class="vokab-def">en test for å lære noe nytt</span></div>
+    <div class="vokab-rad"><span class="vokab-ord">🔥 brenne opp</span><span class="vokab-def">bli veldig varm og forsvinne</span></div>
+  </div>
+
   <div class="faner">
     <button class="fane aktiv" onclick="byttFane(0)">📖 Les</button>
     <button class="fane" onclick="byttFane(1)">🎨 Bygg</button>
@@ -184,7 +202,7 @@ main{max-width:640px;margin:0 auto;padding:0 1rem;}
 <script>
 var HISTORIE = "Laika";
 var MAAL = "Tidsbindeord + V2";
-var LES = ["<span class=\"mark-b\">Først</span> <span class=\"mark\">sendte</span> Sovjetunionen opp Sputnik 1.", "Det var den første satellitten i verden.", "<span class=\"mark-b\">Så</span> <span class=\"mark\">kom</span> Sputnik 2, bare én måned senere.", "Ombord var en hund. Hun het Laika.", "<span class=\"mark-b\">Etterpå</span> <span class=\"mark\">gikk</span> Laika én runde rundt jorda.", "Hun var det første dyret i verdensrommet.", "<span class=\"mark-b\">Dessverre</span> <span class=\"mark\">levde</span> Laika bare noen få timer.", "<span class=\"mark-b\">Til slutt</span> <span class=\"mark\">brant</span> Sputnik 2 opp i atmosfæren.", "<span class=\"mark-b\">Senere</span> <span class=\"mark\">sendte</span> forskerne flere dyr ut i rommet.", "<span class=\"mark-b\">Da</span> <span class=\"mark\">kom</span> dyrene trygt tilbake.", "Laikas reise hjalp menneskene å komme til månen."];
+var LES = ["<span class=\"mark-b\">Først</span> <span class=\"mark\">sendte</span> Sovjetunionen opp Sputnik 1.", "Det var den første satellitten i verden.", "<span class=\"mark-b\">Så</span> <span class=\"mark\">kom</span> Sputnik 2, bare én måned senere.", "Ombord var en hund. Hun het Laika.", "Laika fikk et viktig oppdrag.", "<span class=\"mark-b\">Etterpå</span> <span class=\"mark\">gikk</span> Laika én runde i bane rundt jorda.", "Hun var det første dyret i verdensrommet.", "<span class=\"mark-b\">Dessverre</span> <span class=\"mark\">levde</span> Laika bare noen få timer.", "<span class=\"mark-b\">Til slutt</span> <span class=\"mark\">brant</span> Sputnik 2 opp i atmosfæren.", "<span class=\"mark-b\">Senere</span> <span class=\"mark\">gjorde</span> forskerne et nytt eksperiment.", "<span class=\"mark-b\">Da</span> <span class=\"mark\">kom</span> dyrene trygt tilbake.", "Laikas reise hjalp menneskene å komme til månen."];
 var BYGG = [{"mal": "Start med «Først». Hva sendte de opp?", "b": "Først", "v": "sendte", "s": "de", "r": ["opp", "Sputnik", "1"]}, {"mal": "Start med «Så». Hva kom etterpå?", "b": "Så", "v": "kom", "s": "Sputnik 2", "r": []}, {"mal": "Start med «Etterpå». Hva gjorde Laika?", "b": "Etterpå", "v": "fløy", "s": "Laika", "r": ["rundt", "jorda"]}, {"mal": "Start med «Til slutt». Hva skjedde med raketten?", "b": "Til slutt", "v": "brant", "s": "raketten", "r": ["opp"]}, {"mal": "Start med «Senere». Hva gjorde forskerne?", "b": "Senere", "v": "sendte", "s": "forskerne", "r": ["flere", "dyr"]}, {"mal": "Start med «Da». Hva skjedde med dyrene?", "b": "Da", "v": "kom", "s": "dyrene", "r": ["trygt", "tilbake"]}, {"mal": "Start med «Dessverre». Hvor lenge levde Laika?", "b": "Dessverre", "v": "levde", "s": "Laika", "r": ["bare", "noen", "timer"]}, {"mal": "Start med «Først». Hva var Sputnik 1?", "b": "Først", "v": "var", "s": "det", "r": ["en", "satellitt"]}, {"mal": "Start med «Så». Hva ble Laika?", "b": "Så", "v": "ble", "s": "hun", "r": ["kjent", "i", "hele", "verden"]}];
 var VELG = [{"intro": "Sputnik 1 var den første satellitten.", "b": "Først", "v": "sendte", "s": "de", "r": "opp Sputnik 1"}, {"intro": "En måned senere kom neste rakett.", "b": "Så", "v": "kom", "s": "Sputnik 2", "r": ""}, {"intro": "Laika reiste rundt jorda.", "b": "Etterpå", "v": "fløy", "s": "hun", "r": "rundt jorda"}, {"intro": "Raketten kom inn i atmosfæren.", "b": "Til slutt", "v": "brant", "s": "den", "r": "opp"}, {"intro": "Forskerne lærte mye av reisen.", "b": "Senere", "v": "sendte", "s": "de", "r": "flere dyr"}, {"intro": "De neste dyrene hadde det bra.", "b": "Da", "v": "kom", "s": "dyrene", "r": "trygt tilbake"}];
 function chip(w,r){ return '<span class="ord ord-'+r+'">'+w+'</span>'; }
