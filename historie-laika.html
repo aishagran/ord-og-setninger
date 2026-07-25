@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<html lang="no">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Laika – Ord &amp; Setninger</title>
+<link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@600;700;800&family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --grape:#7C3AED;--grape-light:#EDE9FE;--berry:#E84A8A;--sun:#D97706;--sun-light:#FEF3C7;
+  --ink:#1E1B4B;--muted:#6B7280;--bg:#FBF7FF;--card:#fff;--gold:#D4AF37;
+  --green:#16A34A;--green-light:#DCFCE7;--red:#DC2626;--red-light:#FEE2E2;
+}
+*{box-sizing:border-box;margin:0;padding:0;}
+body{font-family:'Nunito',sans-serif;background:var(--bg);color:var(--ink);min-height:100vh;padding-bottom:3rem;}
+.topbar{background:#fff;padding:0.9rem 1.1rem;display:flex;align-items:center;gap:0.75rem;box-shadow:0 2px 12px rgba(124,58,237,0.06);position:sticky;top:0;z-index:40;}
+.home-btn{text-decoration:none;font-size:1.3rem;background:var(--grape-light);border-radius:12px;padding:0.35rem 0.7rem;}
+.topbar .tittel{font-family:'Baloo 2',cursive;font-weight:800;font-size:1.05rem;color:var(--ink);}
+.hero{text-align:center;padding:1.2rem 1.25rem 0.5rem;}
+.hero .ikon{font-size:2.2rem;}
+.hero h1{font-family:'Baloo 2',cursive;font-size:1.5rem;font-weight:800;color:var(--grape);margin-top:0.15rem;}
+main{max-width:640px;margin:0 auto;padding:0 1rem;}
+/* MÅL-BOKS */
+.mal-boks{background:linear-gradient(135deg,rgba(212,175,55,0.14),rgba(255,255,255,0));border:2px solid var(--gold);border-radius:14px;padding:0.9rem 1rem;margin:0.8rem 0 1rem;}
+.mal-tittel{font-family:'Baloo 2',cursive;font-size:0.9rem;color:#8a6a00;margin-bottom:0.4rem;}
+.mal-tekst{font-size:1rem;color:var(--ink);line-height:1.6;}
+/* FARGEORD */
+.ord{display:inline-block;padding:0.32rem 0.6rem;border-radius:9px;font-weight:700;font-size:0.98rem;margin:0.1rem;}
+.ord-bindeord{color:#5b3a9e;background:rgba(124,58,237,0.18);border:2px solid #b49ce0;}
+.ord-verb{color:#7a5c00;background:rgba(212,175,55,0.28);border:2px solid var(--gold);font-weight:800;}
+.ord-subjekt{color:#0a5c3f;background:rgba(52,211,153,0.22);border:2px solid #34D399;}
+.ord-rest{color:var(--ink);background:#f3f0fa;border:2px solid #e5ddf5;}
+.fargenokkel{display:flex;flex-wrap:wrap;gap:0.55rem;justify-content:center;margin:0 0 0.9rem;padding:0.55rem;background:#faf8ff;border-radius:10px;}
+.fnk{display:flex;align-items:center;gap:0.3rem;font-size:0.75rem;color:var(--muted);}
+.fnk-boks{width:14px;height:14px;border-radius:4px;}
+/* FANER */
+.faner{display:flex;gap:0.4rem;margin-bottom:1rem;}
+.fane{flex:1;background:#fff;border:2px solid var(--grape-light);color:var(--muted);padding:0.65rem 0.3rem;border-radius:12px;font-family:'Baloo 2',cursive;font-weight:700;font-size:0.8rem;cursor:pointer;text-align:center;transition:all 0.15s;}
+.fane.aktiv{background:var(--grape);color:#fff;border-color:var(--grape);}
+.del{display:none;}
+.del.aktiv{display:block;animation:inn 0.3s;}
+@keyframes inn{from{opacity:0;}to{opacity:1;}}
+.kort{background:var(--card);border:2px solid var(--grape-light);border-radius:16px;padding:1.2rem;margin-bottom:1rem;box-shadow:0 2px 12px rgba(124,58,237,0.05);}
+.kort-intro{color:var(--muted);font-size:0.9rem;margin-bottom:1rem;line-height:1.5;}
+.oppgave-teller{text-align:center;color:var(--grape);font-weight:700;font-size:0.85rem;margin-bottom:0.8rem;}
+/* LES */
+.serie-bilde{width:100%;border-radius:12px;cursor:zoom-in;box-shadow:0 4px 16px rgba(0,0,0,0.12);margin-bottom:1rem;}
+.les-linje{display:flex;gap:0.6rem;align-items:baseline;padding:0.5rem 0;border-bottom:1px solid #f2eefb;font-size:1.02rem;line-height:1.6;}
+.les-linje:last-child{border-bottom:none;}
+.les-nr{color:#c0b0dd;font-weight:800;font-size:0.85rem;min-width:20px;}
+.mark{background:rgba(212,175,55,0.3);border-radius:5px;padding:0.1rem 0.3rem;font-weight:800;color:#7a5c00;}
+.mark-b{background:rgba(124,58,237,0.18);border-radius:5px;padding:0.1rem 0.3rem;font-weight:800;color:#5b3a9e;}
+/* BYGG */
+.bygg-mal{background:rgba(212,175,55,0.12);border-left:4px solid var(--gold);padding:0.85rem;border-radius:8px;color:#7a5c00;margin-bottom:1rem;font-size:0.9rem;}
+.bygg-svar{min-height:56px;background:#faf8ff;border:2px dashed var(--gold);border-radius:12px;padding:0.65rem;margin-bottom:1rem;display:flex;flex-wrap:wrap;gap:0.3rem;align-items:center;}
+.bygg-svar:empty::before{content:'Trykk på ordene i riktig rekkefølge...';color:#b0a0d0;font-size:0.85rem;font-style:italic;}
+.brikke-bank{display:flex;flex-wrap:wrap;gap:0.4rem;margin-bottom:1rem;justify-content:center;}
+.ord.brikke{cursor:pointer;}
+.ord.brukt{opacity:0.25;pointer-events:none;}
+.ord.i-svar{cursor:pointer;}
+/* VELG */
+.valg-knapp{width:100%;background:#faf8ff;border:2px solid var(--grape-light);padding:0.85rem 0.6rem;border-radius:12px;cursor:pointer;margin-bottom:0.65rem;text-align:center;line-height:1.95;}
+.valg-knapp.riktig{border-color:var(--green);background:var(--green-light);}
+.valg-knapp.feil{border-color:var(--red);background:var(--red-light);}
+/* SKRIV */
+.skriv-sporsmal{background:rgba(124,58,237,0.08);border-left:4px solid var(--grape);padding:0.9rem;border-radius:8px;color:var(--ink);font-size:0.95rem;line-height:1.55;margin-bottom:1rem;}
+.skriv-omrade{width:100%;min-height:120px;padding:1rem;border:2px solid var(--grape-light);border-radius:12px;font-family:'Nunito';font-size:1rem;background:#fff;color:var(--ink);resize:vertical;line-height:1.6;}
+.skriv-omrade:focus{outline:none;border-color:var(--grape);}
+.hjelp-btn{background:var(--grape-light);border:2px solid #c9b3de;color:var(--grape);padding:0.55rem 1rem;border-radius:10px;font-family:'Nunito';font-weight:700;font-size:0.88rem;cursor:pointer;margin-top:0.7rem;}
+.hjelp-innhold{display:none;background:#faf8ff;border-radius:10px;padding:0.85rem;margin-top:0.7rem;}
+.hjelp-innhold.vis{display:block;}
+.hjelp-eks{color:var(--muted);font-size:0.9rem;line-height:2;}
+/* KNAPPER */
+.sjekk-btn{width:100%;background:var(--gold);color:#4a3800;padding:0.85rem;border:none;border-radius:12px;font-family:'Baloo 2',cursive;font-weight:700;font-size:1.02rem;cursor:pointer;}
+.neste-btn{width:100%;background:var(--grape);color:#fff;padding:0.85rem;border:none;border-radius:12px;font-family:'Baloo 2',cursive;font-weight:700;font-size:1.02rem;cursor:pointer;margin-top:0.7rem;}
+.tomt-btn{background:#f3f0fa;border:2px solid var(--grape-light);color:var(--muted);padding:0.5rem 0.9rem;border-radius:10px;font-weight:600;font-size:0.84rem;cursor:pointer;margin-bottom:1rem;font-family:'Nunito';}
+.fasit{margin-top:1rem;padding:0.85rem;border-radius:12px;font-weight:700;display:none;line-height:1.6;}
+.fasit.vis{display:block;}
+.fasit.riktig-svar{background:var(--green-light);color:var(--green);}
+.fasit.feil-svar{background:var(--red-light);color:var(--red);}
+.ferdig{text-align:center;padding:1.4rem 1rem;}
+.ferdig-emoji{font-size:2.6rem;}
+.ferdig-poeng{font-family:'Baloo 2',cursive;font-size:1.5rem;color:var(--gold);margin:0.4rem 0;}
+.ferdig h2{font-family:'Baloo 2',cursive;color:var(--grape);font-size:1.15rem;}
+/* UKENS SPRÅK */
+.sprak-boks{background:linear-gradient(135deg,var(--sun-light),#FFF9EC);border:2px solid #F5D98A;border-radius:16px;padding:1.2rem;margin:1.4rem 0 1rem;}
+.sprak-tittel{font-family:'Baloo 2',cursive;font-size:1.15rem;color:var(--sun);text-align:center;margin-bottom:0.8rem;}
+.sprak-linje{background:#fff;border-radius:10px;padding:0.7rem 0.8rem;margin-bottom:0.55rem;font-size:1rem;line-height:1.8;box-shadow:0 1px 5px rgba(0,0,0,0.04);}
+.sprak-regel{text-align:center;color:#8a6d3b;font-size:0.9rem;margin-top:0.8rem;line-height:1.5;}
+.footer{text-align:center;font-size:0.8rem;color:#aaa;margin-top:2rem;padding:1.25rem;}
+.modal{display:none;position:fixed;inset:0;background:rgba(30,27,75,0.93);z-index:100;padding:0.5rem;overflow:auto;}
+.modal.vis{display:flex;align-items:center;justify-content:center;}
+.modal img{max-width:100%;border-radius:10px;}
+.modal-lukk{position:fixed;top:0.8rem;right:1.2rem;color:#fff;font-size:2.4rem;cursor:pointer;font-weight:bold;z-index:101;}
+
+</style>
+</head>
+<body>
+
+<div class="topbar">
+  <a class="home-btn" href="index.html">🏠</a>
+  <span class="tittel">🚀 Laika</span>
+</div>
+
+<div class="hero">
+  <div class="ikon">🚀</div>
+  <h1>Laika</h1>
+</div>
+
+<main>
+  <div class="mal-boks">
+    <div class="mal-tittel">🎯 DENNE HISTORIEN ØVER PÅ</div>
+    <div class="mal-tekst"><strong>Tidsbindeord:</strong> først, så, etterpå, til slutt.<br>Etter bindeordet kommer <strong>verbet</strong> med en gang.</div>
+  </div>
+
+  <div class="faner">
+    <button class="fane aktiv" onclick="byttFane(0)">📖 Les</button>
+    <button class="fane" onclick="byttFane(1)">🎨 Bygg</button>
+    <button class="fane" onclick="byttFane(2)">✅ Velg</button>
+    <button class="fane" onclick="byttFane(3)">✍️ Skriv</button>
+  </div>
+
+  <!-- LES -->
+  <div class="del aktiv">
+    <div class="kort">
+      <img class="serie-bilde" src="img/laika.png" alt="Laika" onclick="zoom('img/laika.png')">
+      <div class="kort-intro">Les historien. Se på ordene som er markert.</div>
+      <div id="lesInnhold"></div>
+    </div>
+  </div>
+
+  <!-- BYGG -->
+  <div class="del">
+    <div class="fargenokkel">
+      <div class="fnk"><span class="fnk-boks" style="background:#b49ce0;"></span>bindeord</div>
+      <div class="fnk"><span class="fnk-boks" style="background:#D4AF37;"></span>verb</div>
+      <div class="fnk"><span class="fnk-boks" style="background:#34D399;"></span>hvem</div>
+    </div>
+    <div class="oppgave-teller" id="tellerB"></div>
+    <div class="kort" id="kortB"></div>
+  </div>
+
+  <!-- VELG -->
+  <div class="del">
+    <div class="fargenokkel">
+      <div class="fnk"><span class="fnk-boks" style="background:#b49ce0;"></span>bindeord</div>
+      <div class="fnk"><span class="fnk-boks" style="background:#D4AF37;"></span>verb</div>
+      <div class="fnk"><span class="fnk-boks" style="background:#34D399;"></span>hvem</div>
+    </div>
+    <div class="oppgave-teller" id="tellerV"></div>
+    <div class="kort" id="kortV"></div>
+  </div>
+
+  <!-- SKRIV -->
+  <div class="del">
+    <div class="kort">
+      <div class="skriv-sporsmal">✍️ Fortell om <strong>Laikas reise</strong>.<br>Bruk <strong>først</strong>, <strong>så</strong>, <strong>etterpå</strong> og <strong>til slutt</strong>. Husk: verbet rett etter bindeordet!</div>
+      <textarea class="skriv-omrade" id="skrivTekst" placeholder="Skriv her..."></textarea>
+      <button class="hjelp-btn" onclick="visHjelp()">💡 Trenger du hjelp?</button>
+      <div class="hjelp-innhold" id="hjelpInnhold">
+        <div style="color:#1E1B4B;font-weight:700;margin-bottom:0.4rem;">Du kan begynne slik:</div>
+        <div class="hjelp-eks">Først <span class="ord ord-verb" style="padding:0.1rem 0.4rem;">sendte</span> de opp…<br>Så <span class="ord ord-verb" style="padding:0.1rem 0.4rem;">fløy</span> Laika…<br>Til slutt <span class="ord ord-verb" style="padding:0.1rem 0.4rem;">brant</span> raketten opp.</div>
+      </div>
+      <button class="sjekk-btn" style="margin-top:1rem;" onclick="sendTekst()">Send til mamma 💛</button>
+      <div class="fasit" id="skrivFasit"></div>
+    </div>
+  </div>
+
+  <!-- UKENS SPRÅK -->
+  <div class="sprak-boks">
+    <div class="sprak-tittel">⭐ Ukens språk</div>
+    <div class="sprak-linje">⭐ <span class="mark-b">Først</span> <span class="mark">sendte</span> de opp Sputnik 1.</div><div class="sprak-linje">⭐ <span class="mark-b">Så</span> <span class="mark">kom</span> Sputnik 2.</div><div class="sprak-linje">⭐ <span class="mark-b">Til slutt</span> <span class="mark">brant</span> raketten opp.</div>
+    <div class="sprak-regel">Etter <strong>først, så, etterpå, til slutt</strong> kommer <strong>verbet</strong> – og så hvem.</div>
+  </div>
+</main>
+
+<div class="footer">🚀 Laika · Ord &amp; Setninger</div>
+
+<div class="modal" id="bildeModal" onclick="lukkModal()">
+  <span class="modal-lukk">&times;</span>
+  <img id="modalBilde" src="" alt="">
+</div>
+
+<script>
+var HISTORIE = "Laika";
+var MAAL = "Tidsbindeord + V2";
+var LES = ["<span class=\"mark-b\">Først</span> <span class=\"mark\">sendte</span> Sovjetunionen opp Sputnik 1.", "Det var den første satellitten i verden.", "<span class=\"mark-b\">Så</span> <span class=\"mark\">kom</span> Sputnik 2, bare én måned senere.", "Ombord var en hund. Hun het Laika.", "<span class=\"mark-b\">Etterpå</span> <span class=\"mark\">gikk</span> Laika én runde rundt jorda.", "Hun var det første dyret i verdensrommet.", "<span class=\"mark-b\">Dessverre</span> <span class=\"mark\">levde</span> Laika bare noen få timer.", "<span class=\"mark-b\">Til slutt</span> <span class=\"mark\">brant</span> Sputnik 2 opp i atmosfæren.", "<span class=\"mark-b\">Senere</span> <span class=\"mark\">sendte</span> forskerne flere dyr ut i rommet.", "<span class=\"mark-b\">Da</span> <span class=\"mark\">kom</span> dyrene trygt tilbake.", "Laikas reise hjalp menneskene å komme til månen."];
+var BYGG = [{"mal": "Start med «Først». Hva sendte de opp?", "b": "Først", "v": "sendte", "s": "de", "r": ["opp", "Sputnik", "1"]}, {"mal": "Start med «Så». Hva kom etterpå?", "b": "Så", "v": "kom", "s": "Sputnik 2", "r": []}, {"mal": "Start med «Etterpå». Hva gjorde Laika?", "b": "Etterpå", "v": "fløy", "s": "Laika", "r": ["rundt", "jorda"]}, {"mal": "Start med «Til slutt». Hva skjedde med raketten?", "b": "Til slutt", "v": "brant", "s": "raketten", "r": ["opp"]}, {"mal": "Start med «Senere». Hva gjorde forskerne?", "b": "Senere", "v": "sendte", "s": "forskerne", "r": ["flere", "dyr"]}, {"mal": "Start med «Da». Hva skjedde med dyrene?", "b": "Da", "v": "kom", "s": "dyrene", "r": ["trygt", "tilbake"]}, {"mal": "Start med «Dessverre». Hvor lenge levde Laika?", "b": "Dessverre", "v": "levde", "s": "Laika", "r": ["bare", "noen", "timer"]}, {"mal": "Start med «Først». Hva var Sputnik 1?", "b": "Først", "v": "var", "s": "det", "r": ["en", "satellitt"]}, {"mal": "Start med «Så». Hva ble Laika?", "b": "Så", "v": "ble", "s": "hun", "r": ["kjent", "i", "hele", "verden"]}];
+var VELG = [{"intro": "Sputnik 1 var den første satellitten.", "b": "Først", "v": "sendte", "s": "de", "r": "opp Sputnik 1"}, {"intro": "En måned senere kom neste rakett.", "b": "Så", "v": "kom", "s": "Sputnik 2", "r": ""}, {"intro": "Laika reiste rundt jorda.", "b": "Etterpå", "v": "fløy", "s": "hun", "r": "rundt jorda"}, {"intro": "Raketten kom inn i atmosfæren.", "b": "Til slutt", "v": "brant", "s": "den", "r": "opp"}, {"intro": "Forskerne lærte mye av reisen.", "b": "Senere", "v": "sendte", "s": "de", "r": "flere dyr"}, {"intro": "De neste dyrene hadde det bra.", "b": "Da", "v": "kom", "s": "dyrene", "r": "trygt tilbake"}];
+function chip(w,r){ return '<span class="ord ord-'+r+'">'+w+'</span>'; }
+function zoom(src){ document.getElementById('modalBilde').src=src; document.getElementById('bildeModal').classList.add('vis'); }
+function lukkModal(){ document.getElementById('bildeModal').classList.remove('vis'); }
+function byttFane(n){
+  document.querySelectorAll('.fane').forEach(function(f,i){f.classList.toggle('aktiv',i===n);});
+  document.querySelectorAll('.del').forEach(function(d,i){d.classList.toggle('aktiv',i===n);});
+  window.scrollTo({top:0,behavior:'smooth'});
+}
+function visHjelp(){ document.getElementById('hjelpInnhold').classList.toggle('vis'); }
+
+/* ---- LES ---- */
+function visLes(){
+  document.getElementById('lesInnhold').innerHTML = LES.map(function(l,i){
+    return '<div class="les-linje"><span class="les-nr">'+(i+1)+'</span><span>'+l+'</span></div>';
+  }).join('');
+}
+
+/* ---- BYGG ---- */
+var iB=0, pB=0;
+function visBygg(){
+  if(iB>=BYGG.length){ ferdig('kortB','tellerB',pB,BYGG.length,'Bygg'); return; }
+  var o=BYGG[iB];
+  document.getElementById('tellerB').textContent='Oppgave '+(iB+1)+' av '+BYGG.length;
+  var liste=[{w:o.b,r:'bindeord'},{w:o.v,r:'verb'},{w:o.s,r:'subjekt'}];
+  o.r.forEach(function(w){liste.push({w:w,r:'rest'});});
+  var sh=liste.slice().sort(function(){return Math.random()-0.5;});
+  var bank=sh.map(function(x){return '<span class="ord ord-'+x.r+' brikke" data-w="'+x.w+'" onclick="leggTil(this)">'+x.w+'</span>';}).join('');
+  var riktig=[o.b,o.v,o.s].concat(o.r).join(' ');
+  document.getElementById('kortB').innerHTML=
+    '<div class="bygg-mal">🔑 '+o.mal+'</div>'+
+    '<div class="bygg-svar" id="byggSvar"></div>'+
+    '<div class="brikke-bank">'+bank+'</div>'+
+    '<button class="tomt-btn" onclick="tomBygg()">↺ Start på nytt</button>'+
+    '<button class="sjekk-btn" onclick="sjekkBygg(\''+riktig+'\')">Sjekk svar</button>'+
+    '<div class="fasit" id="fasitB"></div>';
+}
+function leggTil(el){
+  el.classList.add('brukt');
+  var k=document.createElement('span');
+  k.className=el.className.replace('brukt','').replace('brikke','i-svar').trim();
+  k.textContent=el.dataset.w;
+  k.onclick=function(){k.remove();el.classList.remove('brukt');};
+  document.getElementById('byggSvar').appendChild(k);
+}
+function tomBygg(){
+  document.getElementById('byggSvar').innerHTML='';
+  document.querySelectorAll('#kortB .brikke').forEach(function(b){b.classList.remove('brukt');});
+}
+function sjekkBygg(riktig){
+  var svar=[].slice.call(document.querySelectorAll('#byggSvar .i-svar')).map(function(b){return b.textContent;}).join(' ');
+  var f=document.getElementById('fasitB');
+  if(svar.trim()===riktig){ pB++; f.className='fasit vis riktig-svar'; f.innerHTML='✅ Perfekt! Verbet står på plass to.'; }
+  else{ f.className='fasit vis feil-svar'; f.innerHTML='💡 Prøv igjen! Det gule verbet skal stå på plass to.'; }
+  f.innerHTML+='<button class="neste-btn" onclick="nesteBygg()">Neste →</button>';
+}
+function nesteBygg(){ iB++; visBygg(); }
+
+/* ---- VELG ---- */
+var iV=0, pV=0;
+function riktigS(o){ return chip(o.b,'bindeord')+chip(o.v,'verb')+chip(o.s,'subjekt')+chip(o.r,'rest'); }
+function feilS(o){ return chip(o.b,'bindeord')+chip(o.s,'subjekt')+chip(o.v,'verb')+chip(o.r,'rest'); }
+function visVelg(){
+  if(iV>=VELG.length){ ferdig('kortV','tellerV',pV,VELG.length,'Velg'); return; }
+  var o=VELG[iV];
+  document.getElementById('tellerV').textContent='Oppgave '+(iV+1)+' av '+VELG.length;
+  var forst=Math.random()<0.5;
+  var a=forst?[{h:riktigS(o),ok:true},{h:feilS(o),ok:false}]:[{h:feilS(o),ok:false},{h:riktigS(o),ok:true}];
+  document.getElementById('kortV').innerHTML=
+    '<div class="kort-intro">'+o.intro+' <strong>Hvilken setning er riktig?</strong></div>'+
+    '<button class="valg-knapp" onclick="svarVelg(this,'+a[0].ok+')">'+a[0].h+'</button>'+
+    '<button class="valg-knapp" onclick="svarVelg(this,'+a[1].ok+')">'+a[1].h+'</button>'+
+    '<div class="fasit" id="fasitV"></div>';
+}
+function svarVelg(btn,ok){
+  btn.parentElement.querySelectorAll('.valg-knapp').forEach(function(b){b.style.pointerEvents='none';});
+  var f=document.getElementById('fasitV');
+  if(ok){ btn.classList.add('riktig'); pV++; f.className='fasit vis riktig-svar'; f.innerHTML='✅ Riktig! Det gule verbet står på plass to.'; }
+  else{ btn.classList.add('feil'); btn.parentElement.querySelectorAll('.valg-knapp').forEach(function(b){if(b!==btn)b.classList.add('riktig');}); f.className='fasit vis feil-svar'; f.innerHTML='💡 Nesten! Verbet må komme rett etter bindeordet.'; }
+  f.innerHTML+='<button class="neste-btn" onclick="nesteVelg()">Neste →</button>';
+}
+function nesteVelg(){ iV++; visVelg(); }
+
+/* ---- FERDIG ---- */
+function ferdig(kortId,tellerId,p,t,navn){
+  var e=p===t?'🌟':(p>=t/2?'😊':'💪');
+  var m=p===t?'Perfekt!':(p>=t/2?'Bra jobba!':'Fortsett å øve!');
+  document.getElementById(kortId).innerHTML=
+    '<div class="ferdig"><div class="ferdig-emoji">'+e+'</div><div class="ferdig-poeng">'+p+' av '+t+'</div><h2>'+m+'</h2></div>';
+  document.getElementById(tellerId).textContent='';
+  send('['+HISTORIE+' – '+navn+'] Poeng: '+p+'/'+t, HISTORIE+' - '+navn);
+}
+
+/* ---- SKRIV ---- */
+function sendTekst(){
+  var t=document.getElementById('skrivTekst').value;
+  var f=document.getElementById('skrivFasit');
+  if(t.trim().length<15){ f.className='fasit vis feil-svar'; f.innerHTML='⏳ Skriv litt mer først!'; return; }
+  f.className='fasit vis'; f.style.background='#faf8ff'; f.style.color='#6B7280'; f.innerHTML='⏳ Sender...';
+  fetch('https://formspree.io/f/mqeolldg',{method:'POST',headers:{'Content-Type':'application/json','Accept':'application/json'},
+    body:JSON.stringify({Tekst_hun_skrev:t, oppgave:HISTORIE+' - Skriv', maal:MAAL, dato:new Date().toLocaleString('no-NO')})})
+   .then(function(r){
+     if(r.ok){ f.className='fasit vis riktig-svar'; f.innerHTML='✅ Bra jobba! Teksten din er sendt til mamma! 🎉'; document.getElementById('skrivTekst').value=''; }
+     else{ f.className='fasit vis feil-svar'; f.innerHTML='❌ Noe gikk galt. Prøv igjen!'; }
+   })
+   .catch(function(){ f.className='fasit vis feil-svar'; f.innerHTML='❌ Sjekk internett og prøv igjen!'; });
+}
+
+/* ---- FORMSPREE ---- */
+function send(tekst,oppgave){
+  try{
+    fetch('https://formspree.io/f/mqeolldg',{method:'POST',headers:{'Content-Type':'application/json','Accept':'application/json'},
+      body:JSON.stringify({Tekst_hun_skrev:tekst, oppgave:oppgave, maal:MAAL, dato:new Date().toLocaleString('no-NO')})}).catch(function(){});
+  }catch(e){}
+}
+
+/* INIT */
+visLes(); visBygg(); visVelg();
+
+</script>
+</body>
+</html>

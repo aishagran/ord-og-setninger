@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="no">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Edels Verden 📖</title>
+<link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@600;700;800&family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
+<style>
+:root{--grape:#7C3AED;--grape-light:#EDE9FE;--berry:#E84A8A;--sun:#D97706;--sun-light:#FEF3C7;
+--ink:#1E1B4B;--muted:#6B7280;--bg:#FBF7FF;--card:#fff;--green:#16A34A;--shadow:0 2px 16px rgba(124,58,237,0.08);}
+*{box-sizing:border-box;margin:0;padding:0;}
+body{font-family:'Nunito',sans-serif;background:var(--bg);color:var(--ink);min-height:100vh;padding-bottom:3rem;}
+.topbar{background:#fff;padding:0.9rem 1.1rem;display:flex;align-items:center;gap:0.75rem;box-shadow:0 2px 12px rgba(124,58,237,0.06);position:sticky;top:0;z-index:40;}
+.topbar .logo{font-size:1.4rem;background:var(--grape-light);border-radius:12px;padding:0.35rem 0.7rem;}
+.topbar .tittel{font-family:'Baloo 2',cursive;font-weight:800;font-size:1.15rem;}
+
+.cover-wrap{padding:0.9rem 0.9rem 0;}
+.cover-img{width:100%;border-radius:20px;box-shadow:0 10px 34px rgba(124,58,237,0.18);display:block;}
+.cta{display:block;text-align:center;background:var(--grape);color:#fff;text-decoration:none;font-family:'Baloo 2',cursive;font-weight:700;font-size:1.05rem;padding:0.9rem;border-radius:14px;margin:1rem 1rem 0;box-shadow:0 6px 18px rgba(124,58,237,0.25);}
+.cta:active{transform:scale(0.98);}
+
+main{max-width:600px;margin:0 auto;padding:0 1rem;}
+.seksjon-tittel{font-family:'Baloo 2',cursive;font-weight:700;font-size:1rem;color:var(--muted);margin:1.7rem 0.25rem 0.75rem;}
+.liste{display:flex;flex-direction:column;gap:0.85rem;}
+.kort{background:var(--card);border-radius:18px;box-shadow:var(--shadow);text-decoration:none;color:var(--ink);display:block;padding:1.1rem 1.2rem;border:3px solid transparent;transition:all 0.15s;}
+.kort:active{transform:scale(0.98);}
+.kort.a{border-color:#F2C879;background:linear-gradient(135deg,rgba(242,166,90,0.07),rgba(255,255,255,0));}
+.kort.b{border-color:#7FC2D0;background:linear-gradient(135deg,rgba(13,148,136,0.07),rgba(255,255,255,0));}
+.kort.c{border-color:#C9B3DE;background:linear-gradient(135deg,rgba(155,123,181,0.09),rgba(255,255,255,0));}
+.rad{display:flex;align-items:center;gap:1rem;}
+.ikon2{font-size:2.3rem;flex-shrink:0;}
+.info{flex:1;}
+.navn{font-family:'Baloo 2',cursive;font-weight:700;font-size:1.18rem;line-height:1.15;margin-bottom:0.2rem;}
+.desc{font-size:0.83rem;color:var(--muted);line-height:1.4;}
+.pil{color:var(--grape);font-size:1.3rem;font-weight:800;flex-shrink:0;}
+.mal{margin-top:0.75rem;padding-top:0.7rem;border-top:1px dashed #e5ddf5;font-size:0.82rem;color:#7a5c00;display:flex;align-items:center;gap:0.4rem;}
+.merke{display:inline-block;background:var(--green);color:#fff;font-size:0.6rem;font-weight:700;padding:0.15rem 0.5rem;border-radius:8px;margin-left:0.4rem;vertical-align:middle;}
+
+.info-boks{background:linear-gradient(135deg,var(--sun-light),#FFF8E8);border-radius:16px;padding:1.1rem 1.25rem;margin-top:1.7rem;border:2px solid #F5D98A;}
+.info-boks .n{font-family:'Baloo 2',cursive;font-weight:700;font-size:1rem;color:var(--sun);margin-bottom:0.4rem;}
+.info-boks .t{font-size:0.88rem;color:#8a6d3b;line-height:1.55;}
+.footer{text-align:center;font-size:0.8rem;color:#aaa;margin-top:2.5rem;padding:1.25rem;}
+</style>
+</head>
+<body>
+
+<div class="topbar">
+  <span class="logo">📖</span>
+  <span class="tittel">Edels Verden</span>
+</div>
+
+<div class="cover-wrap">
+  <img class="cover-img" src="img/capa.png" alt="Edels Verden – Historier som bygger språk">
+</div>
+<a class="cta" href="#historier">💛 Bli med på reisen!</a>
+
+<main>
+  <div class="seksjon-tittel" id="historier">📚 Historier</div>
+  <div class="liste">
+    <a class="kort a" href="historie-morgen.html">
+      <div class="rad">
+        <span class="ikon2">🌅</span>
+        <div class="info">
+          <div class="navn">Min morgen <span class="merke">BEGYNN HER</span></div>
+          <div class="desc">Edels morgen før skolen · 12 bilder</div>
+        </div>
+        <span class="pil">→</span>
+      </div>
+      <div class="mal">🎯 <span><strong>Språkmål:</strong> først, etterpå, så, til slutt + verbet på plass to</span></div>
+    </a>
+
+    <a class="kort b" href="historie-laika.html">
+      <div class="rad">
+        <span class="ikon2">🚀</span>
+        <div class="info">
+          <div class="navn">Laika</div>
+          <div class="desc">Den første hunden i verdensrommet</div>
+        </div>
+        <span class="pil">→</span>
+      </div>
+      <div class="mal">🎯 <span><strong>Språkmål:</strong> først, så, etterpå, til slutt + verbet på plass to</span></div>
+    </a>
+
+    <a class="kort c" href="historie-dna.html">
+      <div class="rad">
+        <span class="ikon2">🧬</span>
+        <div class="info">
+          <div class="navn">Pipoka og DNA</div>
+          <div class="desc">Hvor kommer Pipoka egentlig fra?</div>
+        </div>
+        <span class="pil">→</span>
+      </div>
+      <div class="mal">🎯 <span><strong>Språkmål:</strong> derfor (årsak og følge) + verbet på plass to</span></div>
+    </a>
+  </div>
+
+  <div class="info-boks">
+    <div class="n">🔑 Slik funker det</div>
+    <div class="t">Hver historie øver på <strong>ett</strong> språkmål. Du leser historien, bygger setninger med farger, velger riktig og skriver selv. Nederst finner du <strong>Ukens språk</strong> – der ser du mønsteret samlet.</div>
+  </div>
+</main>
+
+<div class="footer">✨ Laget med kjærlighet for Edel ✨</div>
+
+</body>
+</html>
