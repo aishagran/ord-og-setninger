@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="no">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Edels Score 🏆</title>
+<link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@600;700;800&family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
+<style>
+:root{--grape:#7C3AED;--grape-light:#EDE9FE;--berry:#E84A8A;--sun:#D97706;--sun-light:#FEF3C7;
+--ink:#1E1B4B;--muted:#6B7280;--bg:#FBF7FF;--card:#fff;--green:#16A34A;--green-light:#DCFCE7;
+--red:#DC2626;--red-light:#FEE2E2;--gold:#D4AF37;--shadow:0 2px 16px rgba(124,58,237,0.08);}
+*{box-sizing:border-box;margin:0;padding:0;}
+body{font-family:'Nunito',sans-serif;background:var(--bg);color:var(--ink);min-height:100vh;padding-bottom:3rem;}
+
+.topbar{background:#fff;padding:0.9rem 1.1rem;display:flex;align-items:center;gap:0.75rem;box-shadow:0 2px 12px rgba(124,58,237,0.06);position:sticky;top:0;z-index:40;}
+.home-btn{text-decoration:none;font-size:1.3rem;background:var(--grape-light);border-radius:12px;padding:0.35rem 0.7rem;}
+.topbar .tittel{font-family:'Baloo 2',cursive;font-weight:800;font-size:1.1rem;}
+
+.banner-wrap{padding:0.9rem 0.9rem 0;}
+.banner-img{width:100%;border-radius:18px;box-shadow:0 10px 30px rgba(124,58,237,0.15);display:block;}
+
+main{max-width:640px;margin:0 auto;padding:0 1rem;}
+
+/* SCOREBOARD */
+.score-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:0.7rem;margin:1.2rem 0;}
+.score-kort{background:var(--card);border-radius:16px;box-shadow:var(--shadow);padding:1rem 0.6rem;text-align:center;border:2px solid var(--grape-light);}
+.score-emoji{font-size:1.8rem;margin-bottom:0.3rem;}
+.score-tall{font-family:'Baloo 2',cursive;font-weight:800;font-size:1.3rem;color:var(--grape);}
+.score-label{font-size:0.72rem;color:var(--muted);margin-top:0.15rem;line-height:1.2;}
+
+.fremgang-boks{background:linear-gradient(135deg,var(--sun-light),#FFF9EC);border:2px solid #F5D98A;border-radius:16px;padding:1.1rem 1.25rem;margin-bottom:1.2rem;}
+.fremgang-tittel{font-family:'Baloo 2',cursive;font-weight:800;color:var(--sun);font-size:1.05rem;margin-bottom:0.6rem;display:flex;align-items:center;gap:0.4rem;}
+.fremgang-rad{display:flex;align-items:center;gap:0.5rem;padding:0.35rem 0;font-size:0.92rem;color:#8a6d3b;}
+
+/* SEKSJONSTITTEL */
+.seksjon-tittel{font-family:'Baloo 2',cursive;font-weight:700;font-size:1.05rem;color:var(--ink);margin:1.6rem 0.25rem 0.5rem;display:flex;align-items:center;gap:0.5rem;}
+.seksjon-sub{font-size:0.85rem;color:var(--muted);margin:0 0.25rem 1rem;line-height:1.5;}
+
+/* FORSTÅ-KORT */
+.forsta-kort{background:var(--card);border:2px solid var(--grape-light);border-radius:16px;padding:1.2rem;margin-bottom:1rem;box-shadow:var(--shadow);}
+.forsta-setning{background:#faf8ff;border-left:4px solid var(--grape);border-radius:8px;padding:0.8rem 0.9rem;margin-bottom:0.9rem;font-size:1.02rem;line-height:1.6;}
+.mark{background:rgba(212,175,55,0.28);border-radius:5px;padding:0.1rem 0.3rem;font-weight:800;color:#7a5c00;}
+.mark-b{background:rgba(124,58,237,0.18);border-radius:5px;padding:0.1rem 0.3rem;font-weight:800;color:#5b3a9e;}
+.forsta-sporsmal{font-weight:700;color:var(--ink);margin-bottom:0.7rem;font-size:0.96rem;}
+.valg-knapp{width:100%;background:#faf8ff;border:2px solid var(--grape-light);padding:0.8rem 0.7rem;border-radius:12px;cursor:pointer;margin-bottom:0.6rem;text-align:left;font-size:0.95rem;line-height:1.4;}
+.valg-knapp.riktig{border-color:var(--green);background:var(--green-light);}
+.valg-knapp.feil{border-color:var(--red);background:var(--red-light);}
+.fasit{margin-top:0.8rem;padding:0.8rem;border-radius:10px;font-weight:700;display:none;line-height:1.5;font-size:0.92rem;}
+.fasit.vis{display:block;}
+.fasit.riktig-svar{background:var(--green-light);color:var(--green);}
+.fasit.feil-svar{background:var(--red-light);color:var(--red);}
+
+.egne-ord{width:100%;min-height:90px;padding:0.9rem;border:2px solid var(--grape-light);border-radius:12px;font-family:'Nunito';font-size:0.98rem;resize:vertical;color:var(--ink);}
+.egne-ord:focus{outline:none;border-color:var(--grape);}
+.send-btn{width:100%;background:var(--grape);color:#fff;padding:0.8rem;border:none;border-radius:12px;font-family:'Baloo 2',cursive;font-weight:700;font-size:1rem;cursor:pointer;margin-top:0.7rem;}
+
+.footer{text-align:center;font-size:0.8rem;color:#aaa;margin-top:2rem;padding:1.25rem;}
+</style>
+</head>
+<body>
+
+<div class="topbar">
+  <a class="home-btn" href="index.html">🏠</a>
+  <span class="tittel">🏆 Edels Score</span>
+</div>
+
+<div class="banner-wrap">
+  <img class="banner-img" src="img/score-banner.jpg" alt="Edels Score">
+</div>
+
+<main>
+  <div class="fremgang-boks">
+    <div class="fremgang-tittel">📈 Det du har fått til</div>
+    <div class="fremgang-rad">⭐ To dager på rad – verbet riktig plassert hele veien i egen tekst</div>
+    <div class="fremgang-rad">✅ 6 av 6 riktig i «Velg» – full pott</div>
+    <div class="fremgang-rad">💪 Fra 7/9 til 8/9 i «Bygg» – du blir bedre for hver dag</div>
+  </div>
+
+  <div class="score-grid">
+    <div class="score-kort"><div class="score-emoji">⭐</div><div class="score-tall">2/2</div><div class="score-label">dager riktig i egen tekst</div></div>
+    <div class="score-kort"><div class="score-emoji">✅</div><div class="score-tall">6/6</div><div class="score-label">Velg – Min morgen</div></div>
+    <div class="score-kort"><div class="score-emoji">🏆</div><div class="score-tall">8/9</div><div class="score-label">Bygg – Min morgen</div></div>
+  </div>
+
+  <div class="seksjon-tittel">🧠 Forstår du hvorfor?</div>
+  <div class="seksjon-sub">Det viktigste er ikke å gjette riktig – det er å forstå <strong>hvorfor</strong> noe er riktig. Bare 3 spørsmål i dag.</div>
+
+  <div class="forsta-kort">
+    <div class="forsta-setning"><span class="mark-b">Så</span> <span class="mark">fant</span> vi Pipoka.</div>
+    <div class="forsta-sporsmal">1. Hvorfor står «fant» rett etter «så»?</div>
+    <button class="valg-knapp" onclick="svar(this,1,true)">Fordi verbet alltid skal stå på plass to, rett etter bindeordet</button>
+    <button class="valg-knapp" onclick="svar(this,1,false)">Fordi «fant» er et kort ord</button>
+    <button class="valg-knapp" onclick="svar(this,1,false)">Det er tilfeldig, det kunne stått hvor som helst</button>
+    <div class="fasit" id="f1"></div>
+  </div>
+
+  <div class="forsta-kort">
+    <div class="forsta-setning"><span class="mark-b">Til slutt</span> <span class="mark">ga</span> jeg en godbiter til Pipoka.</div>
+    <div class="forsta-sporsmal">2. Hvilket ord i setningen ER selve verbet?</div>
+    <button class="valg-knapp" onclick="svar(this,2,false)">jeg</button>
+    <button class="valg-knapp" onclick="svar(this,2,true)">ga</button>
+    <button class="valg-knapp" onclick="svar(this,2,false)">godbiter</button>
+    <button class="valg-knapp" onclick="svar(this,2,false)">Pipoka</button>
+    <div class="fasit" id="f2"></div>
+  </div>
+
+  <div class="forsta-kort">
+    <div class="forsta-sporsmal">3. Fortell med dine egne ord: hva skal stå <strong>rett etter</strong> et bindeord som «så» eller «først»?</div>
+    <textarea class="egne-ord" id="egneOrd" placeholder="Skriv her..."></textarea>
+    <button class="send-btn" onclick="sendForstaelse()">Send til mamma 💛</button>
+    <div class="fasit" id="f3"></div>
+  </div>
+</main>
+
+<div class="footer">🏆 Edels Score · Ord &amp; Setninger</div>
+
+<script>
+function svar(btn, nr, ok){
+  btn.parentElement.querySelectorAll('.valg-knapp').forEach(b => b.style.pointerEvents='none');
+  const f = document.getElementById('f'+nr);
+  if(ok){
+    btn.classList.add('riktig');
+    f.className = 'fasit vis riktig-svar';
+    f.innerHTML = '✅ Ja! Du forstår hvorfor – ikke bare hva.';
+  } else {
+    btn.classList.add('feil');
+    btn.parentElement.querySelectorAll('.valg-knapp').forEach(b => {
+      const isRight = (nr===1 && b.textContent.includes('plass to')) || (nr===2 && b.textContent.trim()==='ga');
+      if(isRight) b.classList.add('riktig');
+    });
+    f.className = 'fasit vis feil-svar';
+    f.innerHTML = '💡 Se en gang til – hvilket ord er handlingen i setningen?';
+  }
+  fetch('https://formspree.io/f/mqeolldg', {method:'POST', headers:{'Content-Type':'application/json','Accept':'application/json'},
+    body: JSON.stringify({Tekst_hun_skrev:'[Forstår du hvorfor - spm '+nr+'] '+(ok?'Riktig':'Feil'), oppgave:'Edels Score - Forståelse', maal:'Forståelse av V2-regelen', dato:new Date().toLocaleString('no-NO')})
+  }).catch(()=>{});
+}
+
+async function sendForstaelse(){
+  const t = document.getElementById('egneOrd').value;
+  const f = document.getElementById('f3');
+  if(t.trim().length < 5){ f.className='fasit vis feil-svar'; f.innerHTML='⏳ Skriv litt mer!'; return; }
+  f.className='fasit vis'; f.style.background='#faf8ff'; f.style.color='#6B7280'; f.innerHTML='⏳ Sender...';
+  try{
+    const r = await fetch('https://formspree.io/f/mqeolldg', {method:'POST', headers:{'Content-Type':'application/json','Accept':'application/json'},
+      body: JSON.stringify({Tekst_hun_skrev:t, oppgave:'Edels Score - Forklar med egne ord', maal:'Forståelse av V2-regelen', dato:new Date().toLocaleString('no-NO')})});
+    if(r.ok){ f.className='fasit vis riktig-svar'; f.innerHTML='✅ Sendt til mamma! Bra forklart. 🎉'; document.getElementById('egneOrd').value=''; }
+    else { f.className='fasit vis feil-svar'; f.innerHTML='❌ Noe gikk galt. Prøv igjen!'; }
+  } catch(e){ f.className='fasit vis feil-svar'; f.innerHTML='❌ Sjekk internett og prøv igjen!'; }
+}
+</script>
+</body>
+</html>
