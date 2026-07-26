@@ -65,7 +65,7 @@ main{max-width:640px;margin:0 auto;padding:0 1rem;}
 </div>
 
 <div class="banner-wrap">
-  <img class="banner-img" src="img/score-banner.jpg" alt="Edels Score">
+  <img class="banner-img" src="img/score-banner.jpeg" alt="Edels Score">
 </div>
 
 <main>
@@ -115,6 +115,8 @@ main{max-width:640px;margin:0 auto;padding:0 1rem;}
 <div class="footer">🏆 Edels Score · Ord &amp; Setninger</div>
 
 <script>
+let respostas = {1: null, 2: null, 3: null};
+
 function svar(btn, nr, ok){
   btn.parentElement.querySelectorAll('.valg-knapp').forEach(b => b.style.pointerEvents='none');
   const f = document.getElementById('f'+nr);
@@ -131,19 +133,19 @@ function svar(btn, nr, ok){
     f.className = 'fasit vis feil-svar';
     f.innerHTML = '💡 Se en gang til – hvilket ord er handlingen i setningen?';
   }
-  fetch('https://formspree.io/f/mqeolldg', {method:'POST', headers:{'Content-Type':'application/json','Accept':'application/json'},
-    body: JSON.stringify({Tekst_hun_skrev:'[Forstår du hvorfor - spm '+nr+'] '+(ok?'Riktig':'Feil'), oppgave:'Edels Score - Forståelse', maal:'Forståelse av V2-regelen', dato:new Date().toLocaleString('no-NO')})
-  }).catch(()=>{});
+  respostas[nr] = ok ? 'Riktig' : 'Feil';
 }
 
 async function sendForstaelse(){
   const t = document.getElementById('egneOrd').value;
   const f = document.getElementById('f3');
   if(t.trim().length < 5){ f.className='fasit vis feil-svar'; f.innerHTML='⏳ Skriv litt mer!'; return; }
+  respostas[3] = t;
   f.className='fasit vis'; f.style.background='#faf8ff'; f.style.color='#6B7280'; f.innerHTML='⏳ Sender...';
+  const oppsummering = 'Spm1: '+(respostas[1]||'—')+' | Spm2: '+(respostas[2]||'—')+' | Egne ord: '+t;
   try{
     const r = await fetch('https://formspree.io/f/mqeolldg', {method:'POST', headers:{'Content-Type':'application/json','Accept':'application/json'},
-      body: JSON.stringify({Tekst_hun_skrev:t, oppgave:'Edels Score - Forklar med egne ord', maal:'Forståelse av V2-regelen', dato:new Date().toLocaleString('no-NO')})});
+      body: JSON.stringify({Tekst_hun_skrev:oppsummering, oppgave:'Edels Score - Forståelse', maal:'Forståelse av V2-regelen', dato:new Date().toLocaleString('no-NO')})});
     if(r.ok){ f.className='fasit vis riktig-svar'; f.innerHTML='✅ Sendt til mamma! Bra forklart. 🎉'; document.getElementById('egneOrd').value=''; }
     else { f.className='fasit vis feil-svar'; f.innerHTML='❌ Noe gikk galt. Prøv igjen!'; }
   } catch(e){ f.className='fasit vis feil-svar'; f.innerHTML='❌ Sjekk internett og prøv igjen!'; }
