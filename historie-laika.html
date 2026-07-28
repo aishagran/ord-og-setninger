@@ -58,6 +58,11 @@ main{max-width:640px;margin:0 auto;padding:0 1rem;}
 .les-nr{color:#c0b0dd;font-weight:800;font-size:0.85rem;min-width:20px;}
 .mark{background:rgba(212,175,55,0.3);border-radius:5px;padding:0.1rem 0.3rem;font-weight:800;color:#7a5c00;}
 .mark-b{background:rgba(124,58,237,0.18);border-radius:5px;padding:0.1rem 0.3rem;font-weight:800;color:#5b3a9e;}
+.mark-s{background:rgba(52,211,153,0.22);border-radius:5px;padding:0.1rem 0.3rem;font-weight:800;color:#0a5c3f;}
+.forklar-boks{background:#faf8ff;border:2px solid var(--grape-light);border-radius:14px;padding:1rem 1.1rem;margin:1rem 0;}
+.forklar-tittel{font-family:'Baloo 2',cursive;font-weight:800;color:var(--grape);font-size:1rem;margin-bottom:0.7rem;text-align:center;}
+.forklar-steg{display:flex;align-items:center;gap:0.6rem;padding:0.5rem 0;font-size:0.95rem;}
+.forklar-nr{background:var(--grape);color:#fff;width:22px;height:22px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:0.8rem;flex-shrink:0;}
 /* BYGG */
 .bygg-mal{background:rgba(212,175,55,0.12);border-left:4px solid var(--gold);padding:0.85rem;border-radius:8px;color:#7a5c00;margin-bottom:1rem;font-size:0.9rem;}
 .bygg-svar{min-height:56px;background:#faf8ff;border:2px dashed var(--gold);border-radius:12px;padding:0.65rem;margin-bottom:1rem;display:flex;flex-wrap:wrap;gap:0.3rem;align-items:center;}
@@ -95,6 +100,9 @@ main{max-width:640px;margin:0 auto;padding:0 1rem;}
 .sprak-tittel{font-family:'Baloo 2',cursive;font-size:1.15rem;color:var(--sun);text-align:center;margin-bottom:0.8rem;}
 .sprak-linje{background:#fff;border-radius:10px;padding:0.7rem 0.8rem;margin-bottom:0.55rem;font-size:1rem;line-height:1.8;box-shadow:0 1px 5px rgba(0,0,0,0.04);}
 .sprak-regel{text-align:center;color:#8a6d3b;font-size:0.9rem;margin-top:0.8rem;line-height:1.5;}
+.din-setning{background:linear-gradient(135deg,rgba(52,211,153,0.12),#fff);border:2px solid #34D399;border-radius:10px;padding:0.8rem 0.9rem;margin-top:0.9rem;}
+.din-setning-tittel{font-family:'Baloo 2',cursive;font-weight:800;color:#0a5c3f;font-size:0.88rem;margin-bottom:0.4rem;}
+.din-setning-tekst{font-size:0.98rem;line-height:1.7;color:var(--ink);}
 .footer{text-align:center;font-size:0.8rem;color:#aaa;margin-top:2rem;padding:1.25rem;}
 .modal{display:none;position:fixed;inset:0;background:rgba(30,27,75,0.93);z-index:100;padding:0.5rem;overflow:auto;}
 .modal.vis{display:flex;align-items:center;justify-content:center;}
@@ -142,7 +150,18 @@ main{max-width:640px;margin:0 auto;padding:0 1rem;}
   <div class="del aktiv">
     <div class="kort">
       <img class="serie-bilde" src="img/laika.jpeg" alt="Laika" onclick="zoom('img/laika.jpeg')">
-      <div class="kort-intro">Les historien. Se på ordene som er markert.</div>
+      <div class="fargenokkel">
+        <div class="fnk"><span class="fnk-boks" style="background:#b49ce0;"></span>bindeord</div>
+        <div class="fnk"><span class="fnk-boks" style="background:#D4AF37;"></span>verb</div>
+        <div class="fnk"><span class="fnk-boks" style="background:#34D399;"></span>hvem</div>
+      </div>
+      <div class="forklar-boks">
+        <div class="forklar-tittel">🔑 Se på denne setningen: «Først fant forskerne Laika.»</div>
+        <div class="forklar-steg"><span class="forklar-nr">1</span><span><span class="mark-b">Først</span> er <strong>bindeordet</strong> – ordet som starter setningen.</span></div>
+        <div class="forklar-steg"><span class="forklar-nr">2</span><span><span class="mark">fant</span> er <strong>verbet</strong> – det kommer rett etter bindeordet.</span></div>
+        <div class="forklar-steg"><span class="forklar-nr">3</span><span><span class="mark-s">forskerne</span> er <strong>hvem</strong> – det kommer etter verbet.</span></div>
+      </div>
+      <div class="kort-intro">Les historien. Se på fargene i hver setning.</div>
       <div id="lesInnhold"></div>
     </div>
   </div>
@@ -187,7 +206,11 @@ main{max-width:640px;margin:0 auto;padding:0 1rem;}
   <!-- UKENS SPRÅK -->
   <div class="sprak-boks">
     <div class="sprak-tittel">⭐ Ukens språk</div>
-    <div class="sprak-linje">⭐ <span class="mark-b">Først</span> <span class="mark">sendte</span> de opp Sputnik 1.</div><div class="sprak-linje">⭐ <span class="mark-b">Så</span> <span class="mark">kom</span> Sputnik 2.</div><div class="sprak-linje">⭐ <span class="mark-b">Til slutt</span> <span class="mark">brant</span> raketten opp.</div>
+    <div class="sprak-linje">⭐ <span class="mark-b">Først</span> <span class="mark">fant</span> forskerne Laika.</div><div class="sprak-linje">⭐ <span class="mark-b">Så</span> <span class="mark">tok</span> Laika plass i Sputnik 2.</div><div class="sprak-linje">⭐ <span class="mark-b">Til slutt</span> <span class="mark">ble</span> Laika en del av historien.</div>
+    <div class="din-setning">
+      <div class="din-setning-tittel">💛 Dette skrev DU om Laika – helt riktig!</div>
+      <div class="din-setning-tekst"><span class="mark-b">Først</span> <span class="mark">sendte</span> de opp Laika til verdensrommet, <span class="mark-b">så</span> <span class="mark">fløy</span> Laika rundt jorda, <span class="mark-b">til slutt</span> <span class="mark">brente</span> raketten.</div>
+    </div>
     <div class="sprak-regel">Etter <strong>først, så, etterpå, til slutt</strong> kommer <strong>verbet</strong> – og så hvem.</div>
   </div>
 </main>
@@ -202,9 +225,12 @@ main{max-width:640px;margin:0 auto;padding:0 1rem;}
 <script>
 var HISTORIE = "Laika";
 var MAAL = "Tidsbindeord + V2";
-var LES = ["<span class=\"mark-b\">Først</span> <span class=\"mark\">sendte</span> Sovjetunionen opp Sputnik 1.", "Det var den første satellitten i verden.", "<span class=\"mark-b\">Så</span> <span class=\"mark\">kom</span> Sputnik 2, bare én måned senere.", "Ombord var en hund. Hun het Laika.", "Laika fikk et viktig oppdrag.", "<span class=\"mark-b\">Etterpå</span> <span class=\"mark\">gikk</span> Laika én runde i bane rundt jorda.", "Hun var det første dyret i verdensrommet.", "<span class=\"mark-b\">Dessverre</span> <span class=\"mark\">levde</span> Laika bare noen få timer.", "<span class=\"mark-b\">Til slutt</span> <span class=\"mark\">brant</span> Sputnik 2 opp i atmosfæren.", "<span class=\"mark-b\">Senere</span> <span class=\"mark\">gjorde</span> forskerne et nytt eksperiment.", "<span class=\"mark-b\">Da</span> <span class=\"mark\">kom</span> dyrene trygt tilbake.", "Laikas reise hjalp menneskene å komme til månen."];
-var BYGG = [{"mal": "Start med «Først». Hva sendte de opp?", "b": "Først", "v": "sendte", "s": "de", "r": ["opp", "Sputnik", "1"]}, {"mal": "Start med «Så». Hva kom etterpå?", "b": "Så", "v": "kom", "s": "Sputnik 2", "r": []}, {"mal": "Start med «Etterpå». Hva gjorde Laika?", "b": "Etterpå", "v": "fløy", "s": "Laika", "r": ["rundt", "jorda"]}, {"mal": "Start med «Til slutt». Hva skjedde med raketten?", "b": "Til slutt", "v": "brant", "s": "raketten", "r": ["opp"]}, {"mal": "Start med «Senere». Hva gjorde forskerne?", "b": "Senere", "v": "sendte", "s": "forskerne", "r": ["flere", "dyr"]}, {"mal": "Start med «Da». Hva skjedde med dyrene?", "b": "Da", "v": "kom", "s": "dyrene", "r": ["trygt", "tilbake"]}, {"mal": "Start med «Dessverre». Hvor lenge levde Laika?", "b": "Dessverre", "v": "levde", "s": "Laika", "r": ["bare", "noen", "timer"]}, {"mal": "Start med «Først». Hva var Sputnik 1?", "b": "Først", "v": "var", "s": "det", "r": ["en", "satellitt"]}, {"mal": "Start med «Så». Hva ble Laika?", "b": "Så", "v": "ble", "s": "hun", "r": ["kjent", "i", "hele", "verden"]}];
-var VELG = [{"intro": "Sputnik 1 var den første satellitten.", "b": "Først", "v": "sendte", "s": "de", "r": "opp Sputnik 1"}, {"intro": "En måned senere kom neste rakett.", "b": "Så", "v": "kom", "s": "Sputnik 2", "r": ""}, {"intro": "Laika reiste rundt jorda.", "b": "Etterpå", "v": "fløy", "s": "hun", "r": "rundt jorda"}, {"intro": "Raketten kom inn i atmosfæren.", "b": "Til slutt", "v": "brant", "s": "den", "r": "opp"}, {"intro": "Forskerne lærte mye av reisen.", "b": "Senere", "v": "sendte", "s": "de", "r": "flere dyr"}, {"intro": "De neste dyrene hadde det bra.", "b": "Da", "v": "kom", "s": "dyrene", "r": "trygt tilbake"}];
+var LES = ["<span class=\"mark-b\">Først</span> <span class=\"mark\">fant</span> <span class=\"mark-s\">forskerne</span> en liten hund som het Laika.", "<span class=\"mark-b\">Etterpå</span> <span class=\"mark\">tok</span> <span class=\"mark-s\">de</span> henne med til et treningssenter.", "<span class=\"mark-b\">Så</span> <span class=\"mark\">lærte</span> <span class=\"mark-s\">Laika</span> å sitte i en liten romkapsel.", "<span class=\"mark-b\">Deretter</span> <span class=\"mark\">gjorde</span> <span class=\"mark-s\">forskerne</span> raketten klar.", "<span class=\"mark-b\">Så</span> <span class=\"mark\">tok</span> <span class=\"mark-s\">Laika</span> plass i Sputnik 2.", "<span class=\"mark-b\">Etterpå</span> <span class=\"mark\">skjøt</span> <span class=\"mark-s\">raketten</span> opp i verdensrommet.", "<span class=\"mark-b\">Plutselig</span> <span class=\"mark\">var</span> <span class=\"mark-s\">Laika</span> den første hunden i verdensrommet.", "<span class=\"mark-b\">Så</span> <span class=\"mark\">gikk</span> <span class=\"mark-s\">Sputnik</span> rundt jorda.", "<span class=\"mark-b\">Til slutt</span> <span class=\"mark\">ble</span> <span class=\"mark-s\">Laika</span> en del av historien.", "<span class=\"mark-b\">I dag</span> <span class=\"mark\">husker</span> <span class=\"mark-s\">mange mennesker</span> den modige hunden Laika."];
+var BYGG_ALLE = [{"mal": "Start med «Først». Hva sendte de opp?", "b": "Først", "v": "sendte", "s": "de", "r": ["opp", "Sputnik", "1"]}, {"mal": "Start med «Så». Hva kom etterpå?", "b": "Så", "v": "kom", "s": "Sputnik 2", "r": []}, {"mal": "Start med «Etterpå». Hva gjorde Laika?", "b": "Etterpå", "v": "fløy", "s": "Laika", "r": ["rundt", "jorda"]}, {"mal": "Start med «Til slutt». Hva skjedde med raketten?", "b": "Til slutt", "v": "brant", "s": "raketten", "r": ["opp"]}, {"mal": "Start med «Senere». Hva gjorde forskerne?", "b": "Senere", "v": "sendte", "s": "forskerne", "r": ["flere", "dyr"]}, {"mal": "Start med «Da». Hva skjedde med dyrene?", "b": "Da", "v": "kom", "s": "dyrene", "r": ["trygt", "tilbake"]}, {"mal": "Start med «Dessverre». Hvor lenge levde Laika?", "b": "Dessverre", "v": "levde", "s": "Laika", "r": ["bare", "noen", "timer"]}, {"mal": "Start med «Først». Hva var Sputnik 1?", "b": "Først", "v": "var", "s": "det", "r": ["en", "satellitt"]}, {"mal": "Start med «Så». Hva ble Laika?", "b": "Så", "v": "ble", "s": "hun", "r": ["kjent", "i", "hele", "verden"]}, {"mal": "Start med «Først». Hvem valgte forskerne?", "b": "Først", "v": "valgte", "s": "forskerne", "r": ["en", "gatehund"]}, {"mal": "Start med «Så». Hva gjorde de med henne?", "b": "Så", "v": "trente", "s": "de", "r": ["henne", "i", "uker"]}, {"mal": "Start med «Etterpå». Hva ble hun?", "b": "Etterpå", "v": "ble", "s": "hun", "r": ["klar", "for", "oppdraget"]}, {"mal": "Start med «Dessverre». Hva skjedde inni?", "b": "Dessverre", "v": "ble", "s": "kapselen", "r": ["for", "varm"]}, {"mal": "Start med «Senere». Hva lærte menneskene?", "b": "Senere", "v": "lærte", "s": "menneskene", "r": ["mye", "nytt"]}, {"mal": "Start med «Til slutt». Hva bygget folk?", "b": "Til slutt", "v": "bygget", "s": "folk", "r": ["en", "statue"]}];
+var VELG_ALLE = [{"intro": "Sputnik 1 var den første satellitten.", "b": "Først", "v": "sendte", "s": "de", "r": "opp Sputnik 1"}, {"intro": "En måned senere kom neste rakett.", "b": "Så", "v": "kom", "s": "Sputnik 2", "r": ""}, {"intro": "Laika reiste rundt jorda.", "b": "Etterpå", "v": "fløy", "s": "hun", "r": "rundt jorda"}, {"intro": "Raketten kom inn i atmosfæren.", "b": "Til slutt", "v": "brant", "s": "den", "r": "opp"}, {"intro": "Forskerne lærte mye av reisen.", "b": "Senere", "v": "sendte", "s": "de", "r": "flere dyr"}, {"intro": "De neste dyrene hadde det bra.", "b": "Da", "v": "kom", "s": "dyrene", "r": "trygt tilbake"}, {"intro": "Hun var snill og rolig.", "b": "Først", "v": "valgte", "s": "forskerne", "r": "henne"}, {"intro": "Hun måtte lære mye før turen.", "b": "Så", "v": "trente", "s": "de", "r": "henne i uker"}, {"intro": "Det ble varmt inni kapselen.", "b": "Dessverre", "v": "ble", "s": "det", "r": "for varmt"}, {"intro": "Folk husker henne den dag i dag.", "b": "Til slutt", "v": "bygget", "s": "folk", "r": "en statue"}];
+function embland(arr){var a=arr.slice();for(var i=a.length-1;i>0;i--){var j=Math.floor(Math.random()*(i+1));var t=a[i];a[i]=a[j];a[j]=t;}return a;}
+var BYGG = embland(BYGG_ALLE).slice(0,8);
+var VELG = embland(VELG_ALLE).slice(0,6);
 function chip(w,r){ return '<span class="ord ord-'+r+'">'+w+'</span>'; }
 function zoom(src){ document.getElementById('modalBilde').src=src; document.getElementById('bildeModal').classList.add('vis'); }
 function lukkModal(){ document.getElementById('bildeModal').classList.remove('vis'); }
@@ -238,7 +264,7 @@ function visBygg(){
     '<div class="bygg-svar" id="byggSvar"></div>'+
     '<div class="brikke-bank">'+bank+'</div>'+
     '<button class="tomt-btn" onclick="tomBygg()">↺ Start på nytt</button>'+
-    '<button class="sjekk-btn" onclick="sjekkBygg(\''+riktig+'\')">Sjekk svar</button>'+
+    '<button class="sjekk-btn" onclick="sjekkBygg(this,\''+riktig+'\')">Sjekk svar</button>'+
     '<div class="fasit" id="fasitB"></div>';
 }
 function leggTil(el){
@@ -253,7 +279,8 @@ function tomBygg(){
   document.getElementById('byggSvar').innerHTML='';
   document.querySelectorAll('#kortB .brikke').forEach(function(b){b.classList.remove('brukt');});
 }
-function sjekkBygg(riktig){
+function sjekkBygg(btn,riktig){
+  btn.disabled=true; btn.style.opacity='0.5'; btn.style.pointerEvents='none';
   var svar=[].slice.call(document.querySelectorAll('#byggSvar .i-svar')).map(function(b){return b.textContent;}).join(' ');
   var f=document.getElementById('fasitB');
   if(svar.trim()===riktig){ pB++; f.className='fasit vis riktig-svar'; f.innerHTML='✅ Perfekt! Verbet står på plass to.'; }

@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Min morgen – Ord &amp; Setninger</title>
+<title>Kinotur – Ord &amp; Setninger</title>
 <link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@600;700;800&family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
 <style>
 :root{
@@ -87,9 +87,6 @@ main{max-width:640px;margin:0 auto;padding:0 1rem;}
 .sprak-tittel{font-family:'Baloo 2',cursive;font-size:1.15rem;color:var(--sun);text-align:center;margin-bottom:0.8rem;}
 .sprak-linje{background:#fff;border-radius:10px;padding:0.7rem 0.8rem;margin-bottom:0.55rem;font-size:1rem;line-height:1.8;box-shadow:0 1px 5px rgba(0,0,0,0.04);}
 .sprak-regel{text-align:center;color:#8a6d3b;font-size:0.9rem;margin-top:0.8rem;line-height:1.5;}
-.din-setning{background:linear-gradient(135deg,rgba(52,211,153,0.12),#fff);border:2px solid #34D399;border-radius:10px;padding:0.8rem 0.9rem;margin-top:0.9rem;}
-.din-setning-tittel{font-family:'Baloo 2',cursive;font-weight:800;color:#0a5c3f;font-size:0.88rem;margin-bottom:0.4rem;}
-.din-setning-tekst{font-size:0.98rem;line-height:1.7;color:var(--ink);}
 .footer{text-align:center;font-size:0.8rem;color:#aaa;margin-top:2rem;padding:1.25rem;}
 .modal{display:none;position:fixed;inset:0;background:rgba(30,27,75,0.93);z-index:100;padding:0.5rem;overflow:auto;}
 .modal.vis{display:flex;align-items:center;justify-content:center;}
@@ -102,12 +99,12 @@ main{max-width:640px;margin:0 auto;padding:0 1rem;}
 
 <div class="topbar">
   <a class="home-btn" href="index.html">🏠</a>
-  <span class="tittel">🌅 Min morgen</span>
+  <span class="tittel">🎬 Kinotur</span>
 </div>
 
 <div class="hero">
-  <div class="ikon">🌅</div>
-  <h1>Min morgen</h1>
+  <div class="ikon">🎬</div>
+  <h1>Kinotur</h1>
 </div>
 
 <main>
@@ -123,16 +120,14 @@ main{max-width:640px;margin:0 auto;padding:0 1rem;}
     <button class="fane" onclick="byttFane(3)">✍️ Skriv</button>
   </div>
 
-  <!-- LES -->
   <div class="del aktiv">
     <div class="kort">
-      <img class="serie-bilde" src="img/morgen.jpeg" alt="Min morgen" onclick="zoom('img/morgen.jpeg')">
+      <img class="serie-bilde" src="img/kino.jpeg" alt="Kinotur" onclick="zoom('img/kino.jpeg')">
       <div class="kort-intro">Les historien. Se på ordene som er markert.</div>
       <div id="lesInnhold"></div>
     </div>
   </div>
 
-  <!-- BYGG -->
   <div class="del">
     <div class="fargenokkel">
       <div class="fnk"><span class="fnk-boks" style="background:#b49ce0;"></span>bindeord</div>
@@ -143,7 +138,6 @@ main{max-width:640px;margin:0 auto;padding:0 1rem;}
     <div class="kort" id="kortB"></div>
   </div>
 
-  <!-- VELG -->
   <div class="del">
     <div class="fargenokkel">
       <div class="fnk"><span class="fnk-boks" style="background:#b49ce0;"></span>bindeord</div>
@@ -154,37 +148,30 @@ main{max-width:640px;margin:0 auto;padding:0 1rem;}
     <div class="kort" id="kortV"></div>
   </div>
 
-  <!-- SKRIV -->
   <div class="del">
     <div class="kort">
-      <div class="skriv-sporsmal">✍️ Fortell om <strong>din morgen</strong> i dag.<br>Bruk <strong>først</strong>, <strong>etterpå</strong>, <strong>så</strong> og <strong>til slutt</strong>. Husk: verbet rett etter bindeordet!</div>
+      <div class="skriv-sporsmal">✍️ Fortell om en gang du var på kino, eller en annen fin utflukt du husker.<br>Bruk <strong>først, etterpå, så, plutselig, til slutt</strong>. Husk: verbet rett etter bindeordet!</div>
       <textarea class="skriv-omrade" id="skrivTekst" placeholder="Skriv her..."></textarea>
       <button class="hjelp-btn" onclick="visHjelp()">💡 Trenger du hjelp?</button>
       <div class="hjelp-innhold" id="hjelpInnhold">
         <div style="color:#1E1B4B;font-weight:700;margin-bottom:0.4rem;">Du kan begynne slik:</div>
-        <div class="hjelp-eks">Først <span class="ord ord-verb" style="padding:0.1rem 0.4rem;">stod</span> jeg opp.<br>Etterpå <span class="ord ord-verb" style="padding:0.1rem 0.4rem;">spiste</span> jeg frokost.<br>Til slutt <span class="ord ord-verb" style="padding:0.1rem 0.4rem;">gikk</span> jeg på skolen.</div>
+        <div class="hjelp-eks">Først <span class="ord ord-verb" style="padding:0.1rem 0.4rem;">tok</span> jeg på meg…<br>Så <span class="ord ord-verb" style="padding:0.1rem 0.4rem;">tok</span> vi bussen til…<br>Til slutt <span class="ord ord-verb" style="padding:0.1rem 0.4rem;">kom</span> jeg hjem.</div>
       </div>
       <button class="sjekk-btn" style="margin-top:1rem;" onclick="sendTekst()">Send til mamma 💛</button>
       <div class="fasit" id="skrivFasit"></div>
     </div>
   </div>
 
-  <!-- UKENS SPRÅK -->
   <div class="sprak-boks">
     <div class="sprak-tittel">⭐ Ukens språk</div>
-    <div class="sprak-linje">⭐ <span class="mark-b">Først</span> <span class="mark">vekket</span> mamma meg.</div><div class="sprak-linje">⭐ <span class="mark-b">Etterpå</span> <span class="mark">stod</span> jeg opp.</div><div class="sprak-linje">⭐ <span class="mark-b">Til slutt</span> <span class="mark">ga</span> jeg Pipoka en kos.</div>
-    <div class="din-setning">
-      <div class="din-setning-tittel">💛 Dette skrev DU – tre ganger, riktig hele veien!</div>
-      <div class="din-setning-tekst"><strong>25.7:</strong> <span class="mark-b">Først</span> <span class="mark">vekket</span> jeg meg selv, <span class="mark-b">etterpå</span> <span class="mark">gikk</span> jeg med Pipoka, <span class="mark-b">så</span> <span class="mark">gikk</span> jeg og Pipoka hjem, <span class="mark-b">til slutt</span> <span class="mark">ga</span> jeg en godbiter til Pipoka.</div>
-      <div class="din-setning-tekst" style="margin-top:0.6rem;"><strong>26.7:</strong> <span class="mark-b">Først</span> <span class="mark">stod</span> jeg opp, <span class="mark-b">etterpå</span> <span class="mark">gikk</span> jeg og spilte Fortnite, <span class="mark-b">så</span> <span class="mark">gikk</span> jeg tur med Pipoka, <span class="mark-b">til slutt</span> <span class="mark">var</span> jeg hjemme og koste meg.</div>
-      <div class="din-setning-tekst" style="margin-top:0.6rem;"><strong>28.7:</strong> <span class="mark-b">Først</span> <span class="mark">stod</span> jeg opp, <span class="mark-b">etterpå</span> <span class="mark">børstet</span> håret, <span class="mark-b">så</span> <span class="mark">gikk</span> jeg en tur med Pipoka, <span class="mark-b">til slutt</span> <span class="mark">kom</span> vennina mi på besøk.</div>
-    </div>
-    </div>
+    <div class="sprak-linje">⭐ <span class="mark-b">Først</span> <span class="mark">tok</span> jeg på meg jakken.</div>
+    <div class="sprak-linje">⭐ <span class="mark-b">Så</span> <span class="mark">tok</span> vi bussen til kinoen.</div>
+    <div class="sprak-linje">⭐ <span class="mark-b">Til slutt</span> <span class="mark">kom</span> vi hjem.</div>
     <div class="sprak-regel">Etter <strong>først, etterpå, så, til slutt</strong> kommer <strong>verbet</strong> – og så hvem.</div>
   </div>
 </main>
 
-<div class="footer">🌅 Min morgen · Ord &amp; Setninger</div>
+<div class="footer">🎬 Kinotur · Ord &amp; Setninger</div>
 
 <div class="modal" id="bildeModal" onclick="lukkModal()">
   <span class="modal-lukk">&times;</span>
@@ -192,11 +179,11 @@ main{max-width:640px;margin:0 auto;padding:0 1rem;}
 </div>
 
 <script>
-var HISTORIE = "Min morgen";
+var HISTORIE = "Kinotur";
 var MAAL = "Tidsbindeord + V2";
-var LES = ["<span class=\"mark-b\">Først</span> <span class=\"mark\">vekket</span> mamma meg.", "<span class=\"mark-b\">Etterpå</span> <span class=\"mark\">stod</span> jeg opp og pusset tennene.", "<span class=\"mark-b\">Så</span> <span class=\"mark\">børstet</span> jeg håret.", "Jeg fant en bukse, en genser og et par sokker.", "<span class=\"mark-b\">Nå</span> <span class=\"mark\">var</span> jeg nesten klar!", "<span class=\"mark-b\">Deretter</span> <span class=\"mark\">laget</span> jeg matpakken min.", "<span class=\"mark-b\">I dag</span> <span class=\"mark\">hjalp</span> mamma meg med matpakken.", "<span class=\"mark-b\">Plutselig</span> <span class=\"mark\">ringte</span> venninnen min.", "«Skal vi gå sammen til skolen?» spurte hun.", "<span class=\"mark-b\">Til slutt</span> <span class=\"mark\">ga</span> jeg Pipoka en kos.", "<span class=\"mark-b\">Så</span> <span class=\"mark\">gikk</span> jeg ut døren.", "…og dro til skolen."];
-var BYGG_ALLE = [{"mal": "Start med «Først». Hva skjedde om morgenen?", "b": "Først", "v": "vekket", "s": "mamma", "r": ["meg"]}, {"mal": "Start med «Etterpå». Hva gjorde du?", "b": "Etterpå", "v": "pusset", "s": "jeg", "r": ["tennene"]}, {"mal": "Start med «Så». Hva gjorde du med håret?", "b": "Så", "v": "børstet", "s": "jeg", "r": ["håret"]}, {"mal": "Start med «Plutselig». Hvem ringte?", "b": "Plutselig", "v": "ringte", "s": "venninnen", "r": ["min"]}, {"mal": "Start med «Til slutt». Hva ga du Pipoka?", "b": "Til slutt", "v": "ga", "s": "jeg", "r": ["Pipoka", "en", "kos"]}, {"mal": "Start med «Deretter». Hva laget du?", "b": "Deretter", "v": "laget", "s": "jeg", "r": ["matpakken"]}, {"mal": "Start med «Nå». Hva var du nesten?", "b": "Nå", "v": "var", "s": "jeg", "r": ["nesten", "klar"]}, {"mal": "Start med «I dag». Hvem hjalp deg?", "b": "I dag", "v": "hjalp", "s": "mamma", "r": ["meg"]}, {"mal": "Start med «Så». Hva gjorde du til slutt før du dro?", "b": "Så", "v": "gikk", "s": "jeg", "r": ["ut", "døren"]}, {"mal": "🌟 Dette skrev du i går! Hva ga du Pipoka?", "b": "Til slutt", "v": "ga", "s": "jeg", "r": ["en", "godbiter", "til", "Pipoka"]}, {"mal": "🌟 Dette skrev du i dag! Hva gjorde du med Pipoka?", "b": "Så", "v": "gikk", "s": "jeg", "r": ["tur", "med", "Pipoka"]}, {"mal": "Start med «Om morgenen». Når våknet du?", "b": "Om morgenen", "v": "våknet", "s": "jeg", "r": ["tidlig"]}, {"mal": "Start med «Etterpå». Hva spiste du?", "b": "Etterpå", "v": "spiste", "s": "jeg", "r": ["frokost"]}, {"mal": "Start med «Så». Hva tok du på deg?", "b": "Så", "v": "tok", "s": "jeg", "r": ["på", "meg", "klærne"]}, {"mal": "Start med «Til slutt». Hva fant du?", "b": "Til slutt", "v": "fant", "s": "jeg", "r": ["skolesekken"]}, {"mal": "Start med «Plutselig». Hva hørte du?", "b": "Plutselig", "v": "hørte", "s": "jeg", "r": ["et", "lyd"]}, {"mal": "Start med «Deretter». Hvor gikk dere?", "b": "Deretter", "v": "gikk", "s": "vi", "r": ["ut", "sammen"]}, {"mal": "Start med «Nå». Hvem var klar?", "b": "Nå", "v": "var", "s": "hun", "r": ["klar", "til", "skolen"]}];
-var VELG_ALLE = [{"intro": "Mamma vekket deg klokka sju.", "b": "Først", "v": "vekket", "s": "mamma", "r": "meg"}, {"intro": "Etter det stod du opp.", "b": "Etterpå", "v": "stod", "s": "jeg", "r": "opp"}, {"intro": "Håret måtte børstes.", "b": "Så", "v": "børstet", "s": "jeg", "r": "håret"}, {"intro": "Telefonen ringte uventet.", "b": "Plutselig", "v": "ringte", "s": "venninnen", "r": "min"}, {"intro": "Helt på slutten koste du med Pipoka.", "b": "Til slutt", "v": "ga", "s": "jeg", "r": "Pipoka en kos"}, {"intro": "Mamma hjalp med matpakken.", "b": "I dag", "v": "hjalp", "s": "mamma", "r": "meg"}, {"intro": "Du stod opp veldig tidlig.", "b": "Om morgenen", "v": "våknet", "s": "jeg", "r": "tidlig"}, {"intro": "Du spiste noe før skolen.", "b": "Etterpå", "v": "spiste", "s": "jeg", "r": "frokost"}, {"intro": "Klærne måtte på.", "b": "Så", "v": "tok", "s": "jeg", "r": "på meg klærne"}, {"intro": "Skolesekken var borte en stund.", "b": "Til slutt", "v": "fant", "s": "jeg", "r": "skolesekken"}, {"intro": "Det kom en lyd fra kjøkkenet.", "b": "Plutselig", "v": "hørte", "s": "jeg", "r": "et lyd"}, {"intro": "Dere gikk sammen til skolen.", "b": "Deretter", "v": "gikk", "s": "vi", "r": "ut sammen"}];
+var LES = ["<span class=\"mark-b\">Først</span> <span class=\"mark\">tok</span> jeg på meg jakken og skoene.", "<span class=\"mark-b\">Etterpå</span> <span class=\"mark\">gikk</span> mamma og jeg til bussholdeplassen.", "<span class=\"mark-b\">Så</span> <span class=\"mark\">tok</span> vi bussen til kinoen.", "<span class=\"mark-b\">Deretter</span> <span class=\"mark\">kjøpte</span> vi billetter.", "<span class=\"mark-b\">Etterpå</span> <span class=\"mark\">kjøpte</span> jeg en stor popcorn og en brus.", "<span class=\"mark-b\">Så</span> <span class=\"mark\">fant</span> vi plassene våre i kinosalen.", "<span class=\"mark-b\">Plutselig</span> <span class=\"mark\">ble</span> det mørkt.", "Filmen startet, og den var veldig spennende.", "<span class=\"mark-b\">Etter filmen</span> <span class=\"mark\">gikk</span> vi ut av kinoen.", "<span class=\"mark-b\">Så</span> <span class=\"mark\">tok</span> vi bussen hjem.", "<span class=\"mark-b\">Til slutt</span> <span class=\"mark\">kom</span> vi hjem.", "Jeg var glad fordi jeg hadde hatt en fin dag."];
+var BYGG_ALLE = [{"mal": "Start med «Først». Hva tok du på deg?", "b": "Først", "v": "tok", "s": "jeg", "r": ["på", "meg", "jakken"]}, {"mal": "Start med «Etterpå». Hvor gikk dere?", "b": "Etterpå", "v": "gikk", "s": "mamma og jeg", "r": ["til", "bussholdeplassen"]}, {"mal": "Start med «Så». Hva tok dere?", "b": "Så", "v": "tok", "s": "vi", "r": ["bussen", "til", "kinoen"]}, {"mal": "Start med «Deretter». Hva kjøpte dere?", "b": "Deretter", "v": "kjøpte", "s": "vi", "r": ["billetter"]}, {"mal": "Start med «Etterpå». Hva kjøpte du?", "b": "Etterpå", "v": "kjøpte", "s": "jeg", "r": ["popcorn", "og", "brus"]}, {"mal": "Start med «Så». Hva fant dere?", "b": "Så", "v": "fant", "s": "vi", "r": ["plassene", "våre"]}, {"mal": "Start med «Plutselig». Hva skjedde?", "b": "Plutselig", "v": "ble", "s": "det", "r": ["mørkt"]}, {"mal": "Start med «Så». Hva tok dere hjem?", "b": "Så", "v": "tok", "s": "vi", "r": ["bussen", "hjem"]}, {"mal": "Start med «Til slutt». Hva skjedde?", "b": "Til slutt", "v": "kom", "s": "vi", "r": ["hjem"]}, {"mal": "Start med «Først». Hva annet tok du på?", "b": "Først", "v": "tok", "s": "jeg", "r": ["på", "meg", "skoene"]}, {"mal": "Start med «Da». Hva skjedde med filmen?", "b": "Da", "v": "startet", "s": "filmen", "r": ["plutselig"]}, {"mal": "Start med «Etterpå». Hvor gikk dere ut?", "b": "Etterpå", "v": "gikk", "s": "vi", "r": ["ut", "av", "kinoen"]}];
+var VELG_ALLE = [{"intro": "Du kledde deg for å gå ut.", "b": "Først", "v": "tok", "s": "jeg", "r": "på meg jakken"}, {"intro": "Dere gikk til bussen sammen.", "b": "Etterpå", "v": "gikk", "s": "mamma og jeg", "r": "til bussholdeplassen"}, {"intro": "Bussen kjørte til kinoen.", "b": "Så", "v": "tok", "s": "vi", "r": "bussen til kinoen"}, {"intro": "Dere handlet noe før filmen.", "b": "Deretter", "v": "kjøpte", "s": "vi", "r": "billetter"}, {"intro": "Lyset i salen forsvant.", "b": "Plutselig", "v": "ble", "s": "det", "r": "mørkt"}, {"intro": "Dere dro hjemover etterpå.", "b": "Så", "v": "tok", "s": "vi", "r": "bussen hjem"}, {"intro": "Reisen var over.", "b": "Til slutt", "v": "kom", "s": "vi", "r": "hjem"}, {"intro": "Du fylte på med snacks.", "b": "Etterpå", "v": "kjøpte", "s": "jeg", "r": "popcorn og brus"}];
 function embland(arr){var a=arr.slice();for(var i=a.length-1;i>0;i--){var j=Math.floor(Math.random()*(i+1));var t=a[i];a[i]=a[j];a[j]=t;}return a;}
 var BYGG = embland(BYGG_ALLE).slice(0,8);
 var VELG = embland(VELG_ALLE).slice(0,6);
