@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Pipoka og DNA – Ord &amp; Setninger</title>
+<title>Den kalde krigen – Ord &amp; Setninger</title>
 <link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@600;700;800&family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
 <style>
 :root{
@@ -33,14 +33,6 @@ main{max-width:640px;margin:0 auto;padding:0 1rem;}
 .fargenokkel{display:flex;flex-wrap:wrap;gap:0.55rem;justify-content:center;margin:0 0 0.9rem;padding:0.55rem;background:#faf8ff;border-radius:10px;}
 .fnk{display:flex;align-items:center;gap:0.3rem;font-size:0.75rem;color:var(--muted);}
 .fnk-boks{width:14px;height:14px;border-radius:4px;}
-/* UKENS ORD */
-.vokab-boks{background:linear-gradient(135deg,rgba(232,74,138,0.08),rgba(255,255,255,0));border:2px solid var(--berry);border-radius:14px;padding:0.9rem 1rem;margin:0 0 1rem;}
-.vokab-tittel{font-family:'Baloo 2',cursive;font-size:0.9rem;color:var(--berry);margin-bottom:0.6rem;}
-.vokab-rad{display:flex;align-items:baseline;gap:0.5rem;padding:0.4rem 0;border-bottom:1px solid rgba(232,74,138,0.15);font-size:0.95rem;}
-.vokab-rad:last-child{border-bottom:none;}
-.vokab-ord{font-family:'Baloo 2',cursive;font-weight:800;color:var(--ink);min-width:112px;flex-shrink:0;}
-.vokab-def{color:var(--muted);font-size:0.87rem;}
-
 /* FANER */
 .faner{display:flex;gap:0.4rem;margin-bottom:1rem;}
 .fane{flex:1;background:#fff;border:2px solid var(--grape-light);color:var(--muted);padding:0.65rem 0.3rem;border-radius:12px;font-family:'Baloo 2',cursive;font-weight:700;font-size:0.8rem;cursor:pointer;text-align:center;transition:all 0.15s;}
@@ -58,6 +50,11 @@ main{max-width:640px;margin:0 auto;padding:0 1rem;}
 .les-nr{color:#c0b0dd;font-weight:800;font-size:0.85rem;min-width:20px;}
 .mark{background:rgba(212,175,55,0.3);border-radius:5px;padding:0.1rem 0.3rem;font-weight:800;color:#7a5c00;}
 .mark-b{background:rgba(124,58,237,0.18);border-radius:5px;padding:0.1rem 0.3rem;font-weight:800;color:#5b3a9e;}
+/* NYE ORD */
+.ordliste-boks{background:linear-gradient(135deg,rgba(232,74,138,0.07),#fff);border:2px solid #F2C1D6;border-radius:14px;padding:1rem 1.1rem;margin-bottom:1rem;}
+.ordliste-tittel{font-family:'Baloo 2',cursive;font-weight:700;font-size:0.9rem;color:var(--berry);margin-bottom:0.5rem;}
+.ordliste-item{font-size:0.88rem;color:var(--ink);line-height:1.7;}
+.ordliste-item strong{color:var(--berry);}
 /* BYGG */
 .bygg-mal{background:rgba(212,175,55,0.12);border-left:4px solid var(--gold);padding:0.85rem;border-radius:8px;color:#7a5c00;margin-bottom:1rem;font-size:0.9rem;}
 .bygg-svar{min-height:56px;background:#faf8ff;border:2px dashed var(--gold);border-radius:12px;padding:0.65rem;margin-bottom:1rem;display:flex;flex-wrap:wrap;gap:0.3rem;align-items:center;}
@@ -107,26 +104,18 @@ main{max-width:640px;margin:0 auto;padding:0 1rem;}
 
 <div class="topbar">
   <a class="home-btn" href="index.html">🏠</a>
-  <span class="tittel">🧬 Pipoka og DNA</span>
+  <span class="tittel">🌍 Den kalde krigen</span>
 </div>
 
 <div class="hero">
-  <div class="ikon">🧬</div>
-  <h1>Pipoka og DNA</h1>
+  <div class="ikon">🌍</div>
+  <h1>Den kalde krigen</h1>
 </div>
 
 <main>
   <div class="mal-boks">
     <div class="mal-tittel">🎯 DENNE HISTORIEN ØVER PÅ</div>
-    <div class="mal-tekst"><strong>Derfor</strong> og <strong>dermed</strong> forteller hva som skjer <em>på grunn av</em> noe. <strong>Likevel</strong> forteller at noe skjedde selv om.<br>Etter disse ordene kommer <strong>verbet</strong> med en gang.</div>
-  </div>
-
-  <div class="vokab-boks">
-    <div class="vokab-tittel">🎯 Ukens ord</div>
-    <div class="vokab-rad"><span class="vokab-ord">🧬 DNA</span><span class="vokab-def">en oppskrift inni kroppen</span></div>
-    <div class="vokab-rad"><span class="vokab-ord">🏡 temme</span><span class="vokab-def">gjøre et vilt dyr trygt hos mennesker</span></div>
-    <div class="vokab-rad"><span class="vokab-ord">🔍 undersøke</span><span class="vokab-def">se nøye på noe for å lære</span></div>
-    <div class="vokab-rad"><span class="vokab-ord">🐾 blanding</span><span class="vokab-def">når flere ting er sammen</span></div>
+    <div class="mal-tekst"><strong>Årsak og følge:</strong> derfor, dermed. <strong>Motsetning:</strong> likevel.<br>Etter disse ordene kommer <strong>verbet</strong> med en gang. Dette er samfunnsfag – Kapittel 1: Etter andre verdenskrig.</div>
   </div>
 
   <div class="faner">
@@ -139,9 +128,19 @@ main{max-width:640px;margin:0 auto;padding:0 1rem;}
   <!-- LES -->
   <div class="del aktiv">
     <div class="kort">
-      <img class="serie-bilde" src="img/dna-historie.jpeg" alt="Pipoka og DNA" onclick="zoom('img/dna-historie.jpeg')">
+      <img class="serie-bilde" src="img/kald-krig-1.png" alt="Kapittel 1: Etter andre verdenskrig" onclick="zoom('img/kald-krig-1.png')">
       <div class="kort-intro">Les historien. Se på ordene som er markert.</div>
       <div id="lesInnhold"></div>
+    </div>
+    <div class="ordliste-boks">
+      <div class="ordliste-tittel">🌟 Nye ord</div>
+      <div class="ordliste-item"><strong>Ødelagt</strong> = knust, ikke helt lenger</div>
+      <div class="ordliste-item"><strong>Ruiner</strong> = bygninger som er knust</div>
+      <div class="ordliste-item"><strong>Stormakt</strong> = et veldig sterkt land</div>
+      <div class="ordliste-item"><strong>Ideologi</strong> = en idé om hvordan verden skal styres</div>
+      <div class="ordliste-item"><strong>Rivaler</strong> = konkurrenter</div>
+      <div class="ordliste-item"><strong>Dermed</strong> = derfor, på grunn av dette</div>
+      <div class="ordliste-item"><strong>Likevel</strong> = selv om noe skjedde, forandret det seg ikke</div>
     </div>
   </div>
 
@@ -170,12 +169,12 @@ main{max-width:640px;margin:0 auto;padding:0 1rem;}
   <!-- SKRIV -->
   <div class="del">
     <div class="kort">
-      <div class="skriv-sporsmal">✍️ Hva lærte du om <strong>Pipoka og DNA</strong>?<br>Bruk <strong>derfor</strong> minst to ganger. Husk: verbet rett etter <em>derfor</em>!</div>
+      <div class="skriv-sporsmal">✍️ Fortell med egne ord hva som skjedde <strong>etter andre verdenskrig</strong>.<br>Bruk <strong>derfor</strong> minst to ganger. Husk: verbet rett etter «derfor»!</div>
       <textarea class="skriv-omrade" id="skrivTekst" placeholder="Skriv her..."></textarea>
       <button class="hjelp-btn" onclick="visHjelp()">💡 Trenger du hjelp?</button>
       <div class="hjelp-innhold" id="hjelpInnhold">
         <div style="color:#1E1B4B;font-weight:700;margin-bottom:0.4rem;">Du kan begynne slik:</div>
-        <div class="hjelp-eks">Pipoka har mange raser.<br>Derfor <span class="ord ord-verb" style="padding:0.1rem 0.4rem;">er</span> hun en blanding.<br><br>Familien ville vite mer.<br>Derfor <span class="ord ord-verb" style="padding:0.1rem 0.4rem;">tok</span> de en test.</div>
+        <div class="hjelp-eks">Byene var ødelagt. Derfor <span class="ord ord-verb" style="padding:0.1rem 0.4rem;">trengte</span> landene hjelp.<br>USA og Sovjet hadde ulike ideer. Derfor <span class="ord ord-verb" style="padding:0.1rem 0.4rem;">ble</span> de rivaler.</div>
       </div>
       <button class="sjekk-btn" style="margin-top:1rem;" onclick="sendTekst()">Send til mamma 💛</button>
       <div class="fasit" id="skrivFasit"></div>
@@ -185,12 +184,14 @@ main{max-width:640px;margin:0 auto;padding:0 1rem;}
   <!-- UKENS SPRÅK -->
   <div class="sprak-boks">
     <div class="sprak-tittel">⭐ Ukens språk</div>
-    <div class="sprak-linje">⭐ Pipoka har mange raser. <span class="mark-b">Derfor</span> <span class="mark">er</span> hun en blanding.</div><div class="sprak-linje">⭐ Familien ville vite mer. <span class="mark-b">Derfor</span> <span class="mark">tok</span> de en DNA-test.</div><div class="sprak-linje">⭐ Ulvene ble rolige. <span class="mark-b">Derfor</span> <span class="mark">kunne</span> menneskene temme dem.</div>
-    <div class="sprak-regel"><strong>Derfor</strong> = «på grunn av det». Etter <strong>derfor</strong> kommer <strong>verbet</strong> – og så hvem.</div>
+    <div class="sprak-linje">⭐ Byene var ødelagt. <span class="mark-b">Derfor</span> <span class="mark">trengte</span> landene hjelp.</div>
+    <div class="sprak-linje">⭐ USA og Sovjet hadde ulike ideer. <span class="mark-b">Derfor</span> <span class="mark">ble</span> de rivaler.</div>
+    <div class="sprak-linje">⭐ Verden ble delt i to. <span class="mark-b">Derfor</span> <span class="mark">måtte</span> landene velge side.</div>
+    <div class="sprak-regel">Etter <strong>derfor</strong> kommer <strong>verbet</strong> – og så hvem.</div>
   </div>
 </main>
 
-<div class="footer">🧬 Pipoka og DNA · Ord &amp; Setninger</div>
+<div class="footer">🌍 Den kalde krigen · Ord &amp; Setninger</div>
 
 <div class="modal" id="bildeModal" onclick="lukkModal()">
   <span class="modal-lukk">&times;</span>
@@ -198,11 +199,50 @@ main{max-width:640px;margin:0 auto;padding:0 1rem;}
 </div>
 
 <script>
-var HISTORIE = "Pipoka DNA";
-var MAAL = "Derfor + V2 (årsak og følge)";
-var LES = ["Pipoka er norsk. Men hvor kommer hun egentlig fra?", "Familien ville vite mer.", "<span class=\"mark-b\">Derfor</span> <span class=\"mark\">tok</span> de en DNA-test.", "DNA er som en liten oppskrift inni kroppen.", "<span class=\"mark-b\">Derfor</span> <span class=\"mark\">ser</span> alle hunder litt forskjellige ut.", "Oppskriften bestemmer pels, ører og størrelse.", "DNA kommer i små deler fra mamma-hund og pappa-hund.", "<span class=\"mark-b\">Derfor</span> <span class=\"mark\">kan</span> Pipoka være litt av flere raser.", "Testen viste puddel, border collie og kleinspitz.", "<span class=\"mark-b\">Derfor</span> <span class=\"mark\">er</span> Pipoka en blanding.", "Forskerne ville undersøke hunder for lenge siden også.", "<span class=\"mark-b\">Derfor</span> <span class=\"mark\">vet</span> vi at ulver ble temmet for 12 000 år siden.", "<span class=\"mark-b\">Derfor</span> <span class=\"mark\">ligner</span> Pipoka litt på en ulv også.", "Uansett hvilket DNA hun har, er Pipoka elsket. ❤️"];
-var BYGG = [{"mal": "Familien ville vite mer. Start med «Derfor».", "b": "Derfor", "v": "tok", "s": "de", "r": ["en", "DNA-test"]}, {"mal": "Pipoka har mange raser. Start med «Derfor».", "b": "Derfor", "v": "er", "s": "hun", "r": ["en", "blanding"]}, {"mal": "Forskere undersøkte hunder. Start med «Derfor».", "b": "Derfor", "v": "vet", "s": "vi", "r": ["mye", "i", "dag"]}, {"mal": "Ulvene ble rolige. Start med «Derfor».", "b": "Derfor", "v": "kunne", "s": "menneskene", "r": ["temme", "dem"]}, {"mal": "Pipoka er en del av familien. Start med «Derfor».", "b": "Derfor", "v": "passer", "s": "vi", "r": ["på", "henne"]}, {"mal": "DNA kommer fra mamma og pappa. Start med «Derfor».", "b": "Derfor", "v": "ligner", "s": "valpene", "r": ["på", "foreldrene"]}, {"mal": "DNA bestemmer pelsen. Start med «Derfor».", "b": "Derfor", "v": "har", "s": "hunder", "r": ["ulik", "pels"]}, {"mal": "Pipoka ligner litt på en ulv. Start med «Derfor».", "b": "Derfor", "v": "er", "s": "hun", "r": ["spesiell"]}, {"mal": "Alle hunder har DNA fra ulv. Start med «Derfor».", "b": "Derfor", "v": "ligner", "s": "hunder", "r": ["på", "ulver"]}, {"mal": "Pipoka har DNA fra ulv. Start med «Dermed».", "b": "Dermed", "v": "ligner", "s": "hun", "r": ["litt", "på", "en", "ulv"]}, {"mal": "Pipoka er en blanding av raser. Start med «Likevel».", "b": "Likevel", "v": "er", "s": "hun", "r": ["helt", "unik"]}];
-var VELG = [{"intro": "Familien ville vite hvor Pipoka kom fra.", "b": "Derfor", "v": "tok", "s": "de", "r": "en DNA-test"}, {"intro": "Pipoka har flere raser i DNA-et sitt.", "b": "Derfor", "v": "er", "s": "hun", "r": "en blanding"}, {"intro": "Forskerne undersøkte gamle hunder.", "b": "Derfor", "v": "vet", "s": "vi", "r": "mye i dag"}, {"intro": "Noen ulver var rolige hos menneskene.", "b": "Derfor", "v": "ble", "s": "de", "r": "temmet"}, {"intro": "Pipoka er en del av familien.", "b": "Derfor", "v": "passer", "s": "vi", "r": "på henne"}, {"intro": "Forskning tar lang tid.", "b": "Derfor", "v": "undersøker", "s": "forskerne", "r": "alt nøye"}, {"intro": "Pipoka har DNA fra ulv.", "b": "Dermed", "v": "ligner", "s": "hun", "r": "litt på en ulv"}, {"intro": "Pipoka er en blanding av raser.", "b": "Likevel", "v": "er", "s": "hun", "r": "helt unik"}];
+var HISTORIE = "Den kalde krigen";
+var MAAL = "Derfor (årsak/følge) + V2";
+var LES = [
+  "Andre verdenskrig var slutt, men verden var <span class=\"mark\">ødelagt</span>.",
+  "Byer var knust, og mange mennesker mistet hjemmet sitt.",
+  "Det var lite mat og penger. <span class=\"mark-b\">Derfor</span> <span class=\"mark\">trengte</span> landene hjelp.",
+  "USA og Sovjetunionen ble de to sterkeste landene i verden.",
+  "USA trodde på demokrati. Sovjetunionen trodde på kommunisme.",
+  "De hadde ulike ideer. <span class=\"mark-b\">Derfor</span> <span class=\"mark\">ble</span> de rivaler.",
+  "Dette kaller vi den kalde krigen.",
+  "Verden ble delt i to sider. <span class=\"mark-b\">Derfor</span> <span class=\"mark\">måtte</span> landene velge side.",
+  "Mange land var redde og fattige. <span class=\"mark-b\">Derfor</span> <span class=\"mark\">trengte</span> folk hjelp fra andre land.",
+  "Menneskene ønsket en bedre framtid. <span class=\"mark-b\">Derfor</span> <span class=\"mark\">jobbet</span> de sammen.",
+  "Sammen bygde de opp igjen byer, skoler og hjem."
+];
+var BYGG_ALLE = [
+  {"mal": "Start med «Derfor». Hvorfor trengte landene hjelp?", "b": "Derfor", "v": "trengte", "s": "landene", "r": ["hjelp"]},
+  {"mal": "Start med «Derfor». Hva gjorde folk med byene?", "b": "Derfor", "v": "bygde", "s": "folk", "r": ["opp", "byene", "igjen"]},
+  {"mal": "Start med «Derfor». Hva ble USA og Sovjet?", "b": "Derfor", "v": "ble", "s": "de", "r": ["rivaler"]},
+  {"mal": "Start med «Derfor». Hva måtte landene gjøre?", "b": "Derfor", "v": "måtte", "s": "landene", "r": ["velge", "side"]},
+  {"mal": "Start med «Derfor». Hva gjorde menneskene sammen?", "b": "Derfor", "v": "jobbet", "s": "menneskene", "r": ["sammen"]},
+  {"mal": "Start med «Derfor». Hva ble Sovjetunionen?", "b": "Derfor", "v": "ble", "s": "Sovjetunionen", "r": ["en", "supermakt"]},
+  {"mal": "Start med «Derfor». Hva ble USA?", "b": "Derfor", "v": "ble", "s": "USA", "r": ["en", "supermakt"]},
+  {"mal": "Start med «Derfor». Hva trengte folk fra andre land?", "b": "Derfor", "v": "trengte", "s": "folk", "r": ["hjelp", "fra", "andre", "land"]},
+  {"mal": "Start med «Derfor». Hva skjedde i mange land?", "b": "Derfor", "v": "startet", "s": "det", "r": ["konflikter", "flere", "steder"]},
+  {"mal": "Start med «Derfor». Hva kunne byene bli igjen?", "b": "Derfor", "v": "kunne", "s": "byene", "r": ["bygges", "opp", "igjen"]},
+  {"mal": "Start med «Dermed». Hva ble Europa etter krigen?", "b": "Dermed", "v": "ble", "s": "Europa", "r": ["delt", "i", "to"]},
+  {"mal": "Start med «Likevel». Hva hadde menneskene, selv om verden var delt?", "b": "Likevel", "v": "hadde", "s": "menneskene", "r": ["håp"]}
+];
+var VELG_ALLE = [
+  {"intro": "Byene var ødelagt etter krigen.", "b": "Derfor", "v": "trengte", "s": "landene", "r": "hjelp"},
+  {"intro": "USA hadde sterk økonomi og industri.", "b": "Derfor", "v": "ble", "s": "USA", "r": "en supermakt"},
+  {"intro": "Sovjetunionen kontrollerte Øst-Europa.", "b": "Derfor", "v": "ble", "s": "Sovjetunionen", "r": "en supermakt"},
+  {"intro": "USA og Sovjet hadde ulike ideologier.", "b": "Derfor", "v": "ble", "s": "de", "r": "rivaler"},
+  {"intro": "Verden ble delt i to sider.", "b": "Derfor", "v": "måtte", "s": "landene", "r": "velge side"},
+  {"intro": "Mange land var redde og fattige.", "b": "Derfor", "v": "trengte", "s": "folk", "r": "hjelp"},
+  {"intro": "Menneskene ønsket en bedre framtid.", "b": "Derfor", "v": "jobbet", "s": "de", "r": "sammen"},
+  {"intro": "Den kalde krigen spredte seg i verden.", "b": "Derfor", "v": "startet", "s": "det", "r": "konflikter mange steder"},
+  {"intro": "USA og Sovjet hadde ulike ideologier.", "b": "Dermed", "v": "ble", "s": "Europa", "r": "delt i to"},
+  {"intro": "Verden var delt og mange var redde.", "b": "Likevel", "v": "hadde", "s": "menneskene", "r": "håp"}
+];
+function embland(arr){var a=arr.slice();for(var i=a.length-1;i>0;i--){var j=Math.floor(Math.random()*(i+1));var t=a[i];a[i]=a[j];a[j]=t;}return a;}
+var BYGG = embland(BYGG_ALLE).slice(0,8);
+var VELG = embland(VELG_ALLE).slice(0,6);
 function chip(w,r){ return '<span class="ord ord-'+r+'">'+w+'</span>'; }
 function zoom(src){ document.getElementById('modalBilde').src=src; document.getElementById('bildeModal').classList.add('vis'); }
 function lukkModal(){ document.getElementById('bildeModal').classList.remove('vis'); }
@@ -236,7 +276,7 @@ function visBygg(){
     '<div class="bygg-svar" id="byggSvar"></div>'+
     '<div class="brikke-bank">'+bank+'</div>'+
     '<button class="tomt-btn" onclick="tomBygg()">↺ Start på nytt</button>'+
-    '<button class="sjekk-btn" onclick="sjekkBygg(\''+riktig+'\')">Sjekk svar</button>'+
+    '<button class="sjekk-btn" onclick="sjekkBygg(this,\''+riktig+'\')">Sjekk svar</button>'+
     '<div class="fasit" id="fasitB"></div>';
 }
 function leggTil(el){
@@ -251,11 +291,12 @@ function tomBygg(){
   document.getElementById('byggSvar').innerHTML='';
   document.querySelectorAll('#kortB .brikke').forEach(function(b){b.classList.remove('brukt');});
 }
-function sjekkBygg(riktig){
+function sjekkBygg(btn,riktig){
+  btn.disabled=true; btn.style.opacity='0.5'; btn.style.pointerEvents='none';
   var svar=[].slice.call(document.querySelectorAll('#byggSvar .i-svar')).map(function(b){return b.textContent;}).join(' ');
   var f=document.getElementById('fasitB');
-  if(svar.trim()===riktig){ pB++; f.className='fasit vis riktig-svar'; f.innerHTML='✅ Perfekt! Verbet står på plass to.'; }
-  else{ f.className='fasit vis feil-svar'; f.innerHTML='💡 Prøv igjen! Det gule verbet skal stå på plass to.'; }
+  if(svar.trim()===riktig){ pB++; f.className='fasit vis riktig-svar'; f.innerHTML='✅ Perfekt! Verbet står rett etter «derfor».'; }
+  else{ f.className='fasit vis feil-svar'; f.innerHTML='💡 Prøv igjen! Det gule verbet skal stå rett etter «derfor».'; }
   f.innerHTML+='<button class="neste-btn" onclick="nesteBygg()">Neste →</button>';
 }
 function nesteBygg(){ iB++; visBygg(); }
@@ -279,8 +320,8 @@ function visVelg(){
 function svarVelg(btn,ok){
   btn.parentElement.querySelectorAll('.valg-knapp').forEach(function(b){b.style.pointerEvents='none';});
   var f=document.getElementById('fasitV');
-  if(ok){ btn.classList.add('riktig'); pV++; f.className='fasit vis riktig-svar'; f.innerHTML='✅ Riktig! Det gule verbet står på plass to.'; }
-  else{ btn.classList.add('feil'); btn.parentElement.querySelectorAll('.valg-knapp').forEach(function(b){if(b!==btn)b.classList.add('riktig');}); f.className='fasit vis feil-svar'; f.innerHTML='💡 Nesten! Verbet må komme rett etter bindeordet.'; }
+  if(ok){ btn.classList.add('riktig'); pV++; f.className='fasit vis riktig-svar'; f.innerHTML='✅ Riktig! Det gule verbet står rett etter «derfor».'; }
+  else{ btn.classList.add('feil'); btn.parentElement.querySelectorAll('.valg-knapp').forEach(function(b){if(b!==btn)b.classList.add('riktig');}); f.className='fasit vis feil-svar'; f.innerHTML='💡 Nesten! Verbet må komme rett etter «derfor».'; }
   f.innerHTML+='<button class="neste-btn" onclick="nesteVelg()">Neste →</button>';
 }
 function nesteVelg(){ iV++; visVelg(); }
