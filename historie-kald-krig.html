@@ -123,6 +123,7 @@ main{max-width:640px;margin:0 auto;padding:0 1rem;}
     <button class="fane" onclick="byttFane(1)">🎨 Bygg</button>
     <button class="fane" onclick="byttFane(2)">✅ Velg</button>
     <button class="fane" onclick="byttFane(3)">✍️ Skriv</button>
+    <button class="fane" onclick="byttFane(4)">🎧 Lytt</button>
   </div>
 
   <!-- LES -->
@@ -141,6 +142,7 @@ main{max-width:640px;margin:0 auto;padding:0 1rem;}
       <div class="ordliste-item"><strong>Rivaler</strong> = konkurrenter</div>
       <div class="ordliste-item"><strong>Dermed</strong> = derfor, på grunn av dette</div>
       <div class="ordliste-item"><strong>Likevel</strong> = selv om noe skjedde, forandret det seg ikke</div>
+      <div class="ordliste-item"><strong>Aliert</strong> = når land kjemper sammen, på samme side</div>
     </div>
   </div>
 
@@ -178,6 +180,29 @@ main{max-width:640px;margin:0 auto;padding:0 1rem;}
       </div>
       <button class="sjekk-btn" style="margin-top:1rem;" onclick="sendTekst()">Send til mamma 💛</button>
       <div class="fasit" id="skrivFasit"></div>
+    </div>
+  </div>
+
+  <!-- LYTT OG FORTELL -->
+  <div class="del">
+    <div class="kort">
+      <div class="kort-intro">🎧 Lytt til historien. <strong>Ikke se på teksten.</strong> Etterpå skal du fortelle med dine egne ord hva du hørte.</div>
+      <div id="lyttStart">
+        <button class="sjekk-btn" onclick="startLytt()">▶️ Spill av historien</button>
+      </div>
+      <div id="lyttStatus" style="display:none;text-align:center;padding:1.5rem 0;">
+        <div style="font-size:2.2rem;">🔊</div>
+        <div style="color:var(--grape);font-weight:700;margin-top:0.5rem;" id="lyttDelTekst">Leser historien...</div>
+      </div>
+      <div id="lyttFerdigKnapper" style="display:none;">
+        <button class="tomt-btn" onclick="startLytt()" style="width:100%;text-align:center;">🔁 Hør en gang til</button>
+      </div>
+      <div id="fortellBoks" style="display:none;margin-top:1rem;">
+        <div class="skriv-sporsmal">✍️ Fortell hva du hørte, med dine egne ord. <strong>Ikke se på Les-fanen!</strong></div>
+        <textarea class="skriv-omrade" id="fortellTekst" placeholder="Skriv det du husker..."></textarea>
+        <button class="sjekk-btn" style="margin-top:1rem;" onclick="sendFortelling()">Send til mamma 💛</button>
+        <div class="fasit" id="fortellFasit"></div>
+      </div>
     </div>
   </div>
 
@@ -243,6 +268,97 @@ var VELG_ALLE = [
 function embland(arr){var a=arr.slice();for(var i=a.length-1;i>0;i--){var j=Math.floor(Math.random()*(i+1));var t=a[i];a[i]=a[j];a[j]=t;}return a;}
 var BYGG = embland(BYGG_ALLE).slice(0,8);
 var VELG = embland(VELG_ALLE).slice(0,6);
+
+/* ---- LYTT OG FORTELL ---- */
+/* Hver del kan ha en egen mp3-fil (mammas stemme). Har en del ikke fått lyd ennå ("lyd": null),
+   leser nettleseren den delen høyt automatisk i stedet. Legg bare til filnavnet når du har spilt inn mer. */
+var LYTT_DELER = [
+  { del: "Del 1: Verden var ødelagt",
+    tekst: "Andre verdenskrig var slutt. Men verden var ødelagt. Det betyr: byer var knust, og hjem var borte. Mange mennesker mistet hjemmet sitt. Millioner av mennesker var døde eller skadet. Det var lite mat. Det var lite klær. Det var lite penger. Derfor trengte landene hjelp, for å bygge opp igjen.",
+    lyd: "audio/kald-krig-1.mp3" },
+  { del: "Del 2: To nye supermakter",
+    tekst: "Etter krigen var det to land som ble sterkest i verden. Vi kaller disse landene for stormakter. En stormakt er et land som er veldig sterkt. Den ene stormakten var USA. USA hadde sterk økonomi, mye industri og moderne teknologi. Den andre stormakten var Sovjetunionen. Sovjetunionen hadde en stor hær, og kontrollerte Øst-Europa. USA og Sovjetunionen var allierte i krigen. Det betyr: de kjempet på samme side. Men nå fikk de ulike mål. USA ville spre demokrati og frihet i verden. Sovjetunionen ville spre kommunisme og kontroll i verden.",
+    lyd: "audio/kald-krig-2.mp3" },
+  { del: "Del 3: Verden ble delt",
+    tekst: "USA og Sovjetunionen hadde ulike ideer om hvordan et land skulle styres. Vi kaller slike ideer for en ideologi. En ideologi er en idé om hvordan verden skal styres. USA mente at demokrati er den beste løsningen. Sovjetunionen mente at kommunisme er den beste løsningen. De hadde ulike ideologier. Derfor ble de rivaler. En rival er en konkurrent, altså noen man kjemper mot. Dette kaller vi den kalde krigen.",
+    lyd: null },
+  { del: "Del 4: Hele verden ble påvirket",
+    tekst: "Den kalde krigen påvirket alle land i verden. Noen land støttet USA og kapitalismen. Noen land støttet Sovjetunionen og kommunismen. Noen land prøvde å stå utenfor, og ikke velge side. Men mange land måtte velge side likevel. Derfor startet det kriger og konflikter i Asia, Afrika og Latin-Amerika.",
+    lyd: null },
+  { del: "Del 5: Mennesker hadde håp",
+    tekst: "Verden var delt. Mange mennesker var redde. Men likevel hadde menneskene håp om en bedre framtid. Menneskene ønsket å bygge opp igjen. Byer, skoler og hjem. Derfor jobbet de sammen, selv om det var vanskelig.",
+    lyd: null }
+];
+var lyttLydObjekt = null;
+
+function visLyttStatus(paa){
+  document.getElementById('lyttStart').style.display = paa ? 'none' : 'block';
+  document.getElementById('lyttStatus').style.display = paa ? 'block' : 'none';
+}
+function lyttFerdig(){
+  visLyttStatus(false);
+  document.getElementById('lyttFerdigKnapper').style.display = 'block';
+  document.getElementById('fortellBoks').style.display = 'block';
+}
+function startLytt(){
+  document.getElementById('fortellBoks').style.display = 'none';
+  document.getElementById('lyttFerdigKnapper').style.display = 'none';
+  if(window.speechSynthesis) window.speechSynthesis.cancel();
+  if(lyttLydObjekt){ lyttLydObjekt.pause(); lyttLydObjekt = null; }
+  visLyttStatus(true);
+  spillDel(0);
+}
+function spillDel(i){
+  if(i >= LYTT_DELER.length){ lyttFerdig(); return; }
+  var d = LYTT_DELER[i];
+  document.getElementById('lyttDelTekst').textContent = 'Leser ' + (i+1) + ' av ' + LYTT_DELER.length + ' ...';
+  if(d.lyd){
+    var a = new Audio(d.lyd);
+    var lastet = false;
+    a.oncanplaythrough = function(){ lastet = true; };
+    a.onended = function(){ spillDel(i+1); };
+    a.onerror = function(){ if(!lastet) lesDelMedStemme(d.tekst, function(){ spillDel(i+1); }); };
+    var p = a.play();
+    lyttLydObjekt = a;
+    if(p && p.catch){ p.catch(function(){ lesDelMedStemme(d.tekst, function(){ spillDel(i+1); }); }); }
+  } else {
+    lesDelMedStemme(d.tekst, function(){ spillDel(i+1); });
+  }
+}
+function lesDelMedStemme(tekst, ferdig){
+  if(!('speechSynthesis' in window)){
+    document.getElementById('lyttDelTekst').innerHTML = '<span style="color:var(--red);">Nettleseren støtter ikke opplesing her.</span>';
+    setTimeout(ferdig, 1500);
+    return;
+  }
+  var setninger = tekst.match(/[^.!?]+[.!?]*/g) || [tekst];
+  var idx = 0;
+  function neste(){
+    if(idx >= setninger.length){ ferdig(); return; }
+    var u = new SpeechSynthesisUtterance(setninger[idx]);
+    u.lang = 'nb-NO';
+    u.rate = 0.92;
+    u.onend = function(){ idx++; setTimeout(neste, 400); };
+    u.onerror = function(){ idx++; setTimeout(neste, 150); };
+    window.speechSynthesis.speak(u);
+  }
+  neste();
+}
+function sendFortelling(){
+  var t = document.getElementById('fortellTekst').value;
+  var f = document.getElementById('fortellFasit');
+  if(t.trim().length < 10){ f.className='fasit vis feil-svar'; f.innerHTML='⏳ Skriv litt mer først!'; return; }
+  f.className='fasit vis'; f.style.background='#faf8ff'; f.style.color='#6B7280'; f.innerHTML='⏳ Sender...';
+  fetch('https://formspree.io/f/mqeolldg',{method:'POST',headers:{'Content-Type':'application/json','Accept':'application/json'},
+    body:JSON.stringify({Tekst_hun_skrev:t, oppgave:HISTORIE+' - Lytt og fortell', maal:MAAL, dato:new Date().toLocaleString('no-NO')})})
+   .then(function(r){
+     if(r.ok){ f.className='fasit vis riktig-svar'; f.innerHTML='✅ Bra jobba! Det du fortalte er sendt til mamma! 🎉'; document.getElementById('fortellTekst').value=''; }
+     else{ f.className='fasit vis feil-svar'; f.innerHTML='❌ Noe gikk galt. Prøv igjen!'; }
+   })
+   .catch(function(){ f.className='fasit vis feil-svar'; f.innerHTML='❌ Sjekk internett og prøv igjen!'; });
+}
+
+
 function chip(w,r){ return '<span class="ord ord-'+r+'">'+w+'</span>'; }
 function zoom(src){ document.getElementById('modalBilde').src=src; document.getElementById('bildeModal').classList.add('vis'); }
 function lukkModal(){ document.getElementById('bildeModal').classList.remove('vis'); }
