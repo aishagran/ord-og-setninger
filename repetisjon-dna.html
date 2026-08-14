@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="no">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>24 repetisjoner – DNA-ord</title>
+<link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@600;700;800&family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --grape:#7C3AED;--grape-light:#EDE9FE;--berry:#E84A8A;--sun:#D97706;--sun-light:#FEF3C7;
+  --ink:#1E1B4B;--muted:#6B7280;--bg:#FBF7FF;--card:#fff;--gold:#D4AF37;--green:#16A34A;--green-light:#DCFCE7;
+}
+*{box-sizing:border-box;margin:0;padding:0;}
+body{font-family:'Nunito',sans-serif;background:var(--bg);color:var(--ink);min-height:100vh;padding-bottom:3rem;}
+.topbar{background:#fff;padding:0.9rem 1.1rem;display:flex;align-items:center;gap:0.75rem;box-shadow:0 2px 12px rgba(124,58,237,0.06);position:sticky;top:0;z-index:40;}
+.home-btn{text-decoration:none;font-size:1.3rem;background:var(--grape-light);border-radius:12px;padding:0.35rem 0.7rem;}
+.topbar .tittel{font-family:'Baloo 2',cursive;font-weight:800;font-size:1.05rem;color:var(--ink);}
+main{max-width:520px;margin:0 auto;padding:1.2rem 1rem;}
+.hero{text-align:center;margin-bottom:1rem;}
+.hero .ikon{font-size:2.2rem;}
+.hero h1{font-family:'Baloo 2',cursive;font-size:1.3rem;font-weight:800;color:var(--grape);margin-top:0.15rem;}
+.instruks{background:rgba(124,58,237,0.08);border-left:4px solid var(--grape);padding:0.9rem;border-radius:8px;color:var(--ink);font-size:0.92rem;line-height:1.5;margin-bottom:1.2rem;text-align:center;}
+.progress-wrap{background:#fff;border-radius:20px;height:14px;overflow:hidden;margin-bottom:0.5rem;box-shadow:inset 0 1px 3px rgba(0,0,0,0.08);}
+.progress-bar{background:linear-gradient(90deg,var(--grape),var(--berry));height:100%;border-radius:20px;transition:width 0.3s;}
+.progress-tekst{text-align:center;color:var(--grape);font-weight:700;font-size:0.9rem;margin-bottom:1.3rem;font-family:'Baloo 2',cursive;}
+.kort{background:var(--card);border:3px solid var(--grape-light);border-radius:22px;padding:2.2rem 1.5rem;text-align:center;box-shadow:0 6px 24px rgba(124,58,237,0.1);min-height:220px;display:flex;flex-direction:column;justify-content:center;align-items:center;}
+.setning{font-size:1.35rem;line-height:1.6;color:var(--ink);font-weight:600;}
+.uthevet{background:rgba(212,175,55,0.32);border-radius:8px;padding:0.15rem 0.5rem;color:#7a5c00;font-weight:800;}
+.lyd-status{font-size:1.8rem;margin-bottom:0.8rem;opacity:0.4;transition:opacity 0.2s;}
+.lyd-status.spiller{opacity:1;}
+.knapp-rad{display:flex;gap:0.6rem;margin-top:1.4rem;}
+.hor-btn{flex:1;background:#faf8ff;border:2px solid var(--grape-light);color:var(--grape);padding:0.85rem;border-radius:12px;font-family:'Baloo 2',cursive;font-weight:700;font-size:0.95rem;cursor:pointer;}
+.neste-btn{flex:2;background:var(--gold);color:#4a3800;padding:0.85rem;border:none;border-radius:12px;font-family:'Baloo 2',cursive;font-weight:700;font-size:1.02rem;cursor:pointer;}
+.ferdig{text-align:center;padding:2rem 1rem;}
+.ferdig-emoji{font-size:3.2rem;}
+.ferdig h2{font-family:'Baloo 2',cursive;color:var(--grape);font-size:1.4rem;margin:0.6rem 0;}
+.ferdig p{color:var(--muted);font-size:0.95rem;}
+.start-btn{width:100%;background:var(--grape);color:#fff;padding:1.1rem;border:none;border-radius:14px;font-family:'Baloo 2',cursive;font-weight:700;font-size:1.1rem;cursor:pointer;box-shadow:0 6px 18px rgba(124,58,237,0.25);}
+.ordliste-mini{display:flex;flex-wrap:wrap;gap:0.4rem;justify-content:center;margin:1rem 0;}
+.ord-pille{background:#fff;border:2px solid #f0dba8;border-radius:20px;padding:0.35rem 0.8rem;font-size:0.82rem;color:#8a6a00;font-weight:700;}
+.footer{text-align:center;font-size:0.8rem;color:#aaa;margin-top:2rem;padding:1.25rem;}
+</style>
+</head>
+<body>
+
+<div class="topbar">
+  <a class="home-btn" href="index.html">🏠</a>
+  <span class="tittel">🔁 24 repetisjoner</span>
+</div>
+
+<main>
+  <div class="hero">
+    <div class="ikon">🔁</div>
+    <h1>Lytt og si det høyt</h1>
+  </div>
+
+  <div id="startSkjerm">
+    <div class="instruks">🎧 Du hører setningen og ser den samtidig. Si den høyt etter at du har hørt den. Trykk «Neste» når du er klar.</div>
+    <div class="ordliste-mini">
+      <span class="ord-pille">viser</span>
+      <span class="ord-pille">knyttet til</span>
+      <span class="ord-pille">røtter</span>
+      <span class="ord-pille">omtrent</span>
+      <span class="ord-pille">dermed</span>
+    </div>
+    <button class="start-btn" onclick="start()">▶️ Start</button>
+  </div>
+
+  <div id="ovingSkjerm" style="display:none;">
+    <div class="progress-wrap"><div class="progress-bar" id="progressBar" style="width:0%;"></div></div>
+    <div class="progress-tekst" id="progressTekst">1 av 24</div>
+    <div class="kort">
+      <div class="lyd-status" id="lydStatus">🔊</div>
+      <div class="setning" id="setningTekst"></div>
+    </div>
+    <div class="knapp-rad">
+      <button class="hor-btn" onclick="spillGjeldende()">🔁 Hør igjen</button>
+      <button class="neste-btn" onclick="neste()">Neste →</button>
+    </div>
+  </div>
+
+  <div id="ferdigSkjerm" style="display:none;">
+    <div class="kort ferdig">
+      <div class="ferdig-emoji">🌟</div>
+      <h2>Bra jobba!</h2>
+      <p>Du sa 24 setninger høyt i dag.</p>
+    </div>
+  </div>
+</main>
+
+<div class="footer">🔁 24 repetisjoner · DNA-ord</div>
+
+<script>
+var SETNINGER = [
+  {ord:"viser", tekst:"Testen viser at Edel har røtter fra flere steder."},
+  {ord:"viser", tekst:"Kartet viser hvor familien kommer fra."},
+  {ord:"viser", tekst:"DNA-testen viser resultatet."},
+  {ord:"viser", tekst:"Boken viser bilder av verden."},
+  {ord:"viser", tekst:"Læreren viser oss et kart."},
+  {ord:"knyttet til", tekst:"Omtrent 45 % er knyttet til Norge."},
+  {ord:"knyttet til", tekst:"Edel er knyttet til mange land."},
+  {ord:"knyttet til", tekst:"Resten er knyttet til Afrika."},
+  {ord:"knyttet til", tekst:"Familien er knyttet til flere steder."},
+  {ord:"knyttet til", tekst:"Dette er knyttet til DNA-testen."},
+  {ord:"røtter", tekst:"Edel har røtter i verden."},
+  {ord:"røtter", tekst:"Røtter viser hvor familien kommer fra."},
+  {ord:"røtter", tekst:"Hun har røtter fra Portugal."},
+  {ord:"røtter", tekst:"Alle mennesker har røtter et sted."},
+  {ord:"røtter", tekst:"Røttene hennes er spennende."},
+  {ord:"omtrent", tekst:"Det er omtrent 45 %."},
+  {ord:"omtrent", tekst:"Resultatet er omtrent, ikke helt nøyaktig."},
+  {ord:"omtrent", tekst:"Omtrent 14 % er knyttet til Amerika."},
+  {ord:"omtrent", tekst:"Det kan være omtrent riktig."},
+  {ord:"omtrent", tekst:"Omtrent halvparten kommer fra Norge."},
+  {ord:"dermed", tekst:"Hun har arv fra flere land. Dermed er hun unik."},
+  {ord:"dermed", tekst:"Testen viser mye. Dermed forstår vi mer."},
+  {ord:"dermed", tekst:"Vi undersøker DNA-et. Dermed lærer vi om familien."},
+  {ord:"dermed", tekst:"Hun vet dette. Dermed kan hun fortelle det."}
+];
+var i = 0;
+
+function utheving(tekst, ord){
+  var re = new RegExp('('+ord+')', 'i');
+  return tekst.replace(re, '<span class="uthevet">$1</span>');
+}
+
+function start(){
+  document.getElementById('startSkjerm').style.display = 'none';
+  document.getElementById('ovingSkjerm').style.display = 'block';
+  i = 0;
+  visSetning();
+}
+
+function visSetning(){
+  var s = SETNINGER[i];
+  document.getElementById('progressTekst').textContent = (i+1) + ' av ' + SETNINGER.length;
+  document.getElementById('progressBar').style.width = (100*(i+1)/SETNINGER.length) + '%';
+  document.getElementById('setningTekst').innerHTML = utheving(s.tekst, s.ord);
+  spillGjeldende();
+}
+
+function spillGjeldende(){
+  var s = SETNINGER[i];
+  var status = document.getElementById('lydStatus');
+  status.classList.add('spiller');
+  if(!('speechSynthesis' in window)){ status.classList.remove('spiller'); return; }
+  window.speechSynthesis.cancel();
+  var u = new SpeechSynthesisUtterance(s.tekst);
+  u.lang = 'nb-NO';
+  u.rate = 0.9;
+  u.onend = function(){ status.classList.remove('spiller'); };
+  u.onerror = function(){ status.classList.remove('spiller'); };
+  window.speechSynthesis.speak(u);
+}
+
+function neste(){
+  i++;
+  if(i >= SETNINGER.length){
+    if(window.speechSynthesis) window.speechSynthesis.cancel();
+    document.getElementById('ovingSkjerm').style.display = 'none';
+    document.getElementById('ferdigSkjerm').style.display = 'block';
+    try{
+      fetch('https://formspree.io/f/mqeolldg',{method:'POST',headers:{'Content-Type':'application/json','Accept':'application/json'},
+        body:JSON.stringify({Tekst_hun_skrev:'Fullførte 24 repetisjoner', oppgave:'24 repetisjoner - DNA-ord', maal:'Adloff 24-eksponering', dato:new Date().toLocaleString('no-NO')})}).catch(function(){});
+    }catch(e){}
+    return;
+  }
+  visSetning();
+}
+</script>
+</body>
+</html>

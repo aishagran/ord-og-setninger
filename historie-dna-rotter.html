@@ -1,0 +1,501 @@
+<!DOCTYPE html>
+<html lang="no">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>DNA – mine røtter i verden</title>
+<link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@600;700;800&family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --grape:#7C3AED;--grape-light:#EDE9FE;--berry:#E84A8A;--sun:#D97706;--sun-light:#FEF3C7;
+  --ink:#1E1B4B;--muted:#6B7280;--bg:#FBF7FF;--card:#fff;--gold:#D4AF37;
+  --green:#16A34A;--green-light:#DCFCE7;--red:#DC2626;--red-light:#FEE2E2;
+}
+*{box-sizing:border-box;margin:0;padding:0;}
+body{font-family:'Nunito',sans-serif;background:var(--bg);color:var(--ink);min-height:100vh;padding-bottom:3rem;}
+.topbar{background:#fff;padding:0.9rem 1.1rem;display:flex;align-items:center;gap:0.75rem;box-shadow:0 2px 12px rgba(124,58,237,0.06);position:sticky;top:0;z-index:40;}
+.home-btn{text-decoration:none;font-size:1.3rem;background:var(--grape-light);border-radius:12px;padding:0.35rem 0.7rem;}
+.topbar .tittel{font-family:'Baloo 2',cursive;font-weight:800;font-size:1.05rem;color:var(--ink);}
+.hero{text-align:center;padding:1.2rem 1.25rem 0.5rem;}
+.hero .ikon{font-size:2.2rem;}
+.hero h1{font-family:'Baloo 2',cursive;font-size:1.4rem;font-weight:800;color:var(--grape);margin-top:0.15rem;}
+main{max-width:640px;margin:0 auto;padding:0 1rem;}
+.mal-boks{background:linear-gradient(135deg,rgba(212,175,55,0.14),rgba(255,255,255,0));border:2px solid var(--gold);border-radius:14px;padding:0.9rem 1rem;margin:0.8rem 0 1rem;}
+.mal-tittel{font-family:'Baloo 2',cursive;font-size:0.9rem;color:#8a6a00;margin-bottom:0.4rem;}
+.mal-tekst{font-size:1rem;color:var(--ink);line-height:1.6;}
+.mal-obs{background:rgba(232,74,138,0.12);border-radius:8px;padding:0.6rem 0.7rem;margin-top:0.6rem;font-size:0.88rem;color:var(--berry);font-weight:700;}
+.struktur-tabell{width:100%;border-collapse:collapse;margin-top:0.7rem;font-size:0.82rem;}
+.struktur-tabell th{background:rgba(124,58,237,0.12);color:var(--grape);padding:0.4rem 0.3rem;font-family:'Baloo 2',cursive;font-size:0.72rem;text-align:left;}
+.struktur-tabell td{padding:0.45rem 0.3rem;border-top:1px solid #f0eafa;color:var(--ink);}
+.struktur-tabell td.c-subjekt{color:#0a5c3f;font-weight:700;}
+.struktur-tabell td.c-verb{color:#7a5c00;font-weight:700;}
+.struktur-tabell td.c-at{color:#5b3a9e;font-weight:800;}
+.preord-boks{background:linear-gradient(135deg,rgba(217,119,6,0.1),#fff);border:2px solid var(--sun);border-radius:14px;padding:1rem 1.1rem;margin-bottom:1rem;}
+.preord-tittel{font-family:'Baloo 2',cursive;font-weight:700;font-size:0.95rem;color:var(--sun);margin-bottom:0.6rem;}
+.preord-ord{font-family:'Baloo 2',cursive;font-size:1.15rem;color:var(--sun);}
+.preord-def{font-size:0.9rem;color:var(--ink);margin:0.3rem 0;}
+.preord-eks{font-size:0.85rem;color:var(--muted);font-style:italic;}
+.kjente-strip{display:flex;flex-wrap:wrap;gap:0.4rem;margin-top:0.8rem;padding-top:0.7rem;border-top:1px dashed #f0dba8;}
+.kjent-pille{background:#fff;border:1px solid #f0dba8;border-radius:20px;padding:0.25rem 0.7rem;font-size:0.78rem;color:#8a6a00;}
+.ord{display:inline-block;padding:0.32rem 0.6rem;border-radius:9px;font-weight:700;font-size:0.98rem;margin:0.1rem;}
+.ord-bindeord{color:#5b3a9e;background:rgba(124,58,237,0.18);border:2px solid #b49ce0;}
+.ord-subjekt{color:#0a5c3f;background:rgba(52,211,153,0.22);border:2px solid #34D399;}
+.ord-verb{color:#7a5c00;background:rgba(212,175,55,0.28);border:2px solid var(--gold);font-weight:800;}
+.ord-rest{color:var(--ink);background:#f3f0fa;border:2px solid #e5ddf5;}
+.fargenokkel{display:flex;flex-wrap:wrap;gap:0.55rem;justify-content:center;margin:0 0 0.9rem;padding:0.55rem;background:#faf8ff;border-radius:10px;}
+.fnk{display:flex;align-items:center;gap:0.3rem;font-size:0.75rem;color:var(--muted);}
+.fnk-boks{width:14px;height:14px;border-radius:4px;}
+.faner{display:flex;gap:0.35rem;margin-bottom:1rem;flex-wrap:wrap;}
+.fane{flex:1;min-width:18%;background:#fff;border:2px solid var(--grape-light);color:var(--muted);padding:0.6rem 0.2rem;border-radius:12px;font-family:'Baloo 2',cursive;font-weight:700;font-size:0.72rem;cursor:pointer;text-align:center;transition:all 0.15s;}
+.fane.aktiv{background:var(--grape);color:#fff;border-color:var(--grape);}
+.del{display:none;}
+.del.aktiv{display:block;animation:inn 0.3s;}
+@keyframes inn{from{opacity:0;}to{opacity:1;}}
+.kort{background:var(--card);border:2px solid var(--grape-light);border-radius:16px;padding:1.2rem;margin-bottom:1rem;box-shadow:0 2px 12px rgba(124,58,237,0.05);}
+.kort-intro{color:var(--muted);font-size:0.9rem;margin-bottom:1rem;line-height:1.5;}
+.oppgave-teller{text-align:center;color:var(--grape);font-weight:700;font-size:0.85rem;margin-bottom:0.8rem;}
+.serie-bilde{width:100%;border-radius:12px;cursor:zoom-in;box-shadow:0 4px 16px rgba(0,0,0,0.12);margin-bottom:1rem;}
+.les-linje{display:flex;gap:0.6rem;align-items:baseline;padding:0.5rem 0;border-bottom:1px solid #f2eefb;font-size:1.02rem;line-height:1.6;}
+.les-linje:last-child{border-bottom:none;}
+.les-nr{color:#c0b0dd;font-weight:800;font-size:0.85rem;min-width:20px;}
+.mark{background:rgba(212,175,55,0.3);border-radius:5px;padding:0.1rem 0.3rem;font-weight:800;color:#7a5c00;}
+.mark-b{background:rgba(124,58,237,0.18);border-radius:5px;padding:0.1rem 0.3rem;font-weight:800;color:#5b3a9e;}
+.mark-s{background:rgba(52,211,153,0.25);border-radius:5px;padding:0.1rem 0.3rem;font-weight:800;color:#0a5c3f;}
+.bygg-mal{background:rgba(212,175,55,0.12);border-left:4px solid var(--gold);padding:0.85rem;border-radius:8px;color:#7a5c00;margin-bottom:1rem;font-size:0.9rem;}
+.bygg-svar{min-height:56px;background:#faf8ff;border:2px dashed var(--gold);border-radius:12px;padding:0.65rem;margin-bottom:1rem;display:flex;flex-wrap:wrap;gap:0.3rem;align-items:center;}
+.bygg-svar:empty::before{content:'Trykk på ordene i riktig rekkefølge...';color:#b0a0d0;font-size:0.85rem;font-style:italic;}
+.brikke-bank{display:flex;flex-wrap:wrap;gap:0.4rem;margin-bottom:1rem;justify-content:center;}
+.ord.brikke{cursor:pointer;}
+.ord.brukt{opacity:0.25;pointer-events:none;}
+.ord.i-svar{cursor:pointer;}
+.velg3-sporsmal{font-size:1.02rem;line-height:1.6;margin-bottom:1rem;color:var(--ink);}
+.velg3-blank{background:rgba(124,58,237,0.14);border-radius:6px;padding:0.05rem 0.6rem;font-weight:800;color:var(--grape);}
+.valg-knapp{width:100%;background:#faf8ff;border:2px solid var(--grape-light);padding:0.85rem 0.6rem;border-radius:12px;cursor:pointer;margin-bottom:0.65rem;text-align:center;line-height:1.5;font-size:1rem;}
+.valg-knapp.riktig{border-color:var(--green);background:var(--green-light);}
+.valg-knapp.feil{border-color:var(--red);background:var(--red-light);}
+.skriv-sporsmal{background:rgba(124,58,237,0.08);border-left:4px solid var(--grape);padding:0.9rem;border-radius:8px;color:var(--ink);font-size:0.95rem;line-height:1.55;margin-bottom:1rem;}
+.skriv-omrade{width:100%;min-height:120px;padding:1rem;border:2px solid var(--grape-light);border-radius:12px;font-family:'Nunito';font-size:1rem;background:#fff;color:var(--ink);resize:vertical;line-height:1.6;}
+.skriv-omrade:focus{outline:none;border-color:var(--grape);}
+.hjelp-btn{background:var(--grape-light);border:2px solid #c9b3de;color:var(--grape);padding:0.55rem 1rem;border-radius:10px;font-family:'Nunito';font-weight:700;font-size:0.88rem;cursor:pointer;margin-top:0.7rem;}
+.hjelp-innhold{display:none;background:#faf8ff;border-radius:10px;padding:0.85rem;margin-top:0.7rem;}
+.hjelp-innhold.vis{display:block;}
+.hjelp-eks{color:var(--muted);font-size:0.9rem;line-height:2;}
+.sjekk-btn{width:100%;background:var(--gold);color:#4a3800;padding:0.85rem;border:none;border-radius:12px;font-family:'Baloo 2',cursive;font-weight:700;font-size:1.02rem;cursor:pointer;}
+.neste-btn{width:100%;background:var(--grape);color:#fff;padding:0.85rem;border:none;border-radius:12px;font-family:'Baloo 2',cursive;font-weight:700;font-size:1.02rem;cursor:pointer;margin-top:0.7rem;}
+.tomt-btn{background:#f3f0fa;border:2px solid var(--grape-light);color:var(--muted);padding:0.5rem 0.9rem;border-radius:10px;font-weight:600;font-size:0.84rem;cursor:pointer;margin-bottom:1rem;font-family:'Nunito';}
+.fasit{margin-top:1rem;padding:0.85rem;border-radius:12px;font-weight:700;display:none;line-height:1.6;}
+.fasit.vis{display:block;}
+.fasit.riktig-svar{background:var(--green-light);color:var(--green);}
+.fasit.feil-svar{background:var(--red-light);color:var(--red);}
+.ferdig{text-align:center;padding:1.4rem 1rem;}
+.ferdig-emoji{font-size:2.6rem;}
+.ferdig-poeng{font-family:'Baloo 2',cursive;font-size:1.5rem;color:var(--gold);margin:0.4rem 0;}
+.ferdig h2{font-family:'Baloo 2',cursive;color:var(--grape);font-size:1.15rem;}
+.sprak-boks{background:linear-gradient(135deg,var(--sun-light),#FFF9EC);border:2px solid #F5D98A;border-radius:16px;padding:1.2rem;margin:1.4rem 0 1rem;}
+.sprak-tittel{font-family:'Baloo 2',cursive;font-size:1.15rem;color:var(--sun);text-align:center;margin-bottom:0.8rem;}
+.sprak-linje{background:#fff;border-radius:10px;padding:0.7rem 0.8rem;margin-bottom:0.55rem;font-size:1rem;line-height:1.8;box-shadow:0 1px 5px rgba(0,0,0,0.04);}
+.sprak-regel{text-align:center;color:#8a6d3b;font-size:0.9rem;margin-top:0.8rem;line-height:1.5;}
+.footer{text-align:center;font-size:0.8rem;color:#aaa;margin-top:2rem;padding:1.25rem;}
+.modal{display:none;position:fixed;inset:0;background:rgba(30,27,75,0.93);z-index:100;padding:0.5rem;overflow:auto;}
+.modal.vis{display:flex;align-items:center;justify-content:center;}
+.modal img{max-width:100%;border-radius:10px;}
+.modal-lukk{position:fixed;top:0.8rem;right:1.2rem;color:#fff;font-size:2.4rem;cursor:pointer;font-weight:bold;z-index:101;}
+</style>
+</head>
+<body>
+
+<div class="topbar">
+  <a class="home-btn" href="index.html">🏠</a>
+  <span class="tittel">🧬 Mine røtter</span>
+</div>
+
+<div class="hero">
+  <div class="ikon">🌍</div>
+  <h1>DNA – mine røtter i verden</h1>
+</div>
+
+<main>
+  <div class="mal-boks">
+    <div class="mal-tittel">🎯 DENNE HISTORIEN ØVER PÅ</div>
+    <div class="mal-tekst">Setningsmønster: <strong>at</strong>-setning.</div>
+    <table class="struktur-tabell">
+      <tr><th>Subjekt</th><th>Verb</th><th>At</th><th>Setningens innhold</th></tr>
+      <tr><td class="c-subjekt">Testen</td><td class="c-verb">viser</td><td class="c-at">at</td><td>Edel har røtter i flere steder.</td></tr>
+      <tr><td class="c-subjekt">Edel</td><td class="c-verb">vet</td><td class="c-at">at</td><td>hun har arvet DNA fra foreldrene sine.</td></tr>
+      <tr><td class="c-subjekt">Jeg</td><td class="c-verb">synes</td><td class="c-at">at</td><td>DNA er spennende å lære om.</td></tr>
+      <tr><td class="c-subjekt">Mamma</td><td class="c-verb">sier</td><td class="c-at">at</td><td>familien kommer fra ulike land.</td></tr>
+    </table>
+    <div class="mal-obs">⚠️ NB! Rett etter «at» kommer <strong>HVEM</strong> (subjektet) først, og verbet etterpå.</div>
+  </div>
+
+  <div class="faner">
+    <button class="fane aktiv" onclick="byttFane(0)">📖 Les</button>
+    <button class="fane" onclick="byttFane(1)">🎨 Bygg</button>
+    <button class="fane" onclick="byttFane(2)">✅ Velg</button>
+    <button class="fane" onclick="byttFane(3)">✍️ Skriv</button>
+    <button class="fane" onclick="byttFane(4)">🎧 Lytt</button>
+  </div>
+
+  <!-- LES -->
+  <div class="del aktiv">
+    <div class="preord-boks">
+      <div class="preord-tittel">🔑 Nytt ord i dag</div>
+      <div class="preord-ord">🎯 omtrent</div>
+      <div class="preord-def">= ikke helt nøyaktig, men nesten</div>
+      <div class="preord-eks">«Det er omtrent 45 %.» Det kan være litt mer eller litt mindre.</div>
+      <div class="kjente-strip">
+        <span class="kjent-pille">viser = forteller</span>
+        <span class="kjent-pille">røtter = hvor familien kommer fra</span>
+        <span class="kjent-pille">knyttet til = har forbindelse med</span>
+      </div>
+    </div>
+    <div class="kort">
+      <img class="serie-bilde" src="img/dna-rotter-kart.png" alt="Edels DNA – røtter i verden" onclick="zoom('img/dna-rotter-kart.png')">
+      <div class="kort-intro">Les teksten. Se hvem som kommer rett etter «at».</div>
+      <div id="lesInnhold"></div>
+    </div>
+    <div class="kort">
+      <img class="serie-bilde" src="img/dna-forskjellig-samme.png" alt="Forskjellige DNA – samme mennesker" onclick="zoom('img/dna-forskjellig-samme.png')" style="margin-bottom:0;">
+    </div>
+  </div>
+
+  <!-- BYGG -->
+  <div class="del">
+    <div class="fargenokkel">
+      <div class="fnk"><span class="fnk-boks" style="background:#b49ce0;"></span>at</div>
+      <div class="fnk"><span class="fnk-boks" style="background:#34D399;"></span>hvem</div>
+      <div class="fnk"><span class="fnk-boks" style="background:#D4AF37;"></span>verb</div>
+    </div>
+    <div class="oppgave-teller" id="tellerB"></div>
+    <div class="kort" id="kortB"></div>
+  </div>
+
+  <!-- VELG -->
+  <div class="del">
+    <div class="oppgave-teller" id="tellerV"></div>
+    <div class="kort" id="kortV"></div>
+  </div>
+
+  <!-- SKRIV -->
+  <div class="del">
+    <div class="kort">
+      <div class="skriv-sporsmal">✍️ Skriv tre setninger om Edels DNA. Bruk minst <strong>én at-setning</strong>, <strong>ett derfor</strong> og <strong>ett dermed</strong>.</div>
+      <textarea class="skriv-omrade" id="skrivTekst" placeholder="Skriv her..."></textarea>
+      <button class="hjelp-btn" onclick="visHjelp()">💡 Trenger du hjelp?</button>
+      <div class="hjelp-innhold" id="hjelpInnhold">
+        <div style="color:#1E1B4B;font-weight:700;margin-bottom:0.4rem;">Du kan begynne slik:</div>
+        <div class="hjelp-eks">Testen viser at <span class="ord ord-subjekt" style="padding:0.1rem 0.4rem;">jeg</span> har røtter knyttet til flere land.<br>Derfor <span class="ord ord-verb" style="padding:0.1rem 0.4rem;">er</span> jeg unik.<br>Dermed <span class="ord ord-verb" style="padding:0.1rem 0.4rem;">forstår</span> jeg mer om familien min.</div>
+      </div>
+      <button class="sjekk-btn" style="margin-top:1rem;" onclick="sendTekst()">Send til mamma 💛</button>
+      <div class="fasit" id="skrivFasit"></div>
+    </div>
+    <div class="kort">
+      <div class="skriv-sporsmal">🌟 Til slutt: Hva synes du var mest interessant å lære om DNA i dag?</div>
+      <textarea class="skriv-omrade" id="refleksjonTekst" style="min-height:70px;" placeholder="Skriv én ting her..."></textarea>
+      <button class="sjekk-btn" style="margin-top:1rem;" onclick="sendRefleksjon()">Send til mamma 💛</button>
+      <div class="fasit" id="refleksjonFasit"></div>
+    </div>
+  </div>
+
+  <!-- LYTT OG FORTELL -->
+  <div class="del">
+    <div class="kort">
+      <div class="kort-intro">🎧 Lytt til hver del. <strong>Ikke se på teksten.</strong> Etterpå skal du fortelle med dine egne ord hva du hørte.</div>
+      <div id="lyttStart">
+        <button class="sjekk-btn" onclick="startLytt()">▶️ Spill av</button>
+      </div>
+      <div id="lyttStatus" style="display:none;text-align:center;padding:1.5rem 0;">
+        <div style="font-size:2.2rem;">🔊</div>
+        <div style="color:var(--grape);font-weight:700;margin-top:0.5rem;" id="lyttDelTekst">Leser...</div>
+      </div>
+      <div id="lyttFerdigKnapper" style="display:none;">
+        <button class="tomt-btn" onclick="startLytt()" style="width:100%;text-align:center;">🔁 Hør en gang til</button>
+      </div>
+      <div id="fortellBoks" style="display:none;margin-top:1rem;">
+        <div class="skriv-sporsmal">✍️ Fortell hva du hørte, med dine egne ord. <strong>Ikke se på Les-fanen!</strong></div>
+        <textarea class="skriv-omrade" id="fortellTekst" placeholder="Skriv det du husker..."></textarea>
+        <button class="sjekk-btn" style="margin-top:1rem;" onclick="sendFortelling()">Send til mamma 💛</button>
+        <div class="fasit" id="fortellFasit"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- UKENS SPRÅK: BONUS at + derfor/dermed -->
+  <div class="sprak-boks">
+    <div class="sprak-tittel">⭐ Bonus: at + derfor/dermed</div>
+    <div class="sprak-linje"><span class="mark-b">Testen viser at</span> Edel har røtter knyttet til Portugal. <span class="mark-b">Derfor</span> <span class="mark">liker</span> familien både norsk og portugisisk mat.</div>
+    <div class="sprak-linje"><span class="mark-b">Edel vet at</span> hun har arv fra flere land. <span class="mark-b">Dermed</span> <span class="mark">føler</span> hun seg litt som en verdensborger.</div>
+    <div class="sprak-linje"><span class="mark-b">Mamma synes at</span> røttene er spennende. <span class="mark-b">Derfor</span> <span class="mark">snakker</span> vi ofte om det hjemme.</div>
+    <div class="sprak-regel">Husk: etter <strong>at</strong> kommer hvem, men etter <strong>derfor/dermed</strong> kommer verbet!</div>
+  </div>
+</main>
+
+<div class="footer">🧬 Mine røtter · Ord &amp; Setninger</div>
+
+<div class="modal" id="bildeModal" onclick="lukkModal()">
+  <span class="modal-lukk">&times;</span>
+  <img id="modalBilde" src="" alt="">
+</div>
+
+<script>
+var HISTORIE = "DNA-røtter";
+var MAAL = "At-setninger (subjekt før verb)";
+
+var LES = [
+  "<span class=\"mark-b\">En DNA-test viser</span> hvor deler av Edels familie har røtter.",
+  "Resultatet er omtrent – ikke helt nøyaktig.",
+  "DNA er informasjon i alle celler som vi arver fra foreldrene våre.",
+  "<span class=\"mark-b\">Testen viser at</span> <span class=\"mark-s\">Edel</span> <span class=\"mark\">har</span> røtter knyttet til flere steder.",
+  "Omtrent 45 % er knyttet til Norge.",
+  "Omtrent 14 % er knyttet til urfolk i Amerika.",
+  "Omtrent 11 % er knyttet til Portugal.",
+  "Resten er knyttet til områder i Afrika, som Nigeria og Kamerun.",
+  "Dette betyr ikke <span class=\"mark-b\">at</span> <span class=\"mark-s\">Edel</span> <span class=\"mark\">er</span> halvt norsk eller elleve prosent portugisisk.",
+  "Det viser hvor noen av forfedrene hennes kom fra, for mange generasjoner siden.",
+  "<span class=\"mark-b\">Jeg vet at</span> <span class=\"mark-s\">jeg</span> <span class=\"mark\">har</span> arv fra mange steder. Det gjør meg unik."
+];
+
+var BYGG_ALLE = [
+  {"type":"at", "mal": "Fullfør: «Testen viser at ...». Husk: hvem først, så verbet!", "b": "Testen viser at", "s": "Edel", "v": "har", "r": ["røtter", "knyttet", "til", "flere", "steder"]},
+  {"type":"at", "mal": "Fullfør: «Edel vet at ...».", "b": "Edel vet at", "s": "DNA", "v": "kommer", "r": ["fra", "foreldrene"]},
+  {"type":"at", "mal": "Fullfør: «Hun synes at ...».", "b": "Hun synes at", "s": "dette", "v": "er", "r": ["spennende"]},
+  {"type":"at", "mal": "Fullfør: «Mamma sier at ...».", "b": "Mamma sier at", "s": "familien", "v": "er", "r": ["unik"]},
+  {"type":"at", "mal": "Fullfør: «Jeg vet at ...».", "b": "Jeg vet at", "s": "jeg", "v": "har", "r": ["arv", "fra", "mange", "steder"]},
+  {"type":"at", "mal": "Fullfør: «Testen viser at ...». Hvor mye er knyttet til Norge?", "b": "Testen viser at", "s": "45 prosent", "v": "er", "r": ["knyttet", "til", "Norge"]},
+  {"type":"at", "mal": "Fullfør: «Mange mennesker vet at ...».", "b": "Mange mennesker vet at", "s": "DNA", "v": "forteller", "r": ["noe", "om", "oss"]},
+  {"type":"at", "mal": "Fullfør: «Edel tror at ...».", "b": "Edel tror at", "s": "forfedrene", "v": "kom", "r": ["fra", "mange", "steder"]},
+  {"type":"at", "mal": "Fullfør: «Jeg synes at ...».", "b": "Jeg synes at", "s": "det", "v": "er", "r": ["gøy", "å", "lære", "om", "røtter"]},
+  {"type":"at", "mal": "Fullfør: «Hun vet at ...».", "b": "Hun vet at", "s": "resten", "v": "er", "r": ["knyttet", "til", "Afrika"]},
+  {"type":"v2", "mal": "Alle har litt ulikt DNA. Start med «Derfor». Hva er familien?", "b": "Derfor", "v": "er", "s": "familien", "r": ["unik"]},
+  {"type":"v2", "mal": "Testen sammenligner DNA. Start med «Dermed». Hva vet vi nå?", "b": "Dermed", "v": "vet", "s": "vi", "r": ["hvor", "forfedrene", "kom", "fra"]},
+  {"type":"v2", "mal": "Familien kommer fra mange steder. Start med «Derfor». Hva har Edel?", "b": "Derfor", "v": "har", "s": "Edel", "r": ["røtter", "fra", "flere", "land"]},
+  {"type":"v2", "mal": "Hun har arv fra mange steder. Start med «Dermed». Hva blir hun?", "b": "Dermed", "v": "blir", "s": "hun", "r": ["litt", "unik"]}
+];
+var VELG3 = [
+  {"sporsmal": "DNA-testen ___ at omtrent 45 % er knyttet til Norge.", "svar": ["viser", "løper", "spiser"], "riktig": 0},
+  {"sporsmal": "Testen viser at omtrent 14 % er knyttet til ___.", "svar": ["Nigeria", "urfolk i Amerika", "Kamerun"], "riktig": 1},
+  {"sporsmal": "Edel ___ at DNA forteller noe om familien vår.", "svar": ["vet", "hopper", "tegner"], "riktig": 0},
+  {"sporsmal": "Resten er knyttet til land i ___, som Nigeria og Kamerun.", "svar": ["Asia", "Afrika", "Europa"], "riktig": 1},
+  {"sporsmal": "DNA-testen viser at Edel har røtter fra mange steder, ___ er hun unik.", "svar": ["derfor", "dermed"], "riktig": 1},
+  {"sporsmal": "Hun har arvet DNA fra foreldrene sine, ___ kommer informasjonen fra familien.", "svar": ["derfor", "dermed"], "riktig": 0},
+  {"sporsmal": "Resten er knyttet til områder i Afrika, ___ vet vi at forfedrene hennes kom derfra.", "svar": ["derfor", "dermed"], "riktig": 1},
+  {"sporsmal": "Edel synes dette er spennende, ___ vil hun lære mer.", "svar": ["derfor", "dermed"], "riktig": 1}
+];
+function embland(arr){var a=arr.slice();for(var i=a.length-1;i>0;i--){var j=Math.floor(Math.random()*(i+1));var t=a[i];a[i]=a[j];a[j]=t;}return a;}
+var BYGG = embland(BYGG_ALLE).slice(0,10);
+var VELG = embland(VELG3);
+
+/* ---- LYTT OG FORTELL ---- */
+var LYTT_DELER = [
+  { del: "Del 1",
+    tekst: "Edel har tatt en DNA-test for å finne ut hvor familien hennes kommer fra. Testen viser at hun har røtter fra flere deler av verden. Omtrent 45 prosent er knyttet til Norge. Omtrent 14 prosent er knyttet til urfolk i Amerika. Omtrent 11 prosent er knyttet til Portugal. Resten er knyttet til andre land, blant annet i Afrika, som Nigeria og Kamerun.",
+    lyd: "audio/dna-rotter-1.mp3" },
+  { del: "Del 2",
+    tekst: "Alle mennesker har DNA. DNA er som en oppskriftsbok som forteller kroppen vår hvordan den skal se ut. Nesten hele DNA-et vårt, 99,9 prosent, er helt likt hos alle mennesker. Det er bare en liten del som er forskjellig, og det er den lille delen som gjør oss unike. Vi kommer fra forskjellige steder i verden, men vi er alle mennesker. Respekt og vennskap er viktig.",
+    lyd: "audio/dna-rotter-2.mp3" }
+];
+var lyttLydObjekt = null;
+
+function zoom(src){ document.getElementById('modalBilde').src=src; document.getElementById('bildeModal').classList.add('vis'); }
+function lukkModal(){ document.getElementById('bildeModal').classList.remove('vis'); }
+function byttFane(n){
+  document.querySelectorAll('.fane').forEach(function(f,i){f.classList.toggle('aktiv',i===n);});
+  document.querySelectorAll('.del').forEach(function(d,i){d.classList.toggle('aktiv',i===n);});
+  window.scrollTo({top:0,behavior:'smooth'});
+}
+function visHjelp(){ document.getElementById('hjelpInnhold').classList.toggle('vis'); }
+
+function visLes(){
+  document.getElementById('lesInnhold').innerHTML = LES.map(function(l,i){
+    return '<div class="les-linje"><span class="les-nr">'+(i+1)+'</span><span>'+l+'</span></div>';
+  }).join('');
+}
+
+/* ---- BYGG (rekkefølge varierer: "at" = subjekt før verb, "v2" = verb før subjekt) ---- */
+var iB=0, pB=0;
+function visBygg(){
+  if(iB>=BYGG.length){ ferdig('kortB','tellerB',pB,BYGG.length,'Bygg'); return; }
+  var o=BYGG[iB];
+  document.getElementById('tellerB').textContent='Oppgave '+(iB+1)+' av '+BYGG.length;
+  var forsteRolle = o.type==='v2' ? 'verb' : 'subjekt';
+  var andreRolle = o.type==='v2' ? 'subjekt' : 'verb';
+  var forsteOrd = o.type==='v2' ? o.v : o.s;
+  var andreOrd = o.type==='v2' ? o.s : o.v;
+  var liste=[{w:o.b,r:'bindeord'},{w:forsteOrd,r:forsteRolle},{w:andreOrd,r:andreRolle}];
+  o.r.forEach(function(w){liste.push({w:w,r:'rest'});});
+  var sh=liste.slice().sort(function(){return Math.random()-0.5;});
+  var bank=sh.map(function(x){return '<span class="ord ord-'+x.r+' brikke" data-w="'+x.w+'" onclick="leggTil(this)">'+x.w+'</span>';}).join('');
+  var riktig=[o.b,forsteOrd,andreOrd].concat(o.r).join(' ');
+  document.getElementById('kortB').innerHTML=
+    '<div class="bygg-mal">🔑 '+o.mal+'</div>'+
+    '<div class="bygg-svar" id="byggSvar"></div>'+
+    '<div class="brikke-bank">'+bank+'</div>'+
+    '<button class="tomt-btn" onclick="tomBygg()">↺ Start på nytt</button>'+
+    '<button class="sjekk-btn" onclick="sjekkBygg(this,\''+riktig+'\',\''+o.type+'\')">Sjekk svar</button>'+
+    '<div class="fasit" id="fasitB"></div>';
+}
+function leggTil(el){
+  el.classList.add('brukt');
+  var k=document.createElement('span');
+  k.className=el.className.replace('brukt','').replace('brikke','i-svar').trim();
+  k.textContent=el.dataset.w;
+  k.onclick=function(){k.remove();el.classList.remove('brukt');};
+  document.getElementById('byggSvar').appendChild(k);
+}
+function tomBygg(){
+  document.getElementById('byggSvar').innerHTML='';
+  document.querySelectorAll('#kortB .brikke').forEach(function(b){b.classList.remove('brukt');});
+}
+function sjekkBygg(btn,riktig,type){
+  btn.disabled=true; btn.style.opacity='0.5'; btn.style.pointerEvents='none';
+  var svar=[].slice.call(document.querySelectorAll('#byggSvar .i-svar')).map(function(b){return b.textContent;}).join(' ');
+  var f=document.getElementById('fasitB');
+  var regel = type==='v2' ? 'Verbet skal stå rett etter bindeordet.' : 'Hvem (subjektet) skal stå rett etter «at».';
+  if(svar.trim()===riktig){ pB++; f.className='fasit vis riktig-svar'; f.innerHTML='✅ Perfekt! '+regel; }
+  else{ f.className='fasit vis feil-svar'; f.innerHTML='💡 Prøv igjen! '+regel; }
+  f.innerHTML+='<button class="neste-btn" onclick="nesteBygg()">Neste →</button>';
+}
+function nesteBygg(){ iB++; visBygg(); }
+
+/* ---- VELG (klikk riktig ord i luken, 3 alternativer) ---- */
+var iV=0, pV=0;
+function visVelg(){
+  if(iV>=VELG.length){ ferdig('kortV','tellerV',pV,VELG.length,'Velg'); return; }
+  var o=VELG[iV];
+  document.getElementById('tellerV').textContent='Oppgave '+(iV+1)+' av '+VELG.length;
+  var knapper=o.svar.map(function(s,i){
+    return '<button class="valg-knapp" onclick="svarVelg3(this,'+i+','+o.riktig+')">'+s+'</button>';
+  }).join('');
+  document.getElementById('kortV').innerHTML=
+    '<div class="kort"><div class="velg3-sporsmal">'+o.sporsmal.replace('___','<span class="velg3-blank">___</span>')+'</div>'+
+    knapper+
+    '<div class="fasit" id="fasitV"></div></div>';
+}
+function svarVelg3(btn,valgt,riktig){
+  btn.parentElement.querySelectorAll('.valg-knapp').forEach(function(b){b.style.pointerEvents='none';});
+  var f=document.getElementById('fasitV');
+  if(valgt===riktig){ btn.classList.add('riktig'); pV++; f.className='fasit vis riktig-svar'; f.innerHTML='✅ Riktig!'; }
+  else{
+    btn.classList.add('feil');
+    btn.parentElement.querySelectorAll('.valg-knapp')[riktig].classList.add('riktig');
+    f.className='fasit vis feil-svar'; f.innerHTML='💡 Nesten! Riktig svar er markert med grønt.';
+  }
+  f.innerHTML+='<button class="neste-btn" onclick="nesteVelg()">Neste →</button>';
+}
+function nesteVelg(){ iV++; visVelg(); }
+
+function ferdig(kortId,tellerId,p,t,navn){
+  var e=p===t?'🌟':(p>=t/2?'😊':'💪');
+  var m=p===t?'Perfekt!':(p>=t/2?'Bra jobba!':'Fortsett å øve!');
+  document.getElementById(kortId).innerHTML=
+    '<div class="ferdig"><div class="ferdig-emoji">'+e+'</div><div class="ferdig-poeng">'+p+' av '+t+'</div><h2>'+m+'</h2></div>';
+  document.getElementById(tellerId).textContent='';
+  send('['+HISTORIE+' – '+navn+'] Poeng: '+p+'/'+t, HISTORIE+' - '+navn);
+}
+
+function sendTekst(){
+  var t=document.getElementById('skrivTekst').value;
+  var f=document.getElementById('skrivFasit');
+  if(t.trim().length<15){ f.className='fasit vis feil-svar'; f.innerHTML='⏳ Skriv litt mer først!'; return; }
+  f.className='fasit vis'; f.style.background='#faf8ff'; f.style.color='#6B7280'; f.innerHTML='⏳ Sender...';
+  fetch('https://formspree.io/f/mqeolldg',{method:'POST',headers:{'Content-Type':'application/json','Accept':'application/json'},
+    body:JSON.stringify({Tekst_hun_skrev:t, oppgave:HISTORIE+' - Skriv', maal:MAAL, dato:new Date().toLocaleString('no-NO')})})
+   .then(function(r){
+     if(r.ok){ f.className='fasit vis riktig-svar'; f.innerHTML='✅ Bra jobba! Teksten din er sendt til mamma! 🎉'; document.getElementById('skrivTekst').value=''; }
+     else{ f.className='fasit vis feil-svar'; f.innerHTML='❌ Noe gikk galt. Prøv igjen!'; }
+   })
+   .catch(function(){ f.className='fasit vis feil-svar'; f.innerHTML='❌ Sjekk internett og prøv igjen!'; });
+}
+
+function sendRefleksjon(){
+  var t=document.getElementById('refleksjonTekst').value;
+  var f=document.getElementById('refleksjonFasit');
+  if(t.trim().length<3){ f.className='fasit vis feil-svar'; f.innerHTML='⏳ Skriv litt først!'; return; }
+  f.className='fasit vis'; f.style.background='#faf8ff'; f.style.color='#6B7280'; f.innerHTML='⏳ Sender...';
+  fetch('https://formspree.io/f/mqeolldg',{method:'POST',headers:{'Content-Type':'application/json','Accept':'application/json'},
+    body:JSON.stringify({Tekst_hun_skrev:t, oppgave:HISTORIE+' - Til slutt', maal:MAAL, dato:new Date().toLocaleString('no-NO')})})
+   .then(function(r){
+     if(r.ok){ f.className='fasit vis riktig-svar'; f.innerHTML='✅ Takk for at du delte! 🎉'; document.getElementById('refleksjonTekst').value=''; }
+     else{ f.className='fasit vis feil-svar'; f.innerHTML='❌ Noe gikk galt. Prøv igjen!'; }
+   })
+   .catch(function(){ f.className='fasit vis feil-svar'; f.innerHTML='❌ Sjekk internett og prøv igjen!'; });
+}
+
+function visLyttStatus(paa){
+  document.getElementById('lyttStart').style.display = paa ? 'none' : 'block';
+  document.getElementById('lyttStatus').style.display = paa ? 'block' : 'none';
+}
+function lyttFerdig(){
+  visLyttStatus(false);
+  document.getElementById('lyttFerdigKnapper').style.display = 'block';
+  document.getElementById('fortellBoks').style.display = 'block';
+}
+function startLytt(){
+  document.getElementById('fortellBoks').style.display = 'none';
+  document.getElementById('lyttFerdigKnapper').style.display = 'none';
+  if(window.speechSynthesis) window.speechSynthesis.cancel();
+  if(lyttLydObjekt){ lyttLydObjekt.pause(); lyttLydObjekt = null; }
+  visLyttStatus(true);
+  spillDel(0);
+}
+function spillDel(i){
+  if(i >= LYTT_DELER.length){ lyttFerdig(); return; }
+  var d = LYTT_DELER[i];
+  document.getElementById('lyttDelTekst').textContent = 'Leser ' + (i+1) + ' av ' + LYTT_DELER.length + ' ...';
+  if(d.lyd){
+    var a = new Audio(d.lyd);
+    var lastet = false;
+    a.oncanplaythrough = function(){ lastet = true; };
+    a.onended = function(){ spillDel(i+1); };
+    a.onerror = function(){ if(!lastet) lesDelMedStemme(d.tekst, function(){ spillDel(i+1); }); };
+    var p = a.play();
+    lyttLydObjekt = a;
+    if(p && p.catch){ p.catch(function(){ lesDelMedStemme(d.tekst, function(){ spillDel(i+1); }); }); }
+  } else {
+    lesDelMedStemme(d.tekst, function(){ spillDel(i+1); });
+  }
+}
+function lesDelMedStemme(tekst, ferdig){
+  if(!('speechSynthesis' in window)){
+    document.getElementById('lyttDelTekst').innerHTML = '<span style="color:var(--red);">Nettleseren støtter ikke opplesing her.</span>';
+    setTimeout(ferdig, 1500);
+    return;
+  }
+  var setninger = tekst.match(/[^.!?]+[.!?]*/g) || [tekst];
+  var idx = 0;
+  function neste(){
+    if(idx >= setninger.length){ ferdig(); return; }
+    var u = new SpeechSynthesisUtterance(setninger[idx]);
+    u.lang = 'nb-NO';
+    u.rate = 0.92;
+    u.onend = function(){ idx++; setTimeout(neste, 400); };
+    u.onerror = function(){ idx++; setTimeout(neste, 150); };
+    window.speechSynthesis.speak(u);
+  }
+  neste();
+}
+function sendFortelling(){
+  var t = document.getElementById('fortellTekst').value;
+  var f = document.getElementById('fortellFasit');
+  if(t.trim().length < 10){ f.className='fasit vis feil-svar'; f.innerHTML='⏳ Skriv litt mer først!'; return; }
+  f.className='fasit vis'; f.style.background='#faf8ff'; f.style.color='#6B7280'; f.innerHTML='⏳ Sender...';
+  fetch('https://formspree.io/f/mqeolldg',{method:'POST',headers:{'Content-Type':'application/json','Accept':'application/json'},
+    body:JSON.stringify({Tekst_hun_skrev:t, oppgave:HISTORIE+' - Lytt og fortell', maal:MAAL, dato:new Date().toLocaleString('no-NO')})})
+   .then(function(r){
+     if(r.ok){ f.className='fasit vis riktig-svar'; f.innerHTML='✅ Bra jobba! Det du fortalte er sendt til mamma! 🎉'; document.getElementById('fortellTekst').value=''; }
+     else{ f.className='fasit vis feil-svar'; f.innerHTML='❌ Noe gikk galt. Prøv igjen!'; }
+   })
+   .catch(function(){ f.className='fasit vis feil-svar'; f.innerHTML='❌ Sjekk internett og prøv igjen!'; });
+}
+
+function send(tekst,oppgave){
+  try{
+    fetch('https://formspree.io/f/mqeolldg',{method:'POST',headers:{'Content-Type':'application/json','Accept':'application/json'},
+      body:JSON.stringify({Tekst_hun_skrev:tekst, oppgave:oppgave, maal:MAAL, dato:new Date().toLocaleString('no-NO')})}).catch(function(){});
+  }catch(e){}
+}
+
+visLes(); visBygg(); visVelg();
+</script>
+</body>
+</html>
