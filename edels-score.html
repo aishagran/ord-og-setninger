@@ -41,6 +41,7 @@ main{max-width:640px;margin:0 auto;padding:0 1rem;}
 .forsta-setning{background:#faf8ff;border-left:4px solid var(--grape);border-radius:8px;padding:0.8rem 0.9rem;margin-bottom:0.9rem;font-size:1.02rem;line-height:1.6;}
 .mark{background:rgba(212,175,55,0.28);border-radius:5px;padding:0.1rem 0.3rem;font-weight:800;color:#7a5c00;}
 .mark-b{background:rgba(124,58,237,0.18);border-radius:5px;padding:0.1rem 0.3rem;font-weight:800;color:#5b3a9e;}
+.mark-feil{background:rgba(220,38,38,0.14);border-radius:5px;padding:0.1rem 0.3rem;font-weight:800;color:var(--red);text-decoration:line-through;}
 .forsta-sporsmal{font-weight:700;color:var(--ink);margin-bottom:0.7rem;font-size:0.96rem;}
 .valg-knapp{width:100%;background:#faf8ff;border:2px solid var(--grape-light);padding:0.8rem 0.7rem;border-radius:12px;cursor:pointer;margin-bottom:0.6rem;text-align:left;font-size:0.95rem;line-height:1.4;}
 .valg-knapp.riktig{border-color:var(--green);background:var(--green-light);}
@@ -75,6 +76,7 @@ main{max-width:640px;margin:0 auto;padding:0 1rem;}
     <div class="fremgang-rad">🚀 Ny historie, samme mestring – du klarte Laika like bra som Min morgen!</div>
     <div class="fremgang-rad">✅ 12 av 12 riktig i «Velg» – full pott, to historier</div>
     <div class="fremgang-rad">💪 17 av 18 i «Bygg» – nesten alt riktig, to historier</div>
+    <div class="fremgang-rad">🎯 3 av 4 bindeord riktig i fri tekst – først, etterpå og til slutt helt riktig!</div>
   </div>
 
   <div class="score-grid">
@@ -84,39 +86,48 @@ main{max-width:640px;margin:0 auto;padding:0 1rem;}
   </div>
 
   <div class="seksjon-tittel">🧠 Forstår du hvorfor?</div>
-  <div class="seksjon-sub">Det viktigste er ikke å gjette riktig – det er å forstå <strong>hvorfor</strong> noe er riktig. Bare 3 spørsmål i dag.</div>
+  <div class="seksjon-sub">Det viktigste er ikke å gjette riktig – det er å forstå <strong>hvorfor</strong> noe er riktig. Bare 4 spørsmål i dag.</div>
 
   <div class="forsta-kort">
-    <div class="forsta-setning"><span class="mark-b">Så</span> <span class="mark">fant</span> vi Pipoka.</div>
-    <div class="forsta-sporsmal">1. Hvorfor står «fant» rett etter «så»?</div>
-    <button class="valg-knapp" onclick="svar(this,1,true)">Fordi verbet alltid skal stå på plass to, rett etter bindeordet</button>
-    <button class="valg-knapp" onclick="svar(this,1,false)">Fordi «fant» er et kort ord</button>
-    <button class="valg-knapp" onclick="svar(this,1,false)">Det er tilfeldig, det kunne stått hvor som helst</button>
+    <div class="forsta-setning">Du skrev: <span class="mark-b">Så</span> <span class="mark-feil">pipoka hoppet</span> på fanget mitt.</div>
+    <div class="forsta-sporsmal">1. Hva skal stå rett etter «så» – og hvorfor?</div>
+    <button class="valg-knapp" onclick="svar(this,1,false)">«Pipoka», fordi navnet alltid kommer først</button>
+    <button class="valg-knapp" onclick="svar(this,1,true)">«Hoppet», fordi verbet alltid skal stå på plass to, rett etter bindeordet</button>
+    <button class="valg-knapp" onclick="svar(this,1,false)">Det spiller ingen rolle, begge er greit</button>
     <div class="fasit" id="f1"></div>
   </div>
 
   <div class="forsta-kort">
-    <div class="forsta-setning"><span class="mark-b">Til slutt</span> <span class="mark">ga</span> jeg en godbiter til Pipoka.</div>
-    <div class="forsta-sporsmal">2. Hvilket ord i setningen ER selve verbet?</div>
-    <button class="valg-knapp" onclick="svar(this,2,false)">jeg</button>
-    <button class="valg-knapp" onclick="svar(this,2,true)">ga</button>
-    <button class="valg-knapp" onclick="svar(this,2,false)">godbiter</button>
-    <button class="valg-knapp" onclick="svar(this,2,false)">Pipoka</button>
+    <div class="forsta-setning">Riktig setning: <span class="mark-b">Så</span> <span class="mark">hoppet</span> Pipoka på fanget mitt.</div>
+    <div class="forsta-sporsmal">2. Hva må du huske om navn som «Pipoka» midt i en setning?</div>
+    <button class="valg-knapp" onclick="svar(this,2,false)">Det skal alltid være liten bokstav</button>
+    <button class="valg-knapp" onclick="svar(this,2,true)">Det skal alltid være stor bokstav, fordi det er et navn</button>
+    <button class="valg-knapp" onclick="svar(this,2,false)">Det kommer an på hvor i setningen det står</button>
     <div class="fasit" id="f2"></div>
   </div>
 
   <div class="forsta-kort">
-    <div class="forsta-sporsmal">3. Fortell med dine egne ord: hva skal stå <strong>rett etter</strong> et bindeord som «så» eller «først»?</div>
+    <div class="forsta-setning"><span class="mark-b">Til slutt</span> <span class="mark">ga</span> jeg en godbiter til Pipoka.</div>
+    <div class="forsta-sporsmal">3. Hvilket ord i setningen ER selve verbet?</div>
+    <button class="valg-knapp" onclick="svar(this,3,false)">jeg</button>
+    <button class="valg-knapp" onclick="svar(this,3,true)">ga</button>
+    <button class="valg-knapp" onclick="svar(this,3,false)">godbiter</button>
+    <button class="valg-knapp" onclick="svar(this,3,false)">Pipoka</button>
+    <div class="fasit" id="f3"></div>
+  </div>
+
+  <div class="forsta-kort">
+    <div class="forsta-sporsmal">4. Fortell med dine egne ord: hva skal stå <strong>rett etter</strong> et bindeord som «så» eller «først»?</div>
     <textarea class="egne-ord" id="egneOrd" placeholder="Skriv her..."></textarea>
     <button class="send-btn" onclick="sendForstaelse()">Send til mamma 💛</button>
-    <div class="fasit" id="f3"></div>
+    <div class="fasit" id="f4"></div>
   </div>
 </main>
 
 <div class="footer">🏆 Edels Score · Ord &amp; Setninger</div>
 
 <script>
-let respostas = {1: null, 2: null, 3: null};
+let respostas = {1: null, 2: null, 3: null, 4: null};
 
 function svar(btn, nr, ok){
   btn.parentElement.querySelectorAll('.valg-knapp').forEach(b => b.style.pointerEvents='none');
@@ -128,7 +139,9 @@ function svar(btn, nr, ok){
   } else {
     btn.classList.add('feil');
     btn.parentElement.querySelectorAll('.valg-knapp').forEach(b => {
-      const isRight = (nr===1 && b.textContent.includes('plass to')) || (nr===2 && b.textContent.trim()==='ga');
+      const isRight = (nr===1 && b.textContent.includes('Hoppet')) ||
+                      (nr===2 && b.textContent.includes('stor bokstav, fordi')) ||
+                      (nr===3 && b.textContent.trim()==='ga');
       if(isRight) b.classList.add('riktig');
     });
     f.className = 'fasit vis feil-svar';
@@ -139,11 +152,11 @@ function svar(btn, nr, ok){
 
 async function sendForstaelse(){
   const t = document.getElementById('egneOrd').value;
-  const f = document.getElementById('f3');
+  const f = document.getElementById('f4');
   if(t.trim().length < 5){ f.className='fasit vis feil-svar'; f.innerHTML='⏳ Skriv litt mer!'; return; }
-  respostas[3] = t;
+  respostas[4] = t;
   f.className='fasit vis'; f.style.background='#faf8ff'; f.style.color='#6B7280'; f.innerHTML='⏳ Sender...';
-  const oppsummering = 'Spm1: '+(respostas[1]||'—')+' | Spm2: '+(respostas[2]||'—')+' | Egne ord: '+t;
+  const oppsummering = 'Spm1: '+(respostas[1]||'—')+' | Spm2: '+(respostas[2]||'—')+' | Spm3: '+(respostas[3]||'—')+' | Egne ord: '+t;
   try{
     const r = await fetch('https://formspree.io/f/mqeolldg', {method:'POST', headers:{'Content-Type':'application/json','Accept':'application/json'},
       body: JSON.stringify({Tekst_hun_skrev:oppsummering, oppgave:'Edels Score - Forståelse', maal:'Forståelse av V2-regelen', dato:new Date().toLocaleString('no-NO')})});
