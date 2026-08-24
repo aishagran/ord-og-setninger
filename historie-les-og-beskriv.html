@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="no">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Les og beskriv – Edels Verden</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --cream:#F6F1E6;--paper:#FFFEFA;--navy:#1C2C42;--navy-2:#29455F;--ink:#1B2438;--muted:#746F66;
+  --coral:#BE6E56;--coral-soft:#F3DFD6;--rule:#E4DCCB;
+  --correct:#3E6C63;--correct-bg:#E1EBE7;--feil:#B5483A;--feil-bg:#F5E1DC;
+  --shadow:0 12px 34px rgba(28,44,66,0.08);
+}
+*{box-sizing:border-box;margin:0;padding:0;}
+html{scroll-behavior:smooth;}
+body{font-family:'Inter',sans-serif;background:radial-gradient(circle at 10% 0%,#FFF9EE 0,transparent 24rem),var(--cream);color:var(--ink);min-height:100vh;padding-bottom:3rem;-webkit-font-smoothing:antialiased;}
+a{-webkit-tap-highlight-color:transparent;}
+a:focus-visible,button:focus-visible{outline:2px solid var(--coral);outline-offset:3px;}
+.serif{font-family:'Fraunces',serif;}
+.topnav{display:flex;align-items:center;justify-content:space-between;padding:0.9rem 1.2rem;max-width:680px;margin:0 auto;position:sticky;top:0;background:rgba(246,241,230,0.9);backdrop-filter:blur(16px);border-bottom:1px solid rgba(28,44,66,0.07);z-index:40;}
+.avatar{width:2.65rem;height:2.65rem;border-radius:50%;background:var(--navy);color:#EDE6D6;display:flex;align-items:center;justify-content:center;font-family:'Fraunces',serif;font-style:italic;font-weight:600;font-size:1.08rem;flex-shrink:0;box-shadow:0 8px 20px rgba(28,44,66,0.16);text-decoration:none;}
+.navlinks{display:flex;gap:1.35rem;}
+.navlinks a{color:var(--ink);text-decoration:none;font-weight:600;font-size:0.92rem;}
+.navlinks a:hover{color:var(--coral);}
+.side{max-width:680px;margin:0 auto;padding:2rem 1.2rem 0;}
+.tilbake{display:inline-flex;margin-bottom:1.6rem;color:var(--muted);text-decoration:none;font-size:0.82rem;font-weight:600;}
+.eyebrow{font-size:0.68rem;letter-spacing:0.15em;text-transform:uppercase;font-weight:700;color:var(--coral);margin-bottom:0.6rem;}
+.topp{padding-bottom:1.8rem;border-bottom:1px solid var(--rule);}
+h1.tittel{font-size:clamp(2.1rem,9vw,3rem);line-height:1;font-weight:500;letter-spacing:-0.03em;}
+.lede{color:var(--muted);font-size:0.94rem;line-height:1.6;max-width:27rem;margin-top:0.9rem;}
+.malboks{background:var(--paper);border:1px solid var(--rule);border-radius:20px;padding:1.2rem 1.3rem;margin:1.5rem 0;box-shadow:0 7px 24px rgba(28,44,66,0.045);}
+.malboks .tekst{font-size:0.96rem;line-height:1.6;}
+.boks{background:var(--paper);border:1px solid rgba(28,44,66,0.08);border-radius:20px;padding:1.25rem 1.3rem;margin-bottom:0.9rem;box-shadow:0 7px 24px rgba(28,44,66,0.045);}
+.steg-label{font-size:0.66rem;letter-spacing:0.09em;text-transform:uppercase;color:var(--coral);font-weight:700;margin-bottom:0.6rem;}
+.lede-liten{color:var(--muted);font-size:0.88rem;line-height:1.5;margin-bottom:0.9rem;}
+.bilde{width:100%;border-radius:16px;cursor:zoom-in;box-shadow:0 8px 24px rgba(28,44,66,0.1);margin-bottom:1rem;display:block;}
+.linje{padding:0.4rem 0;font-size:1.02rem;line-height:1.65;}
+.frem{background:rgba(190,110,86,0.16);border-radius:5px;padding:0.1rem 0.35rem;font-weight:700;color:var(--coral);}
+.sporsmalboks{background:var(--cream);border-left:3px solid var(--coral);padding:0.85rem 0.95rem;border-radius:10px;color:var(--ink);font-size:0.92rem;line-height:1.55;margin-bottom:0.9rem;}
+.tekstboks{width:100%;min-height:95px;padding:0.9rem;border:1.5px solid var(--rule);border-radius:14px;font-family:'Inter';font-size:0.96rem;background:var(--paper);color:var(--ink);resize:vertical;line-height:1.55;}
+.tekstboks:focus{outline:none;border-color:var(--coral);}
+.feltrad{margin-bottom:0.8rem;}
+.feltrad label{display:block;font-size:0.9rem;margin-bottom:0.35rem;color:var(--ink);}
+.felt{width:100%;padding:0.65rem 0.85rem;border:1.5px solid var(--rule);border-radius:12px;font-family:'Inter';font-size:0.94rem;background:var(--paper);color:var(--ink);}
+.felt:focus{outline:none;border-color:var(--coral);}
+.knapp-hoved{width:100%;background:var(--navy);color:#fff;padding:0.75rem;border:none;border-radius:14px;font-family:'Inter';font-weight:600;font-size:0.92rem;cursor:pointer;margin-top:0.2rem;}
+.knapp-lav{background:var(--cream);border:1.5px solid var(--rule);color:var(--coral);padding:0.5rem 0.9rem;border-radius:12px;font-weight:600;font-size:0.82rem;cursor:pointer;margin-bottom:0.7rem;font-family:'Inter';}
+.svar{margin-top:0.75rem;padding:0.75rem 0.85rem;border-radius:12px;font-weight:600;display:none;line-height:1.55;font-size:0.88rem;}
+.svar.vis{display:block;}
+.svar.riktig{background:var(--correct-bg);color:var(--correct);}
+.svar.feil{background:var(--feil-bg);color:var(--feil);}
+.byggfelt{min-height:52px;background:var(--cream);border:1.5px dashed var(--coral);border-radius:14px;padding:0.6rem;margin-bottom:1rem;display:flex;flex-wrap:wrap;gap:0.3rem;align-items:center;}
+.byggfelt:empty::before{content:'Trykk på setningene i riktig rekkefølge...';color:#B8AC98;font-size:0.83rem;font-style:italic;}
+.brikkebank{display:flex;flex-wrap:wrap;gap:0.4rem;margin-bottom:1rem;}
+.brikke{display:inline-block;background:var(--paper);border:1.5px solid var(--rule);color:var(--ink);padding:0.4rem 0.7rem;border-radius:10px;font-size:0.86rem;cursor:pointer;}
+.brikke.brukt{opacity:0.25;pointer-events:none;}
+.footer{text-align:center;font-size:0.75rem;color:var(--muted);margin-top:2.5rem;padding:1.25rem;}
+.modal{display:none;position:fixed;inset:0;background:rgba(28,36,56,0.94);z-index:100;padding:0.5rem;overflow:auto;}
+.modal.vis{display:flex;align-items:center;justify-content:center;}
+.modal img{max-width:100%;border-radius:14px;}
+.modal-lukk{position:fixed;top:0.8rem;right:1.2rem;color:#fff;font-size:2.4rem;cursor:pointer;font-weight:bold;z-index:101;}
+@media(prefers-reduced-motion:reduce){*{scroll-behavior:auto!important;}}
+</style>
+</head>
+<body>
+
+<div class="topnav">
+  <a class="avatar" href="index.html" aria-label="Til forsiden">E</a>
+  <div class="navlinks">
+    <a href="historier.html">Historier</a>
+    <a href="index.html#skolefag">Skolefag</a>
+  </div>
+</div>
+
+<main class="side">
+  <a class="tilbake" href="historier.html">← Historier</a>
+
+  <section class="topp">
+    <div class="eyebrow">Historie · Forklare tålmodig</div>
+    <h1 class="tittel serif">Les og beskriv</h1>
+    <p class="lede">Edel hjelper Pipoka med skolearbeidet – en historie om å forklare, ett steg om gangen.</p>
+  </section>
+
+  <div class="malboks">
+    <div class="eyebrow">Denne historien øver på</div>
+    <div class="tekst">Å <strong>lese</strong> en lengre tekst, <strong>beskrive</strong> med egne ord, og forklare <strong>tålmodig</strong> – slik Edel gjør for Pipoka i historien.</div>
+  </div>
+
+  <div class="boks">
+    <div class="steg-label">1 · Les historien</div>
+    <div class="linje">Edel og Pipoka hadde reist til Åndalsnes for å lære om bergarter. For Edel var turen spennende. For Pipoka var alt nytt.</div>
+    <div class="linje">Pipoka var ikke vant til å reise. Hun ble sliten av nye steder, ukjente lyder og lange turer. Hun var også på en måte analfabet. Hun kunne ikke lese et eneste ord. Hun var tross alt en hund.</div>
+    <div class="linje">Da Edel åpnet skoleoppgaven, så Pipoka bekymret på alle ordene.</div>
+    <div class="linje">– Jeg forstår ingenting, sa Pipoka. – Er en bergart fortsatt The Rock?</div>
+    <div class="linje">Edel pustet rolig.</div>
+    <div class="linje">– Nei, men det går bra. Du trenger ikke å forstå alt med én gang. Vi tar én ting om gangen.</div>
+    <div class="linje">Først viste Edel et bilde av et fjell.</div>
+    <div class="linje">– Et fjell <span class="frem">består av</span> bergarter, forklarte hun.</div>
+    <div class="linje">– Hva betyr «består av»? spurte Pipoka.</div>
+    <div class="linje">Edel la flere steiner ved siden av hverandre.</div>
+    <div class="linje">– «Å bestå av» betyr at noe er laget av deler. Et fjell består av bergarter. Bergarter består av mineraler.</div>
+    <div class="linje">Etterpå viste Edel et bilde av magma under bakken.</div>
+    <div class="linje">– Magma er smeltet stein. Når magmaen kjøles ned, begynner den å størkne.</div>
+    <div class="linje">Pipoka tenkte seg om.</div>
+    <div class="linje">– Blir magmaen til granitt fordi den kjøles ned?</div>
+    <div class="linje">– Ja, svarte Edel. – <span class="frem">Fordi</span> magmaen kjøles ned, størkner den. <span class="frem">Dermed</span> kan det dannes granitt.</div>
+    <div class="linje">Senere fant Edel fram et bilde av en bygning, en trapp, en benkeplate og et monument.</div>
+    <div class="linje">– Granitt er hard og slitesterk. <span class="frem">Derfor</span> kan den brukes til mange forskjellige ting.</div>
+    <div class="linje">Pipoka prøvde å forklare hele prosessen:</div>
+    <div class="linje" style="font-style:italic;">– Først finnes det varm magma under bakken. Etterpå kjøles magmaen ned. Fordi den blir kaldere, størkner den. Dermed dannes granitt. Granitt kan brukes i trapper og bygninger fordi den er hard og slitesterk.</div>
+    <div class="linje">Edel smilte.</div>
+    <div class="linje">– Nå forklarte du både hvordan granitt blir dannet, og hvordan den kan brukes.</div>
+    <div class="linje">Til slutt forstod Pipoka skoleoppgaven. Hun kunne fortsatt ikke lese, men hun kunne lære ved å se på bilder, lytte og prøve å forklare med egne ord.</div>
+    <div class="linje" style="font-weight:600;">Edel hadde vært tålmodig. Derfor virket ikke oppgaven like vanskelig lenger.</div>
+    <button class="knapp-lav" style="margin-top:0.6rem;" onclick="lesHistorie()">🔊 Hør historien</button>
+  </div>
+
+  <div class="boks">
+    <div class="steg-label">2 · Se og beskriv: «å bestå av»</div>
+    <img class="bilde" src="img/bergart-bestaav.png" alt="Fjell, bergart og å bestå av" onclick="zoom('img/bergart-bestaav.png')">
+    <div class="sporsmalboks">Se på bilde 3 («Å BESTÅ AV»). Beskriv med egne ord: hva består et fjell av? Hva består en bergart av?</div>
+    <textarea class="tekstboks" id="p2" placeholder="Skriv her..."></textarea>
+    <button class="knapp-hoved" style="margin-top:0.7rem;" onclick="sendFri('p2','p2F','Les og beskriv - Beskriv består av',10)">Send til mamma 💛</button>
+    <div class="svar" id="p2F"></div>
+  </div>
+
+  <div class="boks">
+    <div class="steg-label">3 · Pipoka tar feil igjen</div>
+    <div class="sporsmalboks">Pipoka sa: «En bergart består av fjell.» Det er feil vei rundt!</div>
+    <div class="feltrad">
+      <label>Nei. Et fjell består av __________.</label>
+      <input class="felt" id="p3a">
+    </div>
+    <button class="knapp-hoved" onclick="sjekkOrd('p3a','p3aF',['bergarter','bergart'])">Sjekk</button>
+    <div class="svar" id="p3aF"></div>
+    <div class="feltrad" style="margin-top:1rem;">
+      <label>Bergarter består av __________.</label>
+      <input class="felt" id="p3b">
+    </div>
+    <button class="knapp-hoved" onclick="sjekkOrd('p3b','p3bF',['mineraler','mineral'])">Sjekk</button>
+    <div class="svar" id="p3bF"></div>
+  </div>
+
+  <div class="boks">
+    <div class="steg-label">4 · Fortell kjeden med bildene</div>
+    <div class="lede-liten">Se på bilde 5 («FORTELL MED BILDENE»). Sett i riktig rekkefølge:</div>
+    <div class="byggfelt" id="kjedeSvar"></div>
+    <div class="brikkebank" id="kjedeBank"></div>
+    <button class="knapp-lav" onclick="tomKjede()">↺ Start på nytt</button>
+    <button class="knapp-hoved" onclick="sjekkKjede()">Sjekk rekkefølge</button>
+    <div class="svar" id="kjedeF"></div>
+  </div>
+
+  <div class="boks">
+    <div class="steg-label">5 · Nå er det din tur</div>
+    <div class="sporsmalboks">Du har nå hjulpet Pipoka, akkurat som Edel gjorde i historien. Forklar noe du har lært om bergarter – sakte og tålmodig, som om du snakker til noen som ikke vet noe fra før.</div>
+    <textarea class="tekstboks" id="p5" placeholder="Skriv her..."></textarea>
+    <button class="knapp-hoved" style="margin-top:0.7rem;" onclick="sendFri('p5','p5F','Les og beskriv - Forklar tålmodig',15)">Send til mamma 💛</button>
+    <div class="svar" id="p5F"></div>
+  </div>
+
+</main>
+
+<div class="footer">Les og beskriv · Edels Verden</div>
+
+<div class="modal" id="bildeModal" onclick="lukkModal()">
+  <span class="modal-lukk">&times;</span>
+  <img id="modalBilde" src="" alt="">
+</div>
+
+<script>
+var MAAL = "Les og beskriv – forklare tålmodig, består av";
+
+function zoom(src){ document.getElementById('modalBilde').src=src; document.getElementById('bildeModal').classList.add('vis'); }
+function lukkModal(){ document.getElementById('bildeModal').classList.remove('vis'); }
+
+function sjekkOrd(inputId, svarId, godtaArr){
+  var v = document.getElementById(inputId).value.trim().toLowerCase();
+  var f = document.getElementById(svarId);
+  var ok = godtaArr.some(function(g){return v===g.toLowerCase();});
+  if(ok){ f.className='svar vis riktig'; f.innerHTML='✅ Riktig!'; }
+  else{ f.className='svar vis feil'; f.innerHTML='💡 Ikke helt. Forslag: <strong>'+godtaArr[0]+'</strong>'; }
+}
+
+function sendFri(taId, svarId, oppgave, minLen){
+  var t=document.getElementById(taId).value;
+  var f=document.getElementById(svarId);
+  minLen = minLen||3;
+  if(t.trim().length<minLen){ f.className='svar vis feil'; f.innerHTML='⏳ Skriv litt mer først!'; return; }
+  f.className='svar vis'; f.style.background='var(--cream)'; f.style.color='var(--muted)'; f.innerHTML='⏳ Sender...';
+  fetch('https://formspree.io/f/mqeolldg',{method:'POST',headers:{'Content-Type':'application/json','Accept':'application/json'},
+    body:JSON.stringify({Tekst_hun_skrev:t, oppgave:oppgave, maal:MAAL, dato:new Date().toLocaleString('no-NO')})})
+   .then(function(r){
+     if(r.ok){ f.className='svar vis riktig'; f.innerHTML='✅ Sendt til mamma! 🎉'; }
+     else{ f.className='svar vis feil'; f.innerHTML='❌ Noe gikk galt. Prøv igjen!'; }
+   })
+   .catch(function(){ f.className='svar vis feil'; f.innerHTML='❌ Sjekk internett og prøv igjen!'; });
+}
+
+function lesHistorie(){
+  lesHoyt("Edel og Pipoka hadde reist til Åndalsnes for å lære om bergarter. Pipoka forstod ingenting først, men Edel var tålmodig. Et fjell består av bergarter. Bergarter består av mineraler. Fordi magmaen kjøles ned, størkner den. Dermed dannes granitt. Granitt er hard og slitesterk. Derfor kan den brukes til mange forskjellige ting. Til slutt forstod Pipoka skoleoppgaven, fordi Edel hadde vært tålmodig.");
+}
+function lesHoyt(tekst){
+  if(!('speechSynthesis' in window)) return;
+  window.speechSynthesis.cancel();
+  var setninger = tekst.match(/[^.!?]+[.!?]*/g) || [tekst];
+  var idx=0;
+  function neste(){
+    if(idx>=setninger.length) return;
+    var u=new SpeechSynthesisUtterance(setninger[idx]);
+    u.lang='nb-NO'; u.rate=0.92;
+    u.onend=function(){idx++;setTimeout(neste,300);};
+    window.speechSynthesis.speak(u);
+  }
+  neste();
+}
+
+function embland(arr){var a=arr.slice();for(var i=a.length-1;i>0;i--){var j=Math.floor(Math.random()*(i+1));var t=a[i];a[i]=a[j];a[j]=t;}return a;}
+var KJEDE_RIKTIG = ["Først: fjellet","Etterpå: bergarten","Til slutt: mineralene"];
+function settOppKjede(){
+  var sh = embland(KJEDE_RIKTIG);
+  document.getElementById('kjedeBank').innerHTML = sh.map(function(w){
+    return '<span class="brikke" data-w="'+w+'" onclick="leggTilKjede(this)">'+w+'</span>';
+  }).join('');
+  document.getElementById('kjedeSvar').innerHTML='';
+}
+function leggTilKjede(el){
+  el.classList.add('brukt');
+  var k=document.createElement('span');
+  k.className='brikke';
+  k.textContent=el.dataset.w;
+  k.onclick=function(){k.remove();el.classList.remove('brukt');};
+  document.getElementById('kjedeSvar').appendChild(k);
+}
+function tomKjede(){
+  document.getElementById('kjedeSvar').innerHTML='';
+  document.querySelectorAll('#kjedeBank .brikke').forEach(function(b){b.classList.remove('brukt');});
+}
+function sjekkKjede(){
+  var svar=[].slice.call(document.querySelectorAll('#kjedeSvar .brikke')).map(function(b){return b.textContent;}).join('|');
+  var riktig = KJEDE_RIKTIG.join('|');
+  var f=document.getElementById('kjedeF');
+  if(svar===riktig){ f.className='svar vis riktig'; f.innerHTML='✅ Perfekt! Fjellet består av bergarten, bergarten består av mineralene.'; }
+  else{ f.className='svar vis feil'; f.innerHTML='💡 Ikke helt. Hva kommer først – det store fjellet, eller de små mineralene?'; }
+}
+
+settOppKjede();
+</script>
+</body>
+</html>
