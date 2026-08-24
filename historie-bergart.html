@@ -3,235 +3,610 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Bergart – Ord & Setninger</title>
-<link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@600;700;800&family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
+<title>Bergart – Edels Verden</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 <style>
 :root{
-  --grape:#7C3AED;--grape-light:#EDE9FE;--berry:#E84A8A;--sun:#D97706;--sun-light:#FEF3C7;
-  --ink:#1E1B4B;--muted:#6B7280;--bg:#FBF7FF;--card:#fff;--gold:#D4AF37;
-  --green:#16A34A;--green-light:#DCFCE7;--red:#DC2626;--red-light:#FEE2E2;
+  --cream:#F6F1E6;
+  --paper:#FFFEFA;
+  --navy:#1C2C42;
+  --navy-2:#29455F;
+  --ink:#1B2438;
+  --muted:#746F66;
+  --coral:#BE6E56;
+  --coral-soft:#F3DFD6;
+  --rule:#E4DCCB;
+  --correct:#3E6C63;--correct-bg:#E1EBE7;
+  --feil:#B5483A;--feil-bg:#F5E1DC;
+  --shadow:0 12px 34px rgba(28,44,66,0.08);
 }
 *{box-sizing:border-box;margin:0;padding:0;}
-body{font-family:'Nunito',sans-serif;background:var(--bg);color:var(--ink);min-height:100vh;padding-bottom:3rem;}
-.topbar{background:#fff;padding:0.9rem 1.1rem;display:flex;align-items:center;gap:0.75rem;box-shadow:0 2px 12px rgba(124,58,237,0.06);position:sticky;top:0;z-index:40;}
-.home-btn{text-decoration:none;font-size:1.3rem;background:var(--grape-light);border-radius:12px;padding:0.35rem 0.7rem;}
-.topbar .tittel{font-family:'Baloo 2',cursive;font-weight:800;font-size:1.05rem;color:var(--ink);}
-.hero{text-align:center;padding:1.2rem 1.25rem 0.5rem;}
-.hero .ikon{font-size:2.2rem;}
-.hero h1{font-family:'Baloo 2',cursive;font-size:1.4rem;font-weight:800;color:var(--grape);margin-top:0.15rem;}
-main{max-width:640px;margin:0 auto;padding:0 1rem;}
-.mal-boks{background:linear-gradient(135deg,rgba(212,175,55,0.14),rgba(255,255,255,0));border:2px solid var(--gold);border-radius:14px;padding:0.9rem 1rem;margin:0.8rem 0 1rem;}
-.mal-tittel{font-family:'Baloo 2',cursive;font-size:0.9rem;color:#8a6a00;margin-bottom:0.4rem;}
-.mal-tekst{font-size:1rem;color:var(--ink);line-height:1.6;}
-.mal-obs{background:rgba(232,74,138,0.12);border-radius:8px;padding:0.6rem 0.7rem;margin-top:0.6rem;font-size:0.88rem;color:var(--berry);font-weight:700;}
-.struktur-tabell{width:100%;border-collapse:collapse;margin-top:0.7rem;font-size:0.82rem;}
-.struktur-tabell th{background:rgba(124,58,237,0.12);color:var(--grape);padding:0.4rem 0.3rem;font-family:'Baloo 2',cursive;font-size:0.72rem;text-align:left;}
-.struktur-tabell td{padding:0.45rem 0.3rem;border-top:1px solid #f0eafa;color:var(--ink);}
-.struktur-tabell td.c-at{color:#5b3a9e;font-weight:800;}
-.preord-boks{background:linear-gradient(135deg,rgba(217,119,6,0.1),#fff);border:2px solid var(--sun);border-radius:14px;padding:1rem 1.1rem;margin-bottom:1rem;}
-.preord-tittel{font-family:'Baloo 2',cursive;font-weight:700;font-size:0.95rem;color:var(--sun);margin-bottom:0.6rem;}
-.preord-ord{font-family:'Baloo 2',cursive;font-size:1.15rem;color:var(--sun);}
-.preord-def{font-size:0.9rem;color:var(--ink);margin:0.3rem 0;}
-.preord-eks{font-size:0.85rem;color:var(--muted);font-style:italic;}
-.kjente-strip{display:flex;flex-wrap:wrap;gap:0.4rem;margin-top:0.8rem;padding-top:0.7rem;border-top:1px dashed #f0dba8;}
-.kjent-pille{background:#fff;border:1px solid #f0dba8;border-radius:20px;padding:0.25rem 0.7rem;font-size:0.78rem;color:#8a6a00;}
-.ord{display:inline-block;padding:0.32rem 0.6rem;border-radius:9px;font-weight:700;font-size:0.98rem;margin:0.1rem;}
-.ord-bindeord{color:#5b3a9e;background:rgba(124,58,237,0.18);border:2px solid #b49ce0;}
-.ord-subjekt{color:#0a5c3f;background:rgba(52,211,153,0.22);border:2px solid #34D399;}
-.ord-verb{color:#7a5c00;background:rgba(212,175,55,0.28);border:2px solid var(--gold);font-weight:800;}
-.ord-rest{color:var(--ink);background:#f3f0fa;border:2px solid #e5ddf5;}
-.fargenokkel{display:flex;flex-wrap:wrap;gap:0.55rem;justify-content:center;margin:0 0 0.9rem;padding:0.55rem;background:#faf8ff;border-radius:10px;}
-.fnk{display:flex;align-items:center;gap:0.3rem;font-size:0.75rem;color:var(--muted);}
-.fnk-boks{width:14px;height:14px;border-radius:4px;}
-.faner{display:flex;gap:0.35rem;margin-bottom:1rem;flex-wrap:wrap;}
-.fane{flex:1;min-width:18%;background:#fff;border:2px solid var(--grape-light);color:var(--muted);padding:0.6rem 0.2rem;border-radius:12px;font-family:'Baloo 2',cursive;font-weight:700;font-size:0.72rem;cursor:pointer;text-align:center;transition:all 0.15s;}
-.fane.aktiv{background:var(--grape);color:#fff;border-color:var(--grape);}
+html{scroll-behavior:smooth;}
+body{font-family:'Inter',sans-serif;background:radial-gradient(circle at 10% 0%,#FFF9EE 0,transparent 24rem),var(--cream);color:var(--ink);min-height:100vh;padding-bottom:3rem;-webkit-font-smoothing:antialiased;}
+a{-webkit-tap-highlight-color:transparent;}
+a:focus-visible,button:focus-visible{outline:2px solid var(--coral);outline-offset:3px;}
+.serif{font-family:'Fraunces',serif;}
+
+.topnav{display:flex;align-items:center;justify-content:space-between;padding:0.9rem 1.2rem;max-width:680px;margin:0 auto;position:sticky;top:0;background:rgba(246,241,230,0.9);backdrop-filter:blur(16px);border-bottom:1px solid rgba(28,44,66,0.07);z-index:40;}
+.avatar{width:2.65rem;height:2.65rem;border-radius:50%;background:var(--navy);color:#EDE6D6;display:flex;align-items:center;justify-content:center;font-family:'Fraunces',serif;font-style:italic;font-weight:600;font-size:1.08rem;flex-shrink:0;box-shadow:0 8px 20px rgba(28,44,66,0.16);text-decoration:none;}
+.navlinks{display:flex;gap:1.35rem;}
+.navlinks a{position:relative;padding:0.55rem 0;color:var(--ink);text-decoration:none;font-weight:600;font-size:0.92rem;}
+.navlinks a:hover{color:var(--coral);}
+
+.side{max-width:680px;margin:0 auto;padding:2rem 1.2rem 0;}
+.tilbake{display:inline-flex;margin-bottom:1.6rem;color:var(--muted);text-decoration:none;font-size:0.82rem;font-weight:600;}
+.eyebrow{font-size:0.68rem;letter-spacing:0.15em;text-transform:uppercase;font-weight:700;color:var(--coral);margin-bottom:0.6rem;}
+.topp{display:flex;align-items:flex-end;justify-content:space-between;gap:1.5rem;padding-bottom:1.8rem;border-bottom:1px solid var(--rule);}
+h1.tittel{font-size:clamp(2.1rem,9vw,3rem);line-height:1;font-weight:500;letter-spacing:-0.03em;}
+.lede{color:var(--muted);font-size:0.94rem;line-height:1.6;max-width:27rem;margin-top:0.9rem;}
+.antall{display:flex;align-items:center;gap:0.75rem;padding:0.85rem 1rem;border:1px solid var(--rule);border-radius:18px;background:rgba(255,254,250,0.72);flex-shrink:0;}
+.antall strong{font-family:'Fraunces',serif;font-size:1.9rem;font-weight:500;color:var(--coral);line-height:1;}
+.antall span{font-size:0.56rem;line-height:1.35;letter-spacing:0.08em;text-transform:uppercase;color:var(--muted);font-weight:700;}
+
+.malboks{background:var(--paper);border:1px solid var(--rule);border-radius:20px;padding:1.3rem 1.4rem;margin:1.6rem 0;box-shadow:0 7px 24px rgba(28,44,66,0.045);}
+.malboks .eyebrow{margin-bottom:0.7rem;}
+.gruppe-tittel{font-size:0.66rem;letter-spacing:0.09em;text-transform:uppercase;color:var(--muted);font-weight:700;margin:0.9rem 0 0.5rem;}
+.gruppe-tittel:first-of-type{margin-top:0;}
+.ordboks{display:flex;flex-wrap:wrap;gap:0.4rem;}
+.ordpille{background:var(--cream);border:1px solid var(--rule);border-radius:999px;padding:0.28rem 0.7rem;font-size:0.78rem;color:var(--ink);}
+
+.dagnav{display:flex;gap:0.5rem;overflow-x:auto;padding-bottom:0.3rem;margin-bottom:1.4rem;-ms-overflow-style:none;scrollbar-width:none;}
+.dagnav::-webkit-scrollbar{display:none;}
+.dag-chip{flex-shrink:0;background:var(--paper);border:1.5px solid var(--rule);color:var(--muted);padding:0.55rem 1rem;border-radius:999px;font-weight:600;font-size:0.84rem;cursor:pointer;white-space:nowrap;}
+.dag-chip.aktiv{background:var(--navy);border-color:var(--navy);color:#fff;}
+
 .del{display:none;}
-.del.aktiv{display:block;animation:inn 0.3s;}
+.del.aktiv{display:block;animation:inn 0.25s;}
 @keyframes inn{from{opacity:0;}to{opacity:1;}}
-.kort{background:var(--card);border:2px solid var(--grape-light);border-radius:16px;padding:1.2rem;margin-bottom:1rem;box-shadow:0 2px 12px rgba(124,58,237,0.05);}
-.kort-intro{color:var(--muted);font-size:0.9rem;margin-bottom:1rem;line-height:1.5;}
-.oppgave-teller{text-align:center;color:var(--grape);font-weight:700;font-size:0.85rem;margin-bottom:0.8rem;}
-.serie-bilde{width:100%;border-radius:12px;cursor:zoom-in;box-shadow:0 4px 16px rgba(0,0,0,0.12);margin-bottom:1rem;}
-.les-linje{display:flex;gap:0.6rem;align-items:baseline;padding:0.5rem 0;border-bottom:1px solid #f2eefb;font-size:1.02rem;line-height:1.6;}
-.les-linje:last-child{border-bottom:none;}
-.les-nr{color:#c0b0dd;font-weight:800;font-size:0.85rem;min-width:20px;}
-.mark{background:rgba(212,175,55,0.3);border-radius:5px;padding:0.1rem 0.3rem;font-weight:800;color:#7a5c00;}
-.mark-b{background:rgba(124,58,237,0.18);border-radius:5px;padding:0.1rem 0.3rem;font-weight:800;color:#5b3a9e;}
-.mark-s{background:rgba(52,211,153,0.25);border-radius:5px;padding:0.1rem 0.3rem;font-weight:800;color:#0a5c3f;}
-.bygg-mal{background:rgba(212,175,55,0.12);border-left:4px solid var(--gold);padding:0.85rem;border-radius:8px;color:#7a5c00;margin-bottom:1rem;font-size:0.9rem;}
-.bygg-svar{min-height:56px;background:#faf8ff;border:2px dashed var(--gold);border-radius:12px;padding:0.65rem;margin-bottom:1rem;display:flex;flex-wrap:wrap;gap:0.3rem;align-items:center;}
-.bygg-svar:empty::before{content:'Trykk på ordene i riktig rekkefølge...';color:#b0a0d0;font-size:0.85rem;font-style:italic;}
-.brikke-bank{display:flex;flex-wrap:wrap;gap:0.4rem;margin-bottom:1rem;justify-content:center;}
-.ord.brikke{cursor:pointer;}
-.ord.brukt{opacity:0.25;pointer-events:none;}
-.ord.i-svar{cursor:pointer;}
-.velg3-sporsmal{font-size:1.02rem;line-height:1.6;margin-bottom:1rem;color:var(--ink);}
-.velg3-blank{background:rgba(124,58,237,0.14);border-radius:6px;padding:0.05rem 0.6rem;font-weight:800;color:var(--grape);}
-.valg-knapp{width:100%;background:#faf8ff;border:2px solid var(--grape-light);padding:0.85rem 0.6rem;border-radius:12px;cursor:pointer;margin-bottom:0.65rem;text-align:center;line-height:1.5;font-size:1rem;}
-.valg-knapp.riktig{border-color:var(--green);background:var(--green-light);}
-.valg-knapp.feil{border-color:var(--red);background:var(--red-light);}
-.skriv-sporsmal{background:rgba(124,58,237,0.08);border-left:4px solid var(--grape);padding:0.9rem;border-radius:8px;color:var(--ink);font-size:0.95rem;line-height:1.55;margin-bottom:1rem;}
-.skriv-omrade{width:100%;min-height:120px;padding:1rem;border:2px solid var(--grape-light);border-radius:12px;font-family:'Nunito';font-size:1rem;background:#fff;color:var(--ink);resize:vertical;line-height:1.6;}
-.skriv-omrade:focus{outline:none;border-color:var(--grape);}
-.hjelp-btn{background:var(--grape-light);border:2px solid #c9b3de;color:var(--grape);padding:0.55rem 1rem;border-radius:10px;font-family:'Nunito';font-weight:700;font-size:0.88rem;cursor:pointer;margin-top:0.7rem;}
-.hjelp-innhold{display:none;background:#faf8ff;border-radius:10px;padding:0.85rem;margin-top:0.7rem;}
-.hjelp-innhold.vis{display:block;}
-.hjelp-eks{color:var(--muted);font-size:0.9rem;line-height:2;}
-.sjekk-btn{width:100%;background:var(--gold);color:#4a3800;padding:0.85rem;border:none;border-radius:12px;font-family:'Baloo 2',cursive;font-weight:700;font-size:1.02rem;cursor:pointer;}
-.neste-btn{width:100%;background:var(--grape);color:#fff;padding:0.85rem;border:none;border-radius:12px;font-family:'Baloo 2',cursive;font-weight:700;font-size:1.02rem;cursor:pointer;margin-top:0.7rem;}
-.tomt-btn{background:#f3f0fa;border:2px solid var(--grape-light);color:var(--muted);padding:0.5rem 0.9rem;border-radius:10px;font-weight:600;font-size:0.84rem;cursor:pointer;margin-bottom:1rem;font-family:'Nunito';}
-.fasit{margin-top:1rem;padding:0.85rem;border-radius:12px;font-weight:700;display:none;line-height:1.6;}
-.fasit.vis{display:block;}
-.fasit.riktig-svar{background:var(--green-light);color:var(--green);}
-.fasit.feil-svar{background:var(--red-light);color:var(--red);}
-.ferdig{text-align:center;padding:1.4rem 1rem;}
-.ferdig-emoji{font-size:2.6rem;}
-.ferdig-poeng{font-family:'Baloo 2',cursive;font-size:1.5rem;color:var(--gold);margin:0.4rem 0;}
-.ferdig h2{font-family:'Baloo 2',cursive;color:var(--grape);font-size:1.15rem;}
-.sprak-boks{background:linear-gradient(135deg,var(--sun-light),#FFF9EC);border:2px solid #F5D98A;border-radius:16px;padding:1.2rem;margin:1.4rem 0 1rem;}
-.sprak-tittel{font-family:'Baloo 2',cursive;font-size:1.15rem;color:var(--sun);text-align:center;margin-bottom:0.8rem;}
-.sprak-linje{background:#fff;border-radius:10px;padding:0.7rem 0.8rem;margin-bottom:0.55rem;font-size:1rem;line-height:1.8;box-shadow:0 1px 5px rgba(0,0,0,0.04);}
-.sprak-regel{text-align:center;color:#8a6d3b;font-size:0.9rem;margin-top:0.8rem;line-height:1.5;}
-.footer{text-align:center;font-size:0.8rem;color:#aaa;margin-top:2rem;padding:1.25rem;}
-.modal{display:none;position:fixed;inset:0;background:rgba(30,27,75,0.93);z-index:100;padding:0.5rem;overflow:auto;}
+.dag-tittel{font-size:1.5rem;font-weight:500;margin-bottom:0.15rem;}
+.dag-teller{color:var(--muted);font-size:0.82rem;margin-bottom:1.1rem;}
+
+.boks{background:var(--paper);border:1px solid rgba(28,44,66,0.08);border-radius:20px;padding:1.25rem 1.3rem;margin-bottom:0.9rem;box-shadow:0 7px 24px rgba(28,44,66,0.045);}
+.steg-label{font-size:0.66rem;letter-spacing:0.09em;text-transform:uppercase;color:var(--coral);font-weight:700;margin-bottom:0.6rem;}
+.lede-liten{color:var(--muted);font-size:0.88rem;line-height:1.5;margin-bottom:0.9rem;}
+.bilde{width:100%;border-radius:16px;cursor:zoom-in;box-shadow:0 8px 24px rgba(28,44,66,0.1);margin-bottom:1rem;display:block;}
+.linje{padding:0.4rem 0;font-size:1rem;line-height:1.6;}
+.frem{background:rgba(190,110,86,0.16);border-radius:5px;padding:0.1rem 0.35rem;font-weight:700;color:var(--coral);}
+.frem2{background:rgba(28,44,66,0.08);border-radius:5px;padding:0.1rem 0.35rem;font-weight:700;color:var(--navy);}
+
+.sporsmal{font-size:1rem;line-height:1.55;margin-bottom:0.8rem;color:var(--ink);}
+.knapp{display:block;width:100%;background:var(--cream);border:1.5px solid var(--rule);color:var(--ink);padding:0.75rem 0.9rem;border-radius:14px;cursor:pointer;margin-bottom:0.55rem;text-align:left;line-height:1.4;font-size:0.94rem;font-family:'Inter',sans-serif;}
+.knapp.riktig{border-color:var(--correct);background:var(--correct-bg);color:var(--correct);}
+.knapp.feil{border-color:var(--feil);background:var(--feil-bg);color:var(--feil);}
+.tallrad{display:flex;gap:0.5rem;margin-bottom:0.6rem;}
+.tallrad .knapp{width:auto;flex:1;text-align:center;padding:0.7rem 0;margin-bottom:0;}
+.knapprad{margin-bottom:1.1rem;}
+.knapprad:last-child{margin-bottom:0;}
+
+.sporsmalboks{background:var(--cream);border-left:3px solid var(--coral);padding:0.85rem 0.95rem;border-radius:10px;color:var(--ink);font-size:0.92rem;line-height:1.5;margin-bottom:0.9rem;}
+.tekstboks{width:100%;min-height:95px;padding:0.9rem;border:1.5px solid var(--rule);border-radius:14px;font-family:'Inter';font-size:0.96rem;background:var(--paper);color:var(--ink);resize:vertical;line-height:1.55;}
+.tekstboks:focus{outline:none;border-color:var(--coral);}
+.feltrad{margin-bottom:0.8rem;}
+.feltrad label{display:block;font-size:0.9rem;margin-bottom:0.35rem;color:var(--ink);}
+.felt{width:100%;padding:0.65rem 0.85rem;border:1.5px solid var(--rule);border-radius:12px;font-family:'Inter';font-size:0.94rem;background:var(--paper);color:var(--ink);}
+.felt:focus{outline:none;border-color:var(--coral);}
+
+.knapp-hoved{width:100%;background:var(--navy);color:#fff;padding:0.75rem;border:none;border-radius:14px;font-family:'Inter';font-weight:600;font-size:0.92rem;cursor:pointer;margin-top:0.2rem;}
+.knapp-lav{background:var(--cream);border:1.5px solid var(--rule);color:var(--coral);padding:0.5rem 0.9rem;border-radius:12px;font-weight:600;font-size:0.82rem;cursor:pointer;margin-bottom:0.7rem;font-family:'Inter';}
+.hjelpboks{display:none;background:var(--cream);border-radius:12px;padding:0.85rem;margin-top:0.6rem;}
+.hjelpboks.vis{display:block;}
+.hjelp-eks{color:var(--muted);font-size:0.88rem;line-height:1.8;}
+
+.svar{margin-top:0.75rem;padding:0.75rem 0.85rem;border-radius:12px;font-weight:600;display:none;line-height:1.55;font-size:0.88rem;}
+.svar.vis{display:block;}
+.svar.riktig{background:var(--correct-bg);color:var(--correct);}
+.svar.feil{background:var(--feil-bg);color:var(--feil);}
+
+.byggfelt{min-height:52px;background:var(--cream);border:1.5px dashed var(--coral);border-radius:14px;padding:0.6rem;margin-bottom:1rem;display:flex;flex-wrap:wrap;gap:0.3rem;align-items:center;}
+.byggfelt:empty::before{content:'Trykk på setningene i riktig rekkefølge...';color:#B8AC98;font-size:0.83rem;font-style:italic;}
+.brikkebank{display:flex;flex-wrap:wrap;gap:0.4rem;margin-bottom:1rem;}
+.brikke{display:inline-block;background:var(--paper);border:1.5px solid var(--rule);color:var(--ink);padding:0.4rem 0.7rem;border-radius:10px;font-size:0.86rem;cursor:pointer;}
+.brikke.brukt{opacity:0.25;pointer-events:none;}
+
+.finnchips{display:flex;flex-wrap:wrap;gap:0.5rem;margin-top:0.5rem;}
+.finnchip{background:var(--cream);border:1.5px solid var(--rule);color:var(--ink);padding:0.48rem 0.85rem;border-radius:999px;cursor:pointer;font-size:0.85rem;}
+.finnchip.funnet{background:var(--correct-bg);border-color:var(--correct);color:var(--correct);}
+
+.footer{text-align:center;font-size:0.75rem;color:var(--muted);margin-top:2.5rem;padding:1.25rem;}
+.modal{display:none;position:fixed;inset:0;background:rgba(28,36,56,0.94);z-index:100;padding:0.5rem;overflow:auto;}
 .modal.vis{display:flex;align-items:center;justify-content:center;}
-.modal img{max-width:100%;border-radius:10px;}
+.modal img{max-width:100%;border-radius:14px;}
 .modal-lukk{position:fixed;top:0.8rem;right:1.2rem;color:#fff;font-size:2.4rem;cursor:pointer;font-weight:bold;z-index:101;}
+@media(prefers-reduced-motion:reduce){*{scroll-behavior:auto!important;}}
 </style>
 </head>
 <body>
 
-<div class="topbar">
-  <a class="home-btn" href="index.html">🏠</a>
-  <span class="tittel">🪨 Bergart</span>
+<div class="topnav">
+  <a class="avatar" href="index.html" aria-label="Til forsiden">E</a>
+  <div class="navlinks">
+    <a href="historier.html">Historier</a>
+    <a href="index.html#skolefag">Skolefag</a>
+  </div>
 </div>
 
-<div class="hero">
-  <div class="ikon">🪨</div>
-  <h1>Bergart – hvordan dannes de?</h1>
-</div>
+<main class="side">
+  <a class="tilbake" href="index.html#skolefag">← Fra skolen</a>
 
-<main>
-  <div class="mal-boks">
-    <div class="mal-tittel">🎯 DENNE HISTORIEN ØVER PÅ</div>
-    <div class="mal-tekst">Årsak og virkning: <strong>fordi</strong> (hvem/hva) + <strong>derfor/dermed</strong> (verbet på plass to).</div>
-    <table class="struktur-tabell">
-      <tr><th>Årsak</th><th>Bindeord</th><th>Virkning</th></tr>
-      <tr><td>Magmaen kjøles ned</td><td class="c-at">fordi</td><td>temperaturen blir lavere.</td></tr>
-      <tr><td>Magmaen størkner.</td><td class="c-at">Dermed</td><td>dannes granitt.</td></tr>
-      <tr><td>Granitt er hard.</td><td class="c-at">Derfor</td><td>kan den brukes i bygninger.</td></tr>
-      <tr><td>Vær og vann bryter steinen.</td><td class="c-at">Dermed</td><td>dannes en sedimentær bergart.</td></tr>
-    </table>
-    <div class="mal-obs">⚠️ NB! Rett etter «fordi» kommer HVEM/HVA (grunnen), i vanlig rekkefølge. Men rett etter «derfor»/«dermed» kommer VERBET først!</div>
+  <section class="topp">
+    <div>
+      <div class="eyebrow">Skolefag · Naturfag</div>
+      <h1 class="tittel serif">Bergart</h1>
+      <p class="lede">Ordet «bergart» møter Edel mange ganger denne uken – aldri den samme øvelsen to ganger.</p>
+    </div>
+    <div class="antall" aria-label="6 dager"><strong>6</strong><span>dager<br>med øving</span></div>
+  </section>
+
+  <div class="malboks">
+    <div class="eyebrow">Denne uken øver vi på</div>
+    <div class="gruppe-tittel">Aktive ord</div>
+    <div class="ordboks">
+      <span class="ordpille">en bergart</span>
+      <span class="ordpille">magma</span>
+      <span class="ordpille">å størkne</span>
+      <span class="ordpille">et mineral</span>
+      <span class="ordpille">å bli dannet</span>
+      <span class="ordpille">slitesterk</span>
+    </div>
+    <div class="gruppe-tittel">Gjenkjenne</div>
+    <div class="ordboks">
+      <span class="ordpille">magmatisk bergart</span>
+      <span class="ordpille">sedimentær bergart</span>
+      <span class="ordpille">metamorf bergart</span>
+      <span class="ordpille">lag</span>
+      <span class="ordpille">varme</span>
+      <span class="ordpille">trykk</span>
+    </div>
+    <div class="gruppe-tittel">Bindeord</div>
+    <div class="ordboks">
+      <span class="ordpille">først</span>
+      <span class="ordpille">etterpå</span>
+      <span class="ordpille">senere</span>
+      <span class="ordpille">men</span>
+      <span class="ordpille">fordi</span>
+      <span class="ordpille">dermed</span>
+      <span class="ordpille">derfor</span>
+      <span class="ordpille">til slutt</span>
+    </div>
   </div>
 
-  <div class="faner">
-    <button class="fane aktiv" onclick="byttFane(0)">📖 Les</button>
-    <button class="fane" onclick="byttFane(1)">🎨 Bygg</button>
-    <button class="fane" onclick="byttFane(2)">✅ Velg</button>
-    <button class="fane" onclick="byttFane(3)">✍️ Skriv</button>
-    <button class="fane" onclick="byttFane(4)">🎧 Lytt</button>
+  <div class="dagnav" id="dagnav">
+    <button class="dag-chip aktiv" onclick="byttDag(0)">Dag 1</button>
+    <button class="dag-chip" onclick="byttDag(1)">Dag 2</button>
+    <button class="dag-chip" onclick="byttDag(2)">Dag 3 · Repetisjon</button>
+    <button class="dag-chip" onclick="byttDag(3)">Dag 4</button>
+    <button class="dag-chip" onclick="byttDag(4)">Dag 5</button>
+    <button class="dag-chip" onclick="byttDag(5)">Dag 6</button>
   </div>
 
-  <!-- LES -->
+  <!-- ================= DAG 1 ================= -->
   <div class="del aktiv">
-    <div class="preord-boks">
-      <div class="preord-tittel">🔑 Nytt ord i dag</div>
-      <div class="preord-ord">🎯 dannes</div>
-      <div class="preord-def">= blir laget, blir til – steg for steg</div>
-      <div class="preord-eks">«Granitt dannes av magma som kjøler seg ned.»</div>
-      <div class="kjente-strip">
-        <span class="kjent-pille">magma = smeltet stein</span>
-        <span class="kjent-pille">bergart = stein/fjell-type</span>
-        <span class="kjent-pille">hard = vanskelig å bryte i stykker</span>
+    <div class="dag-tittel serif">Hva er en bergart?</div>
+    <div class="dag-teller">5 møter med ordet i dag</div>
+
+    <div class="boks">
+      <div class="steg-label">1 · Aktivering</div>
+      <div class="sporsmalboks">Hva tror du en bergart er?</div>
+      <textarea class="tekstboks" id="m1" placeholder="Skriv det du tror..." style="min-height:70px;"></textarea>
+      <button class="knapp-hoved" style="margin-top:0.7rem;" onclick="sendFri('m1','m1F','Dag 1 - Aktivering',1)">Send til mamma 💛</button>
+      <div class="svar" id="m1F"></div>
+    </div>
+
+    <div class="boks">
+      <div class="steg-label">2 · Les og se</div>
+      <img class="bilde" src="img/bergart-bildeord.png" alt="Bildeord om bergarter" onclick="zoom('img/bergart-bildeord.png')">
+      <div class="linje">En bergart er et materiale som fjell består av.</div>
+      <div class="linje">En stein er et stykke av en bergart.</div>
+      <div class="linje">En bergart består av ett eller flere mineraler.</div>
+      <div class="gruppe-tittel" style="margin-top:0.8rem;">Se på bildet over</div>
+      <div class="knapprad">
+        <div class="sporsmal">Hvilket tall viser <strong>fjell</strong>?</div>
+        <div class="tallrad">
+          <button class="knapp" onclick="velgEn(this,0,0,'m2aF')">1</button>
+          <button class="knapp" onclick="velgEn(this,0,1,'m2aF')">2</button>
+          <button class="knapp" onclick="velgEn(this,0,2,'m2aF')">3</button>
+          <button class="knapp" onclick="velgEn(this,0,3,'m2aF')">4</button>
+        </div>
+        <div class="svar" id="m2aF"></div>
+      </div>
+      <div class="knapprad">
+        <div class="sporsmal">Hvilket tall viser <strong>en bergart</strong>?</div>
+        <div class="tallrad">
+          <button class="knapp" onclick="velgEn(this,1,0,'m2bF')">1</button>
+          <button class="knapp" onclick="velgEn(this,1,1,'m2bF')">2</button>
+          <button class="knapp" onclick="velgEn(this,1,2,'m2bF')">3</button>
+          <button class="knapp" onclick="velgEn(this,1,3,'m2bF')">4</button>
+        </div>
+        <div class="svar" id="m2bF"></div>
+      </div>
+      <div class="knapprad">
+        <div class="sporsmal">Hvilket tall viser <strong>magma</strong>?</div>
+        <div class="tallrad">
+          <button class="knapp" onclick="velgEn(this,2,0,'m2cF')">1</button>
+          <button class="knapp" onclick="velgEn(this,2,1,'m2cF')">2</button>
+          <button class="knapp" onclick="velgEn(this,2,2,'m2cF')">3</button>
+          <button class="knapp" onclick="velgEn(this,2,3,'m2cF')">4</button>
+        </div>
+        <div class="svar" id="m2cF"></div>
       </div>
     </div>
-    <div class="kort">
-      <img class="serie-bilde" src="img/bergart-regnbue.png" alt="Edel og Pipoka følger regnbuen og finner en bergart" onclick="zoom('img/bergart-regnbue.png')">
-      <div class="kort-intro">Les teksten. Se hva som skjer rett etter «fordi», og hva som skjer rett etter «derfor»/«dermed».</div>
-      <div id="lesInnhold"></div>
+
+    <div class="boks">
+      <div class="steg-label">3 · Velg riktig</div>
+      <div class="sporsmal">Hva er en bergart?</div>
+      <button class="knapp" onclick="velgEn(this,1,0,'m3F')">A. En skuespiller</button>
+      <button class="knapp" onclick="velgEn(this,1,1,'m3F')">B. Et materiale som fjell består av</button>
+      <button class="knapp" onclick="velgEn(this,1,2,'m3F')">C. Et dyr</button>
+      <div class="svar" id="m3F"></div>
+      <img class="bilde" src="img/bergart-rockvits.png" alt="Pipoka forveksler bergart med The Rock" onclick="zoom('img/bergart-rockvits.png')" style="margin-top:1rem;margin-bottom:0;">
     </div>
-    <div class="kort">
-      <img class="serie-bilde" src="img/bergart-granitt.png" alt="Edel forklarer hvordan granitt blir dannet" onclick="zoom('img/bergart-granitt.png')" style="margin-bottom:0;">
+
+    <div class="boks">
+      <div class="steg-label">4 · Fyll inn</div>
+      <div class="feltrad">
+        <label>Fjell består av __________.</label>
+        <input class="felt" id="m4a" placeholder="Skriv ordet...">
+      </div>
+      <button class="knapp-hoved" onclick="sjekkOrd('m4a','m4aF',['bergarter','bergart'])">Sjekk</button>
+      <div class="svar" id="m4aF"></div>
+      <div class="feltrad" style="margin-top:1rem;">
+        <label>En stein er et stykke av en __________.</label>
+        <input class="felt" id="m4b" placeholder="Skriv ordet...">
+      </div>
+      <button class="knapp-hoved" onclick="sjekkOrd('m4b','m4bF',['bergart'])">Sjekk</button>
+      <div class="svar" id="m4bF"></div>
     </div>
-    <div class="kort">
-      <img class="serie-bilde" src="img/bergart-kretslop.png" alt="Hvordan dannes bergarter – kretsløpet" onclick="zoom('img/bergart-kretslop.png')" style="margin-bottom:0;">
+
+    <div class="boks">
+      <div class="steg-label">5 · Produksjon</div>
+      <div class="sporsmalboks">Frase-modell: <em>«En bergart er et materiale som fjell består av.»</em><br><br>Nå forklarer du ordet til Pipoka.</div>
+      <textarea class="tekstboks" id="m5" placeholder="Skriv én eller to setninger..."></textarea>
+      <button class="knapp-hoved" style="margin-top:0.7rem;" onclick="sendFri('m5','m5F','Dag 1 - Forklar til Pipoka',5)">Send til mamma 💛</button>
+      <div class="svar" id="m5F"></div>
     </div>
   </div>
 
-  <!-- BYGG -->
+  <!-- ================= DAG 2 ================= -->
   <div class="del">
-    <div class="fargenokkel">
-      <div class="fnk"><span class="fnk-boks" style="background:#b49ce0;"></span>fordi/derfor/dermed</div>
-      <div class="fnk"><span class="fnk-boks" style="background:#34D399;"></span>hvem/hva</div>
-      <div class="fnk"><span class="fnk-boks" style="background:#D4AF37;"></span>verb</div>
+    <div class="dag-tittel serif">Hvordan blir granitt til?</div>
+    <div class="dag-teller">5 møter med ordet i dag</div>
+
+    <div class="boks">
+      <div class="steg-label">1 · Gjenhenting (uten bilde)</div>
+      <div class="sporsmal">Hva er en bergart?</div>
+      <button class="knapp" onclick="velgEn(this,0,0,'t1F')">Et materiale som fjell består av</button>
+      <button class="knapp" onclick="velgEn(this,0,1,'t1F')">En skuespiller</button>
+      <div class="svar" id="t1F"></div>
     </div>
-    <div class="oppgave-teller" id="tellerB"></div>
-    <div class="kort" id="kortB"></div>
+
+    <div class="boks">
+      <div class="steg-label">2 · Sett i riktig rekkefølge</div>
+      <div class="byggfelt" id="rekkeSvar"></div>
+      <div class="brikkebank" id="rekkeBank"></div>
+      <button class="knapp-lav" onclick="tomRekke()">↺ Start på nytt</button>
+      <button class="knapp-hoved" onclick="sjekkRekke()">Sjekk rekkefølge</button>
+      <div class="svar" id="fasitRekke"></div>
+    </div>
+
+    <div class="boks">
+      <div class="steg-label">3 · Fortell med bindeord</div>
+      <img class="bilde" src="img/bergart-granitt.png" alt="Edel forklarer hvordan granitt blir dannet" onclick="zoom('img/bergart-granitt.png')">
+      <div class="linje"><span class="frem">Først</span> finnes det varm magma under bakken.</div>
+      <div class="linje"><span class="frem">Etterpå</span> kjøles magmaen ned.</div>
+      <div class="linje">Magmaen størkner <span class="frem">fordi</span> temperaturen blir lavere.</div>
+      <div class="linje"><span class="frem">Dermed</span> dannes granitt.</div>
+      <button class="knapp-lav" style="margin-top:0.6rem;" onclick="lesHoyt('Først finnes det varm magma under bakken. Etterpå kjøles magmaen ned. Magmaen størkner fordi temperaturen blir lavere. Dermed dannes granitt.')">🔊 Hør</button>
+    </div>
+
+    <div class="boks">
+      <div class="steg-label">4 · Årsak og resultat</div>
+      <div class="feltrad">
+        <label>Magmaen størkner fordi __________.</label>
+        <input class="felt" id="t4a">
+      </div>
+      <div class="feltrad">
+        <label>Magmaen kjøles ned. Dermed __________.</label>
+        <input class="felt" id="t4b">
+      </div>
+      <button class="knapp-lav" onclick="visForslag('t4F','Magmaen størkner fordi temperaturen blir lavere. Magmaen kjøles ned. Dermed dannes granitt.')">💡 Se forslag</button>
+      <div class="svar" id="t4F"></div>
+    </div>
+
+    <div class="boks">
+      <div class="steg-label">5 · Recontagem</div>
+      <div class="sporsmalboks">🗣️ Fortell Pipoka hvordan granitt blir dannet. (3–4 setninger)</div>
+      <textarea class="tekstboks" id="t5a" placeholder="Skriv her..."></textarea>
+      <button class="knapp-hoved" style="margin-top:0.7rem;" onclick="sendFri('t5a','t5aF','Dag 2 - Recontagem 1',10)">Send til mamma 💛</button>
+      <div class="svar" id="t5aF"></div>
+      <button class="knapp-lav" style="margin-top:0.5rem;" onclick="document.getElementById('t5modell').classList.toggle('vis')">💡 Vis modell og prøv igjen</button>
+      <div class="hjelpboks" id="t5modell">
+        <div class="hjelp-eks">Først finnes det varm magma under bakken. Etterpå kjøles magmaen ned. Magmaen størkner fordi temperaturen blir lavere. Dermed dannes granitt.</div>
+        <textarea class="tekstboks" id="t5b" style="margin-top:0.7rem;" placeholder="Prøv igjen med egne ord..."></textarea>
+        <button class="knapp-hoved" style="margin-top:0.6rem;" onclick="sendFri('t5b','t5bF','Dag 2 - Recontagem 2 (etter modell)',10)">Send til mamma 💛</button>
+        <div class="svar" id="t5bF"></div>
+      </div>
+    </div>
   </div>
 
-  <!-- VELG -->
+  <!-- ================= DAG 3 · REPETISJON ================= -->
   <div class="del">
-    <div class="oppgave-teller" id="tellerV"></div>
-    <div class="kort" id="kortV"></div>
+    <div class="dag-tittel serif">Repetisjon – det du husker fra dag 1 og 2</div>
+    <div class="dag-teller">Ikke nytt stoff – bare nye måter å øve på det du kan</div>
+
+    <div class="boks">
+      <div class="steg-label">1 · Fri gjenkalling</div>
+      <div class="sporsmalboks">Uten å se på bildene: hva er en bergart, og hvordan blir granitt til? Fortell med egne ord.</div>
+      <textarea class="tekstboks" id="r1" placeholder="Skriv her..."></textarea>
+      <button class="knapp-hoved" style="margin-top:0.7rem;" onclick="sendFri('r1','r1F','Dag 3 - Fri gjenkalling',15)">Send til mamma 💛</button>
+      <div class="svar" id="r1F"></div>
+    </div>
+
+    <div class="boks">
+      <div class="steg-label">2 · Sant eller usant?</div>
+      <div class="knapprad">
+        <div class="sporsmal">En bergart er et stykke av en stein.</div>
+        <button class="knapp" onclick="velgEn(this,1,0,'r2aF')">Sant</button>
+        <button class="knapp" onclick="velgEn(this,1,1,'r2aF')">Usant</button>
+        <div class="svar" id="r2aF"></div>
+      </div>
+      <div class="knapprad">
+        <div class="sporsmal">Magma er smeltet stein under bakken.</div>
+        <button class="knapp" onclick="velgEn(this,0,0,'r2bF')">Sant</button>
+        <button class="knapp" onclick="velgEn(this,0,1,'r2bF')">Usant</button>
+        <div class="svar" id="r2bF"></div>
+      </div>
+      <div class="knapprad">
+        <div class="sporsmal">Magmaen blir varmere og varmere, og da størkner den.</div>
+        <button class="knapp" onclick="velgEn(this,1,0,'r2cF')">Sant</button>
+        <button class="knapp" onclick="velgEn(this,1,1,'r2cF')">Usant</button>
+        <div class="svar" id="r2cF"></div>
+      </div>
+      <div class="knapprad">
+        <div class="sporsmal">Granitt er en magmatisk bergart.</div>
+        <button class="knapp" onclick="velgEn(this,0,0,'r2dF')">Sant</button>
+        <button class="knapp" onclick="velgEn(this,0,1,'r2dF')">Usant</button>
+        <div class="svar" id="r2dF"></div>
+      </div>
+    </div>
+
+    <div class="boks">
+      <div class="steg-label">3 · Hvilket ord passer?</div>
+      <div class="knapprad">
+        <div class="sporsmal">Hva kaller vi smeltet stein under bakken?</div>
+        <button class="knapp" onclick="velgEn(this,1,0,'r3aF')">mineral</button>
+        <button class="knapp" onclick="velgEn(this,1,1,'r3aF')">magma</button>
+        <button class="knapp" onclick="velgEn(this,1,2,'r3aF')">granitt</button>
+        <div class="svar" id="r3aF"></div>
+      </div>
+      <div class="knapprad">
+        <div class="sporsmal">Hva skjer når magma kjøles ned?</div>
+        <button class="knapp" onclick="velgEn(this,1,0,'r3bF')">Den smelter</button>
+        <button class="knapp" onclick="velgEn(this,1,1,'r3bF')">Den størkner</button>
+        <button class="knapp" onclick="velgEn(this,1,2,'r3bF')">Den flyter bort</button>
+        <div class="svar" id="r3bF"></div>
+      </div>
+    </div>
+
+    <div class="boks">
+      <div class="steg-label">4 · Lytt og skriv</div>
+      <div class="lede-liten">Hør setningen. Skriv med egne ord hva du hørte.</div>
+      <button class="knapp-lav" onclick="lesHoyt('Magma er smeltet stein under bakken. Når magmaen kjøles ned, størkner den og blir til granitt.')">🔊 Hør</button>
+      <textarea class="tekstboks" id="r4" placeholder="Skriv det du hørte..."></textarea>
+      <button class="knapp-lav" onclick="visForslag('r4F','Magma er smeltet stein under bakken. Når magmaen kjøles ned, størkner den og blir til granitt.')">💡 Se hva som ble sagt</button>
+      <div class="svar" id="r4F"></div>
+    </div>
+
+    <div class="boks">
+      <div class="steg-label">5 · Kort oppsummering</div>
+      <div class="sporsmalboks">Skriv en kort oppsummering: hva har du lært om bergart og granitt så langt?</div>
+      <textarea class="tekstboks" id="r5" placeholder="Skriv her..."></textarea>
+      <button class="knapp-hoved" style="margin-top:0.7rem;" onclick="sendFri('r5','r5F','Dag 3 - Oppsummering',10)">Send til mamma 💛</button>
+      <div class="svar" id="r5F"></div>
+    </div>
   </div>
 
-  <!-- SKRIV -->
+  <!-- ================= DAG 4 ================= -->
   <div class="del">
-    <div class="kort">
-      <div class="skriv-sporsmal">✍️ Skriv tre setninger om bergarter. Bruk minst <strong>ett fordi</strong> og <strong>ett derfor/dermed</strong>.</div>
-      <textarea class="skriv-omrade" id="skrivTekst" placeholder="Skriv her..."></textarea>
-      <button class="hjelp-btn" onclick="visHjelp()">💡 Trenger du hjelp?</button>
-      <div class="hjelp-innhold" id="hjelpInnhold">
-        <div style="color:#1E1B4B;font-weight:700;margin-bottom:0.4rem;">Du kan begynne slik:</div>
-        <div class="hjelp-eks">Granitt <span class="ord ord-verb" style="padding:0.1rem 0.4rem;">er</span> hard <span class="ord ord-bindeord" style="padding:0.1rem 0.4rem;">fordi</span> <span class="ord ord-subjekt" style="padding:0.1rem 0.4rem;">den</span> består av harde mineraler.<br>Derfor <span class="ord ord-verb" style="padding:0.1rem 0.4rem;">kan</span> den brukes i bygninger.<br>Dermed <span class="ord ord-verb" style="padding:0.1rem 0.4rem;">forstår</span> jeg hvordan en bergart blir til.</div>
+    <div class="dag-tittel serif">Tre typer bergarter</div>
+    <div class="dag-teller">4 møter med ordet i dag</div>
+
+    <div class="boks">
+      <div class="steg-label">1 · Koble riktig</div>
+      <img class="bilde" src="img/bergart-kretslop.png" alt="Hvordan dannes bergarter" onclick="zoom('img/bergart-kretslop.png')">
+      <div class="knapprad">
+        <div class="sporsmal">Hvordan blir en <strong>magmatisk</strong> bergart dannet?</div>
+        <button class="knapp" onclick="velgEn(this,0,0,'o1aF')">Magma kjøles ned og størkner</button>
+        <button class="knapp" onclick="velgEn(this,0,1,'o1aF')">Små biter samles i lag og presses sammen</button>
+        <button class="knapp" onclick="velgEn(this,0,2,'o1aF')">Varme og trykk forandrer bergarten</button>
+        <div class="svar" id="o1aF"></div>
       </div>
-      <button class="sjekk-btn" style="margin-top:1rem;" onclick="sendTekst()">Send til mamma 💛</button>
-      <div class="fasit" id="skrivFasit"></div>
+      <div class="knapprad">
+        <div class="sporsmal">Hvordan blir en <strong>sedimentær</strong> bergart dannet?</div>
+        <button class="knapp" onclick="velgEn(this,1,0,'o1bF')">Magma kjøles ned og størkner</button>
+        <button class="knapp" onclick="velgEn(this,1,1,'o1bF')">Små biter samles i lag og presses sammen</button>
+        <button class="knapp" onclick="velgEn(this,1,2,'o1bF')">Varme og trykk forandrer bergarten</button>
+        <div class="svar" id="o1bF"></div>
+      </div>
+      <div class="knapprad">
+        <div class="sporsmal">Hvordan blir en <strong>metamorf</strong> bergart dannet?</div>
+        <button class="knapp" onclick="velgEn(this,2,0,'o1cF')">Magma kjøles ned og størkner</button>
+        <button class="knapp" onclick="velgEn(this,2,1,'o1cF')">Små biter samles i lag og presses sammen</button>
+        <button class="knapp" onclick="velgEn(this,2,2,'o1cF')">Varme og trykk forandrer bergarten</button>
+        <div class="svar" id="o1cF"></div>
+      </div>
     </div>
-    <div class="kort">
-      <div class="skriv-sporsmal">🌟 Til slutt: Hva synes du var mest spennende med bergarter i dag?</div>
-      <textarea class="skriv-omrade" id="refleksjonTekst" style="min-height:70px;" placeholder="Skriv én ting her..."></textarea>
-      <button class="sjekk-btn" style="margin-top:1rem;" onclick="sendRefleksjon()">Send til mamma 💛</button>
-      <div class="fasit" id="refleksjonFasit"></div>
+
+    <div class="boks">
+      <div class="steg-label">2 · Pipoka tar feil</div>
+      <div class="sporsmalboks">Pipoka sier: «Granitt er en sedimentær bergart.»</div>
+      <div class="feltrad">
+        <label>Nei, granitt er en __________ bergart,</label>
+        <input class="felt" id="o2a">
+      </div>
+      <button class="knapp-hoved" onclick="sjekkOrd('o2a','o2aF',['magmatisk'])">Sjekk</button>
+      <div class="svar" id="o2aF"></div>
+      <div class="feltrad" style="margin-top:1rem;">
+        <label>fordi __________.</label>
+        <input class="felt" id="o2b" placeholder="den blir dannet av...">
+      </div>
+      <button class="knapp-lav" onclick="visForslag('o2bF','den blir dannet av magma.')">💡 Se forslag</button>
+      <div class="svar" id="o2bF"></div>
+    </div>
+
+    <div class="boks">
+      <div class="steg-label">3 · Hvilken forklaring passer?</div>
+      <div class="sporsmal">Bergarten blir utsatt for varme og trykk, men den smelter ikke.</div>
+      <button class="knapp" onclick="velgEn(this,2,0,'o3F')">A. Magmatisk</button>
+      <button class="knapp" onclick="velgEn(this,2,1,'o3F')">B. Sedimentær</button>
+      <button class="knapp" onclick="velgEn(this,2,2,'o3F')">C. Metamorf</button>
+      <div class="svar" id="o3F"></div>
+    </div>
+
+    <div class="boks">
+      <div class="steg-label">4 · Din egen setning</div>
+      <div class="feltrad">
+        <label>En __________ bergart blir dannet når __________.</label>
+        <input class="felt" id="o4" placeholder="Velg magmatisk, sedimentær eller metamorf...">
+      </div>
+      <button class="knapp-hoved" style="margin-top:0.5rem;" onclick="sendFri('o4','o4F','Dag 4 - Egen setning',5)">Send til mamma 💛</button>
+      <div class="svar" id="o4F"></div>
     </div>
   </div>
 
-  <!-- LYTT OG FORTELL -->
+  <!-- ================= DAG 5 ================= -->
   <div class="del">
-    <div class="kort">
-      <div class="kort-intro">🎧 Lytt til hver del. <strong>Ikke se på teksten.</strong> Etterpå skal du fortelle med dine egne ord hva du hørte.</div>
-      <div id="lyttStart">
-        <button class="sjekk-btn" onclick="startLytt()">▶️ Spill av</button>
+    <div class="dag-tittel serif">Hvordan brukes bergarter?</div>
+    <div class="dag-teller">5 møter med ordet i dag</div>
+
+    <div class="boks">
+      <div class="steg-label">1 · Rask gjenhenting</div>
+      <div class="knapprad">
+        <div class="sporsmal">Hva er granitt?</div>
+        <button class="knapp" onclick="velgEn(this,0,0,'to1aF')">En magmatisk bergart</button>
+        <button class="knapp" onclick="velgEn(this,0,1,'to1aF')">En sedimentær bergart</button>
+        <div class="svar" id="to1aF"></div>
       </div>
-      <div id="lyttStatus" style="display:none;text-align:center;padding:1.5rem 0;">
-        <div style="font-size:2.2rem;">🔊</div>
-        <div style="color:var(--grape);font-weight:700;margin-top:0.5rem;" id="lyttDelTekst">Leser...</div>
+      <div class="knapprad">
+        <div class="sporsmal">Hvordan blir granitt dannet?</div>
+        <button class="knapp" onclick="velgEn(this,0,0,'to1bF')">Magma kjøles ned og størkner</button>
+        <button class="knapp" onclick="velgEn(this,0,1,'to1bF')">Småbiter samles i lag</button>
+        <div class="svar" id="to1bF"></div>
       </div>
-      <div id="lyttFerdigKnapper" style="display:none;">
-        <button class="tomt-btn" onclick="startLytt()" style="width:100%;text-align:center;">🔁 Hør en gang til</button>
+    </div>
+
+    <div class="boks">
+      <div class="steg-label">2 · Nytt ord</div>
+      <div class="sporsmalboks"><strong>Slitesterk</strong> betyr at noe tåler mye bruk uten å bli ødelagt.</div>
+      <div class="knapprad">
+        <div class="sporsmal">Er papir slitesterkt?</div>
+        <button class="knapp" onclick="velgEn(this,1,0,'to2aF')">Ja</button>
+        <button class="knapp" onclick="velgEn(this,1,1,'to2aF')">Nei</button>
+        <div class="svar" id="to2aF"></div>
       </div>
-      <div id="fortellBoks" style="display:none;margin-top:1rem;">
-        <div class="skriv-sporsmal">✍️ Fortell hva du hørte, med dine egne ord. <strong>Ikke se på Les-fanen!</strong></div>
-        <textarea class="skriv-omrade" id="fortellTekst" placeholder="Skriv det du husker..."></textarea>
-        <button class="sjekk-btn" style="margin-top:1rem;" onclick="sendFortelling()">Send til mamma 💛</button>
-        <div class="fasit" id="fortellFasit"></div>
+      <div class="knapprad">
+        <div class="sporsmal">Er granitt slitesterk?</div>
+        <button class="knapp" onclick="velgEn(this,0,0,'to2bF')">Ja</button>
+        <button class="knapp" onclick="velgEn(this,0,1,'to2bF')">Nei</button>
+        <div class="svar" id="to2bF"></div>
       </div>
+    </div>
+
+    <div class="boks">
+      <div class="steg-label">3 · Observer og finn</div>
+      <img class="bilde" src="img/bergart-granitt.png" alt="Hvor brukes granitt" onclick="zoom('img/bergart-granitt.png')">
+      <div class="lede-liten">Se nederst i bildet. Trykk på det du finner:</div>
+      <div class="finnchips">
+        <span class="finnchip" onclick="this.classList.toggle('funnet')">en bygning</span>
+        <span class="finnchip" onclick="this.classList.toggle('funnet')">en trapp</span>
+        <span class="finnchip" onclick="this.classList.toggle('funnet')">en benkeplate</span>
+        <span class="finnchip" onclick="this.classList.toggle('funnet')">et monument</span>
+      </div>
+    </div>
+
+    <div class="boks">
+      <div class="steg-label">4 · Fordi og derfor</div>
+      <div class="feltrad">
+        <label>Granitt brukes i __________ fordi __________.</label>
+        <input class="felt" id="to4">
+      </div>
+      <button class="knapp-lav" onclick="visForslag('to4F','Granitt brukes i trapper fordi den er hard og slitesterk. Granitt er slitesterk. Derfor kan den brukes i bygninger.')">💡 Se forslag</button>
+      <div class="svar" id="to4F"></div>
+    </div>
+
+    <div class="boks">
+      <div class="steg-label">5 · Overføring til livet</div>
+      <div class="sporsmalboks">Hvor kan vi finne bergarter i byen?</div>
+      <textarea class="tekstboks" id="to5" style="min-height:70px;" placeholder="Skriv her..."></textarea>
+      <button class="knapp-lav" onclick="visForslag('to5hint','I bygninger, trapper, veier, benkeplater eller monumenter.')">💡 Trenger du hjelp?</button>
+      <div class="svar" id="to5hint"></div>
+      <button class="knapp-hoved" style="margin-top:0.7rem;" onclick="sendFri('to5','to5F','Dag 5 - Overføring',5)">Send til mamma 💛</button>
+      <div class="svar" id="to5F"></div>
     </div>
   </div>
 
-  <!-- UKENS SPRÅK -->
-  <div class="sprak-boks">
-    <div class="sprak-tittel">⭐ Bonus: fordi + derfor/dermed</div>
-    <div class="sprak-linje"><span class="mark-b">Magmaen størkner fordi</span> temperaturen blir lavere. <span class="mark-b">Dermed</span> <span class="mark">dannes</span> en magmatisk bergart.</div>
-    <div class="sprak-linje">Granitt er hard og slitesterk. <span class="mark-b">Derfor</span> <span class="mark">brukes</span> den i bygninger og trapper.</div>
-    <div class="sprak-linje">Vær og vann bryter ned steinen <span class="mark-b">fordi</span> de jobber over veldig lang tid. <span class="mark-b">Dermed</span> <span class="mark">dannes</span> en sedimentær bergart.</div>
-    <div class="sprak-regel">Husk: etter <strong>fordi</strong> kommer hvem/hva, men etter <strong>derfor/dermed</strong> kommer verbet!</div>
+  <!-- ================= DAG 6 ================= -->
+  <div class="del">
+    <div class="dag-tittel serif">Fortell og skriv</div>
+    <div class="dag-teller">4 møter med ordet i dag</div>
+
+    <div class="boks">
+      <div class="steg-label">1 · Gjenhenting uten bilder</div>
+      <div class="ordboks">
+        <span class="ordpille">bergart</span>
+        <span class="ordpille">magma</span>
+        <span class="ordpille">størkne</span>
+        <span class="ordpille">mineral</span>
+        <span class="ordpille">granitt</span>
+        <span class="ordpille">slitesterk</span>
+      </div>
+      <div class="sporsmalboks" style="margin-top:0.9rem;">Velg 2–3 av ordene. Hva betyr de? Bruk dem i en setning.</div>
+      <textarea class="tekstboks" id="f1" placeholder="Skriv her..."></textarea>
+      <button class="knapp-hoved" style="margin-top:0.7rem;" onclick="sendFri('f1','f1F','Dag 6 - Ordforklaring',5)">Send til mamma 💛</button>
+      <div class="svar" id="f1F"></div>
+    </div>
+
+    <div class="boks">
+      <div class="steg-label">2 · Recontagem med støtte</div>
+      <div class="ordboks">
+        <span class="ordpille">Først</span><span class="ordpille">magma</span><span class="ordpille">Etterpå</span>
+        <span class="ordpille">størkne</span><span class="ordpille">Dermed</span><span class="ordpille">granitt</span>
+        <span class="ordpille">Derfor</span><span class="ordpille">brukes</span><span class="ordpille">Til slutt</span>
+      </div>
+      <div class="sporsmalboks" style="margin-top:0.9rem;">Fortell hvordan granitt blir dannet og hvordan den kan brukes.</div>
+      <textarea class="tekstboks" id="f2" placeholder="Skriv her..."></textarea>
+      <button class="knapp-hoved" style="margin-top:0.7rem;" onclick="sendFri('f2','f2F','Dag 6 - Recontagem med støtte',10)">Send til mamma 💛</button>
+      <div class="svar" id="f2F"></div>
+    </div>
+
+    <div class="boks">
+      <div class="steg-label">3 · Prøv igjen, med mindre hjelp</div>
+      <div class="ordboks">
+        <span class="ordpille">Først</span><span class="ordpille">fordi</span><span class="ordpille">dermed</span>
+        <span class="ordpille">derfor</span><span class="ordpille">til slutt</span>
+      </div>
+      <div class="sporsmalboks" style="margin-top:0.9rem;">Fortell på nytt, med egne ord. 4–6 setninger.</div>
+      <textarea class="tekstboks" id="f3" placeholder="Skriv her..."></textarea>
+      <button class="knapp-hoved" style="margin-top:0.7rem;" onclick="sendFri('f3','f3F','Dag 6 - Andre forsøk',10)">Send til mamma 💛</button>
+      <div class="svar" id="f3F"></div>
+    </div>
+
+    <div class="boks">
+      <div class="steg-label">4 · Avsluttende skriving</div>
+      <div class="lede-liten">Skriv videre på disse fire setningene:</div>
+      <div class="linje">En bergart er ____________________.</div>
+      <div class="linje">Granitt blir dannet når ____________________.</div>
+      <div class="linje">Granitt brukes i ____________________.</div>
+      <div class="linje">Den kan brukes der fordi ____________________.</div>
+      <textarea class="tekstboks" id="f4" style="margin-top:0.8rem;" placeholder="Skriv de fire setningene ferdig her..."></textarea>
+      <button class="knapp-hoved" style="margin-top:0.7rem;" onclick="sendFri('f4','f4F','Dag 6 - Avsluttende skriving',15)">Send til mamma 💛</button>
+      <div class="svar" id="f4F"></div>
+    </div>
   </div>
+
 </main>
 
-<div class="footer">🪨 Bergart · Ord &amp; Setninger</div>
+<div class="footer">Bergart · Edels Verden</div>
 
 <div class="modal" id="bildeModal" onclick="lukkModal()">
   <span class="modal-lukk">&times;</span>
@@ -239,260 +614,100 @@ main{max-width:640px;margin:0 auto;padding:0 1rem;}
 </div>
 
 <script>
-var HISTORIE = "Bergart";
-var MAAL = "Fordi (årsak) + derfor/dermed (V2-regelen)";
-
-var LES = [
-  "<span class=\"mark-b\">En bergart</span> er et naturlig materiale som fjell består av.",
-  "Bergarter kan se forskjellige ut <span class=\"mark-b\">fordi</span> de består av ulike mineraler.",
-  "Noen bergarter blir til av magma, som er smeltet stein.",
-  "<span class=\"mark-b\">Fordi</span> <span class=\"mark-s\">magmaen</span> <span class=\"mark\">kjøles</span> sakte ned, størkner den.",
-  "<span class=\"mark-b\">Dermed</span> <span class=\"mark\">dannes</span> en magmatisk bergart, som granitt.",
-  "Granitt er hard og slitesterk. <span class=\"mark-b\">Derfor</span> <span class=\"mark\">kan</span> den brukes i bygninger, trapper og benkeplater.",
-  "Andre bergarter dannes på en annen måte: vær og vann bryter stein i små biter.",
-  "Bitene samles i lag over lang tid. <span class=\"mark-b\">Dermed</span> <span class=\"mark\">dannes</span> en sedimentær bergart.",
-  "Noen ganger presser varme og trykk bergarten sammen. Da blir den til en metamorf bergart.",
-  "<span class=\"mark-b\">Til slutt</span> kan bergarten smelte igjen og bli til magma. Dermed fortsetter kretsløpet.",
-  "Nå vet jeg det: en stein er alltid et stykke av en bergart, og den forteller hvordan den ble dannet."
-];
-
-var BYGG_ALLE = [
-  {"type":"fordi", "mal": "Fullfør: «Magmaen størkner fordi ...». Husk: hvem/hva først, så verbet!", "b": "Magmaen størkner fordi", "s": "temperaturen", "v": "blir", "r": ["lavere"]},
-  {"type":"fordi", "mal": "Fullfør: «Bergarter ser forskjellige ut fordi ...».", "b": "Bergarter ser forskjellige ut fordi", "s": "de", "v": "består", "r": ["av","ulike","mineraler"]},
-  {"type":"fordi", "mal": "Fullfør: «Granitt brukes i bygninger fordi ...».", "b": "Granitt brukes i bygninger fordi", "s": "den", "v": "er", "r": ["hard","og","slitesterk"]},
-  {"type":"fordi", "mal": "Fullfør: «Steinen brytes ned fordi ...».", "b": "Steinen brytes ned fordi", "s": "vinden", "v": "er", "r": ["sterk"]},
-  {"type":"fordi", "mal": "Fullfør: «Vi vet hvordan en stein ble til fordi ...».", "b": "Vi vet hvordan en stein ble til fordi", "s": "forskere", "v": "har", "r": ["studert","bergarter","lenge"]},
-  {"type":"fordi", "mal": "Fullfør: «En bergart kan se annerledes ut fordi ...».", "b": "En bergart kan se annerledes ut fordi", "s": "den", "v": "inneholder", "r": ["andre","mineraler"]},
-  {"type":"v2", "mal": "Vær og vann bryter steinen i biter. Start med «Dermed». Hva skjer med bitene?", "b": "Dermed", "v": "samles", "s": "bitene", "r": ["i","lag"]},
-  {"type":"v2", "mal": "Lagene presses sammen over lang tid. Start med «Dermed». Hva dannes?", "b": "Dermed", "v": "dannes", "s": "det", "r": ["en","sedimentær","bergart"]},
-  {"type":"v2", "mal": "Magmaen kjøles sakte ned. Start med «Dermed». Hva dannes?", "b": "Dermed", "v": "dannes", "s": "det", "r": ["en","magmatisk","bergart"]},
-  {"type":"v2", "mal": "Granitt er sterk. Start med «Derfor». Hva kan den brukes til?", "b": "Derfor", "v": "kan", "s": "den", "r": ["brukes","i","bygninger"]},
-  {"type":"v2", "mal": "Bergarten blir utsatt for varme og trykk. Start med «Dermed». Hva blir den?", "b": "Dermed", "v": "blir", "s": "den", "r": ["til","en","metamorf","bergart"]},
-  {"type":"v2", "mal": "Bergarten smelter igjen til slutt. Start med «Dermed». Hva skjer med kretsløpet?", "b": "Dermed", "v": "fortsetter", "s": "kretsløpet", "r": []}
-];
-var VELG3 = [
-  {"sporsmal": "Magma er ___ stein.", "svar": ["smeltet","frossen","malt"], "riktig": 0},
-  {"sporsmal": "Magmaen størkner ___ temperaturen blir lavere.", "svar": ["fordi","selv om","uten at"], "riktig": 0},
-  {"sporsmal": "Granitt er hard, ___ kan den brukes i bygninger.", "svar": ["fordi","derfor","men"], "riktig": 1},
-  {"sporsmal": "Vær og vann bryter stein i småbiter, ___ dannes en sedimentær bergart.", "svar": ["fordi","dermed","men"], "riktig": 1},
-  {"sporsmal": "En bergart er et naturlig materiale som ___ består av.", "svar": ["hav","fjell","sky"], "riktig": 1},
-  {"sporsmal": "Bergarter kan se forskjellige ut fordi de består av ulike ___.", "svar": ["mineraler","blader","bakterier"], "riktig": 0},
-  {"sporsmal": "Varme og trykk kan forandre en bergart. Da blir den til en ___ bergart.", "svar": ["magmatisk","metamorf","flytende"], "riktig": 1},
-  {"sporsmal": "Til slutt kan bergarten smelte igjen og bli til ___ på nytt.", "svar": ["is","magma","sand"], "riktig": 1}
-];
-function embland(arr){var a=arr.slice();for(var i=a.length-1;i>0;i--){var j=Math.floor(Math.random()*(i+1));var t=a[i];a[i]=a[j];a[j]=t;}return a;}
-var BYGG = embland(BYGG_ALLE).slice(0,10);
-var VELG = embland(VELG3);
-
-/* ---- LYTT OG FORTELL ---- */
-var LYTT_DELER = [
-  { del: "Del 1",
-    tekst: "En bergart er et naturlig materiale som fjell består av. Bergarter kan se forskjellige ut fordi de består av ulike mineraler. Noen bergarter blir til av magma, som er smeltet stein. Fordi magmaen kjøles sakte ned, størkner den. Dermed dannes en magmatisk bergart, som granitt. Granitt er hard og slitesterk. Derfor kan den brukes i bygninger, trapper og benkeplater." },
-  { del: "Del 2",
-    tekst: "Andre bergarter dannes på en annen måte. Vær og vann bryter stein i små biter. Bitene samles i lag over lang tid, og dermed dannes en sedimentær bergart. Noen ganger presser varme og trykk bergarten sammen. Da blir den til en metamorf bergart. Til slutt kan bergarten smelte igjen og bli til magma. Dermed fortsetter kretsløpet, om og om igjen." }
-];
-var lyttLydObjekt = null;
+var MAAL = "Bergart – seks dager, fordi/derfor/dermed";
 
 function zoom(src){ document.getElementById('modalBilde').src=src; document.getElementById('bildeModal').classList.add('vis'); }
 function lukkModal(){ document.getElementById('bildeModal').classList.remove('vis'); }
-function byttFane(n){
-  document.querySelectorAll('.fane').forEach(function(f,i){f.classList.toggle('aktiv',i===n);});
+
+function byttDag(n){
+  document.querySelectorAll('.dag-chip').forEach(function(f,i){f.classList.toggle('aktiv',i===n);});
   document.querySelectorAll('.del').forEach(function(d,i){d.classList.toggle('aktiv',i===n);});
   window.scrollTo({top:0,behavior:'smooth'});
 }
-function visHjelp(){ document.getElementById('hjelpInnhold').classList.toggle('vis'); }
 
-function visLes(){
-  document.getElementById('lesInnhold').innerHTML = LES.map(function(l,i){
-    return '<div class="les-linje"><span class="les-nr">'+(i+1)+'</span><span>'+l+'</span></div>';
+function velgEn(btn, riktigIdx, valgtIdx, svarId){
+  var knapper = btn.parentElement.querySelectorAll('.knapp');
+  knapper.forEach(function(b){b.style.pointerEvents='none';});
+  var f=document.getElementById(svarId);
+  if(valgtIdx===riktigIdx){ btn.classList.add('riktig'); f.className='svar vis riktig'; f.innerHTML='✅ Riktig!'; }
+  else{ btn.classList.add('feil'); if(knapper[riktigIdx]) knapper[riktigIdx].classList.add('riktig'); f.className='svar vis feil'; f.innerHTML='💡 Nesten! Riktig svar er markert med grønt.'; }
+}
+
+function sjekkOrd(inputId, svarId, godtaArr){
+  var v = document.getElementById(inputId).value.trim().toLowerCase();
+  var f = document.getElementById(svarId);
+  var ok = godtaArr.some(function(g){return v===g.toLowerCase();});
+  if(ok){ f.className='svar vis riktig'; f.innerHTML='✅ Riktig!'; }
+  else{ f.className='svar vis feil'; f.innerHTML='💡 Ikke helt. Forslag: <strong>'+godtaArr[0]+'</strong>'; }
+}
+
+function visForslag(id, tekst){
+  var f=document.getElementById(id);
+  f.className='svar vis';
+  f.style.background='var(--cream)'; f.style.color='var(--muted)';
+  f.innerHTML='💡 Forslag: <em>'+tekst+'</em>';
+}
+
+function sendFri(taId, svarId, oppgave, minLen){
+  var t=document.getElementById(taId).value;
+  var f=document.getElementById(svarId);
+  minLen = minLen||3;
+  if(t.trim().length<minLen){ f.className='svar vis feil'; f.innerHTML='⏳ Skriv litt mer først!'; return; }
+  f.className='svar vis'; f.style.background='var(--cream)'; f.style.color='var(--muted)'; f.innerHTML='⏳ Sender...';
+  fetch('https://formspree.io/f/mqeolldg',{method:'POST',headers:{'Content-Type':'application/json','Accept':'application/json'},
+    body:JSON.stringify({Tekst_hun_skrev:t, oppgave:oppgave, maal:MAAL, dato:new Date().toLocaleString('no-NO')})})
+   .then(function(r){
+     if(r.ok){ f.className='svar vis riktig'; f.innerHTML='✅ Sendt til mamma! 🎉'; }
+     else{ f.className='svar vis feil'; f.innerHTML='❌ Noe gikk galt. Prøv igjen!'; }
+   })
+   .catch(function(){ f.className='svar vis feil'; f.innerHTML='❌ Sjekk internett og prøv igjen!'; });
+}
+
+var REKKE_RIKTIG = ["Det finnes varm magma under bakken.","Magmaen kjøles ned.","Magmaen størkner.","Det dannes granitt."];
+function embland(arr){var a=arr.slice();for(var i=a.length-1;i>0;i--){var j=Math.floor(Math.random()*(i+1));var t=a[i];a[i]=a[j];a[j]=t;}return a;}
+function settOppRekke(){
+  var sh = embland(REKKE_RIKTIG);
+  document.getElementById('rekkeBank').innerHTML = sh.map(function(w){
+    return '<span class="brikke" data-w="'+w+'" onclick="leggTilRekke(this)">'+w+'</span>';
   }).join('');
+  document.getElementById('rekkeSvar').innerHTML='';
 }
-
-/* ---- BYGG (rekkefølge varierer: "fordi" = hvem/hva før verb, "v2" = verb før subjekt) ---- */
-var iB=0, pB=0;
-function visBygg(){
-  if(iB>=BYGG.length){ ferdig('kortB','tellerB',pB,BYGG.length,'Bygg'); return; }
-  var o=BYGG[iB];
-  document.getElementById('tellerB').textContent='Oppgave '+(iB+1)+' av '+BYGG.length;
-  var forsteRolle = o.type==='v2' ? 'verb' : 'subjekt';
-  var andreRolle = o.type==='v2' ? 'subjekt' : 'verb';
-  var forsteOrd = o.type==='v2' ? o.v : o.s;
-  var andreOrd = o.type==='v2' ? o.s : o.v;
-  var liste=[{w:o.b,r:'bindeord'},{w:forsteOrd,r:forsteRolle},{w:andreOrd,r:andreRolle}];
-  o.r.forEach(function(w){liste.push({w:w,r:'rest'});});
-  var sh=liste.slice().sort(function(){return Math.random()-0.5;});
-  var bank=sh.map(function(x){return '<span class="ord ord-'+x.r+' brikke" data-w="'+x.w+'" onclick="leggTil(this)">'+x.w+'</span>';}).join('');
-  var riktig=[o.b,forsteOrd,andreOrd].concat(o.r).join(' ');
-  document.getElementById('kortB').innerHTML=
-    '<div class="bygg-mal">🔑 '+o.mal+'</div>'+
-    '<div class="bygg-svar" id="byggSvar"></div>'+
-    '<div class="brikke-bank">'+bank+'</div>'+
-    '<button class="tomt-btn" onclick="tomBygg()">↺ Start på nytt</button>'+
-    '<button class="sjekk-btn" onclick="sjekkBygg(this,\''+riktig+'\',\''+o.type+'\')">Sjekk svar</button>'+
-    '<div class="fasit" id="fasitB"></div>';
-}
-function leggTil(el){
+function leggTilRekke(el){
   el.classList.add('brukt');
   var k=document.createElement('span');
-  k.className=el.className.replace('brukt','').replace('brikke','i-svar').trim();
+  k.className='brikke i-svar';
   k.textContent=el.dataset.w;
   k.onclick=function(){k.remove();el.classList.remove('brukt');};
-  document.getElementById('byggSvar').appendChild(k);
+  document.getElementById('rekkeSvar').appendChild(k);
 }
-function tomBygg(){
-  document.getElementById('byggSvar').innerHTML='';
-  document.querySelectorAll('#kortB .brikke').forEach(function(b){b.classList.remove('brukt');});
+function tomRekke(){
+  document.getElementById('rekkeSvar').innerHTML='';
+  document.querySelectorAll('#rekkeBank .brikke').forEach(function(b){b.classList.remove('brukt');});
 }
-function sjekkBygg(btn,riktig,type){
-  btn.disabled=true; btn.style.opacity='0.5'; btn.style.pointerEvents='none';
-  var svar=[].slice.call(document.querySelectorAll('#byggSvar .i-svar')).map(function(b){return b.textContent;}).join(' ');
-  var f=document.getElementById('fasitB');
-  var regel = type==='v2' ? 'Verbet skal stå rett etter bindeordet.' : 'Hvem/hva (grunnen) skal stå rett etter «fordi».';
-  if(svar.trim()===riktig){ pB++; f.className='fasit vis riktig-svar'; f.innerHTML='✅ Perfekt! '+regel; }
-  else{ f.className='fasit vis feil-svar'; f.innerHTML='💡 Prøv igjen! '+regel; }
-  f.innerHTML+='<button class="neste-btn" onclick="nesteBygg()">Neste →</button>';
-}
-function nesteBygg(){ iB++; visBygg(); }
-
-/* ---- VELG (klikk riktig ord i luken, 3 alternativer) ---- */
-var iV=0, pV=0;
-function visVelg(){
-  if(iV>=VELG.length){ ferdig('kortV','tellerV',pV,VELG.length,'Velg'); return; }
-  var o=VELG[iV];
-  document.getElementById('tellerV').textContent='Oppgave '+(iV+1)+' av '+VELG.length;
-  var knapper=o.svar.map(function(s,i){
-    return '<button class="valg-knapp" onclick="svarVelg3(this,'+i+','+o.riktig+')">'+s+'</button>';
-  }).join('');
-  document.getElementById('kortV').innerHTML=
-    '<div class="kort"><div class="velg3-sporsmal">'+o.sporsmal.replace('___','<span class="velg3-blank">___</span>')+'</div>'+
-    knapper+
-    '<div class="fasit" id="fasitV"></div></div>';
-}
-function svarVelg3(btn,valgt,riktig){
-  btn.parentElement.querySelectorAll('.valg-knapp').forEach(function(b){b.style.pointerEvents='none';});
-  var f=document.getElementById('fasitV');
-  if(valgt===riktig){ btn.classList.add('riktig'); pV++; f.className='fasit vis riktig-svar'; f.innerHTML='✅ Riktig!'; }
-  else{
-    btn.classList.add('feil');
-    btn.parentElement.querySelectorAll('.valg-knapp')[riktig].classList.add('riktig');
-    f.className='fasit vis feil-svar'; f.innerHTML='💡 Nesten! Riktig svar er markert med grønt.';
-  }
-  f.innerHTML+='<button class="neste-btn" onclick="nesteVelg()">Neste →</button>';
-}
-function nesteVelg(){ iV++; visVelg(); }
-
-function ferdig(kortId,tellerId,p,t,navn){
-  var e=p===t?'🌟':(p>=t/2?'😊':'💪');
-  var m=p===t?'Perfekt!':(p>=t/2?'Bra jobba!':'Fortsett å øve!');
-  document.getElementById(kortId).innerHTML=
-    '<div class="ferdig"><div class="ferdig-emoji">'+e+'</div><div class="ferdig-poeng">'+p+' av '+t+'</div><h2>'+m+'</h2></div>';
-  document.getElementById(tellerId).textContent='';
-  send('['+HISTORIE+' – '+navn+'] Poeng: '+p+'/'+t, HISTORIE+' - '+navn);
+function sjekkRekke(){
+  var svar=[].slice.call(document.querySelectorAll('#rekkeSvar .i-svar')).map(function(b){return b.textContent;}).join('|');
+  var riktig = REKKE_RIKTIG.join('|');
+  var f=document.getElementById('fasitRekke');
+  if(svar===riktig){ f.className='svar vis riktig'; f.innerHTML='✅ Perfekt rekkefølge!'; }
+  else{ f.className='svar vis feil'; f.innerHTML='💡 Ikke helt. Tips: hva skjer først – varm magma, eller ferdig granitt?'; }
 }
 
-function sendTekst(){
-  var t=document.getElementById('skrivTekst').value;
-  var f=document.getElementById('skrivFasit');
-  if(t.trim().length<15){ f.className='fasit vis feil-svar'; f.innerHTML='⏳ Skriv litt mer først!'; return; }
-  f.className='fasit vis'; f.style.background='#faf8ff'; f.style.color='#6B7280'; f.innerHTML='⏳ Sender...';
-  fetch('https://formspree.io/f/mqeolldg',{method:'POST',headers:{'Content-Type':'application/json','Accept':'application/json'},
-    body:JSON.stringify({Tekst_hun_skrev:t, oppgave:HISTORIE+' - Skriv', maal:MAAL, dato:new Date().toLocaleString('no-NO')})})
-   .then(function(r){
-     if(r.ok){ f.className='fasit vis riktig-svar'; f.innerHTML='✅ Bra jobba! Teksten din er sendt til mamma! 🎉'; document.getElementById('skrivTekst').value=''; }
-     else{ f.className='fasit vis feil-svar'; f.innerHTML='❌ Noe gikk galt. Prøv igjen!'; }
-   })
-   .catch(function(){ f.className='fasit vis feil-svar'; f.innerHTML='❌ Sjekk internett og prøv igjen!'; });
-}
-
-function sendRefleksjon(){
-  var t=document.getElementById('refleksjonTekst').value;
-  var f=document.getElementById('refleksjonFasit');
-  if(t.trim().length<3){ f.className='fasit vis feil-svar'; f.innerHTML='⏳ Skriv litt først!'; return; }
-  f.className='fasit vis'; f.style.background='#faf8ff'; f.style.color='#6B7280'; f.innerHTML='⏳ Sender...';
-  fetch('https://formspree.io/f/mqeolldg',{method:'POST',headers:{'Content-Type':'application/json','Accept':'application/json'},
-    body:JSON.stringify({Tekst_hun_skrev:t, oppgave:HISTORIE+' - Til slutt', maal:MAAL, dato:new Date().toLocaleString('no-NO')})})
-   .then(function(r){
-     if(r.ok){ f.className='fasit vis riktig-svar'; f.innerHTML='✅ Takk for at du delte! 🎉'; document.getElementById('refleksjonTekst').value=''; }
-     else{ f.className='fasit vis feil-svar'; f.innerHTML='❌ Noe gikk galt. Prøv igjen!'; }
-   })
-   .catch(function(){ f.className='fasit vis feil-svar'; f.innerHTML='❌ Sjekk internett og prøv igjen!'; });
-}
-
-function visLyttStatus(paa){
-  document.getElementById('lyttStart').style.display = paa ? 'none' : 'block';
-  document.getElementById('lyttStatus').style.display = paa ? 'block' : 'none';
-}
-function lyttFerdig(){
-  visLyttStatus(false);
-  document.getElementById('lyttFerdigKnapper').style.display = 'block';
-  document.getElementById('fortellBoks').style.display = 'block';
-}
-function startLytt(){
-  document.getElementById('fortellBoks').style.display = 'none';
-  document.getElementById('lyttFerdigKnapper').style.display = 'none';
-  if(window.speechSynthesis) window.speechSynthesis.cancel();
-  if(lyttLydObjekt){ lyttLydObjekt.pause(); lyttLydObjekt = null; }
-  visLyttStatus(true);
-  spillDel(0);
-}
-function spillDel(i){
-  if(i >= LYTT_DELER.length){ lyttFerdig(); return; }
-  var d = LYTT_DELER[i];
-  document.getElementById('lyttDelTekst').textContent = 'Leser ' + (i+1) + ' av ' + LYTT_DELER.length + ' ...';
-  if(d.lyd){
-    var a = new Audio(d.lyd);
-    var lastet = false;
-    a.oncanplaythrough = function(){ lastet = true; };
-    a.onended = function(){ spillDel(i+1); };
-    a.onerror = function(){ if(!lastet) lesDelMedStemme(d.tekst, function(){ spillDel(i+1); }); };
-    var p = a.play();
-    lyttLydObjekt = a;
-    if(p && p.catch){ p.catch(function(){ lesDelMedStemme(d.tekst, function(){ spillDel(i+1); }); }); }
-  } else {
-    lesDelMedStemme(d.tekst, function(){ spillDel(i+1); });
-  }
-}
-function lesDelMedStemme(tekst, ferdig){
-  if(!('speechSynthesis' in window)){
-    document.getElementById('lyttDelTekst').innerHTML = '<span style="color:var(--red);">Nettleseren støtter ikke opplesing her.</span>';
-    setTimeout(ferdig, 1500);
-    return;
-  }
+function lesHoyt(tekst){
+  if(!('speechSynthesis' in window)) return;
+  window.speechSynthesis.cancel();
   var setninger = tekst.match(/[^.!?]+[.!?]*/g) || [tekst];
-  var idx = 0;
+  var idx=0;
   function neste(){
-    if(idx >= setninger.length){ ferdig(); return; }
-    var u = new SpeechSynthesisUtterance(setninger[idx]);
-    u.lang = 'nb-NO';
-    u.rate = 0.92;
-    u.onend = function(){ idx++; setTimeout(neste, 400); };
-    u.onerror = function(){ idx++; setTimeout(neste, 150); };
+    if(idx>=setninger.length) return;
+    var u=new SpeechSynthesisUtterance(setninger[idx]);
+    u.lang='nb-NO'; u.rate=0.92;
+    u.onend=function(){idx++;setTimeout(neste,300);};
     window.speechSynthesis.speak(u);
   }
   neste();
 }
-function sendFortelling(){
-  var t = document.getElementById('fortellTekst').value;
-  var f = document.getElementById('fortellFasit');
-  if(t.trim().length < 10){ f.className='fasit vis feil-svar'; f.innerHTML='⏳ Skriv litt mer først!'; return; }
-  f.className='fasit vis'; f.style.background='#faf8ff'; f.style.color='#6B7280'; f.innerHTML='⏳ Sender...';
-  fetch('https://formspree.io/f/mqeolldg',{method:'POST',headers:{'Content-Type':'application/json','Accept':'application/json'},
-    body:JSON.stringify({Tekst_hun_skrev:t, oppgave:HISTORIE+' - Lytt og fortell', maal:MAAL, dato:new Date().toLocaleString('no-NO')})})
-   .then(function(r){
-     if(r.ok){ f.className='fasit vis riktig-svar'; f.innerHTML='✅ Bra jobba! Det du fortalte er sendt til mamma! 🎉'; document.getElementById('fortellTekst').value=''; }
-     else{ f.className='fasit vis feil-svar'; f.innerHTML='❌ Noe gikk galt. Prøv igjen!'; }
-   })
-   .catch(function(){ f.className='fasit vis feil-svar'; f.innerHTML='❌ Sjekk internett og prøv igjen!'; });
-}
 
-function send(tekst,oppgave){
-  try{
-    fetch('https://formspree.io/f/mqeolldg',{method:'POST',headers:{'Content-Type':'application/json','Accept':'application/json'},
-      body:JSON.stringify({Tekst_hun_skrev:tekst, oppgave:oppgave, maal:MAAL, dato:new Date().toLocaleString('no-NO')})}).catch(function(){});
-  }catch(e){}
-}
-
-visLes(); visBygg(); visVelg();
+settOppRekke();
 </script>
 </body>
 </html>
