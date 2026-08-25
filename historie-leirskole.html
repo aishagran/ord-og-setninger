@@ -70,8 +70,19 @@ h1.tittel{font-size:clamp(2.1rem,9vw,3rem);line-height:1;font-weight:500;letter-
 .brikkebank{display:flex;flex-wrap:wrap;gap:0.4rem;margin-bottom:1rem;}
 .brikke{display:inline-block;background:var(--paper);border:1.5px solid var(--rule);color:var(--ink);padding:0.4rem 0.7rem;border-radius:10px;font-size:0.9rem;font-weight:600;cursor:pointer;}
 .brikke.brukt{opacity:0.25;pointer-events:none;}
+.brikke.rolle-bindeord{color:#5b3a9e;background:rgba(124,58,237,0.16);border-color:#b49ce0;}
+.brikke.rolle-subjekt{color:#0a5c3f;background:rgba(52,211,153,0.2);border-color:#34D399;}
+.brikke.rolle-verb{color:#7a5c00;background:rgba(212,175,55,0.26);border-color:#D4AF37;font-weight:800;}
+.fargenokkel{display:flex;flex-wrap:wrap;gap:0.55rem;justify-content:center;margin:0 0 0.9rem;padding:0.55rem;background:var(--cream);border-radius:10px;}
+.fnk{display:flex;align-items:center;gap:0.3rem;font-size:0.72rem;color:var(--muted);}
+.fnk-boks{width:13px;height:13px;border-radius:4px;}
 .oppgave-teller{text-align:center;color:var(--coral);font-weight:700;font-size:0.82rem;margin-bottom:0.8rem;}
 .footer{text-align:center;font-size:0.75rem;color:var(--muted);margin-top:2.5rem;padding:1.25rem;}
+.bilde{width:100%;border-radius:16px;cursor:zoom-in;box-shadow:0 8px 24px rgba(28,44,66,0.1);margin:0.9rem 0;display:block;}
+.modal{display:none;position:fixed;inset:0;background:rgba(28,36,56,0.94);z-index:100;padding:0.5rem;overflow:auto;}
+.modal.vis{display:flex;align-items:center;justify-content:center;}
+.modal img{max-width:100%;border-radius:14px;}
+.modal-lukk{position:fixed;top:0.8rem;right:1.2rem;color:#fff;font-size:2.4rem;cursor:pointer;font-weight:bold;z-index:101;}
 @media(prefers-reduced-motion:reduce){*{scroll-behavior:auto!important;}}
 </style>
 </head>
@@ -91,7 +102,7 @@ h1.tittel{font-size:clamp(2.1rem,9vw,3rem);line-height:1;font-weight:500;letter-
   <section class="topp">
     <div class="eyebrow">Skolefag · Sosialt</div>
     <h1 class="tittel serif">Leirskole</h1>
-    <p class="lede">En uke på Fagerhøi – og litt øving i å forklare hvorfor du synes noe.</p>
+    <p class="lede">En uke på Fagerhøy – og litt øving i å forklare hvorfor du synes noe.</p>
   </section>
 
   <div class="malboks">
@@ -117,10 +128,12 @@ h1.tittel{font-size:clamp(2.1rem,9vw,3rem);line-height:1;font-weight:500;letter-
   <!-- LES -->
   <div class="del aktiv">
     <div class="boks">
-      <div class="linje">Pipoka og Edel har vært på leirskole på Fagerhøi i en hel uke.</div>
+      <img class="bilde" src="img/leirskole-quadrinho-del1.png" alt="Edel og Pipoka på Fagerhøy – del 1" onclick="zoom('img/leirskole-quadrinho-del1.png')">
+      <div class="linje">Pipoka og Edel har vært på leirskole på Fagerhøy i en hel uke.</div>
       <div class="linje">Edel fikk <span class="frem">delta</span> på mange aktiviteter sammen med klassen.</div>
       <div class="linje">Noen dager var det lett å finne noen å snakke med. Andre dager var det ikke like lett.</div>
       <div class="linje">Det er helt greit å <span class="frem">savne</span> noe hjemmefra når man er borte lenge.</div>
+      <img class="bilde" src="img/leirskole-quadrinho-del2.png" alt="Edel og Pipoka på Fagerhøy – del 2" onclick="zoom('img/leirskole-quadrinho-del2.png')">
       <div class="linje">Men Edel fikk <span class="frem">oppleve</span> mye fint også – turer i skogen, bålkos og stjerneklare kvelder.</div>
       <div class="linje">Og maten! Edel synes maten på leirskolen <span class="frem">smakte</span> helt fantastisk.</div>
       <div class="linje">Hun spiste taco, vafler og varm kakao hver kveld.</div>
@@ -131,6 +144,11 @@ h1.tittel{font-size:clamp(2.1rem,9vw,3rem);line-height:1;font-weight:500;letter-
 
   <!-- BYGG -->
   <div class="del">
+    <div class="fargenokkel">
+      <div class="fnk"><span class="fnk-boks" style="background:#b49ce0;"></span>fordi/dermed/derfor</div>
+      <div class="fnk"><span class="fnk-boks" style="background:#34D399;"></span>hvem/hva</div>
+      <div class="fnk"><span class="fnk-boks" style="background:#D4AF37;"></span>verb</div>
+    </div>
     <div class="oppgave-teller" id="tellerB"></div>
     <div class="boks" id="kortB"></div>
   </div>
@@ -241,8 +259,16 @@ h1.tittel{font-size:clamp(2.1rem,9vw,3rem);line-height:1;font-weight:500;letter-
 
 <div class="footer">Leirskole · Edels Verden</div>
 
+<div class="modal" id="bildeModal" onclick="lukkModal()">
+  <span class="modal-lukk">&times;</span>
+  <img id="modalBilde" src="" alt="">
+</div>
+
 <script>
 var MAAL = "Leirskole – forklare hvorfor (fordi)";
+
+function zoom(src){ document.getElementById('modalBilde').src=src; document.getElementById('bildeModal').classList.add('vis'); }
+function lukkModal(){ document.getElementById('bildeModal').classList.remove('vis'); }
 
 function byttFane(n){
   document.querySelectorAll('.fane-chip').forEach(function(f,i){f.classList.toggle('aktiv',i===n);});
@@ -296,12 +322,17 @@ function visBygg(){
   }
   var o=BYGG[iB];
   document.getElementById('tellerB').textContent='Oppgave '+(iB+1)+' av '+BYGG.length;
+  var forsteRolle = o.type==='v2' ? 'verb' : 'subjekt';
+  var andreRolle = o.type==='v2' ? 'subjekt' : 'verb';
   var forsteOrd = o.type==='v2' ? o.v : o.s;
   var andreOrd = o.type==='v2' ? o.s : o.v;
-  var liste=[{w:o.b},{w:forsteOrd},{w:andreOrd}];
-  o.r.forEach(function(w){liste.push({w:w});});
+  var liste=[{w:o.b,r:'bindeord'},{w:forsteOrd,r:forsteRolle},{w:andreOrd,r:andreRolle}];
+  o.r.forEach(function(w){liste.push({w:w,r:null});});
   var sh=liste.slice().sort(function(){return Math.random()-0.5;});
-  var bank=sh.map(function(x){return '<span class="brikke" data-w="'+x.w+'" onclick="leggTil(this)">'+x.w+'</span>';}).join('');
+  var bank=sh.map(function(x){
+    var cls = 'brikke' + (x.r ? ' rolle-'+x.r : '');
+    return '<span class="'+cls+'" data-w="'+x.w+'" onclick="leggTil(this)">'+x.w+'</span>';
+  }).join('');
   var riktig=[o.b,forsteOrd,andreOrd].concat(o.r).join(' ');
   document.getElementById('kortB').innerHTML=
     '<div class="sporsmalboks">🔑 '+o.mal+'</div>'+
@@ -314,7 +345,7 @@ function visBygg(){
 function leggTil(el){
   el.classList.add('brukt');
   var k=document.createElement('span');
-  k.className='brikke';
+  k.className=el.className.replace('brukt','').trim();
   k.textContent=el.dataset.w;
   k.onclick=function(){k.remove();el.classList.remove('brukt');};
   document.getElementById('byggSvar').appendChild(k);
@@ -335,7 +366,7 @@ function nesteBygg(){ iB++; visBygg(); }
 
 /* ---- LYTT OG FORTELL ---- */
 var LYTT_DELER = [
-  { tekst: "Pipoka og Edel har vært på leirskole på Fagerhøi i en hel uke. Edel fikk delta på mange aktiviteter sammen med klassen. Noen dager var det lett å finne noen å snakke med. Andre dager var det ikke like lett. Det er helt greit å savne noe hjemmefra når man er borte lenge." },
+  { tekst: "Pipoka og Edel har vært på leirskole på Fagerhøy i en hel uke. Edel fikk delta på mange aktiviteter sammen med klassen. Noen dager var det lett å finne noen å snakke med. Andre dager var det ikke like lett. Det er helt greit å savne noe hjemmefra når man er borte lenge." },
   { tekst: "Men Edel fikk oppleve mye fint også – turer i skogen, bålkos og stjerneklare kvelder. Og maten! Edel synes maten på leirskolen smakte helt fantastisk. Hun spiste taco, vafler og varm kakao hver kveld. Nå har Edel et godt minne om leirskolen – selv om ikke alt var like enkelt. Ikke alle deler av en tur trenger å være perfekte for at turen skal være verdt det." }
 ];
 function visLyttStatus(paa){
