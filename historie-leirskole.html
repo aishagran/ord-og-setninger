@@ -56,6 +56,10 @@ h1.tittel{font-size:clamp(2.1rem,9vw,3rem);line-height:1;font-weight:500;letter-
 .sporsmalboks{background:var(--cream);border-left:3px solid var(--coral);padding:0.85rem 0.95rem;border-radius:10px;color:var(--ink);font-size:0.92rem;line-height:1.55;margin-bottom:0.9rem;}
 .tekstboks{width:100%;min-height:95px;padding:0.9rem;border:1.5px solid var(--rule);border-radius:14px;font-family:'Inter';font-size:0.96rem;background:var(--paper);color:var(--ink);resize:vertical;line-height:1.55;}
 .tekstboks:focus{outline:none;border-color:var(--coral);}
+.feltrad{margin-bottom:0.8rem;}
+.feltrad label{display:block;font-weight:600;font-size:0.9rem;margin-bottom:0.3rem;color:var(--navy);}
+.felt{width:100%;padding:0.65rem 0.85rem;border:1.5px solid var(--rule);border-radius:12px;font-family:'Inter';font-size:0.94rem;background:var(--paper);color:var(--ink);}
+.felt:focus{outline:none;border-color:var(--coral);}
 .knapp-hoved{width:100%;background:var(--navy);color:#fff;padding:0.75rem;border:none;border-radius:14px;font-family:'Inter';font-weight:600;font-size:0.92rem;cursor:pointer;margin-top:0.2rem;}
 .knapp-lav{background:var(--cream);border:1.5px solid var(--rule);color:var(--coral);padding:0.5rem 0.9rem;border-radius:12px;font-weight:600;font-size:0.82rem;cursor:pointer;margin-bottom:0.7rem;font-family:'Inter';}
 .hjelpboks{display:none;background:var(--cream);border-radius:12px;padding:0.85rem;margin-top:0.6rem;}
@@ -217,17 +221,27 @@ h1.tittel{font-size:clamp(2.1rem,9vw,3rem);line-height:1;font-weight:500;letter-
 
     <div class="boks">
       <div class="steg-label">2 · Litt vanskeligere også</div>
-      <div class="sporsmalboks">Noen ganger er ikke alt like gøy, og det er helt greit. Var det noe du savnet, eller noe som var litt vanskelig? Du kan skrive det med «fordi» også, hvis du vil.</div>
-      <textarea class="tekstboks" id="s2" placeholder="Skriv her, hvis du vil..."></textarea>
-      <button class="knapp-hoved" style="margin-top:0.7rem;" onclick="sendFri('s2','s2F','Leirskole - Noe som var vanskelig',5)">Send til mamma 💛</button>
+      <div class="sporsmalboks">Noen ganger er ikke alt like gøy, og det er helt greit. Var det noe du savnet, eller noe som var litt vanskelig? Helt greit å la stå tomt hvis ikke.</div>
+      <div class="feltrad">
+        <label>Det var litt vanskelig med...</label>
+        <input class="felt" id="s2a" placeholder="hva var vanskelig?">
+      </div>
+      <div class="feltrad">
+        <label>...fordi</label>
+        <input class="felt" id="s2b" placeholder="hvorfor var det vanskelig?">
+      </div>
+      <button class="knapp-hoved" style="margin-top:0.3rem;" onclick="sendFelt2('Leirskole - Noe som var vanskelig')">Send til mamma 💛</button>
       <div class="svar" id="s2F"></div>
     </div>
 
     <div class="boks">
       <div class="steg-label">3 · Til slutt</div>
       <div class="sporsmalboks">Selv om ikke alt var perfekt, hva gjorde turen verdt det?</div>
-      <textarea class="tekstboks" id="s3" placeholder="Skriv her..."></textarea>
-      <button class="knapp-hoved" style="margin-top:0.7rem;" onclick="sendFri('s3','s3F','Leirskole - Til slutt',5)">Send til mamma 💛</button>
+      <div class="feltrad">
+        <label>Turen var verdt det fordi</label>
+        <input class="felt" id="s3" placeholder="Skriv her...">
+      </div>
+      <button class="knapp-hoved" style="margin-top:0.3rem;" onclick="sendFelt3('Leirskole - Til slutt')">Send til mamma 💛</button>
       <div class="svar" id="s3F"></div>
     </div>
   </div>
@@ -298,6 +312,33 @@ function sendFri(taId, svarId, oppgave, minLen){
      else{ f.className='svar vis feil'; f.innerHTML='❌ Noe gikk galt. Prøv igjen!'; }
    })
    .catch(function(){ f.className='svar vis feil'; f.innerHTML='❌ Sjekk internett og prøv igjen!'; });
+}
+function sendSammensatt(tekst, svarId, oppgave){
+  var f=document.getElementById(svarId);
+  f.className='svar vis'; f.style.background='var(--cream)'; f.style.color='var(--muted)'; f.innerHTML='⏳ Sender...';
+  fetch('https://formspree.io/f/mqeolldg',{method:'POST',headers:{'Content-Type':'application/json','Accept':'application/json'},
+    body:JSON.stringify({Tekst_hun_skrev:tekst, oppgave:oppgave, maal:MAAL, dato:new Date().toLocaleString('no-NO')})})
+   .then(function(r){
+     if(r.ok){ f.className='svar vis riktig'; f.innerHTML='✅ Sendt til mamma! 🎉'; }
+     else{ f.className='svar vis feil'; f.innerHTML='❌ Noe gikk galt. Prøv igjen!'; }
+   })
+   .catch(function(){ f.className='svar vis feil'; f.innerHTML='❌ Sjekk internett og prøv igjen!'; });
+}
+function sendFelt2(oppgave){
+  var a=document.getElementById('s2a').value.trim();
+  var b=document.getElementById('s2b').value.trim();
+  var f=document.getElementById('s2F');
+  if(!a && !b){ f.className='svar vis feil'; f.innerHTML='⏳ Helt greit å la stå tomt, men trykk bare hvis du har skrevet noe!'; return; }
+  if(!a || !b){ f.className='svar vis feil'; f.innerHTML='⏳ Fyll ut begge feltene, eller la begge stå tomme.'; return; }
+  var tekst = 'Det var litt vanskelig med ' + a + ', fordi ' + b + '.';
+  sendSammensatt(tekst, 's2F', oppgave);
+}
+function sendFelt3(oppgave){
+  var b=document.getElementById('s3').value.trim();
+  var f=document.getElementById('s3F');
+  if(!b){ f.className='svar vis feil'; f.innerHTML='⏳ Skriv litt først!'; return; }
+  var tekst = 'Turen var verdt det fordi ' + b + '.';
+  sendSammensatt(tekst, 's3F', oppgave);
 }
 
 /* ---- BYGG: fordi (hvem/hva før verb) og v2 (verb før subjekt) ---- */
