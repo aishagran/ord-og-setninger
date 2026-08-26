@@ -1,0 +1,442 @@
+<!DOCTYPE html>
+<html lang="no">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Størknet – Edels Verden</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --cream:#F6F1E6;--paper:#FFFEFA;--navy:#1C2C42;--navy-2:#29455F;--ink:#1B2438;--muted:#746F66;
+  --coral:#BE6E56;--coral-soft:#F3DFD6;--rule:#E4DCCB;
+  --correct:#3E6C63;--correct-bg:#E1EBE7;--feil:#B5483A;--feil-bg:#F5E1DC;
+  --shadow:0 12px 34px rgba(28,44,66,0.08);
+}
+*{box-sizing:border-box;margin:0;padding:0;}
+html{scroll-behavior:smooth;}
+body{font-family:'Inter',sans-serif;background:radial-gradient(circle at 10% 0%,#FFF9EE 0,transparent 24rem),var(--cream);color:var(--ink);min-height:100vh;padding-bottom:3rem;-webkit-font-smoothing:antialiased;}
+a{-webkit-tap-highlight-color:transparent;}
+a:focus-visible,button:focus-visible{outline:2px solid var(--coral);outline-offset:3px;}
+.serif{font-family:'Fraunces',serif;}
+.topnav{display:flex;align-items:center;justify-content:space-between;padding:0.9rem 1.2rem;max-width:680px;margin:0 auto;position:sticky;top:0;background:rgba(246,241,230,0.9);backdrop-filter:blur(16px);border-bottom:1px solid rgba(28,44,66,0.07);z-index:40;}
+.avatar{width:2.65rem;height:2.65rem;border-radius:50%;background:var(--navy);color:#EDE6D6;display:flex;align-items:center;justify-content:center;font-family:'Fraunces',serif;font-style:italic;font-weight:600;font-size:1.08rem;flex-shrink:0;box-shadow:0 8px 20px rgba(28,44,66,0.16);text-decoration:none;}
+.navlinks{display:flex;gap:1.35rem;}
+.navlinks a{color:var(--ink);text-decoration:none;font-weight:600;font-size:0.92rem;}
+.navlinks a:hover{color:var(--coral);}
+.side{max-width:680px;margin:0 auto;padding:2rem 1.2rem 0;}
+.tilbake{display:inline-flex;margin-bottom:1.6rem;color:var(--muted);text-decoration:none;font-size:0.82rem;font-weight:600;}
+.eyebrow{font-size:0.68rem;letter-spacing:0.15em;text-transform:uppercase;font-weight:700;color:var(--coral);margin-bottom:0.6rem;}
+.topp{padding-bottom:1.8rem;border-bottom:1px solid var(--rule);}
+h1.tittel{font-size:clamp(2.1rem,9vw,3rem);line-height:1;font-weight:500;letter-spacing:-0.03em;}
+.lede{color:var(--muted);font-size:0.94rem;line-height:1.6;max-width:27rem;margin-top:0.9rem;}
+.malboks{background:var(--paper);border:1px solid var(--rule);border-radius:20px;padding:1.2rem 1.3rem;margin:1.5rem 0;box-shadow:0 7px 24px rgba(28,44,66,0.045);}
+.malboks .tekst{font-size:0.96rem;line-height:1.6;}
+.gruppe-tittel{font-size:0.66rem;letter-spacing:0.09em;text-transform:uppercase;color:var(--muted);font-weight:700;margin:0.9rem 0 0.5rem;}
+.gruppe-tittel:first-of-type{margin-top:0;}
+.ordboks{display:flex;flex-wrap:wrap;gap:0.4rem;}
+.ordpille{background:var(--cream);border:1px solid var(--rule);border-radius:999px;padding:0.28rem 0.7rem;font-size:0.78rem;color:var(--ink);}
+.ordpille.motsatt{background:var(--coral-soft);border-color:var(--coral);color:#7a4632;font-weight:700;}
+.fanenav{display:flex;gap:0.5rem;overflow-x:auto;padding-bottom:0.3rem;margin-bottom:1.4rem;-ms-overflow-style:none;scrollbar-width:none;}
+.fanenav::-webkit-scrollbar{display:none;}
+.fane-chip{flex-shrink:0;background:var(--paper);border:1.5px solid var(--rule);color:var(--muted);padding:0.55rem 1rem;border-radius:999px;font-weight:600;font-size:0.84rem;cursor:pointer;white-space:nowrap;}
+.fane-chip.aktiv{background:var(--navy);border-color:var(--navy);color:#fff;}
+.del{display:none;}
+.del.aktiv{display:block;animation:inn 0.25s;}
+@keyframes inn{from{opacity:0;}to{opacity:1;}}
+.boks{background:var(--paper);border:1px solid rgba(28,44,66,0.08);border-radius:20px;padding:1.25rem 1.3rem;margin-bottom:0.9rem;box-shadow:0 7px 24px rgba(28,44,66,0.045);}
+.steg-label{font-size:0.66rem;letter-spacing:0.09em;text-transform:uppercase;color:var(--coral);font-weight:700;margin-bottom:0.6rem;}
+.lede-liten{color:var(--muted);font-size:0.88rem;line-height:1.5;margin-bottom:0.9rem;}
+.bilde{width:100%;border-radius:16px;cursor:zoom-in;box-shadow:0 8px 24px rgba(28,44,66,0.1);margin-bottom:1rem;display:block;}
+.linje{padding:0.4rem 0;font-size:1rem;line-height:1.6;}
+.frem{background:rgba(190,110,86,0.16);border-radius:5px;padding:0.1rem 0.35rem;font-weight:700;color:var(--coral);}
+.frem2{background:rgba(28,44,66,0.08);border-radius:5px;padding:0.1rem 0.35rem;font-weight:700;color:var(--navy);}
+.sporsmal{font-size:1rem;line-height:1.55;margin-bottom:0.8rem;color:var(--ink);}
+.knapp{display:block;width:100%;background:var(--cream);border:1.5px solid var(--rule);color:var(--ink);padding:0.75rem 0.9rem;border-radius:14px;cursor:pointer;margin-bottom:0.55rem;text-align:left;line-height:1.4;font-size:0.94rem;font-family:'Inter',sans-serif;}
+.knapp.riktig{border-color:var(--correct);background:var(--correct-bg);color:var(--correct);}
+.knapp.feil{border-color:var(--feil);background:var(--feil-bg);color:var(--feil);}
+.knapprad{margin-bottom:1.1rem;}
+.knapprad:last-child{margin-bottom:0;}
+.sporsmalboks{background:var(--cream);border-left:3px solid var(--coral);padding:0.85rem 0.95rem;border-radius:10px;color:var(--ink);font-size:0.92rem;line-height:1.5;margin-bottom:0.9rem;}
+.tekstboks{width:100%;min-height:80px;padding:0.9rem;border:1.5px solid var(--rule);border-radius:14px;font-family:'Inter';font-size:0.96rem;background:var(--paper);color:var(--ink);resize:vertical;line-height:1.55;}
+.tekstboks:focus{outline:none;border-color:var(--coral);}
+.feltrad{margin-bottom:0.9rem;}
+.feltrad:last-child{margin-bottom:0;}
+.feltrad label{display:block;font-weight:600;font-size:0.9rem;margin-bottom:0.35rem;color:var(--navy);}
+.felt{width:100%;padding:0.65rem 0.85rem;border:1.5px solid var(--rule);border-radius:12px;font-family:'Inter';font-size:0.94rem;background:var(--paper);color:var(--ink);}
+.felt:focus{outline:none;border-color:var(--coral);}
+.knapp-hoved{width:100%;background:var(--navy);color:#fff;padding:0.75rem;border:none;border-radius:14px;font-family:'Inter';font-weight:600;font-size:0.92rem;cursor:pointer;margin-top:0.2rem;}
+.knapp-lav{background:var(--cream);border:1.5px solid var(--rule);color:var(--coral);padding:0.5rem 0.9rem;border-radius:12px;font-weight:600;font-size:0.82rem;cursor:pointer;margin-bottom:0.7rem;font-family:'Inter';}
+.hjelpboks{display:none;background:var(--cream);border-radius:12px;padding:0.85rem;margin-top:0.6rem;}
+.hjelpboks.vis{display:block;}
+.hjelp-eks{color:var(--muted);font-size:0.88rem;line-height:1.8;}
+.svar{margin-top:0.75rem;padding:0.75rem 0.85rem;border-radius:12px;font-weight:600;display:none;line-height:1.55;font-size:0.88rem;}
+.svar.vis{display:block;}
+.svar.riktig{background:var(--correct-bg);color:var(--correct);}
+.svar.feil{background:var(--feil-bg);color:var(--feil);}
+.byggfelt{min-height:52px;background:var(--cream);border:1.5px dashed var(--coral);border-radius:14px;padding:0.6rem;margin-bottom:1rem;display:flex;flex-wrap:wrap;gap:0.3rem;align-items:center;}
+.byggfelt:empty::before{content:'Trykk på ordene i riktig rekkefølge...';color:#B8AC98;font-size:0.83rem;font-style:italic;}
+.brikkebank{display:flex;flex-wrap:wrap;gap:0.4rem;margin-bottom:1rem;}
+.brikke{display:inline-block;background:var(--paper);border:1.5px solid var(--rule);color:var(--ink);padding:0.4rem 0.7rem;border-radius:10px;font-size:0.9rem;font-weight:600;cursor:pointer;}
+.brikke.brukt{opacity:0.25;pointer-events:none;}
+.brikke.rolle-bindeord{color:#5b3a9e;background:rgba(124,58,237,0.16);border-color:#b49ce0;}
+.brikke.rolle-subjekt{color:#0a5c3f;background:rgba(52,211,153,0.2);border-color:#34D399;}
+.brikke.rolle-verb{color:#7a5c00;background:rgba(212,175,55,0.26);border-color:#D4AF37;font-weight:800;}
+.fargenokkel{display:flex;flex-wrap:wrap;gap:0.55rem;justify-content:center;margin:0 0 0.9rem;padding:0.55rem;background:var(--cream);border-radius:10px;}
+.fnk{display:flex;align-items:center;gap:0.3rem;font-size:0.72rem;color:var(--muted);}
+.fnk-boks{width:13px;height:13px;border-radius:4px;}
+.oppgave-teller{text-align:center;color:var(--coral);font-weight:700;font-size:0.82rem;margin-bottom:0.8rem;}
+.footer{text-align:center;font-size:0.75rem;color:var(--muted);margin-top:2.5rem;padding:1.25rem;}
+.modal{display:none;position:fixed;inset:0;background:rgba(28,36,56,0.94);z-index:100;padding:0.5rem;overflow:auto;}
+.modal.vis{display:flex;align-items:center;justify-content:center;}
+.modal img{max-width:100%;border-radius:14px;}
+.modal-lukk{position:fixed;top:0.8rem;right:1.2rem;color:#fff;font-size:2.4rem;cursor:pointer;font-weight:bold;z-index:101;}
+@media(prefers-reduced-motion:reduce){*{scroll-behavior:auto!important;}}
+</style>
+</head>
+<body>
+
+<div class="topnav">
+  <a class="avatar" href="index.html" aria-label="Til forsiden">E</a>
+  <div class="navlinks">
+    <a href="historier.html">Historier</a>
+    <a href="index.html#skolefag">Skolefag</a>
+  </div>
+</div>
+
+<main class="side">
+  <a class="tilbake" href="historier.html">← Historier</a>
+
+  <section class="topp">
+    <div class="eyebrow">Historie · Naturfag-ord</div>
+    <h1 class="tittel serif">Størknet</h1>
+    <p class="lede">Pipoka og Edel lager gulrotkake – og lærer hva det betyr at noe størkner.</p>
+  </section>
+
+  <div class="malboks">
+    <div class="eyebrow">Denne historien øver på</div>
+    <div class="tekst"><strong>Å størkne</strong> = å gå fra flytende til fast. Samme ord, mange eksempler – sjokolade, smør, lys, magma – slik at du kjenner ordet igjen uansett hvor det dukker opp.</div>
+    <div class="gruppe-tittel">Ord</div>
+    <div class="ordboks">
+      <span class="ordpille">flytende</span>
+      <span class="ordpille">fast</span>
+      <span class="ordpille">størkne</span>
+      <span class="ordpille motsatt">smelte = det motsatte</span>
+    </div>
+  </div>
+
+  <div class="fanenav">
+    <button class="fane-chip aktiv" onclick="byttFane(0)">📖 Les</button>
+    <button class="fane-chip" onclick="byttFane(1)">🎨 Bygg</button>
+    <button class="fane-chip" onclick="byttFane(2)">✅ Velg</button>
+    <button class="fane-chip" onclick="byttFane(3)">✍️ Skriv</button>
+    <button class="fane-chip" onclick="byttFane(4)">🎧 Lytt</button>
+  </div>
+
+  <!-- LES -->
+  <div class="del aktiv">
+    <div class="boks">
+      <img class="bilde" src="img/storknet-oversikt.png" alt="Når noe størkner – fra flytende til fast" onclick="zoom('img/storknet-oversikt.png')">
+      <div class="linje"><span class="frem">Å størkne</span> betyr å gå fra flytende til fast.</div>
+      <div class="linje">Magma størkner og blir til stein.</div>
+      <div class="linje">Sjokolade størkner og blir hard igjen.</div>
+      <div class="linje">Smør størkner i kjøleskapet.</div>
+    </div>
+    <div class="boks">
+      <img class="bilde" src="img/storknet-gulrotkake.png" alt="Pipoka og Edel lager gulrotkake" onclick="zoom('img/storknet-gulrotkake.png')">
+      <div class="linje">Edel og Pipoka skal lage en saftig gulrotkake.</div>
+      <div class="linje">Først river Edel gulrøtter og blander dem i kakedeigen.</div>
+      <div class="linje">Mens kaken steker, smelter Edel litt sjokolade.</div>
+      <div class="linje">Den faste sjokoladen blir varm og <span class="frem">flytende</span>.</div>
+      <div class="linje">Edel lager små sjokoladegulrøtter som pynt.</div>
+      <div class="linje">Hun setter pynten i kjøleskapet slik at sjokoladen kan <span class="frem">størkne</span>.</div>
+      <div class="linje">Etter en stund har den flytende sjokoladen blitt <span class="frem">fast</span> igjen.</div>
+      <div class="linje">Til slutt pynter Edel kaken, mens Pipoka håper at noe skal falle på gulvet.</div>
+    </div>
+  </div>
+
+  <!-- BYGG -->
+  <div class="del">
+    <div class="fargenokkel">
+      <div class="fnk"><span class="fnk-boks" style="background:#b49ce0;"></span>fordi/dermed</div>
+      <div class="fnk"><span class="fnk-boks" style="background:#34D399;"></span>hvem/hva</div>
+      <div class="fnk"><span class="fnk-boks" style="background:#D4AF37;"></span>verb</div>
+    </div>
+    <div class="oppgave-teller" id="tellerB"></div>
+    <div class="boks" id="kortB"></div>
+  </div>
+
+  <!-- VELG -->
+  <div class="del">
+    <div class="boks">
+      <div class="knapprad">
+        <div class="sporsmal">Sjokoladen var flytende. Hva skjedde da den ble kald?</div>
+        <button class="knapp" onclick="velgEn(this,0,0,'v1F')">Den størknet</button>
+        <button class="knapp" onclick="velgEn(this,0,1,'v1F')">Den smeltet</button>
+        <button class="knapp" onclick="velgEn(this,0,2,'v1F')">Den forsvant</button>
+        <div class="svar" id="v1F"></div>
+      </div>
+      <div class="knapprad">
+        <div class="sporsmal">Hva betyr «å størkne»?</div>
+        <button class="knapp" onclick="velgEn(this,1,0,'v2F')">Å gå fra fast til flytende</button>
+        <button class="knapp" onclick="velgEn(this,1,1,'v2F')">Å gå fra flytende til fast</button>
+        <button class="knapp" onclick="velgEn(this,1,2,'v2F')">Å bli borte</button>
+        <div class="svar" id="v2F"></div>
+      </div>
+      <div class="knapprad">
+        <div class="sporsmal">Hvorfor ble sjokoladepynten fast igjen?</div>
+        <button class="knapp" onclick="velgEn(this,1,0,'v3F')">Fordi den ble varm</button>
+        <button class="knapp" onclick="velgEn(this,1,1,'v3F')">Fordi den lå i kjøleskapet</button>
+        <button class="knapp" onclick="velgEn(this,1,2,'v3F')">Fordi Pipoka spiste den</button>
+        <div class="svar" id="v3F"></div>
+      </div>
+      <div class="knapprad">
+        <div class="sporsmal">Hva skjer med smør i kjøleskapet?</div>
+        <button class="knapp" onclick="velgEn(this,0,0,'v4F')">Det størkner</button>
+        <button class="knapp" onclick="velgEn(this,0,1,'v4F')">Det smelter</button>
+        <button class="knapp" onclick="velgEn(this,0,2,'v4F')">Det blir flytende</button>
+        <div class="svar" id="v4F"></div>
+      </div>
+      <div class="knapprad">
+        <div class="sporsmal">Hva skjer med magma når den kjøles ned?</div>
+        <button class="knapp" onclick="velgEn(this,0,0,'v5F')">Den størkner</button>
+        <button class="knapp" onclick="velgEn(this,0,1,'v5F')">Den koker</button>
+        <button class="knapp" onclick="velgEn(this,0,2,'v5F')">Den flyter bort</button>
+        <div class="svar" id="v5F"></div>
+      </div>
+      <div class="knapprad">
+        <div class="sporsmal">Stearinlys er flytende når det...</div>
+        <button class="knapp" onclick="velgEn(this,1,0,'v6F')">er kaldt</button>
+        <button class="knapp" onclick="velgEn(this,1,1,'v6F')">brenner</button>
+        <button class="knapp" onclick="velgEn(this,1,2,'v6F')">står i skapet</button>
+        <div class="svar" id="v6F"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- SKRIV -->
+  <div class="del">
+    <div class="boks">
+      <div class="steg-label">1 · Velg ditt eget eksempel</div>
+      <div class="lede-liten">Noe som kan størkne: sjokolade, smør, lys, magma – eller noe du kommer på selv.</div>
+      <div class="feltrad">
+        <label>Noe som kan størkne er...</label>
+        <input class="felt" id="s1a" placeholder="f.eks. sjokolade">
+      </div>
+      <div class="feltrad">
+        <label>Det er flytende når det er...</label>
+        <input class="felt" id="s1b" placeholder="f.eks. varmt">
+      </div>
+      <div class="feltrad">
+        <label>Det blir fast fordi...</label>
+        <input class="felt" id="s1c" placeholder="f.eks. det blir kaldt">
+      </div>
+      <button class="knapp-hoved" onclick="sendEksempel()">Send til mamma 💛</button>
+      <div class="svar" id="s1F"></div>
+    </div>
+
+    <div class="boks">
+      <div class="steg-label">2 · Fortell om sjokoladepynten</div>
+      <div class="sporsmalboks">Hva skjedde med sjokoladepynten i historien? Bruk «fordi» og «dermed».</div>
+      <button class="knapp-lav" onclick="visHjelp('h2')">💡 Trenger du hjelp?</button>
+      <div class="hjelpboks" id="h2">
+        <div class="hjelp-eks">Sjokoladen ble flytende fordi Edel varmet den.<br>Dermed kunne hun lage sjokoladegulrøtter.<br>Pynten sto i kjøleskapet, dermed størknet den igjen.</div>
+      </div>
+      <textarea class="tekstboks" id="s2" placeholder="Skriv her..."></textarea>
+      <button class="knapp-hoved" style="margin-top:0.7rem;" onclick="sendFri('s2','s2F','Størknet - Fortell om sjokoladepynten',10)">Send til mamma 💛</button>
+      <div class="svar" id="s2F"></div>
+    </div>
+  </div>
+
+  <!-- LYTT -->
+  <div class="del">
+    <div class="boks">
+      <div class="lede-liten">🎧 Lytt til historien. Ikke se på Les-fanen. Etterpå skal du fortelle med dine egne ord.</div>
+      <div id="lyttStart">
+        <button class="knapp-hoved" onclick="startLytt()">▶️ Spill av</button>
+      </div>
+      <div id="lyttStatus" style="display:none;text-align:center;padding:1.4rem 0;">
+        <div style="font-size:2rem;">🔊</div>
+        <div style="color:var(--coral);font-weight:700;margin-top:0.5rem;" id="lyttDelTekst">Leser...</div>
+      </div>
+      <div id="lyttFerdigKnapper" style="display:none;">
+        <button class="knapp-lav" onclick="startLytt()" style="width:100%;text-align:center;">🔁 Hør en gang til</button>
+      </div>
+      <div id="fortellBoks" style="display:none;margin-top:1rem;">
+        <div class="sporsmalboks">✍️ Fortell hva du hørte, med dine egne ord.</div>
+        <textarea class="tekstboks" id="fortellTekst" placeholder="Skriv det du husker..."></textarea>
+        <button class="knapp-hoved" style="margin-top:0.7rem;" onclick="sendFri('fortellTekst','fortellFasit','Størknet - Lytt og fortell',10)">Send til mamma 💛</button>
+        <div class="svar" id="fortellFasit"></div>
+      </div>
+    </div>
+  </div>
+
+</main>
+
+<div class="footer">Størknet · Edels Verden</div>
+
+<div class="modal" id="bildeModal" onclick="lukkModal()">
+  <span class="modal-lukk">&times;</span>
+  <img id="modalBilde" src="" alt="">
+</div>
+
+<script>
+var MAAL = "Størknet – flytende til fast, fordi/dermed";
+
+function zoom(src){ document.getElementById('modalBilde').src=src; document.getElementById('bildeModal').classList.add('vis'); }
+function lukkModal(){ document.getElementById('bildeModal').classList.remove('vis'); }
+function byttFane(n){
+  document.querySelectorAll('.fane-chip').forEach(function(f,i){f.classList.toggle('aktiv',i===n);});
+  document.querySelectorAll('.del').forEach(function(d,i){d.classList.toggle('aktiv',i===n);});
+  window.scrollTo({top:0,behavior:'smooth'});
+}
+function visHjelp(id){ document.getElementById(id).classList.toggle('vis'); }
+
+function velgEn(btn, riktigIdx, valgtIdx, svarId){
+  var knapper = btn.parentElement.querySelectorAll('.knapp');
+  knapper.forEach(function(b){b.style.pointerEvents='none';});
+  var f=document.getElementById(svarId);
+  if(valgtIdx===riktigIdx){ btn.classList.add('riktig'); f.className='svar vis riktig'; f.innerHTML='✅ Riktig!'; }
+  else{ btn.classList.add('feil'); if(knapper[riktigIdx]) knapper[riktigIdx].classList.add('riktig'); f.className='svar vis feil'; f.innerHTML='💡 Nesten! Riktig svar er markert med grønt.'; }
+}
+
+function sendFri(taId, svarId, oppgave, minLen){
+  var t=document.getElementById(taId).value;
+  var f=document.getElementById(svarId);
+  minLen = minLen||3;
+  if(t.trim().length<minLen){ f.className='svar vis feil'; f.innerHTML='⏳ Skriv litt mer først!'; return; }
+  f.className='svar vis'; f.style.background='var(--cream)'; f.style.color='var(--muted)'; f.innerHTML='⏳ Sender...';
+  fetch('https://formspree.io/f/mqeolldg',{method:'POST',headers:{'Content-Type':'application/json','Accept':'application/json'},
+    body:JSON.stringify({Tekst_hun_skrev:t, oppgave:oppgave, maal:MAAL, dato:new Date().toLocaleString('no-NO')})})
+   .then(function(r){
+     if(r.ok){ f.className='svar vis riktig'; f.innerHTML='✅ Sendt til mamma! 🎉'; }
+     else{ f.className='svar vis feil'; f.innerHTML='❌ Noe gikk galt. Prøv igjen!'; }
+   })
+   .catch(function(){ f.className='svar vis feil'; f.innerHTML='❌ Sjekk internett og prøv igjen!'; });
+}
+function sendEksempel(){
+  var a=document.getElementById('s1a').value.trim();
+  var b=document.getElementById('s1b').value.trim();
+  var c=document.getElementById('s1c').value.trim();
+  var f=document.getElementById('s1F');
+  if(!a || !b || !c){ f.className='svar vis feil'; f.innerHTML='⏳ Fyll ut alle tre feltene først!'; return; }
+  var tekst = a.charAt(0).toUpperCase()+a.slice(1) + ' kan størkne. Det er flytende når det er ' + b + ', og det blir fast fordi det er ' + c + '.';
+  f.className='svar vis'; f.style.background='var(--cream)'; f.style.color='var(--muted)'; f.innerHTML='⏳ Sender...';
+  fetch('https://formspree.io/f/mqeolldg',{method:'POST',headers:{'Content-Type':'application/json','Accept':'application/json'},
+    body:JSON.stringify({Tekst_hun_skrev:tekst, oppgave:'Størknet - Eget eksempel', maal:MAAL, dato:new Date().toLocaleString('no-NO')})})
+   .then(function(r){
+     if(r.ok){ f.className='svar vis riktig'; f.innerHTML='✅ Sendt til mamma! 🎉'; }
+     else{ f.className='svar vis feil'; f.innerHTML='❌ Noe gikk galt. Prøv igjen!'; }
+   })
+   .catch(function(){ f.className='svar vis feil'; f.innerHTML='❌ Sjekk internett og prøv igjen!'; });
+}
+
+/* ---- BYGG: fordi (hvem/hva før verb) og v2 (verb før subjekt), fargekodet ---- */
+var BYGG_ALLE = [
+  {"type":"fordi","mal":"Fullfør: «Sjokoladen ble flytende fordi ...».","b":"Sjokoladen ble flytende fordi","s":"den","v":"ble","r":["varm"]},
+  {"type":"v2","mal":"Pynten sto i kjøleskapet. Start med «Dermed». Hva skjedde?","b":"Dermed","v":"størknet","s":"den","r":[]},
+  {"type":"fordi","mal":"Fullfør: «Magma blir til stein fordi ...».","b":"Magma blir til stein fordi","s":"den","v":"kjøles","r":["ned"]},
+  {"type":"v2","mal":"Smøret ligger i kjøleskapet. Start med «Dermed». Hva skjer med det?","b":"Dermed","v":"blir","s":"det","r":["fast"]},
+  {"type":"fordi","mal":"Fullfør: «Stearinlyset blir flytende fordi ...».","b":"Stearinlyset blir flytende fordi","s":"det","v":"brenner","r":[]},
+  {"type":"v2","mal":"Edel varmet sjokoladen. Start med «Dermed». Hva ble den?","b":"Dermed","v":"ble","s":"sjokoladen","r":["flytende"]},
+  {"type":"fordi","mal":"Fullfør: «Gulrotkaken ble ferdig fordi ...».","b":"Gulrotkaken ble ferdig fordi","s":"den","v":"stekte","r":["lenge","nok"]},
+  {"type":"v2","mal":"Sjokoladen var kald lenge nok. Start med «Dermed». Hva ble den?","b":"Dermed","v":"ble","s":"den","r":["fast","igjen"]}
+];
+function embland(arr){var a=arr.slice();for(var i=a.length-1;i>0;i--){var j=Math.floor(Math.random()*(i+1));var t=a[i];a[i]=a[j];a[j]=t;}return a;}
+var BYGG = embland(BYGG_ALLE);
+var iB=0, pB=0;
+function visBygg(){
+  if(iB>=BYGG.length){
+    document.getElementById('kortB').innerHTML='<div style="text-align:center;padding:1rem;"><div style="font-size:2.2rem;">🌟</div><div class="serif" style="font-size:1.3rem;margin-top:0.4rem;">'+pB+' av '+BYGG.length+'</div></div>';
+    document.getElementById('tellerB').textContent='';
+    return;
+  }
+  var o=BYGG[iB];
+  document.getElementById('tellerB').textContent='Oppgave '+(iB+1)+' av '+BYGG.length;
+  var forsteRolle = o.type==='v2' ? 'verb' : 'subjekt';
+  var andreRolle = o.type==='v2' ? 'subjekt' : 'verb';
+  var forsteOrd = o.type==='v2' ? o.v : o.s;
+  var andreOrd = o.type==='v2' ? o.s : o.v;
+  var liste=[{w:o.b,r:'bindeord'},{w:forsteOrd,r:forsteRolle},{w:andreOrd,r:andreRolle}];
+  o.r.forEach(function(w){liste.push({w:w,r:null});});
+  var sh=liste.slice().sort(function(){return Math.random()-0.5;});
+  var bank=sh.map(function(x){
+    var cls='brikke'+(x.r?' rolle-'+x.r:'');
+    return '<span class="'+cls+'" data-w="'+x.w+'" onclick="leggTil(this)">'+x.w+'</span>';
+  }).join('');
+  var riktig=[o.b,forsteOrd,andreOrd].concat(o.r).join(' ');
+  document.getElementById('kortB').innerHTML=
+    '<div class="sporsmalboks">🔑 '+o.mal+'</div>'+
+    '<div class="byggfelt" id="byggSvar"></div>'+
+    '<div class="brikkebank">'+bank+'</div>'+
+    '<button class="knapp-lav" onclick="tomBygg()">↺ Start på nytt</button>'+
+    '<button class="knapp-hoved" onclick="sjekkBygg(this,\''+riktig+'\')">Sjekk svar</button>'+
+    '<div class="svar" id="fasitB"></div>';
+}
+function leggTil(el){
+  el.classList.add('brukt');
+  var k=document.createElement('span');
+  k.className=el.className.replace('brukt','').trim();
+  k.textContent=el.dataset.w;
+  k.onclick=function(){k.remove();el.classList.remove('brukt');};
+  document.getElementById('byggSvar').appendChild(k);
+}
+function tomBygg(){
+  document.getElementById('byggSvar').innerHTML='';
+  document.querySelectorAll('#kortB .brikkebank .brikke').forEach(function(b){b.classList.remove('brukt');});
+}
+function sjekkBygg(btn,riktig){
+  btn.disabled=true; btn.style.opacity='0.5'; btn.style.pointerEvents='none';
+  var svar=[].slice.call(document.querySelectorAll('#byggSvar .brikke')).map(function(b){return b.textContent;}).join(' ');
+  var f=document.getElementById('fasitB');
+  if(svar.trim()===riktig){ pB++; f.className='svar vis riktig'; f.innerHTML='✅ Perfekt!'; }
+  else{ f.className='svar vis feil'; f.innerHTML='💡 Prøv igjen neste gang!'; }
+  f.innerHTML+='<button class="knapp-hoved" style="margin-top:0.6rem;" onclick="nesteBygg()">Neste →</button>';
+}
+function nesteBygg(){ iB++; visBygg(); }
+
+/* ---- LYTT OG FORTELL ---- */
+var LYTT_DELER = [
+  { tekst: "Å størkne betyr å gå fra flytende til fast. Magma størkner og blir til stein. Sjokolade størkner og blir hard igjen. Smør størkner i kjøleskapet." },
+  { tekst: "Edel og Pipoka skal lage en saftig gulrotkake. Mens kaken steker, smelter Edel litt sjokolade og lager små sjokoladegulrøtter som pynt. Hun setter pynten i kjøleskapet slik at sjokoladen kan størkne. Etter en stund har den flytende sjokoladen blitt fast igjen." }
+];
+function visLyttStatus(paa){
+  document.getElementById('lyttStart').style.display = paa ? 'none' : 'block';
+  document.getElementById('lyttStatus').style.display = paa ? 'block' : 'none';
+}
+function lyttFerdig(){
+  visLyttStatus(false);
+  document.getElementById('lyttFerdigKnapper').style.display = 'block';
+  document.getElementById('fortellBoks').style.display = 'block';
+}
+function startLytt(){
+  document.getElementById('fortellBoks').style.display = 'none';
+  document.getElementById('lyttFerdigKnapper').style.display = 'none';
+  if(window.speechSynthesis) window.speechSynthesis.cancel();
+  visLyttStatus(true);
+  spillDel(0);
+}
+function spillDel(i){
+  if(i >= LYTT_DELER.length){ lyttFerdig(); return; }
+  document.getElementById('lyttDelTekst').textContent = 'Leser ' + (i+1) + ' av ' + LYTT_DELER.length + ' ...';
+  lesDelMedStemme(LYTT_DELER[i].tekst, function(){ spillDel(i+1); });
+}
+function lesDelMedStemme(tekst, ferdig){
+  if(!('speechSynthesis' in window)){ setTimeout(ferdig, 1200); return; }
+  var setninger = tekst.match(/[^.!?]+[.!?]*/g) || [tekst];
+  var idx = 0;
+  function neste(){
+    if(idx >= setninger.length){ ferdig(); return; }
+    var u = new SpeechSynthesisUtterance(setninger[idx]);
+    u.lang = 'nb-NO'; u.rate = 0.92;
+    u.onend = function(){ idx++; setTimeout(neste, 350); };
+    u.onerror = function(){ idx++; setTimeout(neste, 150); };
+    window.speechSynthesis.speak(u);
+  }
+  neste();
+}
+
+visBygg();
+</script>
+</body>
+</html>
