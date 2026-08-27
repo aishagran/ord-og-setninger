@@ -121,6 +121,45 @@ h1.tittel{font-size:clamp(1.9rem,8vw,2.7rem);line-height:1.05;font-weight:500;le
   </div>
 
   <div class="boks">
+    <img class="bilde" src="img/mornatur-mineraler.png" alt="Mineraler = ingrediensene" onclick="zoom('img/mornatur-mineraler.png')">
+    <div class="linje">«Hva er mineraler? Mineraler er naturlige stoffer som finnes i jorda og i steiner.»</div>
+    <div class="linje">En smoothie består av ingredienser: banan, jordbær, blåbær, melk, yoghurt, is.</div>
+    <div class="linje">En bergart består av <span class="frem">mineraler</span>: kvarts, feltspat, glimmer, og andre mineraler.</div>
+    <div class="linje">Slik blir magma til bergart: <span class="frem">1)</span> Stein smelter dypt nede i jorda og blir til magma. <span class="frem">2)</span> I magmaen ligger mineralene blandet sammen. <span class="frem">3)</span> Når magmaen kjøles ned, beveger mineralene seg, vokser og låser seg fast. <span class="frem">4)</span> Mineralene sitter sammen – da har vi en bergart!</div>
+    <div class="linje">Eksempler på mineraler: kvarts, feltspat, glimmer, hornblende, olivin.</div>
+    <div class="linje">Eksempler på bergarter: granitt (magmatisk), sandstein (sedimentær), marmor (metamorf).</div>
+  </div>
+
+  <div class="boks">
+    <div class="steg-label">Mineral eller bergart?</div>
+    <div class="lede-liten">Er dette et mineral (en ingrediens), eller en bergart (det ferdige produktet)?</div>
+    <div class="knapprad">
+      <div class="sporsmal">Kvarts</div>
+      <button class="knapp" onclick="velgEn(this,0,0,'n1F')">Mineral</button>
+      <button class="knapp" onclick="velgEn(this,0,1,'n1F')">Bergart</button>
+      <div class="svar" id="n1F"></div>
+    </div>
+    <div class="knapprad">
+      <div class="sporsmal">Granitt</div>
+      <button class="knapp" onclick="velgEn(this,1,0,'n2F')">Mineral</button>
+      <button class="knapp" onclick="velgEn(this,1,1,'n2F')">Bergart</button>
+      <div class="svar" id="n2F"></div>
+    </div>
+    <div class="knapprad">
+      <div class="sporsmal">Glimmer</div>
+      <button class="knapp" onclick="velgEn(this,0,0,'n3F')">Mineral</button>
+      <button class="knapp" onclick="velgEn(this,0,1,'n3F')">Bergart</button>
+      <div class="svar" id="n3F"></div>
+    </div>
+    <div class="knapprad">
+      <div class="sporsmal">Marmor</div>
+      <button class="knapp" onclick="velgEn(this,1,0,'n4F')">Mineral</button>
+      <button class="knapp" onclick="velgEn(this,1,1,'n4F')">Bergart</button>
+      <div class="svar" id="n4F"></div>
+    </div>
+  </div>
+
+  <div class="boks">
     <div class="steg-label">Koble riktig</div>
     <div class="knapprad">
       <div class="sporsmal">Hvilken bergart-type passer til: «Varm smoothie avkjøles i blenderen og blir fast»?</div>
