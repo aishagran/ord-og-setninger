@@ -119,7 +119,8 @@ h1.tittel{font-size:clamp(1.9rem,8vw,2.7rem);line-height:1.05;font-weight:500;le
     <div class="tekst">Alt du har lært om <strong>størkne</strong>, <strong>bergart</strong>, <strong>granitt</strong> og <strong>slitesterk</strong> – samlet i én historie.</div>
     <div class="ordboks">
       <span class="ordpille">flytende</span>
-      <span class="ordpille">fast</span>
+      <span class="ordpille">kan renne</span>
+      <span class="ordpille">kan ikke renne</span>
       <span class="ordpille">størkne</span>
       <span class="ordpille">magma</span>
       <span class="ordpille">bergart</span>
@@ -180,14 +181,14 @@ h1.tittel{font-size:clamp(1.9rem,8vw,2.7rem);line-height:1.05;font-weight:500;le
         <div class="svar" id="v1F"></div>
       </div>
       <div class="knapprad">
-        <div class="sporsmal">Hva gjorde kakerøren fast?</div>
+        <div class="sporsmal">Hva gjorde at kakedeigen sluttet å kunne renne?</div>
         <button class="knapp" onclick="velgEn(this,1,0,'v2F')">Kulde</button>
         <button class="knapp" onclick="velgEn(this,1,1,'v2F')">Varme fra ovnen</button>
         <button class="knapp" onclick="velgEn(this,1,2,'v2F')">Tid alene</button>
         <div class="svar" id="v2F"></div>
       </div>
       <div class="knapprad">
-        <div class="sporsmal">Hva gjorde magmaen fast?</div>
+        <div class="sporsmal">Hva gjorde at magmaen sluttet å kunne renne?</div>
         <button class="knapp" onclick="velgEn(this,0,0,'v3F')">Den ble kaldere</button>
         <button class="knapp" onclick="velgEn(this,0,1,'v3F')">Den ble varmere</button>
         <button class="knapp" onclick="velgEn(this,0,2,'v3F')">Den ble spist</button>
@@ -201,10 +202,10 @@ h1.tittel{font-size:clamp(1.9rem,8vw,2.7rem);line-height:1.05;font-weight:500;le
         <div class="svar" id="v4F"></div>
       </div>
       <div class="knapprad">
-        <div class="sporsmal">Kaken blir varm og fast i ovnen, mens magmaen...</div>
-        <button class="knapp" onclick="velgEn(this,1,0,'v5F')">blir varm og fast</button>
-        <button class="knapp" onclick="velgEn(this,1,1,'v5F')">blir kald og fast</button>
-        <button class="knapp" onclick="velgEn(this,1,2,'v5F')">forblir flytende</button>
+        <div class="sporsmal">Kaken slutter å kunne renne fordi den blir varm, mens magmaen...</div>
+        <button class="knapp" onclick="velgEn(this,1,0,'v5F')">slutter å kunne renne fordi den blir varm</button>
+        <button class="knapp" onclick="velgEn(this,1,1,'v5F')">slutter å kunne renne fordi den blir kald</button>
+        <button class="knapp" onclick="velgEn(this,1,2,'v5F')">fortsetter å kunne renne</button>
         <div class="svar" id="v5F"></div>
       </div>
     </div>
@@ -214,7 +215,7 @@ h1.tittel{font-size:clamp(1.9rem,8vw,2.7rem);line-height:1.05;font-weight:500;le
   <div class="del">
     <div class="boks">
       <div class="steg-label">1 · Hva har de til felles?</div>
-      <div class="sporsmalboks">Kaken og granitten går begge fra flytende til fast. Men noe er forskjellig med hvordan de blir faste. Hva?</div>
+      <div class="sporsmalboks">Kaken og granitten slutter begge å kunne renne. Men noe er forskjellig med hvordan det skjer. Hva?</div>
       <button class="knapp-lav" id="ordvevBtn_s1" onclick="ordvevHjelp('kontrast','ordvevBoks_s1','ordvevBtn_s1')">🆘 Trenger du hjelp?</button>
       <div class="ordvev" id="ordvevBoks_s1"></div>
       <textarea class="tekstboks" id="s1" placeholder="Skriv her..."></textarea>
@@ -224,7 +225,7 @@ h1.tittel{font-size:clamp(1.9rem,8vw,2.7rem);line-height:1.05;font-weight:500;le
 
     <div class="boks">
       <div class="steg-label">2 · Nevn tre ting</div>
-      <div class="sporsmalboks">Nevn tre ting som kan størkne (gå fra flytende til fast).</div>
+      <div class="sporsmalboks">Nevn tre ting som kan størkne (noe som kunne renne, slutter å kunne renne).</div>
       <div class="feltrad"><label>1.</label><input class="felt" id="t1" placeholder="f.eks. sjokolade"></div>
       <div class="feltrad"><label>2.</label><input class="felt" id="t2"></div>
       <div class="feltrad"><label>3.</label><input class="felt" id="t3"></div>
@@ -327,10 +328,10 @@ function sendTre(){
 /* ---- Ordvev ---- */
 var ORDVEV = {
   kontrast: {
-    kategori: "Tenk på hvor de to tingene er når de blir faste.",
-    funksjon: "Kaken blir fast av VARME i ovnen. Magmaen blir fast av at den blir KALDERE.",
+    kategori: "Tenk på hvor de to tingene er når de slutter å kunne renne.",
+    funksjon: "Kaken slutter å kunne renne fordi den får VARME i ovnen. Magmaen slutter å kunne renne fordi den blir KALDERE.",
     lyd: "Nøkkelordene er «varm» og «kald» – motsatte retninger!",
-    forveksling: "Begge blir faste, men av motsatte grunner: den ene med varme, den andre med kulde."
+    forveksling: "Begge slutter å kunne renne, men av motsatte grunner: den ene med varme, den andre med kulde."
   }
 };
 var ordvevSteg = {};
@@ -353,11 +354,11 @@ function ordvevHjelp(id, boksId, btnId){
 
 /* ---- BYGG ---- */
 var BYGG_ALLE = [
-  {"type":"fordi","mal":"Fullfør: «Kakerøren ble fast fordi ...».","b":"Kakerøren ble fast fordi","s":"den","v":"fikk","r":["varme","i","ovnen"]},
+  {"type":"fordi","mal":"Fullfør: «Kakerøren sluttet å kunne renne fordi ...».","b":"Kakerøren sluttet å kunne renne fordi","s":"den","v":"fikk","r":["varme","i","ovnen"]},
   {"type":"v2","mal":"Magmaen ble kaldere. Start med «Derfor». Hva skjedde?","b":"Derfor","v":"størknet","s":"den","r":[]},
   {"type":"fordi","mal":"Fullfør: «Granitt brukes i kjøkkenbenker fordi ...».","b":"Granitt brukes i kjøkkenbenker fordi","s":"den","v":"er","r":["slitesterk"]},
   {"type":"v2","mal":"Lavaen ble kald under jorda. Start med «Dermed». Hva ble den?","b":"Dermed","v":"ble","s":"den","r":["til","granitt"]},
-  {"type":"fordi","mal":"Fullfør: «Kaken og granitten er like fordi ...».","b":"Kaken og granitten er like fordi","s":"begge","v":"gikk","r":["fra","flytende","til","fast"]},
+  {"type":"fordi","mal":"Fullfør: «Kaken og granitten er like fordi ...».","b":"Kaken og granitten er like fordi","s":"begge","v":"sluttet","r":["å","kunne","renne"]},
   {"type":"v2","mal":"Edel og Pipoka lærte noe nytt. Start med «Derfor». Hva føler de?","b":"Derfor","v":"elsker","s":"de","r":["å","lære","om","jorda"]}
 ];
 function embland(arr){var a=arr.slice();for(var i=a.length-1;i>0;i--){var j=Math.floor(Math.random()*(i+1));var t=a[i];a[i]=a[j];a[j]=t;}return a;}

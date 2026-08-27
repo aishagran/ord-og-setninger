@@ -120,11 +120,12 @@ h1.tittel{font-size:clamp(2.1rem,9vw,3rem);line-height:1;font-weight:500;letter-
 
   <div class="malboks">
     <div class="eyebrow">Denne historien øver på</div>
-    <div class="tekst"><strong>Å størkne</strong> = å gå fra flytende til fast. Samme ord, mange eksempler – sjokolade, smør, lys, magma – slik at du kjenner ordet igjen uansett hvor det dukker opp.</div>
+    <div class="tekst"><strong>Å størkne</strong> = noe som kunne renne, kan ikke renne lenger. Samme ord, mange eksempler – sjokolade, smør, lys, magma – slik at du kjenner ordet igjen uansett hvor det dukker opp.</div>
     <div class="gruppe-tittel">Ord</div>
     <div class="ordboks">
       <span class="ordpille">flytende</span>
-      <span class="ordpille">fast</span>
+      <span class="ordpille">kan renne</span>
+      <span class="ordpille">kan ikke renne</span>
       <span class="ordpille">størkne</span>
       <span class="ordpille motsatt">smelte = det motsatte</span>
     </div>
@@ -141,8 +142,8 @@ h1.tittel{font-size:clamp(2.1rem,9vw,3rem);line-height:1;font-weight:500;letter-
   <!-- LES -->
   <div class="del aktiv">
     <div class="boks">
-      <img class="bilde" src="img/storknet-oversikt.png" alt="Når noe størkner – fra flytende til fast" onclick="zoom('img/storknet-oversikt.png')">
-      <div class="linje"><span class="frem">Å størkne</span> betyr å gå fra flytende til fast.</div>
+      <img class="bilde" src="img/storknet-oversikt.png" alt="Når noe størkner – kan ikke renne lenger" onclick="zoom('img/storknet-oversikt.png')">
+      <div class="linje"><span class="frem">Å størkne</span> betyr: noe som kunne renne, kan ikke renne lenger.</div>
       <div class="linje">Magma størkner og blir til stein.</div>
       <div class="linje">Sjokolade størkner og blir hard igjen.</div>
       <div class="linje">Smør størkner i kjøleskapet.</div>
@@ -152,10 +153,10 @@ h1.tittel{font-size:clamp(2.1rem,9vw,3rem);line-height:1;font-weight:500;letter-
       <div class="linje">Edel og Pipoka skal lage en saftig gulrotkake.</div>
       <div class="linje">Først river Edel gulrøtter og blander dem i kakedeigen.</div>
       <div class="linje">Mens kaken steker, smelter Edel litt sjokolade.</div>
-      <div class="linje">Den faste sjokoladen blir varm og <span class="frem">flytende</span>.</div>
+      <div class="linje">Sjokoladen som ikke kunne renne, blir varm og <span class="frem">flytende</span>.</div>
       <div class="linje">Edel lager små sjokoladegulrøtter som pynt.</div>
       <div class="linje">Hun setter pynten i kjøleskapet slik at sjokoladen kan <span class="frem">størkne</span>.</div>
-      <div class="linje">Etter en stund har den flytende sjokoladen blitt <span class="frem">fast</span> igjen.</div>
+      <div class="linje">Etter en stund kan ikke den sjokoladen renne lenger.</div>
       <div class="linje">Til slutt pynter Edel kaken, mens Pipoka håper at noe skal falle på gulvet.</div>
     </div>
   </div>
@@ -183,13 +184,13 @@ h1.tittel{font-size:clamp(2.1rem,9vw,3rem);line-height:1;font-weight:500;letter-
       </div>
       <div class="knapprad">
         <div class="sporsmal">Hva betyr «å størkne»?</div>
-        <button class="knapp" onclick="velgEn(this,1,0,'v2F')">Å gå fra fast til flytende</button>
-        <button class="knapp" onclick="velgEn(this,1,1,'v2F')">Å gå fra flytende til fast</button>
+        <button class="knapp" onclick="velgEn(this,1,0,'v2F')">Å begynne å kunne renne</button>
+        <button class="knapp" onclick="velgEn(this,1,1,'v2F')">Å slutte å kunne renne</button>
         <button class="knapp" onclick="velgEn(this,1,2,'v2F')">Å bli borte</button>
         <div class="svar" id="v2F"></div>
       </div>
       <div class="knapprad">
-        <div class="sporsmal">Hvorfor ble sjokoladepynten fast igjen?</div>
+        <div class="sporsmal">Hvorfor kunne ikke sjokoladepynten renne lenger?</div>
         <button class="knapp" onclick="velgEn(this,1,0,'v3F')">Fordi den ble varm</button>
         <button class="knapp" onclick="velgEn(this,1,1,'v3F')">Fordi den lå i kjøleskapet</button>
         <button class="knapp" onclick="velgEn(this,1,2,'v3F')">Fordi Pipoka spiste den</button>
@@ -233,7 +234,7 @@ h1.tittel{font-size:clamp(2.1rem,9vw,3rem);line-height:1;font-weight:500;letter-
         <input class="felt" id="s1b" placeholder="f.eks. varmt">
       </div>
       <div class="feltrad">
-        <label>Det blir fast fordi...</label>
+        <label>Slutter å kunne renne fordi...</label>
         <input class="felt" id="s1c" placeholder="f.eks. det blir kaldt">
       </div>
       <button class="knapp-hoved" onclick="sendEksempel()">Send til mamma 💛</button>
@@ -250,7 +251,7 @@ h1.tittel{font-size:clamp(2.1rem,9vw,3rem);line-height:1;font-weight:500;letter-
       <textarea class="tekstboks" id="s2" placeholder="Skriv her..."></textarea>
       <button class="knapp-lav" id="ordvevBtn_s2" onclick="ordvevHjelp('storknet_pynt','ordvevBoks_s2','ordvevBtn_s2')">🆘 Trenger du et ord?</button>
       <div class="ordvev" id="ordvevBoks_s2"></div>
-      <button class="knapp-hoved" style="margin-top:0.3rem;" onclick="sendFri('s2','s2F','Størknet - Fortell om sjokoladepynten',10)">Send til mamma 💛</button>
+      <button class="knapp-hoved" style="margin-top:0.3rem;" onclick="sendFri('s2','s2F','Størknet - Fortell om sjokoladepynten',10,'storknet_pynt')">Send til mamma 💛</button>
       <div class="svar" id="s2F"></div>
     </div>
   </div>
@@ -274,7 +275,7 @@ h1.tittel{font-size:clamp(2.1rem,9vw,3rem);line-height:1;font-weight:500;letter-
         <textarea class="tekstboks" id="fortellTekst" placeholder="Skriv det du husker..."></textarea>
         <button class="knapp-lav" id="ordvevBtn_lytt" onclick="ordvevHjelp('storknet_pynt','ordvevBoks_lytt','ordvevBtn_lytt')">🆘 Trenger du et ord?</button>
         <div class="ordvev" id="ordvevBoks_lytt"></div>
-        <button class="knapp-hoved" style="margin-top:0.3rem;" onclick="sendFri('fortellTekst','fortellFasit','Størknet - Lytt og fortell',10)">Send til mamma 💛</button>
+        <button class="knapp-hoved" style="margin-top:0.3rem;" onclick="sendFri('fortellTekst','fortellFasit','Størknet - Lytt og fortell',10,'storknet_pynt')">Send til mamma 💛</button>
         <div class="svar" id="fortellFasit"></div>
       </div>
     </div>
@@ -290,7 +291,7 @@ h1.tittel{font-size:clamp(2.1rem,9vw,3rem);line-height:1;font-weight:500;letter-
 </div>
 
 <script>
-var MAAL = "Størknet – flytende til fast, fordi/dermed";
+var MAAL = "Størknet – kan renne / kan ikke renne, fordi/dermed";
 
 /* ---- Ordvev: gradert hjelpestige (semantisk -> fonologisk), én nivå om gangen ---- */
 var ORDVEV = {
@@ -336,14 +337,22 @@ function velgEn(btn, riktigIdx, valgtIdx, svarId){
   else{ btn.classList.add('feil'); if(knapper[riktigIdx]) knapper[riktigIdx].classList.add('riktig'); f.className='svar vis feil'; f.innerHTML='💡 Nesten! Riktig svar er markert med grønt.'; }
 }
 
-function sendFri(taId, svarId, oppgave, minLen){
+function stottePoeng(steg){
+  if(!steg) return 3;
+  if(steg<=2) return 2;
+  if(steg===3) return 1;
+  return 0;
+}
+function sendFri(taId, svarId, oppgave, minLen, ordvevId){
   var t=document.getElementById(taId).value;
   var f=document.getElementById(svarId);
   minLen = minLen||3;
   if(t.trim().length<minLen){ f.className='svar vis feil'; f.innerHTML='⏳ Skriv litt mer først!'; return; }
   f.className='svar vis'; f.style.background='var(--cream)'; f.style.color='var(--muted)'; f.innerHTML='⏳ Sender...';
+  var niva = ordvevId ? (ordvevSteg[ordvevId]||0) : null;
+  var poeng = ordvevId ? stottePoeng(niva) : null;
   fetch('https://formspree.io/f/mqeolldg',{method:'POST',headers:{'Content-Type':'application/json','Accept':'application/json'},
-    body:JSON.stringify({Tekst_hun_skrev:t, oppgave:oppgave, maal:MAAL, dato:new Date().toLocaleString('no-NO')})})
+    body:JSON.stringify({Tekst_hun_skrev:t, oppgave:oppgave, maal:MAAL, dato:new Date().toLocaleString('no-NO'), stotte_niva:niva, stotte_poeng:poeng})})
    .then(function(r){
      if(r.ok){ f.className='svar vis riktig'; f.innerHTML='✅ Sendt til mamma! 🎉'; }
      else{ f.className='svar vis feil'; f.innerHTML='❌ Noe gikk galt. Prøv igjen!'; }
@@ -356,7 +365,7 @@ function sendEksempel(){
   var c=document.getElementById('s1c').value.trim();
   var f=document.getElementById('s1F');
   if(!a || !b || !c){ f.className='svar vis feil'; f.innerHTML='⏳ Fyll ut alle tre feltene først!'; return; }
-  var tekst = a.charAt(0).toUpperCase()+a.slice(1) + ' kan størkne. Det er flytende når det er ' + b + ', og det blir fast fordi det er ' + c + '.';
+  var tekst = a.charAt(0).toUpperCase()+a.slice(1) + ' kan størkne. Det er flytende når det er ' + b + ', og det slutter å kunne renne fordi det er ' + c + '.';
   f.className='svar vis'; f.style.background='var(--cream)'; f.style.color='var(--muted)'; f.innerHTML='⏳ Sender...';
   fetch('https://formspree.io/f/mqeolldg',{method:'POST',headers:{'Content-Type':'application/json','Accept':'application/json'},
     body:JSON.stringify({Tekst_hun_skrev:tekst, oppgave:'Størknet - Eget eksempel', maal:MAAL, dato:new Date().toLocaleString('no-NO')})})
@@ -372,11 +381,11 @@ var BYGG_ALLE = [
   {"type":"fordi","mal":"Fullfør: «Sjokoladen ble flytende fordi ...».","b":"Sjokoladen ble flytende fordi","s":"den","v":"ble","r":["varm"]},
   {"type":"v2","mal":"Pynten sto i kjøleskapet. Start med «Dermed». Hva skjedde?","b":"Dermed","v":"størknet","s":"den","r":[]},
   {"type":"fordi","mal":"Fullfør: «Magma blir til stein fordi ...».","b":"Magma blir til stein fordi","s":"den","v":"kjøles","r":["ned"]},
-  {"type":"v2","mal":"Smøret ligger i kjøleskapet. Start med «Dermed». Hva skjer med det?","b":"Dermed","v":"blir","s":"det","r":["fast"]},
+  {"type":"v2","mal":"Smøret ligger i kjøleskapet. Start med «Dermed». Hva skjer med det?","b":"Dermed","v":"slutter","s":"det","r":["å","kunne","renne"]},
   {"type":"fordi","mal":"Fullfør: «Stearinlyset blir flytende fordi ...».","b":"Stearinlyset blir flytende fordi","s":"det","v":"brenner","r":[]},
   {"type":"v2","mal":"Edel varmet sjokoladen. Start med «Dermed». Hva ble den?","b":"Dermed","v":"ble","s":"sjokoladen","r":["flytende"]},
   {"type":"fordi","mal":"Fullfør: «Gulrotkaken ble ferdig fordi ...».","b":"Gulrotkaken ble ferdig fordi","s":"den","v":"stekte","r":["lenge","nok"]},
-  {"type":"v2","mal":"Sjokoladen var kald lenge nok. Start med «Dermed». Hva ble den?","b":"Dermed","v":"ble","s":"den","r":["fast","igjen"]}
+  {"type":"v2","mal":"Sjokoladen var kald lenge nok. Start med «Dermed». Hva skjedde?","b":"Dermed","v":"størknet","s":"den","r":["igjen"]}
 ];
 function embland(arr){var a=arr.slice();for(var i=a.length-1;i>0;i--){var j=Math.floor(Math.random()*(i+1));var t=a[i];a[i]=a[j];a[j]=t;}return a;}
 var BYGG = embland(BYGG_ALLE);
@@ -433,8 +442,8 @@ function nesteBygg(){ iB++; visBygg(); }
 
 /* ---- LYTT OG FORTELL ---- */
 var LYTT_DELER = [
-  { tekst: "Å størkne betyr å gå fra flytende til fast. Magma størkner og blir til stein. Sjokolade størkner og blir hard igjen. Smør størkner i kjøleskapet." },
-  { tekst: "Edel og Pipoka skal lage en saftig gulrotkake. Mens kaken steker, smelter Edel litt sjokolade og lager små sjokoladegulrøtter som pynt. Hun setter pynten i kjøleskapet slik at sjokoladen kan størkne. Etter en stund har den flytende sjokoladen blitt fast igjen." }
+  { tekst: "Å størkne betyr: noe som kunne renne, kan ikke renne lenger. Magma størkner og blir til stein. Sjokolade størkner og blir hard igjen. Smør størkner i kjøleskapet." },
+  { tekst: "Edel og Pipoka skal lage en saftig gulrotkake. Mens kaken steker, smelter Edel litt sjokolade og lager små sjokoladegulrøtter som pynt. Hun setter pynten i kjøleskapet slik at sjokoladen kan størkne. Etter en stund kan ikke sjokoladen renne lenger." }
 ];
 function visLyttStatus(paa){
   document.getElementById('lyttStart').style.display = paa ? 'none' : 'block';
