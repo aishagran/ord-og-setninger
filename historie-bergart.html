@@ -345,7 +345,7 @@ h1.tittel{font-size:clamp(2.1rem,9vw,3rem);line-height:1;font-weight:500;letter-
       <textarea class="tekstboks" id="r1" placeholder="Skriv her..."></textarea>
       <button class="knapp-lav" id="ordvevBtn_r1" onclick="ordvevHjelp('granitt_prosess','ordvevBoks_r1','ordvevBtn_r1')">🆘 Jeg trenger hjelp</button>
       <div class="ordvev" id="ordvevBoks_r1"></div>
-      <button class="knapp-hoved" style="margin-top:0.3rem;" onclick="sendFri('r1','r1F','Dag 3 - Fri gjenkalling',15)">Send til mamma 💛</button>
+      <button class="knapp-hoved" style="margin-top:0.3rem;" onclick="sendFri('r1','r1F','Dag 3 - Fri gjenkalling',15,'granitt_prosess')">Send til mamma 💛</button>
       <div class="svar" id="r1F"></div>
     </div>
 
@@ -681,14 +681,22 @@ function ordvevHjelp(id, boksId, btnId){
   if(steg>=4){ btn.style.display='none'; } else { btn.textContent = '🆘 Enda mer hjelp'; }
 }
 
-function sendFri(taId, svarId, oppgave, minLen){
+function stottePoeng(steg){
+  if(!steg) return 3;
+  if(steg<=2) return 2;
+  if(steg===3) return 1;
+  return 0;
+}
+function sendFri(taId, svarId, oppgave, minLen, ordvevId){
   var t=document.getElementById(taId).value;
   var f=document.getElementById(svarId);
   minLen = minLen||3;
   if(t.trim().length<minLen){ f.className='svar vis feil'; f.innerHTML='⏳ Skriv litt mer først!'; return; }
   f.className='svar vis'; f.style.background='var(--cream)'; f.style.color='var(--muted)'; f.innerHTML='⏳ Sender...';
+  var niva = ordvevId ? (ordvevSteg[ordvevId]||0) : null;
+  var poeng = ordvevId ? stottePoeng(niva) : null;
   fetch('https://formspree.io/f/mqeolldg',{method:'POST',headers:{'Content-Type':'application/json','Accept':'application/json'},
-    body:JSON.stringify({Tekst_hun_skrev:t, oppgave:oppgave, maal:MAAL, dato:new Date().toLocaleString('no-NO')})})
+    body:JSON.stringify({Tekst_hun_skrev:t, oppgave:oppgave, maal:MAAL, dato:new Date().toLocaleString('no-NO'), stotte_niva:niva, stotte_poeng:poeng})})
    .then(function(r){
      if(r.ok){ f.className='svar vis riktig'; f.innerHTML='✅ Sendt til mamma! 🎉'; }
      else{ f.className='svar vis feil'; f.innerHTML='❌ Noe gikk galt. Prøv igjen!'; }
