@@ -468,8 +468,8 @@ function nesteBygg(){ iB++; visBygg(); }
 
 /* ---- LYTT OG FORTELL ---- */
 var LYTT_DELER = [
-  { tekst: "Mennesker har brukt slitesterke bergarter i veldig lang tid. I huletiden brukte mennesker harde bergarter som flint, kvarts og skifer til verktøy. I dag bruker vi slitesterke bergarter som granitt til å bygge hus, veier, bruer og trapper." },
-  { tekst: "Slitesterk betyr at noe ikke blir lett ødelagt, selv om vi bruker det mye. Papir er ikke slitesterkt, men en jernstang er slitesterk. En mursten og en sneaker-såle er også slitesterke, selv om de ikke er bergarter. Granitt brukes i trapper fordi den er hard og slitesterk." }
+  { lyd: "lyd/slitesterk-del1.mp3", tekst: "Mennesker har brukt slitesterke bergarter i veldig lang tid. I huletiden brukte mennesker harde bergarter som flint, kvarts og skifer til verktøy. I dag bruker vi slitesterke bergarter som granitt til å bygge hus, veier, bruer og trapper." },
+  { lyd: "lyd/slitesterk-del2.mp3", tekst: "Slitesterk betyr at noe ikke blir lett ødelagt, selv om vi bruker det mye. Papir er ikke slitesterkt, men en jernstang er slitesterk. En mursten og en sneaker-såle er også slitesterke, selv om de ikke er bergarter. Granitt brukes i trapper fordi den er hard og slitesterk." }
 ];
 function visLyttStatus(paa){
   document.getElementById('lyttStart').style.display = paa ? 'none' : 'block';
@@ -487,10 +487,23 @@ function startLytt(){
   visLyttStatus(true);
   spillDel(0);
 }
+var lyttLydObjekt = null;
 function spillDel(i){
   if(i >= LYTT_DELER.length){ lyttFerdig(); return; }
+  var d = LYTT_DELER[i];
   document.getElementById('lyttDelTekst').textContent = 'Leser ' + (i+1) + ' av ' + LYTT_DELER.length + ' ...';
-  lesDelMedStemme(LYTT_DELER[i].tekst, function(){ spillDel(i+1); });
+  if(d.lyd){
+    var a = new Audio(d.lyd);
+    var lastet = false;
+    a.oncanplaythrough = function(){ lastet = true; };
+    a.onended = function(){ spillDel(i+1); };
+    a.onerror = function(){ if(!lastet) lesDelMedStemme(d.tekst, function(){ spillDel(i+1); }); };
+    var p = a.play();
+    lyttLydObjekt = a;
+    if(p && p.catch){ p.catch(function(){ lesDelMedStemme(d.tekst, function(){ spillDel(i+1); }); }); }
+  } else {
+    lesDelMedStemme(d.tekst, function(){ spillDel(i+1); });
+  }
 }
 function lesDelMedStemme(tekst, ferdig){
   if(!('speechSynthesis' in window)){ setTimeout(ferdig, 1200); return; }
