@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="no">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Edels Verden</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --cream:#F6F1E6;
+  --paper:#FFFEFA;
+  --navy:#1C2C42;
+  --navy-2:#29455F;
+  --ink:#1B2438;
+  --muted:#746F66;
+  --coral:#BE6E56;
+  --coral-soft:#F3DFD6;
+  --rule:#E4DCCB;
+  --shadow:0 12px 34px rgba(28,44,66,0.08);
+}
+*{box-sizing:border-box;margin:0;padding:0;}
+html{scroll-behavior:smooth;}
+body{font-family:'Inter',sans-serif;background:radial-gradient(circle at 10% 0%,#FFF9EE 0,transparent 24rem),var(--cream);color:var(--ink);min-height:100vh;padding-bottom:3rem;-webkit-font-smoothing:antialiased;}
+a{-webkit-tap-highlight-color:transparent;}
+a:focus-visible{outline:2px solid var(--coral);outline-offset:3px;}
+.serif{font-family:'Fraunces',serif;}
+
+.topnav{display:flex;align-items:center;justify-content:space-between;padding:0.9rem 1.2rem;max-width:680px;margin:0 auto;position:sticky;top:0;background:rgba(246,241,230,0.9);backdrop-filter:blur(16px);border-bottom:1px solid rgba(28,44,66,0.07);z-index:40;}
+.avatar{width:2.65rem;height:2.65rem;border-radius:50%;background:var(--navy);color:#EDE6D6;display:flex;align-items:center;justify-content:center;font-family:'Fraunces',serif;font-style:italic;font-weight:600;font-size:1.08rem;flex-shrink:0;box-shadow:0 8px 20px rgba(28,44,66,0.16);}
+.navlinks{display:flex;gap:1.35rem;}
+.navlinks a{position:relative;padding:0.55rem 0;color:var(--ink);text-decoration:none;font-weight:600;font-size:0.92rem;}
+.navlinks a.aktiv{color:var(--coral);}
+.navlinks a.aktiv::after{content:"";position:absolute;left:0;right:0;bottom:0;height:2px;border-radius:2px;background:var(--coral);}
+
+.side{max-width:680px;margin:0 auto;padding:2.2rem 1.2rem 0;}
+.cover{border-radius:25px;overflow:hidden;box-shadow:var(--shadow);margin-bottom:2rem;}
+.cover img{width:100%;display:block;}
+
+.topp{display:flex;align-items:flex-end;justify-content:space-between;gap:1.5rem;padding-bottom:2rem;border-bottom:1px solid var(--rule);}
+.eyebrow{font-size:0.68rem;letter-spacing:0.15em;text-transform:uppercase;font-weight:700;color:var(--coral);margin-bottom:0.65rem;}
+.eyebrow.navy{color:#AFC0D6;}
+h1.tittel-hero{font-size:clamp(1.85rem,6.6vw,2.5rem);line-height:1.15;font-weight:500;letter-spacing:-0.02em;}
+.lede{color:var(--muted);font-size:0.94rem;line-height:1.6;max-width:27rem;margin-top:1rem;}
+.antall{display:flex;align-items:center;gap:0.75rem;padding:0.85rem 1rem;border:1px solid var(--rule);border-radius:18px;background:rgba(255,254,250,0.72);flex-shrink:0;}
+.antall strong{font-family:'Fraunces',serif;font-size:2rem;font-weight:500;color:var(--coral);line-height:1;}
+.antall span{font-size:0.59rem;line-height:1.35;letter-spacing:0.08em;text-transform:uppercase;color:var(--muted);font-weight:700;}
+
+.seksjonshode{display:flex;align-items:flex-end;justify-content:space-between;gap:1rem;margin:2.3rem 0 1rem;}
+.seksjonshode h2{font-size:1.55rem;font-weight:500;line-height:1;}
+.seksjonshode>span{color:var(--muted);font-size:0.62rem;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;}
+
+.valg-liste{display:grid;grid-template-columns:1fr;gap:0.75rem;}
+.hkort{--tone:#E3EBF1;display:grid;grid-template-columns:3.35rem 1fr auto;align-items:center;gap:0.95rem;min-height:8.25rem;padding:1rem 1rem 1rem 1.05rem;color:var(--ink);background:var(--paper);border:1px solid rgba(28,44,66,0.08);border-radius:21px;text-decoration:none;box-shadow:0 7px 24px rgba(28,44,66,0.045);transition:transform 0.18s ease,box-shadow 0.18s ease,border-color 0.18s ease;}
+.hkort:hover{transform:translateY(-2px);box-shadow:var(--shadow);border-color:rgba(28,44,66,0.16);}
+.hkort:active{transform:scale(0.99);}
+.hkort .ikon{width:3.35rem;height:3.35rem;display:grid;place-items:center;background:var(--tone);border-radius:16px;color:var(--navy);}
+.hkort .ikon svg{width:1.55rem;height:1.55rem;fill:none;stroke:currentColor;stroke-width:1.75;stroke-linecap:round;stroke-linejoin:round;}
+.hkort .info{min-width:0;}
+.kortmeta{display:flex;align-items:center;gap:0.5rem;margin-bottom:0.35rem;}
+.merke{display:inline-flex;padding:0.2rem 0.46rem;border:1px solid var(--rule);border-radius:999px;color:var(--muted);font-size:0.53rem;letter-spacing:0.07em;font-weight:700;text-transform:uppercase;}
+.hkort .navn{font-family:'Fraunces',serif;font-weight:500;font-size:1.22rem;line-height:1.12;margin-bottom:0.2rem;letter-spacing:-0.015em;}
+.hkort .desc{font-size:0.74rem;color:var(--muted);line-height:1.4;}
+.hkort .pil{width:2rem;height:2rem;display:grid;place-items:center;color:var(--coral);background:var(--coral-soft);border-radius:50%;font-size:0.9rem;}
+.tone-lilac{--tone:#EAE3F0}.tone-peach{--tone:#F4E3D9}.tone-gold{--tone:#F2ECCF}
+
+.panel-navy{position:relative;overflow:hidden;padding:2rem 1.5rem;color:#fff;background:linear-gradient(130deg,var(--navy),var(--navy-2));border-radius:25px;box-shadow:0 20px 42px rgba(28,44,66,0.18);}
+.panel-navy::after{content:"";position:absolute;width:14rem;height:14rem;border:1px solid rgba(255,255,255,0.09);border-radius:50%;right:-5rem;top:-7rem;}
+.panel-navy h2{font-family:'Fraunces',serif;font-size:1.85rem;font-weight:500;margin-bottom:0.55rem;position:relative;z-index:1;}
+.panel-navy .lede{color:#C7D3DE;max-width:26rem;position:relative;z-index:1;margin-top:0;}
+
+.tema-liste{position:relative;z-index:1;margin-top:1.6rem;display:flex;flex-direction:column;gap:0.75rem;}
+.tema-item{display:grid;grid-template-columns:3.1rem 1fr auto;align-items:center;gap:1rem;padding:1rem 1.1rem;background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.13);border-radius:18px;text-decoration:none;color:#fff;transition:background 0.18s ease;}
+.tema-item:hover{background:rgba(255,255,255,0.1);}
+.tema-item .ikon{width:3.1rem;height:3.1rem;display:grid;place-items:center;background:rgba(255,255,255,0.1);border-radius:14px;color:#F5EDE0;}
+.tema-item .ikon svg{width:1.45rem;height:1.45rem;fill:none;stroke:currentColor;stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round;}
+.tema-item .info{min-width:0;}
+.tema-item .kortmeta{margin-bottom:0.2rem;}
+.tema-item .nummer{color:#AFC0D6;font-size:0.56rem;font-weight:700;letter-spacing:0.1em;}
+.tema-item .fag{display:inline-flex;margin-left:0.5rem;padding:0.16rem 0.42rem;border:1px solid rgba(255,255,255,0.22);border-radius:999px;color:#D5E0E8;font-size:0.5rem;letter-spacing:0.07em;font-weight:700;text-transform:uppercase;}
+.tema-item .navn{font-family:'Fraunces',serif;font-weight:500;font-size:1.14rem;line-height:1.15;}
+.tema-item .pil{width:2.1rem;height:2.1rem;display:grid;place-items:center;border:1px solid rgba(255,255,255,0.3);border-radius:50%;font-size:0.9rem;color:#fff;flex-shrink:0;}
+
+.footer{text-align:center;font-size:0.75rem;color:var(--muted);margin-top:3rem;padding:1.25rem;}
+
+@media(min-width:620px){.valg-liste{grid-template-columns:1fr 1fr}}
+@media(max-width:430px){.side{padding-top:1.6rem}.topp{display:block;padding-bottom:1.65rem}.antall{width:max-content;margin-top:1.25rem}.hkort{grid-template-columns:3.1rem 1fr auto;gap:0.8rem;min-height:8rem}.hkort .ikon{width:3.1rem;height:3.1rem}.hkort .navn{font-size:1.13rem}}
+@media(prefers-reduced-motion:reduce){*{scroll-behavior:auto!important;transition:none!important}}
+</style>
+</head>
+<body>
+
+<div class="topnav">
+  <div class="avatar">E</div>
+  <div class="navlinks">
+    <a href="historier.html">Historier</a>
+    <a href="#skolefag">Skolefag</a>
+  </div>
+</div>
+
+<main class="side">
+
+  <div class="cover">
+    <img src="img/capa.jpeg" alt="Edels Verden – historier som bygger språk">
+  </div>
+
+  <section class="topp">
+    <div>
+      <div class="eyebrow">Læringsunivers</div>
+      <h1 class="tittel-hero serif">Ett sted for historier og skoletemaer</h1>
+      <p class="lede">Språkøvelser, fortellinger og temaer fra skolen – samlet på ett sted.</p>
+    </div>
+    <div class="antall" aria-label="17 aktiviteter totalt"><strong>17</strong><span>aktiviteter<br>totalt</span></div>
+  </section>
+
+  <div class="seksjonshode">
+    <h2 class="serif">Velg område</h2>
+  </div>
+
+  <div class="valg-liste">
+    <a class="hkort tone-lilac" href="historier.html">
+      <span class="ikon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M4 5h7a3 3 0 0 1 3 3v11a3 3 0 0 0-3-3H4V5ZM20 5h-7a3 3 0 0 0-3 3v11a3 3 0 0 1 3-3h7V5Z"/></svg></span>
+      <span class="info">
+        <span class="kortmeta"><span class="merke">9 aktiviteter</span></span>
+        <span class="navn">Historier</span>
+        <span class="desc">Les, lytt og bygg setninger gjennom fortellinger.</span>
+      </span>
+      <span class="pil">→</span>
+    </a>
+
+    <a class="hkort tone-peach" href="#skolefag">
+      <span class="ikon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M12 3 2 8l10 5 10-5-10-5Z"/><path d="M6 10.5V15c0 1.5 2.7 3 6 3s6-1.5 6-3v-4.5"/><path d="M22 8v6"/></svg></span>
+      <span class="info">
+        <span class="kortmeta"><span class="merke">Ukens læring</span></span>
+        <span class="navn">Skolefag</span>
+        <span class="desc">Bergart, leirskole og nye temaer fra undervisningen.</span>
+      </span>
+      <span class="pil">→</span>
+    </a>
+  </div>
+
+  <div id="skolefag" class="seksjonshode" style="scroll-margin-top:5.5rem;">
+    <h2 class="serif">Fra skolen</h2>
+  </div>
+
+  <div class="panel-navy">
+    <div class="eyebrow navy">Nå arbeider vi med</div>
+    <h2 class="serif">Ukens tema</h2>
+    <p class="lede">To tydelige innganger til ordene og opplevelsene fra skolen.</p>
+    <div class="tema-liste">
+      <a class="tema-item" href="historie-bergart.html">
+        <span class="ikon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M4 17 8 8l3 4 3-7 6 12H4Z"/></svg></span>
+        <span class="info">
+          <span class="kortmeta"><span class="nummer">01</span><span class="fag">Naturfag</span></span>
+          <span class="navn">Bergart</span>
+        </span>
+        <span class="pil">→</span>
+      </a>
+      <a class="tema-item" href="historie-leirskole.html">
+        <span class="ikon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M12 4 4 19h16L12 4Z"/><path d="M12 4v15M8.5 19 12 11l3.5 8"/></svg></span>
+        <span class="info">
+          <span class="kortmeta"><span class="nummer">02</span><span class="fag">Sosialt</span></span>
+          <span class="navn">Leirskole</span>
+        </span>
+        <span class="pil">→</span>
+      </a>
+    </div>
+  </div>
+
+  <div class="seksjonshode">
+    <h2 class="serif">Fremgang</h2>
+  </div>
+
+  <div class="valg-liste" style="grid-template-columns:1fr;">
+    <a class="hkort tone-gold" href="edels-score.html">
+      <span class="ikon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="m12 2.5 2.6 5.7 6.2.6-4.7 4.1 1.4 6.1L12 16l-5.5 3 1.4-6.1-4.7-4.1 6.2-.6L12 2.5Z"/></svg></span>
+      <span class="info">
+        <span class="navn">Edels score</span>
+        <span class="desc">Se fremgang og test forståelsen</span>
+      </span>
+      <span class="pil">→</span>
+    </a>
+  </div>
+
+  <div class="seksjonshode">
+    <h2 class="serif">Verktøy</h2>
+  </div>
+
+  <div class="valg-liste" style="grid-template-columns:1fr;">
+    <a class="hkort tone-peach" href="beskriv-dagen.html">
+      <span class="ikon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M4 19.5V5a2 2 0 0 1 2-2h9l5 5v11.5a1.5 1.5 0 0 1-1.5 1.5h-13A1.5 1.5 0 0 1 4 19.5Z"/><path d="M14.5 3v4.5H19M8 12h8M8 15.5h8M8 8.5h3"/></svg></span>
+      <span class="info">
+        <span class="navn">Beskriv dagen</span>
+        <span class="desc">Struktur for å skrive om en dag, til skolen</span>
+      </span>
+      <span class="pil">→</span>
+    </a>
+  </div>
+
+</main>
+
+<div class="footer">Laget med kjærlighet for Edel</div>
+
+</body>
+</html>
