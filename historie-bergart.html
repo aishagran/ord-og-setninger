@@ -89,6 +89,11 @@ h1.tittel{font-size:clamp(2.1rem,9vw,3rem);line-height:1;font-weight:500;letter-
 
 .knapp-hoved{width:100%;background:var(--navy);color:#fff;padding:0.75rem;border:none;border-radius:14px;font-family:'Inter';font-weight:600;font-size:0.92rem;cursor:pointer;margin-top:0.2rem;}
 .knapp-lav{background:var(--cream);border:1.5px solid var(--rule);color:var(--coral);padding:0.5rem 0.9rem;border-radius:12px;font-weight:600;font-size:0.82rem;cursor:pointer;margin-bottom:0.7rem;font-family:'Inter';}
+.ordvev{display:none;background:var(--cream);border:1.5px solid var(--coral);border-radius:14px;padding:0.9rem 1rem;margin-bottom:0.7rem;}
+.ordvev.vis{display:block;}
+.ordvev-niva{padding:0.45rem 0;border-top:1px dashed var(--rule);font-size:0.86rem;line-height:1.5;color:var(--ink);}
+.ordvev-niva:first-child{border-top:none;padding-top:0;}
+.ordvev-tag{display:inline-block;font-size:0.6rem;font-weight:700;text-transform:uppercase;letter-spacing:0.05em;color:var(--coral);margin-right:0.4rem;}
 .hjelpboks{display:none;background:var(--cream);border-radius:12px;padding:0.85rem;margin-top:0.6rem;}
 .hjelpboks.vis{display:block;}
 .hjelp-eks{color:var(--muted);font-size:0.88rem;line-height:1.8;}
@@ -260,7 +265,7 @@ h1.tittel{font-size:clamp(2.1rem,9vw,3rem);line-height:1;font-weight:500;letter-
 
     <div class="boks">
       <div class="steg-label">5 · Produksjon</div>
-      <div class="sporsmalboks">Frase-modell: <em>«En bergart er et materiale som fjell består av.»</em><br><br>Nå forklarer du ordet til Pipoka.</div>
+      <div class="sporsmalboks">Modellsetning: <em>«En bergart er et materiale som fjell består av.»</em><br><br>Nå forklarer du ordet til Pipoka.</div>
       <textarea class="tekstboks" id="m5" placeholder="Skriv én eller to setninger..."></textarea>
       <button class="knapp-hoved" style="margin-top:0.7rem;" onclick="sendFri('m5','m5F','Dag 1 - Forklar til Pipoka',5)">Send til mamma 💛</button>
       <div class="svar" id="m5F"></div>
@@ -338,7 +343,9 @@ h1.tittel{font-size:clamp(2.1rem,9vw,3rem);line-height:1;font-weight:500;letter-
       <div class="steg-label">1 · Fri gjenkalling</div>
       <div class="sporsmalboks">Uten å se på bildene: hva er en bergart, og hvordan blir granitt til? Fortell med egne ord.</div>
       <textarea class="tekstboks" id="r1" placeholder="Skriv her..."></textarea>
-      <button class="knapp-hoved" style="margin-top:0.7rem;" onclick="sendFri('r1','r1F','Dag 3 - Fri gjenkalling',15)">Send til mamma 💛</button>
+      <button class="knapp-lav" id="ordvevBtn_r1" onclick="ordvevHjelp('granitt_prosess','ordvevBoks_r1','ordvevBtn_r1')">🆘 Jeg trenger hjelp</button>
+      <div class="ordvev" id="ordvevBoks_r1"></div>
+      <button class="knapp-hoved" style="margin-top:0.3rem;" onclick="sendFri('r1','r1F','Dag 3 - Fri gjenkalling',15)">Send til mamma 💛</button>
       <div class="svar" id="r1F"></div>
     </div>
 
@@ -603,7 +610,6 @@ h1.tittel{font-size:clamp(2.1rem,9vw,3rem);line-height:1;font-weight:500;letter-
       <div class="svar" id="f4F"></div>
     </div>
   </div>
-
 </main>
 
 <div class="footer">Bergart · Edels Verden</div>
@@ -646,6 +652,33 @@ function visForslag(id, tekst){
   f.className='svar vis';
   f.style.background='var(--cream)'; f.style.color='var(--muted)';
   f.innerHTML='💡 Forslag: <em>'+tekst+'</em>';
+}
+
+/* ---- Ordvev: gradert hjelpestige (semantisk -> fonologisk), én nivå om gangen ---- */
+var ORDVEV = {
+  granitt_prosess: {
+    kategori: "Det er en forandring – noe skjer med magmaen over tid, ikke med en gang.",
+    funksjon: "Magmaen blir kaldere og kaldere. Til slutt blir den hard, som en stein.",
+    lyd: "Ordet begynner på ST- og har 2 stavelser: STØRK-NER.",
+    forveksling: "Ikke «smelter» – smelter er det motsatte (fra fast til flytende)!"
+  }
+};
+var ordvevSteg = {};
+function ordvevHjelp(id, boksId, btnId){
+  var v = ORDVEV[id];
+  var steg = (ordvevSteg[id]||0) + 1;
+  if(steg>4) steg=4;
+  ordvevSteg[id] = steg;
+  var boks = document.getElementById(boksId);
+  var html = '';
+  if(steg>=1) html += '<div class="ordvev-niva"><span class="ordvev-tag">Hva slags ord</span>'+v.kategori+'</div>';
+  if(steg>=2) html += '<div class="ordvev-niva"><span class="ordvev-tag">Hva som skjer</span>'+v.funksjon+'</div>';
+  if(steg>=3) html += '<div class="ordvev-niva"><span class="ordvev-tag">Hvordan det høres</span>'+v.lyd+'</div>';
+  if(steg>=4) html += '<div class="ordvev-niva"><span class="ordvev-tag">NB</span>'+v.forveksling+'</div>';
+  boks.className='ordvev vis';
+  boks.innerHTML = html;
+  var btn = document.getElementById(btnId);
+  if(steg>=4){ btn.style.display='none'; } else { btn.textContent = '🆘 Enda mer hjelp'; }
 }
 
 function sendFri(taId, svarId, oppgave, minLen){

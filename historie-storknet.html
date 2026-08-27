@@ -67,6 +67,11 @@ h1.tittel{font-size:clamp(2.1rem,9vw,3rem);line-height:1;font-weight:500;letter-
 .felt:focus{outline:none;border-color:var(--coral);}
 .knapp-hoved{width:100%;background:var(--navy);color:#fff;padding:0.75rem;border:none;border-radius:14px;font-family:'Inter';font-weight:600;font-size:0.92rem;cursor:pointer;margin-top:0.2rem;}
 .knapp-lav{background:var(--cream);border:1.5px solid var(--rule);color:var(--coral);padding:0.5rem 0.9rem;border-radius:12px;font-weight:600;font-size:0.82rem;cursor:pointer;margin-bottom:0.7rem;font-family:'Inter';}
+.ordvev{display:none;background:var(--cream);border:1.5px solid var(--coral);border-radius:14px;padding:0.9rem 1rem;margin-bottom:0.7rem;}
+.ordvev.vis{display:block;}
+.ordvev-niva{padding:0.45rem 0;border-top:1px dashed var(--rule);font-size:0.86rem;line-height:1.5;color:var(--ink);}
+.ordvev-niva:first-child{border-top:none;padding-top:0;}
+.ordvev-tag{display:inline-block;font-size:0.6rem;font-weight:700;text-transform:uppercase;letter-spacing:0.05em;color:var(--coral);margin-right:0.4rem;}
 .hjelpboks{display:none;background:var(--cream);border-radius:12px;padding:0.85rem;margin-top:0.6rem;}
 .hjelpboks.vis{display:block;}
 .hjelp-eks{color:var(--muted);font-size:0.88rem;line-height:1.8;}
@@ -243,7 +248,9 @@ h1.tittel{font-size:clamp(2.1rem,9vw,3rem);line-height:1;font-weight:500;letter-
         <div class="hjelp-eks">Sjokoladen ble flytende fordi Edel varmet den.<br>Dermed kunne hun lage sjokoladegulrøtter.<br>Pynten sto i kjøleskapet, dermed størknet den igjen.</div>
       </div>
       <textarea class="tekstboks" id="s2" placeholder="Skriv her..."></textarea>
-      <button class="knapp-hoved" style="margin-top:0.7rem;" onclick="sendFri('s2','s2F','Størknet - Fortell om sjokoladepynten',10)">Send til mamma 💛</button>
+      <button class="knapp-lav" id="ordvevBtn_s2" onclick="ordvevHjelp('storknet_pynt','ordvevBoks_s2','ordvevBtn_s2')">🆘 Trenger du et ord?</button>
+      <div class="ordvev" id="ordvevBoks_s2"></div>
+      <button class="knapp-hoved" style="margin-top:0.3rem;" onclick="sendFri('s2','s2F','Størknet - Fortell om sjokoladepynten',10)">Send til mamma 💛</button>
       <div class="svar" id="s2F"></div>
     </div>
   </div>
@@ -265,7 +272,9 @@ h1.tittel{font-size:clamp(2.1rem,9vw,3rem);line-height:1;font-weight:500;letter-
       <div id="fortellBoks" style="display:none;margin-top:1rem;">
         <div class="sporsmalboks">✍️ Fortell hva du hørte, med dine egne ord.</div>
         <textarea class="tekstboks" id="fortellTekst" placeholder="Skriv det du husker..."></textarea>
-        <button class="knapp-hoved" style="margin-top:0.7rem;" onclick="sendFri('fortellTekst','fortellFasit','Størknet - Lytt og fortell',10)">Send til mamma 💛</button>
+        <button class="knapp-lav" id="ordvevBtn_lytt" onclick="ordvevHjelp('storknet_pynt','ordvevBoks_lytt','ordvevBtn_lytt')">🆘 Trenger du et ord?</button>
+        <div class="ordvev" id="ordvevBoks_lytt"></div>
+        <button class="knapp-hoved" style="margin-top:0.3rem;" onclick="sendFri('fortellTekst','fortellFasit','Størknet - Lytt og fortell',10)">Send til mamma 💛</button>
         <div class="svar" id="fortellFasit"></div>
       </div>
     </div>
@@ -282,6 +291,33 @@ h1.tittel{font-size:clamp(2.1rem,9vw,3rem);line-height:1;font-weight:500;letter-
 
 <script>
 var MAAL = "Størknet – flytende til fast, fordi/dermed";
+
+/* ---- Ordvev: gradert hjelpestige (semantisk -> fonologisk), én nivå om gangen ---- */
+var ORDVEV = {
+  storknet_pynt: {
+    kategori: "Det er noe som skjer med sjokoladen når den blir kald – ikke noe hun gjør med hendene.",
+    funksjon: "Sjokoladen var flytende. I kjøleskapet blir den kald og hard igjen – det er det motsatte av å smelte.",
+    lyd: "Ordet begynner på ST- og har 2 stavelser: STØRK-NET.",
+    forveksling: "Ikke «tørket» (det er for vann) og ikke «smeltet» (det er det motsatte retning)!"
+  }
+};
+var ordvevSteg = {};
+function ordvevHjelp(id, boksId, btnId){
+  var v = ORDVEV[id];
+  var steg = (ordvevSteg[id]||0) + 1;
+  if(steg>4) steg=4;
+  ordvevSteg[id] = steg;
+  var boks = document.getElementById(boksId);
+  var html = '';
+  if(steg>=1) html += '<div class="ordvev-niva"><span class="ordvev-tag">Hva slags ord</span>'+v.kategori+'</div>';
+  if(steg>=2) html += '<div class="ordvev-niva"><span class="ordvev-tag">Hva som skjer</span>'+v.funksjon+'</div>';
+  if(steg>=3) html += '<div class="ordvev-niva"><span class="ordvev-tag">Hvordan det høres</span>'+v.lyd+'</div>';
+  if(steg>=4) html += '<div class="ordvev-niva"><span class="ordvev-tag">NB</span>'+v.forveksling+'</div>';
+  boks.className='ordvev vis';
+  boks.innerHTML = html;
+  var btn = document.getElementById(btnId);
+  if(steg>=4){ btn.style.display='none'; } else { btn.textContent = '🆘 Enda mer hjelp'; }
+}
 
 function zoom(src){ document.getElementById('modalBilde').src=src; document.getElementById('bildeModal').classList.add('vis'); }
 function lukkModal(){ document.getElementById('bildeModal').classList.remove('vis'); }
