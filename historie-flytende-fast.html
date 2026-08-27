@@ -140,22 +140,21 @@ h1.tittel{font-size:clamp(1.9rem,8vw,2.7rem);line-height:1.05;font-weight:500;le
   <div class="del aktiv">
     <div class="boks">
       <img class="bilde" src="img/flytendefast-gulrotkake.png" alt="Pipoka og Edel lager gulrotkake" onclick="zoom('img/flytendefast-gulrotkake.png')">
-      <div class="linje">Nå lager Edel og Pipoka kakerøre. Røren er <span class="frem">flytende</span>.</div>
-      <div class="linje">Edel setter kaken i ovnen. Varmen gjør røren <span class="frem">fast</span>.</div>
-      <div class="linje">Se! Kakerøren ble til en kake. Den er ikke flytende lenger!</div>
-      <div class="linje">Edel pynter kaken med gulrot, valnøtter og krem.</div>
+      <div class="linje">Edel og Pipoka blander kakedeigen. «Nå lager vi kakedeig!»</div>
+      <div class="linje">Kakedeigen er <span class="frem">flytende</span> — se, den renner i bollen!</div>
+      <div class="linje">Kaken er ferdig! Kakedeigen ble til en kake. Den er ikke flytende lenger.</div>
     </div>
     <div class="boks">
-      <div class="linje">Se, Pipoka! Der kommer det flytende <span class="frem">magma</span> ut av vulkanen.</div>
-      <div class="linje">Wow! Magmaen er flytende stein!</div>
-      <div class="linje">Flytende magma er varm. Når magmaen blir kaldere, <span class="frem">størkner</span> den.</div>
-      <div class="linje">Og blir til en bergart – som granitt!</div>
+      <div class="linje">Edel og Pipoka ser på vulkanen. «Der kommer det flytende <span class="frem">magma</span> ut av vulkanen!»</div>
+      <div class="linje">«Wow! Magmaen er flytende stein!»</div>
+      <div class="linje">Magmaen blir kaldere og <span class="frem">størkner</span> ...</div>
+      <div class="linje">... og blir til en bergart, som granitt!</div>
     </div>
     <div class="boks">
-      <div class="linje">I butikken: «Denne platen er <span class="frem">granitt</span>. Den var en gang flytende lava!»</div>
-      <div class="linje">«Ja! Lavaen størknet langsomt nede i jorda, og ble til granitt.»</div>
-      <div class="linje">Granitt er veldig <span class="frem">slitesterk</span> – den brukes i kjøkkenbenker, trapper, gulv og bygg.</div>
-      <div class="linje" style="font-weight:600;">Det vi lager, det vi ser i naturen og det vi bruker i hverdagen – alt henger sammen!</div>
+      <div class="linje">Edel og Pipoka kjøper en granittplate. «Denne platen er <span class="frem">granitt</span>!»</div>
+      <div class="linje">«Ja! Den ble til av magma som størknet langt nede i jorda.»</div>
+      <div class="linje" style="font-weight:600;">Fra flytende magma til vakker granitt!</div>
+      <div class="linje">Granitt er veldig <span class="frem">slitesterk</span> – Edel og Pipoka elsker å lære om jorda vår!</div>
     </div>
   </div>
 
@@ -416,9 +415,9 @@ function nesteBygg(){ iB++; visBygg(); }
 
 /* ---- LYTT OG FORTELL ---- */
 var LYTT_DELER = [
-  { tekst: "Nå lager Edel og Pipoka kakerøre. Røren er flytende. Edel setter kaken i ovnen, og varmen gjør røren fast. Kakerøren ble til en kake – den er ikke flytende lenger!" },
-  { tekst: "Se, Pipoka! Der kommer det flytende magma ut av vulkanen. Magmaen er flytende stein. Når magmaen blir kaldere, størkner den og blir til en bergart, som granitt." },
-  { tekst: "I butikken kjøper de en granittplate. Den var en gang flytende lava, som størknet langsomt nede i jorda. Granitt er veldig slitesterk, og brukes i kjøkkenbenker, trapper, gulv og bygg." }
+  { tekst: "Edel og Pipoka blander kakedeigen. Nå lager vi kakedeig! Deigen er flytende – den renner i bollen. Kaken er ferdig! Kakedeigen ble til en kake, og den er ikke flytende lenger." },
+  { tekst: "Edel og Pipoka ser på vulkanen. Der kommer det flytende magma ut av vulkanen. Magmaen er flytende stein. Magmaen blir kaldere og størkner, og blir til en bergart, som granitt." },
+  { tekst: "Edel og Pipoka kjøper en granittplate. Denne platen er granitt, sier hun. Den ble til av magma som størknet langt nede i jorda. Fra flytende magma til vakker granitt!" }
 ];
 function visLyttStatus(paa){
   document.getElementById('lyttStart').style.display = paa ? 'none' : 'block';
