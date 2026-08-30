@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="no">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Verb og instruksjoner – Edels Verden</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{--cream:#F6F1E6;--paper:#FFFEFA;--navy:#1C2C42;--navy-2:#29455F;--ink:#1B2438;--muted:#746F66;--coral:#BE6E56;--coral-soft:#F3DFD6;--rule:#E4DCCB;--green:#3E6C63;--green-bg:#E1EBE7;--red:#B5483A;--red-bg:#F5E1DC;--blue:#52769A;--blue-bg:#E4EDF5;--gold:#9A7718;--gold-bg:#F5EDCF;--shadow:0 12px 34px rgba(28,44,66,.08)}
+*{box-sizing:border-box;margin:0;padding:0}body{font-family:'Inter',sans-serif;background:radial-gradient(circle at 10% 0%,#FFF9EE 0,transparent 24rem),var(--cream);color:var(--ink);min-height:100vh;padding-bottom:3rem;-webkit-font-smoothing:antialiased}button,textarea{font:inherit}button{touch-action:manipulation}a:focus-visible,button:focus-visible,textarea:focus-visible{outline:2px solid var(--coral);outline-offset:3px}.serif{font-family:'Fraunces',serif}
+.topnav{display:flex;align-items:center;justify-content:space-between;padding:.9rem 1.2rem;max-width:680px;margin:0 auto;position:sticky;top:0;background:rgba(246,241,230,.92);backdrop-filter:blur(16px);border-bottom:1px solid rgba(28,44,66,.07);z-index:40}.avatar{width:2.65rem;height:2.65rem;border-radius:50%;background:var(--navy);color:#EDE6D6;display:flex;align-items:center;justify-content:center;font-family:'Fraunces',serif;font-style:italic;font-weight:600;text-decoration:none}.navlinks{display:flex;gap:1.25rem}.navlinks a{color:var(--ink);text-decoration:none;font-weight:600;font-size:.9rem}.side{max-width:680px;margin:0 auto;padding:2rem 1.2rem 0}.tilbake{display:inline-flex;margin-bottom:1.55rem;color:var(--muted);text-decoration:none;font-size:.82rem;font-weight:600}.eyebrow{font-size:.68rem;letter-spacing:.15em;text-transform:uppercase;font-weight:700;color:var(--coral);margin-bottom:.6rem}h1{font-size:clamp(2rem,8vw,2.8rem);line-height:1.05;font-weight:500;letter-spacing:-.03em}.lede{color:var(--muted);font-size:.94rem;line-height:1.6;max-width:31rem;margin:.9rem 0 1.45rem}
+.maal{display:flex;gap:.65rem;flex-wrap:wrap;margin-bottom:1.3rem}.pille{padding:.45rem .7rem;border:1px solid var(--rule);border-radius:999px;background:rgba(255,254,250,.72);font-size:.72rem;font-weight:700;color:var(--muted)}.panel{background:var(--paper);border:1px solid rgba(28,44,66,.08);border-radius:22px;padding:1.25rem 1.3rem;margin-bottom:1rem;box-shadow:0 7px 24px rgba(28,44,66,.045)}.steg{display:flex;align-items:center;gap:.65rem;margin-bottom:.9rem}.stegnr{width:2rem;height:2rem;display:grid;place-items:center;border-radius:50%;background:var(--coral-soft);color:var(--coral);font-weight:800;font-size:.78rem}.steg h2{font-family:'Fraunces',serif;font-size:1.25rem;font-weight:600}.instruks{padding:.85rem 1rem;background:var(--cream);border-left:3px solid var(--coral);border-radius:11px;margin-bottom:.85rem;line-height:1.55;font-weight:650}.liten{font-size:.82rem;color:var(--muted);line-height:1.5;margin-bottom:.8rem}
+.verbkort{display:grid;grid-template-columns:1fr 1fr;gap:.65rem;margin-bottom:.9rem}.verb{border-radius:15px;padding:.85rem}.verb.blue{background:var(--blue-bg);color:#315777}.verb.gold{background:var(--gold-bg);color:#765A0D}.verb .tag{display:block;font-size:.59rem;letter-spacing:.08em;text-transform:uppercase;font-weight:800;margin-bottom:.32rem}.verb strong{font-size:1.08rem}.verb p{font-size:.76rem;line-height:1.4;margin-top:.25rem}
+.valg{display:block;width:100%;background:var(--cream);border:1.5px solid var(--rule);color:var(--ink);padding:.76rem .9rem;border-radius:14px;cursor:pointer;margin-bottom:.55rem;text-align:left;line-height:1.4;font-size:.92rem}.valg.riktig{border-color:var(--green);background:var(--green-bg);color:var(--green)}.valg.feil{border-color:var(--red);background:var(--red-bg);color:var(--red)}.svar{display:none;margin-top:.72rem;padding:.75rem .85rem;border-radius:12px;font-weight:600;line-height:1.5;font-size:.86rem}.svar.vis{display:block}.svar.riktig{background:var(--green-bg);color:var(--green)}.svar.feil{background:var(--red-bg);color:var(--red)}
+.tekstboks{width:100%;min-height:76px;padding:.85rem;border:1.5px solid var(--rule);border-radius:14px;background:var(--paper);color:var(--ink);resize:vertical;line-height:1.5}.knapp{width:100%;border:0;border-radius:14px;padding:.78rem .9rem;font-weight:700;cursor:pointer;margin-top:.65rem}.knapp.hoved{background:var(--navy);color:#fff}.knapp.hjelp{background:var(--coral-soft);color:var(--coral)}.hjelpeboks{display:none;background:var(--cream);border:1.5px solid var(--coral);border-radius:14px;padding:.85rem 1rem;margin-top:.65rem}.hjelpeboks.vis{display:block}.hjelperad{padding:.4rem 0;border-top:1px dashed var(--rule);font-size:.86rem;line-height:1.5}.hjelperad:first-child{border-top:0}.hjelpetag{display:inline-block;font-size:.59rem;text-transform:uppercase;letter-spacing:.06em;color:var(--coral);font-weight:800;margin-right:.35rem}
+.oppdrag{display:grid;grid-template-columns:1fr 1fr;gap:.65rem}.objekt{display:flex;flex-direction:column;align-items:center;justify-content:center;min-height:105px;border:1.5px solid var(--rule);border-radius:16px;background:var(--cream);cursor:pointer;color:var(--ink);font-weight:750}.objekt .symbol{font-size:2rem;margin-bottom:.35rem}.objekt.valgt{border-color:var(--blue);background:var(--blue-bg)}.objekt.riktig{border-color:var(--green);background:var(--green-bg);color:var(--green)}.objekt.feil{border-color:var(--red);background:var(--red-bg);color:var(--red)}
+.rekkefolge{display:grid;gap:.55rem;margin:.75rem 0}.rekkesteg{display:grid;grid-template-columns:4.4rem 1fr;gap:.65rem;align-items:center;padding:.7rem .8rem;background:var(--cream);border-radius:13px;font-size:.88rem;line-height:1.4}.rekkesteg b{color:var(--coral)}details{margin-top:1.15rem;background:rgba(255,254,250,.68);border:1px solid var(--rule);border-radius:18px;padding:1rem}summary{cursor:pointer;font-weight:750;color:var(--navy)}.sjekkliste{display:grid;gap:.7rem;margin-top:.9rem}.sjekkliste label{display:flex;gap:.65rem;align-items:flex-start;font-size:.86rem;line-height:1.45}.sjekkliste input{margin-top:.18rem;accent-color:var(--green)}.footer{text-align:center;font-size:.75rem;color:var(--muted);margin-top:2.5rem;padding:1.25rem}@media(max-width:430px){.verbkort,.oppdrag{grid-template-columns:1fr 1fr}.side{padding-top:1.55rem}.navlinks{gap:.8rem}.navlinks a{font-size:.8rem}}
+</style>
+</head>
+<body>
+<div class="topnav"><a class="avatar" href="index.html" aria-label="Til forsiden">E</a><div class="navlinks"><a href="historier.html">Historier</a><a href="index.html#skolefag">Skolefag</a></div></div>
+<main class="side">
+  <a class="tilbake" href="index.html">← Til forsiden</a>
+  <div class="eyebrow">Språkverksted · 5–10 minutter</div>
+  <h1 class="serif">Verb og instruksjoner</h1>
+  <p class="lede">I dag øver vi på én verbform og korte beskjeder. Les én oppgave om gangen.</p>
+  <div class="maal"><span class="pille">Målord: danne</span><span class="pille">Én og to handlinger</span><span class="pille">Nytt forsøk etter hjelp</span></div>
+
+  <section class="panel">
+    <div class="steg"><span class="stegnr">1</span><h2>Se forskjellen</h2></div>
+    <div class="verbkort">
+      <div class="verb blue"><span class="tag">Når vi forklarer</span><strong>å danne</strong><p>Å danne betyr <b>å forme</b>.</p></div>
+      <div class="verb gold"><span class="tag">Det skjer nå</span><strong>danner</strong><p>Elevene <b>danner</b> en gruppe.</p></div>
+    </div>
+    <div class="instruks">Velg riktig ord: Å danne betyr ___.</div>
+    <button class="valg" onclick="velg(this,false,'verb1')">former</button>
+    <button class="valg" onclick="velg(this,true,'verb1')">å forme</button>
+    <div class="svar" id="verb1"></div>
+  </section>
+
+  <section class="panel">
+    <div class="steg"><span class="stegnr">2</span><h2>Bruk verbet</h2></div>
+    <div class="instruks">Lag én setning om skolen med ordet <strong>danner</strong>.</div>
+    <textarea class="tekstboks" id="egenSetning" placeholder="Skriv her …"></textarea>
+    <button class="knapp hjelp" id="hjelpBtn" onclick="visHjelp()">Vis ett hint</button>
+    <div class="hjelpeboks" id="hjelpeboks"></div>
+    <button class="knapp hoved" onclick="sendSetning()">Send setningen til mamma</button>
+    <div class="svar" id="setningSvar"></div>
+  </section>
+
+  <section class="panel">
+    <div class="steg"><span class="stegnr">3</span><h2>Følg én beskjed</h2></div>
+    <div class="instruks">Pek på organismen.</div>
+    <p class="liten">En organisme er noe som lever.</p>
+    <div class="oppdrag">
+      <button class="objekt" onclick="velgObjekt(this,true,'instruks1')"><span class="symbol">🐕</span>en hund</button>
+      <button class="objekt" onclick="velgObjekt(this,false,'instruks1')"><span class="symbol">🪨</span>en bergart</button>
+    </div>
+    <div class="svar" id="instruks1"></div>
+  </section>
+
+  <section class="panel">
+    <div class="steg"><span class="stegnr">4</span><h2>Følg to beskjeder</h2></div>
+    <div class="rekkefolge">
+      <div class="rekkesteg"><b>Først</b><span>Pek på organismen.</span></div>
+      <div class="rekkesteg"><b>Etterpå</b><span>Pek på bergarten.</span></div>
+    </div>
+    <div class="instruks">Hva skal du gjøre først?</div>
+    <button class="valg" onclick="velg(this,true,'instruks2')">Peke på organismen</button>
+    <button class="valg" onclick="velg(this,false,'instruks2')">Peke på bergarten</button>
+    <div class="svar" id="instruks2"></div>
+  </section>
+
+  <details>
+    <summary>Til Aisha · kort registrering</summary>
+    <div class="sjekkliste">
+      <label><input type="checkbox" id="loggInstruks"> Edel forstod instruksjonen.</label>
+      <label><input type="checkbox" id="loggOrd"> Edel brukte målordet <em>danner</em>.</label>
+      <label><input type="checkbox" id="loggFleksjon"> Verbformen var riktig.</label>
+      <label><input type="checkbox" id="loggSetning"> Setningen var fullstendig.</label>
+    </div>
+    <button class="knapp hoved" onclick="sendLogg()">Send dagens registrering</button>
+    <div class="svar" id="loggSvar"></div>
+  </details>
+</main>
+<div class="footer">Verb og instruksjoner · Edels Verden</div>
+<script>
+var stotteNiva=0;
+function velg(btn,ok,id){
+  var gruppe=btn.parentElement.querySelectorAll('.valg');
+  gruppe.forEach(function(b){b.disabled=true});
+  var f=document.getElementById(id);
+  if(ok){btn.classList.add('riktig');f.className='svar vis riktig';f.innerHTML='✅ Riktig. Når vi forklarer et verb, bruker vi «å» i begge deler.'}
+  else{btn.classList.add('feil');gruppe.forEach(function(b){if(b!==btn)b.classList.add('riktig')});f.className='svar vis feil';f.innerHTML='💡 Betydningen var nær. Modellen er: <strong>Å danne betyr å forme.</strong> Si setningen én gang til.'}
+}
+function velgObjekt(btn,ok,id){
+  var gruppe=btn.parentElement.querySelectorAll('.objekt');gruppe.forEach(function(b){b.disabled=true});
+  var f=document.getElementById(id);
+  if(ok){btn.classList.add('riktig');f.className='svar vis riktig';f.innerHTML='✅ Ja. En hund er en organisme fordi den lever.'}
+  else{btn.classList.add('feil');gruppe.forEach(function(b){if(b!==btn)b.classList.add('riktig')});f.className='svar vis feil';f.innerHTML='💡 En bergart lever ikke. Pek på organismen én gang til.'}
+}
+var HINT=[
+  ['Tenk på','Hvem kan lage en gruppe på skolen?'],
+  ['Se for deg','elever → en gruppe'],
+  ['Start slik','Elevene ___ en gruppe.'],
+  ['Modell','Elevene danner en gruppe. Skriv nå setningen én gang til.']
+];
+function visHjelp(){
+  if(stotteNiva<4)stotteNiva++;
+  var html='';for(var i=0;i<stotteNiva;i++){html+='<div class="hjelperad"><span class="hjelpetag">'+HINT[i][0]+'</span>'+HINT[i][1]+'</div>'}
+  document.getElementById('hjelpeboks').className='hjelpeboks vis';document.getElementById('hjelpeboks').innerHTML=html;
+  var b=document.getElementById('hjelpBtn');b.textContent=stotteNiva<4?'Vis ett hint til':'Bruk modellen og prøv igjen';
+}
+function sendSetning(){
+  var t=document.getElementById('egenSetning').value.trim(),f=document.getElementById('setningSvar');
+  if(t.length<5){f.className='svar vis feil';f.innerHTML='Skriv én kort setning først.';return}
+  f.className='svar vis';f.style.background='var(--cream)';f.style.color='var(--muted)';f.textContent='Sender …';
+  fetch('https://formspree.io/f/mqeolldg',{method:'POST',headers:{'Content-Type':'application/json','Accept':'application/json'},body:JSON.stringify({Tekst_hun_skrev:t,oppgave:'Verb og instruksjoner - fri setning',maal:'danne/danner og positiv instruksjon',dato:new Date().toLocaleString('no-NO'),stotte_niva:stotteNiva,stotte_poeng:stotteNiva===0?3:stotteNiva===1?2:stotteNiva===2?1:0})})
+  .then(function(r){if(r.ok){f.className='svar vis riktig';f.innerHTML='✅ Sendt. Bra jobbet!'}else{throw new Error()}}).catch(function(){f.className='svar vis feil';f.innerHTML='❌ Noe gikk galt. Prøv igjen.'})
+}
+function sendLogg(){
+  var data={forstod_instruksjon:document.getElementById('loggInstruks').checked?'ja':'nei',brukte_maalord:document.getElementById('loggOrd').checked?'ja':'nei',fleksjon_riktig:document.getElementById('loggFleksjon').checked?'ja':'nei',fullstendig_setning:document.getElementById('loggSetning').checked?'ja':'nei',stotte_niva:stotteNiva,dato:new Date().toLocaleString('no-NO'),oppgave:'Verb og instruksjoner - voksenregistrering'};
+  var f=document.getElementById('loggSvar');f.className='svar vis';f.style.background='var(--cream)';f.style.color='var(--muted)';f.textContent='Sender …';
+  fetch('https://formspree.io/f/mqeolldg',{method:'POST',headers:{'Content-Type':'application/json','Accept':'application/json'},body:JSON.stringify(data)})
+  .then(function(r){if(r.ok){f.className='svar vis riktig';f.innerHTML='✅ Registreringen er sendt.'}else{throw new Error()}}).catch(function(){f.className='svar vis feil';f.innerHTML='❌ Noe gikk galt. Prøv igjen.'})
+}
+</script>
+</body>
+</html>
