@@ -1,0 +1,356 @@
+<!DOCTYPE html>
+<html lang="no">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ordet danne – Edels Verden</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --cream:#F6F1E6;--paper:#FFFEFA;--navy:#1C2C42;--navy-2:#29455F;--ink:#1B2438;--muted:#746F66;
+  --coral:#BE6E56;--coral-soft:#F3DFD6;--rule:#E4DCCB;
+  --correct:#3E6C63;--correct-bg:#E1EBE7;--feil:#B5483A;--feil-bg:#F5E1DC;
+  --shadow:0 12px 34px rgba(28,44,66,0.08);
+}
+*{box-sizing:border-box;margin:0;padding:0;}
+html{scroll-behavior:smooth;}
+body{font-family:'Inter',sans-serif;background:radial-gradient(circle at 10% 0%,#FFF9EE 0,transparent 24rem),var(--cream);color:var(--ink);min-height:100vh;padding-bottom:3rem;-webkit-font-smoothing:antialiased;}
+a{-webkit-tap-highlight-color:transparent;}
+a:focus-visible,button:focus-visible{outline:2px solid var(--coral);outline-offset:3px;}
+.serif{font-family:'Fraunces',serif;}
+.topnav{display:flex;align-items:center;justify-content:space-between;padding:0.9rem 1.2rem;max-width:680px;margin:0 auto;position:sticky;top:0;background:rgba(246,241,230,0.9);backdrop-filter:blur(16px);border-bottom:1px solid rgba(28,44,66,0.07);z-index:40;}
+.avatar{width:2.65rem;height:2.65rem;border-radius:50%;background:var(--navy);color:#EDE6D6;display:flex;align-items:center;justify-content:center;font-family:'Fraunces',serif;font-style:italic;font-weight:600;font-size:1.08rem;flex-shrink:0;box-shadow:0 8px 20px rgba(28,44,66,0.16);text-decoration:none;}
+.navlinks{display:flex;gap:1.35rem;}
+.navlinks a{color:var(--ink);text-decoration:none;font-weight:600;font-size:0.92rem;}
+.navlinks a:hover{color:var(--coral);}
+.side{max-width:680px;margin:0 auto;padding:2rem 1.2rem 0;}
+.tilbake{display:inline-flex;margin-bottom:1.6rem;color:var(--muted);text-decoration:none;font-size:0.82rem;font-weight:600;}
+.eyebrow{font-size:0.68rem;letter-spacing:0.15em;text-transform:uppercase;font-weight:700;color:var(--coral);margin-bottom:0.6rem;}
+.topp{padding-bottom:1.6rem;border-bottom:1px solid var(--rule);}
+h1.tittel{font-size:clamp(2.2rem,10vw,3.2rem);line-height:1;font-weight:500;letter-spacing:-0.03em;}
+.lede{color:var(--muted);font-size:0.94rem;line-height:1.6;max-width:27rem;margin-top:0.9rem;}
+
+.formkort{background:var(--paper);border:1px solid var(--rule);border-radius:20px;padding:1.2rem 1.3rem;margin:1.4rem 0;box-shadow:0 7px 24px rgba(28,44,66,0.045);}
+.formrad{display:flex;align-items:baseline;gap:0.8rem;padding:0.5rem 0;border-top:1px dashed var(--rule);}
+.formrad:first-of-type{border-top:none;}
+.formrad .form{font-family:'Fraunces',serif;font-weight:600;font-size:1.05rem;color:var(--coral);min-width:6.5rem;}
+.formrad .betyr{font-size:0.88rem;color:var(--muted);}
+
+.stegnav{display:flex;gap:0.35rem;margin:1.4rem 0;}
+.stegdot{flex:1;height:5px;border-radius:3px;background:var(--rule);}
+.stegdot.ferdig{background:var(--coral);}
+.stegdot.aktiv{background:var(--navy);}
+.stegtittel{font-size:0.72rem;letter-spacing:0.08em;text-transform:uppercase;color:var(--muted);font-weight:700;margin-bottom:1rem;}
+.tela{display:none;}
+.tela.aktiv{display:block;animation:inn 0.25s;}
+@keyframes inn{from{opacity:0;}to{opacity:1;}}
+
+.boks{background:var(--paper);border:1px solid rgba(28,44,66,0.08);border-radius:20px;padding:1.25rem 1.3rem;margin-bottom:0.9rem;box-shadow:0 7px 24px rgba(28,44,66,0.045);}
+.steg-label{font-size:0.66rem;letter-spacing:0.09em;text-transform:uppercase;color:var(--coral);font-weight:700;margin-bottom:0.6rem;}
+.lede-liten{color:var(--muted);font-size:0.88rem;line-height:1.5;margin-bottom:0.9rem;}
+.bilde{width:100%;border-radius:16px;cursor:zoom-in;box-shadow:0 8px 24px rgba(28,44,66,0.1);margin-bottom:1rem;display:block;}
+.linje{padding:0.35rem 0;font-size:1rem;line-height:1.6;}
+.frem{background:rgba(190,110,86,0.16);border-radius:5px;padding:0.1rem 0.35rem;font-weight:700;color:var(--coral);}
+.kontekst-merke{display:inline-block;background:var(--cream);border:1px solid var(--rule);border-radius:999px;padding:0.2rem 0.6rem;font-size:0.66rem;font-weight:700;letter-spacing:0.05em;text-transform:uppercase;color:var(--muted);margin-bottom:0.7rem;}
+
+.sporsmal{font-size:1rem;line-height:1.55;margin-bottom:0.7rem;color:var(--ink);}
+.knapp{display:block;width:100%;background:var(--cream);border:1.5px solid var(--rule);color:var(--ink);padding:0.7rem 0.9rem;border-radius:14px;cursor:pointer;margin-bottom:0.5rem;text-align:left;line-height:1.4;font-size:0.94rem;font-family:'Inter',sans-serif;}
+.knapp.riktig{border-color:var(--correct);background:var(--correct-bg);color:var(--correct);}
+.knapp.feil{border-color:var(--feil);background:var(--feil-bg);color:var(--feil);}
+.knapprad{margin-bottom:1.1rem;}
+.knapprad:last-child{margin-bottom:0;}
+.sporsmalboks{background:var(--cream);border-left:3px solid var(--coral);padding:0.85rem 0.95rem;border-radius:10px;color:var(--ink);font-size:0.92rem;line-height:1.5;margin-bottom:0.9rem;}
+.tekstboks{width:100%;min-height:80px;padding:0.9rem;border:1.5px solid var(--rule);border-radius:14px;font-family:'Inter';font-size:0.96rem;background:var(--paper);color:var(--ink);resize:vertical;line-height:1.55;}
+.tekstboks:focus{outline:none;border-color:var(--coral);}
+.feltrad{margin-bottom:0.9rem;}
+.feltrad:last-child{margin-bottom:0;}
+.feltrad label{display:block;font-size:0.95rem;margin-bottom:0.35rem;color:var(--ink);line-height:1.5;}
+.felt{width:100%;padding:0.65rem 0.85rem;border:1.5px solid var(--rule);border-radius:12px;font-family:'Inter';font-size:0.94rem;background:var(--paper);color:var(--ink);}
+.felt:focus{outline:none;border-color:var(--coral);}
+.knapp-hoved{width:100%;background:var(--navy);color:#fff;padding:0.75rem;border:none;border-radius:14px;font-family:'Inter';font-weight:600;font-size:0.92rem;cursor:pointer;margin-top:0.2rem;}
+.knapp-lav{background:var(--cream);border:1.5px solid var(--rule);color:var(--coral);padding:0.5rem 0.9rem;border-radius:12px;font-weight:600;font-size:0.82rem;cursor:pointer;margin-bottom:0.7rem;font-family:'Inter';}
+.knapprad2{display:flex;gap:0.6rem;justify-content:space-between;margin-top:1.1rem;}
+.svar{margin-top:0.7rem;padding:0.7rem 0.85rem;border-radius:12px;font-weight:600;display:none;line-height:1.55;font-size:0.88rem;}
+.svar.vis{display:block;}
+.svar.riktig{background:var(--correct-bg);color:var(--correct);}
+.svar.feil{background:var(--feil-bg);color:var(--feil);}
+.ordvev{display:none;background:var(--cream);border:1.5px solid var(--coral);border-radius:14px;padding:0.9rem 1rem;margin-bottom:0.7rem;}
+.ordvev.vis{display:block;}
+.ordvev-niva{padding:0.45rem 0;border-top:1px dashed var(--rule);font-size:0.86rem;line-height:1.5;color:var(--ink);}
+.ordvev-niva:first-child{border-top:none;padding-top:0;}
+.ordvev-tag{display:inline-block;font-size:0.6rem;font-weight:700;text-transform:uppercase;letter-spacing:0.05em;color:var(--coral);margin-right:0.4rem;}
+.footer{text-align:center;font-size:0.75rem;color:var(--muted);margin-top:2.5rem;padding:1.25rem;}
+.modal{display:none;position:fixed;inset:0;background:rgba(28,36,56,0.94);z-index:100;padding:0.5rem;overflow:auto;}
+.modal.vis{display:flex;align-items:center;justify-content:center;}
+.modal img{max-width:100%;border-radius:14px;}
+.modal-lukk{position:fixed;top:0.8rem;right:1.2rem;color:#fff;font-size:2.4rem;cursor:pointer;font-weight:bold;z-index:101;}
+@media(prefers-reduced-motion:reduce){*{scroll-behavior:auto!important;}}
+</style>
+</head>
+<body>
+
+<div class="topnav">
+  <a class="avatar" href="index.html" aria-label="Til forsiden">E</a>
+  <div class="navlinks">
+    <a href="historier.html">Historier</a>
+    <a href="index.html#skolefag">Skolefag</a>
+  </div>
+</div>
+
+<main class="side">
+  <a class="tilbake" href="historier.html">← Historier</a>
+
+  <section class="topp">
+    <div class="eyebrow">Ett ord · Mange steder</div>
+    <h1 class="tittel serif">danne</h1>
+    <p class="lede">Det samme ordet dukker opp i K-pop, på skolen, i naturen og i geologi. Kjenner du det igjen overalt?</p>
+  </section>
+
+  <div class="formkort">
+    <div class="formrad"><span class="form">å danne</span><span class="betyr">å forme / å skape</span></div>
+    <div class="formrad"><span class="form">danner</span><span class="betyr">gjør det nå</span></div>
+    <div class="formrad"><span class="form">dannet</span><span class="betyr">gjorde det før</span></div>
+    <div class="formrad"><span class="form">ble dannet</span><span class="betyr">noen andre gjorde det</span></div>
+    <div class="formrad"><span class="form">dannes</span><span class="betyr">det skjer av seg selv</span></div>
+  </div>
+
+  <div class="stegnav" id="stegnav">
+    <div class="stegdot aktiv"></div><div class="stegdot"></div><div class="stegdot"></div><div class="stegdot"></div>
+  </div>
+
+  <!-- TELA 0: K-POP -->
+  <div class="tela aktiv" id="tela0">
+    <div class="stegtittel">Steg 1 av 4 · Det du kjenner</div>
+    <div class="boks">
+      <span class="kontekst-merke">🎤 K-pop</span>
+      <img class="bilde" src="img/danne-oversikt.png" alt="Danne – dannet – dannes" onclick="zoom('img/danne-oversikt.png')">
+      <div class="linje">BTS <span class="frem">ble dannet</span> i Sør-Korea i 2013.</div>
+      <div class="linje">Gruppen ble dannet av Big Hit Entertainment.</div>
+      <div class="linje">Rumi, Mira og Zoey <span class="frem">danner</span> gruppen HUNTR/X.</div>
+      <div class="linje">Saja Boys ble dannet av demonen Jinu.</div>
+    </div>
+    <div class="boks">
+      <span class="kontekst-merke">👥 Mennesker</span>
+      <div class="linje">Tre jenter <span class="frem">danner</span> en gruppe.</div>
+      <div class="linje">Elevene danner en sirkel.</div>
+      <div class="linje">Spillerne danner et lag.</div>
+      <div class="linje">Edel og vennene hennes <span class="frem">dannet</span> en lesegruppe.</div>
+    </div>
+    <div class="knapprad2" style="justify-content:flex-end;">
+      <button class="knapp-hoved" style="width:auto;padding:0.75rem 1.4rem;" onclick="visTela(1)">Neste →</button>
+    </div>
+  </div>
+
+  <!-- TELA 1: NATUR OG GEOLOGI -->
+  <div class="tela" id="tela1">
+    <div class="stegtittel">Steg 2 av 4 · Samme ord, ny plass</div>
+    <div class="boks">
+      <span class="kontekst-merke">❄️ Natur</span>
+      <div class="linje">Vann fryser og <span class="frem">danner</span> is.</div>
+      <div class="linje">Snø kan danne et tykt lag på bakken.</div>
+      <div class="linje">Skyer <span class="frem">dannes</span> når vanndamp avkjøles.</div>
+      <div class="linje">Regndråper dannes i skyene.</div>
+    </div>
+    <div class="boks">
+      <span class="kontekst-merke">🪨 Geologi</span>
+      <div class="linje">Mineraler <span class="frem">danner</span> bergarter.</div>
+      <div class="linje">Kvarts, feltspat og glimmer kan danne granitt.</div>
+      <div class="linje">Magmatiske bergarter <span class="frem">dannes</span> når magma avkjøles og størkner.</div>
+      <div class="linje">Noen bergarter <span class="frem">ble dannet</span> for millioner av år siden.</div>
+    </div>
+    <div class="boks">
+      <div class="steg-label">Legg merke til</div>
+      <div class="lede-liten">Samme ord – helt forskjellige steder. Personer danner grupper. Mineraler danner bergarter. Vann danner is.</div>
+    </div>
+    <div class="knapprad2">
+      <button class="knapp-lav" onclick="visTela(0)">← Forrige</button>
+      <button class="knapp-hoved" style="width:auto;padding:0.75rem 1.4rem;" onclick="visTela(2)">Neste →</button>
+    </div>
+  </div>
+
+  <!-- TELA 2: MED STØTTE -->
+  <div class="tela" id="tela2">
+    <div class="stegtittel">Steg 3 av 4 · Fyll inn</div>
+    <div class="boks">
+      <div class="lede-liten">Hvilket ord mangler? Alle svarene er en form av «danne».</div>
+      <div class="knapprad">
+        <div class="sporsmal">Tre personer ______ en gruppe.</div>
+        <button class="knapp" onclick="velgEn(this,0,0,'a1F')">danner</button>
+        <button class="knapp" onclick="velgEn(this,0,1,'a1F')">dannes</button>
+        <button class="knapp" onclick="velgEn(this,0,2,'a1F')">ble dannet</button>
+        <div class="svar" id="a1F"></div>
+      </div>
+      <div class="knapprad">
+        <div class="sporsmal">Vann fryser og ______ is.</div>
+        <button class="knapp" onclick="velgEn(this,0,0,'a2F')">danner</button>
+        <button class="knapp" onclick="velgEn(this,0,1,'a2F')">dannet</button>
+        <button class="knapp" onclick="velgEn(this,0,2,'a2F')">å danne</button>
+        <div class="svar" id="a2F"></div>
+      </div>
+      <div class="knapprad">
+        <div class="sporsmal">Mineraler ______ bergarter.</div>
+        <button class="knapp" onclick="velgEn(this,0,0,'a3F')">danner</button>
+        <button class="knapp" onclick="velgEn(this,0,1,'a3F')">ble dannet</button>
+        <button class="knapp" onclick="velgEn(this,0,2,'a3F')">dannes</button>
+        <div class="svar" id="a3F"></div>
+      </div>
+      <div class="knapprad">
+        <div class="sporsmal">BTS ______ i Sør-Korea i 2013.</div>
+        <button class="knapp" onclick="velgEn(this,1,0,'a4F')">danner</button>
+        <button class="knapp" onclick="velgEn(this,1,1,'a4F')">ble dannet</button>
+        <button class="knapp" onclick="velgEn(this,1,2,'a4F')">å danne</button>
+        <div class="svar" id="a4F"></div>
+      </div>
+    </div>
+    <div class="knapprad2">
+      <button class="knapp-lav" onclick="visTela(1)">← Forrige</button>
+      <button class="knapp-hoved" style="width:auto;padding:0.75rem 1.4rem;" onclick="visTela(3)">Neste →</button>
+    </div>
+  </div>
+
+  <!-- TELA 3: UTEN STØTTE -->
+  <div class="tela" id="tela3">
+    <div class="stegtittel">Steg 4 av 4 · Uten hjelp</div>
+    <div class="boks">
+      <div class="steg-label">1 · Svar med hele setninger</div>
+      <div class="lede-liten">Ingen alternativer denne gangen. Skriv svaret selv.</div>
+      <div class="feltrad">
+        <label>Hva gjør tre personer når de lager en gruppe?</label>
+        <input class="felt" id="b1" placeholder="De ...">
+      </div>
+      <div class="feltrad">
+        <label>Hva skjer når vann fryser?</label>
+        <input class="felt" id="b2" placeholder="Det ...">
+      </div>
+      <div class="feltrad">
+        <label>Hvordan dannes magmatiske bergarter?</label>
+        <input class="felt" id="b3" placeholder="De dannes når ...">
+      </div>
+      <button class="knapp-hoved" onclick="sendTre()">Send til mamma 💛</button>
+      <div class="svar" id="b3F"></div>
+    </div>
+
+    <div class="boks">
+      <div class="steg-label">2 · Med dine egne ord</div>
+      <div class="sporsmalboks">Forklar ordet «danne» med dine egne ord. Hva betyr det?</div>
+      <button class="knapp-lav" id="ordvevBtn_s1" onclick="ordvevHjelp('danne','ordvevBoks_s1','ordvevBtn_s1')">🆘 Jeg trenger hjelp</button>
+      <div class="ordvev" id="ordvevBoks_s1"></div>
+      <textarea class="tekstboks" id="s1" placeholder="Skriv her..."></textarea>
+      <button class="knapp-hoved" style="margin-top:0.3rem;" onclick="sendFri('s1','s1F','Danne - Egne ord',10,'danne')">Send til mamma 💛</button>
+      <div class="svar" id="s1F"></div>
+    </div>
+
+    <div class="boks">
+      <div class="steg-label">3 · Din egen setning</div>
+      <div class="sporsmalboks">Lag én setning med «danne» om noe helt annet – ikke K-pop, ikke stein.</div>
+      <textarea class="tekstboks" id="s2" style="min-height:65px;" placeholder="Skriv her..."></textarea>
+      <button class="knapp-hoved" style="margin-top:0.7rem;" onclick="sendFri('s2','s2F','Danne - Egen setning',8)">Send til mamma 💛</button>
+      <div class="svar" id="s2F"></div>
+    </div>
+
+    <div class="knapprad2">
+      <button class="knapp-lav" onclick="visTela(2)">← Forrige</button>
+    </div>
+  </div>
+
+</main>
+
+<div class="footer">Ordet danne · Edels Verden</div>
+
+<div class="modal" id="bildeModal" onclick="lukkModal()">
+  <span class="modal-lukk">&times;</span>
+  <img id="modalBilde" src="" alt="">
+</div>
+
+<script>
+var MAAL = "Ordet danne – overføring mellom kontekster + gjenkalling";
+
+function zoom(src){ document.getElementById('modalBilde').src=src; document.getElementById('bildeModal').classList.add('vis'); }
+function lukkModal(){ document.getElementById('bildeModal').classList.remove('vis'); }
+
+function visTela(n){
+  document.querySelectorAll('.tela').forEach(function(t,i){ t.classList.toggle('aktiv', i===n); });
+  document.querySelectorAll('#stegnav .stegdot').forEach(function(d,i){
+    d.classList.toggle('aktiv', i===n);
+    d.classList.toggle('ferdig', i<n);
+  });
+  window.scrollTo({top:0,behavior:'smooth'});
+}
+
+function velgEn(btn, riktigIdx, valgtIdx, svarId){
+  var knapper = btn.parentElement.querySelectorAll('.knapp');
+  knapper.forEach(function(b){b.style.pointerEvents='none';});
+  var f=document.getElementById(svarId);
+  if(valgtIdx===riktigIdx){ btn.classList.add('riktig'); f.className='svar vis riktig'; f.innerHTML='✅ Riktig!'; }
+  else{ btn.classList.add('feil'); if(knapper[riktigIdx]) knapper[riktigIdx].classList.add('riktig'); f.className='svar vis feil'; f.innerHTML='💡 Nesten! Riktig svar er markert med grønt.'; }
+}
+
+function stottePoeng(steg){
+  if(!steg) return 3;
+  if(steg<=2) return 2;
+  if(steg===3) return 1;
+  return 0;
+}
+function sendFri(taId, svarId, oppgave, minLen, ordvevId){
+  var t=document.getElementById(taId).value;
+  var f=document.getElementById(svarId);
+  minLen = minLen||3;
+  if(t.trim().length<minLen){ f.className='svar vis feil'; f.innerHTML='⏳ Skriv litt mer først!'; return; }
+  f.className='svar vis'; f.style.background='var(--cream)'; f.style.color='var(--muted)'; f.innerHTML='⏳ Sender...';
+  var niva = ordvevId ? (ordvevSteg[ordvevId]||0) : null;
+  var poeng = ordvevId ? stottePoeng(niva) : null;
+  fetch('https://formspree.io/f/mqeolldg',{method:'POST',headers:{'Content-Type':'application/json','Accept':'application/json'},
+    body:JSON.stringify({Tekst_hun_skrev:t, oppgave:oppgave, maal:MAAL, dato:new Date().toLocaleString('no-NO'), stotte_niva:niva, stotte_poeng:poeng})})
+   .then(function(r){
+     if(r.ok){ f.className='svar vis riktig'; f.innerHTML='✅ Sendt til mamma! 🎉'; }
+     else{ f.className='svar vis feil'; f.innerHTML='❌ Noe gikk galt. Prøv igjen!'; }
+   })
+   .catch(function(){ f.className='svar vis feil'; f.innerHTML='❌ Sjekk internett og prøv igjen!'; });
+}
+function sendTre(){
+  var b1=document.getElementById('b1').value.trim();
+  var b2=document.getElementById('b2').value.trim();
+  var b3=document.getElementById('b3').value.trim();
+  var f=document.getElementById('b3F');
+  var fylt=[b1,b2,b3].filter(Boolean);
+  if(fylt.length<1){ f.className='svar vis feil'; f.innerHTML='⏳ Svar på minst ett spørsmål!'; return; }
+  var tekst = '1) '+(b1||'—')+' | 2) '+(b2||'—')+' | 3) '+(b3||'—');
+  f.className='svar vis'; f.style.background='var(--cream)'; f.style.color='var(--muted)'; f.innerHTML='⏳ Sender...';
+  fetch('https://formspree.io/f/mqeolldg',{method:'POST',headers:{'Content-Type':'application/json','Accept':'application/json'},
+    body:JSON.stringify({Tekst_hun_skrev:tekst, oppgave:'Danne - Svar uten alternativer', maal:MAAL, dato:new Date().toLocaleString('no-NO')})})
+   .then(function(r){
+     if(r.ok){ f.className='svar vis riktig'; f.innerHTML='✅ Sendt til mamma! 🎉'; }
+     else{ f.className='svar vis feil'; f.innerHTML='❌ Noe gikk galt. Prøv igjen!'; }
+   })
+   .catch(function(){ f.className='svar vis feil'; f.innerHTML='❌ Sjekk internett og prøv igjen!'; });
+}
+
+var ORDVEV = {
+  danne: {
+    kategori: "Det er noe som skjer når flere ting blir til én ting.",
+    funksjon: "Tre personer blir én gruppe. Mineraler blir én bergart. Vanndamp blir én sky.",
+    lyd: "Ordet begynner på DA- og har 2 stavelser: DAN-NE.",
+    forveksling: "«Danne» er ikke det samme som «lage». Du lager en kake selv – men en sky dannes av seg selv."
+  }
+};
+var ordvevSteg = {};
+function ordvevHjelp(id, boksId, btnId){
+  var v = ORDVEV[id];
+  var steg = (ordvevSteg[id]||0) + 1;
+  if(steg>4) steg=4;
+  ordvevSteg[id] = steg;
+  var boks = document.getElementById(boksId);
+  var html = '';
+  if(steg>=1) html += '<div class="ordvev-niva"><span class="ordvev-tag">Hva slags ord</span>'+v.kategori+'</div>';
+  if(steg>=2) html += '<div class="ordvev-niva"><span class="ordvev-tag">Eksempler</span>'+v.funksjon+'</div>';
+  if(steg>=3) html += '<div class="ordvev-niva"><span class="ordvev-tag">Hvordan det høres</span>'+v.lyd+'</div>';
+  if(steg>=4) html += '<div class="ordvev-niva"><span class="ordvev-tag">NB</span>'+v.forveksling+'</div>';
+  boks.className='ordvev vis';
+  boks.innerHTML = html;
+  var btn = document.getElementById(btnId);
+  if(steg>=4){ btn.style.display='none'; } else { btn.textContent = '🆘 Enda mer hjelp'; }
+}
+</script>
+</body>
+</html>

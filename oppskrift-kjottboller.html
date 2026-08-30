@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="no">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Kjøttboller med mandelmel – Edels oppskrifter</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --cream:#F6F1E6;--paper:#FFFEFA;--navy:#1C2C42;--navy-2:#29455F;--ink:#1B2438;--muted:#746F66;
+  --coral:#BE6E56;--coral-soft:#F3DFD6;--rule:#E4DCCB;
+  --shadow:0 12px 34px rgba(28,44,66,0.08);
+}
+*{box-sizing:border-box;margin:0;padding:0;}
+html{scroll-behavior:smooth;}
+body{font-family:'Inter',sans-serif;background:radial-gradient(circle at 10% 0%,#FFF9EE 0,transparent 24rem),var(--cream);color:var(--ink);min-height:100vh;padding-bottom:3rem;-webkit-font-smoothing:antialiased;}
+a{-webkit-tap-highlight-color:transparent;}
+a:focus-visible,button:focus-visible{outline:2px solid var(--coral);outline-offset:3px;}
+.serif{font-family:'Fraunces',serif;}
+.topnav{display:flex;align-items:center;justify-content:space-between;padding:0.9rem 1.2rem;max-width:680px;margin:0 auto;position:sticky;top:0;background:rgba(246,241,230,0.9);backdrop-filter:blur(16px);border-bottom:1px solid rgba(28,44,66,0.07);z-index:40;}
+.avatar{width:2.65rem;height:2.65rem;border-radius:50%;background:var(--navy);color:#EDE6D6;display:flex;align-items:center;justify-content:center;font-family:'Fraunces',serif;font-style:italic;font-weight:600;font-size:1.08rem;flex-shrink:0;box-shadow:0 8px 20px rgba(28,44,66,0.16);text-decoration:none;}
+.navlinks{display:flex;gap:1.35rem;}
+.navlinks a{color:var(--ink);text-decoration:none;font-weight:600;font-size:0.92rem;}
+.navlinks a:hover{color:var(--coral);}
+.side{max-width:680px;margin:0 auto;padding:2rem 1.2rem 0;}
+.tilbake{display:inline-flex;margin-bottom:1.6rem;color:var(--muted);text-decoration:none;font-size:0.82rem;font-weight:600;}
+.eyebrow{font-size:0.68rem;letter-spacing:0.15em;text-transform:uppercase;font-weight:700;color:var(--coral);margin-bottom:0.6rem;}
+.topp{padding-bottom:1.8rem;border-bottom:1px solid var(--rule);}
+h1.tittel{font-size:clamp(2rem,8.5vw,2.9rem);line-height:1.02;font-weight:500;letter-spacing:-0.03em;}
+.undertittel{font-family:'Fraunces',serif;font-style:italic;color:var(--coral);font-size:1rem;margin-top:0.5rem;}
+.lede{color:var(--muted);font-size:0.94rem;line-height:1.6;max-width:27rem;margin-top:0.9rem;}
+.boks{background:var(--paper);border:1px solid rgba(28,44,66,0.08);border-radius:20px;padding:1.25rem 1.3rem;margin-bottom:0.9rem;box-shadow:0 7px 24px rgba(28,44,66,0.045);}
+.steg-label{font-size:0.66rem;letter-spacing:0.09em;text-transform:uppercase;color:var(--coral);font-weight:700;margin-bottom:0.7rem;}
+.bilde{width:100%;border-radius:16px;cursor:zoom-in;box-shadow:0 8px 24px rgba(28,44,66,0.1);margin-bottom:1rem;display:block;}
+.linje{padding:0.4rem 0;font-size:1rem;line-height:1.65;}
+.frem{background:rgba(190,110,86,0.16);border-radius:5px;padding:0.1rem 0.35rem;font-weight:700;color:var(--coral);}
+.ingrediensliste{list-style:none;}
+.ingrediensliste li{padding:0.5rem 0;border-top:1px dashed var(--rule);font-size:0.98rem;display:flex;gap:0.7rem;}
+.ingrediensliste li:first-child{border-top:none;}
+.ingrediensliste .mengde{font-family:'Fraunces',serif;font-weight:600;color:var(--coral);min-width:5.5rem;flex-shrink:0;}
+.stegliste{list-style:none;counter-reset:steg;}
+.stegliste li{counter-increment:steg;padding:0.9rem 0;border-top:1px dashed var(--rule);display:flex;gap:0.9rem;align-items:flex-start;}
+.stegliste li:first-child{border-top:none;padding-top:0;}
+.stegliste li::before{content:counter(steg);font-family:'Fraunces',serif;font-weight:600;color:#fff;background:var(--navy);width:1.8rem;height:1.8rem;border-radius:50%;display:grid;place-items:center;font-size:0.85rem;flex-shrink:0;}
+.stegliste .stegtekst{font-size:0.98rem;line-height:1.6;}
+.stegliste .stegord{display:block;font-size:0.66rem;letter-spacing:0.08em;text-transform:uppercase;font-weight:700;color:var(--coral);margin-bottom:0.2rem;}
+.ordkort{background:var(--cream);border-radius:14px;padding:0.9rem 1rem;margin-top:0.3rem;}
+.ordrad{display:flex;gap:0.8rem;align-items:baseline;padding:0.35rem 0;border-top:1px dashed var(--rule);font-size:0.9rem;}
+.ordrad:first-child{border-top:none;}
+.ordrad .o{font-family:'Fraunces',serif;font-weight:600;color:var(--coral);min-width:5.5rem;flex-shrink:0;}
+.ordrad .b{color:var(--muted);}
+.tips-liste{list-style:none;}
+.tips-liste li{padding:0.45rem 0;font-size:0.95rem;line-height:1.55;display:flex;gap:0.6rem;}
+.tips-liste li::before{content:"♥";color:var(--coral);flex-shrink:0;}
+.passer{display:flex;flex-wrap:wrap;gap:0.4rem;margin-top:0.3rem;}
+.passer span{background:var(--cream);border:1px solid var(--rule);border-radius:999px;padding:0.3rem 0.75rem;font-size:0.85rem;}
+.footer{text-align:center;font-size:0.75rem;color:var(--muted);margin-top:2.5rem;padding:1.25rem;}
+.modal{display:none;position:fixed;inset:0;background:rgba(28,36,56,0.94);z-index:100;padding:0.5rem;overflow:auto;}
+.modal.vis{display:flex;align-items:center;justify-content:center;}
+.modal img{max-width:100%;border-radius:14px;}
+.modal-lukk{position:fixed;top:0.8rem;right:1.2rem;color:#fff;font-size:2.4rem;cursor:pointer;font-weight:bold;z-index:101;}
+@media(prefers-reduced-motion:reduce){*{scroll-behavior:auto!important;}}
+</style>
+</head>
+<body>
+
+<div class="topnav">
+  <a class="avatar" href="index.html" aria-label="Til forsiden">E</a>
+  <div class="navlinks">
+    <a href="oppskrifter.html">Oppskrifter</a>
+    <a href="historier.html">Historier</a>
+  </div>
+</div>
+
+<main class="side">
+  <a class="tilbake" href="oppskrifter.html">← Edels oppskrifter</a>
+
+  <section class="topp">
+    <div class="eyebrow">Edels oppskrifter</div>
+    <h1 class="tittel serif">Kjøttboller med mandelmel</h1>
+    <div class="undertittel">Saftige, myke og laget med kjærlighet</div>
+  </section>
+
+  <div class="boks" style="margin-top:1.5rem;">
+    <img class="bilde" src="img/oppskrift-kjottboller.png" alt="Kjøttboller med mandel – oppskrift" onclick="zoom('img/oppskrift-kjottboller.png')" style="margin-bottom:0;">
+  </div>
+
+  <div class="boks">
+    <div class="steg-label">Ingredienser</div>
+    <ul class="ingrediensliste">
+      <li><span class="mengde">500 g</span><span>kjøttdeig</span></li>
+      <li><span class="mengde">2 ss</span><span>mandelmel</span></li>
+      <li><span class="mengde">1</span><span>egg</span></li>
+      <li><span class="mengde"></span><span>Hvitløk og løk</span></li>
+      <li><span class="mengde"></span><span>Salt, pepper og paprika</span></li>
+      <li><span class="mengde">Valgfritt</span><span>revet parmesan</span></li>
+      <li><span class="mengde">Valgfritt</span><span>en terning ost i midten</span></li>
+    </ul>
+    <div style="margin-top:0.8rem;font-size:0.9rem;color:var(--muted);">💡 Mandelmel hjelper til å gi litt mer fasthet uten å gi mange karbohydrater.</div>
+  </div>
+
+  <div class="boks">
+    <div class="steg-label">Slik gjør du – vi bruker ordene våre</div>
+    <ol class="stegliste">
+      <li><div class="stegtekst"><span class="stegord">Blandes</span>Ha alle ingrediensene i en bolle. <span class="frem">Blandes</span> godt med skje.</div></li>
+      <li><div class="stegtekst"><span class="stegord">Flytende</span>Kjøttdeigen er <span class="frem">flytende</span> og myk før den formes.</div></li>
+      <li><div class="stegtekst"><span class="stegord">Avkjøles</span>Sett bollen i kjøleskapet og la deigen <span class="frem">avkjøles</span> i 15 minutter.</div></li>
+      <li><div class="stegtekst"><span class="stegord">Størkner</span>Når deigen avkjøles, <span class="frem">størkner</span> den og blir lettere å forme.</div></li>
+      <li><div class="stegtekst"><span class="stegord">Blir til og dannes</span>Rull kjøttboller. Deigen <span class="frem">blir til</span> kjøttboller og det <span class="frem">dannes</span> en fin form.</div></li>
+      <li><div class="stegtekst"><span class="stegord">Stekes</span>Stekes i panne eller ovnen til de er gylne og gjennomstekte.</div></li>
+    </ol>
+  </div>
+
+  <div class="boks">
+    <div class="steg-label">Ord og hva de betyr</div>
+    <div class="ordkort">
+      <div class="ordrad"><span class="o">flytende</span><span class="b">noe som kan renne</span></div>
+      <div class="ordrad"><span class="o">avkjøles</span><span class="b">bli kaldere</span></div>
+      <div class="ordrad"><span class="o">størkner</span><span class="b">kan ikke renne lenger</span></div>
+      <div class="ordrad"><span class="o">blir til</span><span class="b">forvandles til noe nytt</span></div>
+      <div class="ordrad"><span class="o">dannes</span><span class="b">formes / blir til</span></div>
+      <div class="ordrad"><span class="o">blandes</span><span class="b">settes sammen</span></div>
+      <div class="ordrad"><span class="o">består av</span><span class="b">er laget av</span></div>
+    </div>
+  </div>
+
+  <div class="boks">
+    <div class="steg-label">Vi kan sammenligne!</div>
+    <div class="linje">🍫 Sjokolade er <span class="frem">flytende</span> når den smelter, men når den <span class="frem">avkjøles</span>, <span class="frem">størkner</span> den og <span class="frem">blir til</span> sjokolade igjen.</div>
+    <div class="linje">🌋 Magma er <span class="frem">flytende</span> når den er varm, men når den <span class="frem">avkjøles</span>, <span class="frem">størkner</span> den og <span class="frem">blir til</span> bergart.</div>
+  </div>
+
+  <div class="boks">
+    <div class="steg-label">Edels tips</div>
+    <ul class="tips-liste">
+      <li>Bland kun til alt er akkurat blandet.</li>
+      <li>Hvis deigen er for myk, avkjøl i 15 minutter til.</li>
+      <li>Du kan putte ost inni hvis du liker!</li>
+    </ul>
+    <div class="steg-label" style="margin-top:1.1rem;">Passer til</div>
+    <div class="passer">
+      <span>potetmos</span><span>salat</span><span>ovnsgrønnsaker</span><span>saus</span><span>agurk</span>
+    </div>
+  </div>
+
+  <div class="boks">
+    <div class="steg-label">En liten historie</div>
+    <div class="linje">En dag bestemte Edel seg for å lage kjøttboller. Pipoka satt på kjøkkenet og fulgte nøye med.</div>
+    <div class="linje">Først fant Edel fram ingrediensene. Kjøttbollene <span class="frem">består av</span> kjøttdeig, mandelmel, egg, hvitløk, løk og krydder.</div>
+    <div class="linje">Etterpå la hun alle ingrediensene i en bolle. Ingrediensene ble <span class="frem">blandet</span> sammen. Mandelmelet hjalp til med å gjøre blandingen fastere.</div>
+    <div class="linje">Senere satte Edel blandingen i kjøleskapet. Der fikk den <span class="frem">avkjøles</span> i 15 minutter.</div>
+    <div class="linje">Da blandingen var kaldere og fastere, kunne Edel <span class="frem">forme</span> små kjøttboller.</div>
+    <div class="linje">Hun tok litt av blandingen i hendene. Den <span class="frem">ble til</span> en liten ball. Så laget hun én til, og én til.</div>
+    <div class="linje">Til slutt hadde Edel <span class="frem">dannet</span> mange små kjøttboller av blandingen.</div>
+    <div class="linje">Hun stekte kjøttbollene i en stekepanne til de var gjennomstekte.</div>
+    <div class="linje">Pipoka luktet på maten og håpet at en kjøttbolle skulle falle på gulvet.</div>
+    <div class="linje" style="font-weight:600;">Men Edel passet godt på maten sin!</div>
+  </div>
+
+  <div class="boks">
+    <div class="steg-label">Ord fra historien</div>
+    <div class="ordkort">
+      <div class="ordrad"><span class="o">består av</span><span class="b">er laget av flere deler</span></div>
+      <div class="ordrad"><span class="o">blandes</span><span class="b">forskjellige ting settes sammen</span></div>
+      <div class="ordrad"><span class="o">avkjøles</span><span class="b">blir kaldere</span></div>
+      <div class="ordrad"><span class="o">forme</span><span class="b">gi noe en bestemt form</span></div>
+      <div class="ordrad"><span class="o">blir til</span><span class="b">forandres til noe nytt</span></div>
+      <div class="ordrad"><span class="o">danne</span><span class="b">forme eller skape noe</span></div>
+      <div class="ordrad"><span class="o">dannet</span><span class="b">noe ble formet eller skapt</span></div>
+    </div>
+  </div>
+
+  <div class="boks">
+    <div class="steg-label">Snakk om historien</div>
+    <div class="lede-liten" style="color:var(--muted);font-size:0.88rem;margin-bottom:0.8rem;">Spørsmål å svare på høyt – uten å se på teksten.</div>
+    <ul class="tips-liste">
+      <li>Hva består kjøttbollene av?</li>
+      <li>Hva skjedde med ingrediensene?</li>
+      <li>Hvorfor måtte blandingen avkjøles?</li>
+      <li>Hva ble blandingen til?</li>
+      <li>Hva dannet Edel av blandingen?</li>
+    </ul>
+  </div>
+
+  <div class="boks">
+    <div class="steg-label">Om denne oppskriften</div>
+    <div class="linje">Denne oppskriften <span class="frem">består av</span> flere ingredienser. Ingrediensene <span class="frem">blandes</span> sammen, <span class="frem">avkjøles</span>, <span class="frem">størkner</span>, <span class="frem">blir til</span> og <span class="frem">dannes</span> til deilige kjøttboller!</div>
+    <div class="linje" style="font-style:italic;color:var(--muted);">Samme oppskrift kan vi bruke til deg og til Edel. Vi kan bare variere det vi har ved siden av!</div>
+  </div>
+
+</main>
+
+<div class="footer">Edels oppskrifter · Edels Verden</div>
+
+<div class="modal" id="bildeModal" onclick="lukkModal()">
+  <span class="modal-lukk">&times;</span>
+  <img id="modalBilde" src="" alt="">
+</div>
+
+<script>
+function zoom(src){ document.getElementById('modalBilde').src=src; document.getElementById('bildeModal').classList.add('vis'); }
+function lukkModal(){ document.getElementById('bildeModal').classList.remove('vis'); }
+</script>
+</body>
+</html>
