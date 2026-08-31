@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="no">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Musikk-mangfold</title>
+<style>
+:root{
+  --bg:#fffaf5;--card:#ffffff;--text:#2f2a35;--muted:#6f6876;
+  --pink:#ff8fb7;--pink2:#ffe0eb;--green:#8fd3a8;--green2:#e6f7ec;
+  --yellow:#ffd66b;--purple:#b59cff;--border:#eadfe5;
+  --shadow:0 10px 30px rgba(70,50,70,.10);
+}
+*{box-sizing:border-box}
+body{margin:0;font-family:ui-rounded,"Arial Rounded MT Bold",system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;background:linear-gradient(180deg,#fffaf5 0%,#fff 100%);color:var(--text);}
+.wrap{max-width:980px;margin:0 auto;padding:24px 16px 48px;}
+.hero{text-align:center;margin-bottom:18px;}
+.hero .emoji{font-size:42px}
+h1{margin:6px 0 6px;font-size:clamp(28px,5vw,46px)}
+.subtitle{color:var(--muted);font-size:clamp(15px,2.4vw,19px)}
+.rule{margin:14px auto 0;max-width:720px;background:var(--pink2);border:2px solid #ffc1d6;border-radius:18px;padding:12px 16px;font-weight:700;}
+.bilde{width:100%;border-radius:22px;box-shadow:var(--shadow);margin:18px 0;display:block;cursor:zoom-in;}
+.topbar{display:flex;align-items:center;justify-content:space-between;gap:10px;flex-wrap:wrap;margin:18px 0;}
+.pill{background:#fff;border:1px solid var(--border);border-radius:999px;padding:9px 14px;box-shadow:var(--shadow);font-weight:700;}
+.task{background:#fff;border:1px solid var(--border);border-radius:24px;box-shadow:var(--shadow);padding:18px;}
+.category{text-align:center;font-size:14px;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);font-weight:800;margin-bottom:6px;}
+.question{text-align:center;font-size:clamp(20px,3vw,28px);font-weight:900;margin:4px 0 16px;}
+.stjerne{background:#fffafc;border:2px solid #f1dbe5;border-radius:22px;padding:18px 14px;text-align:center;margin-bottom:16px;}
+.stjerne .navn{font-size:clamp(22px,4vw,30px);font-weight:900;}
+.stjerne .hint{font-size:14px;color:var(--muted);margin-top:6px;}
+.choices{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px;margin-top:8px;}
+button{border:0;border-radius:18px;min-height:58px;font:inherit;font-weight:900;cursor:pointer;transition:.18s ease;padding:12px 14px;}
+button:hover{transform:translateY(-1px)}
+button:active{transform:translateY(0)}
+.sjanger{background:#fff;border:2px solid var(--border);color:var(--text);}
+.sjanger.riktig{background:var(--green2);border-color:var(--green);color:#245a39}
+.sjanger.feil{background:#ffeaea;border-color:#ffb3b3;color:#8a2b2b}
+.next{background:var(--purple);color:#fff;display:none;margin:14px auto 0;min-width:190px}
+.restart{background:#fff;border:2px solid var(--border);color:var(--text);display:none;margin:14px auto 0;min-width:190px}
+.feedback{margin-top:14px;min-height:72px;border-radius:18px;padding:14px;text-align:center;background:#faf8fb;border:1px dashed var(--border);line-height:1.45;}
+.feedback.good{background:#effaf3;border-color:#9bd8af}
+.feedback.try{background:#fff8e6;border-color:#ffd66b}
+.resultat-seksjon{margin-top:24px;background:#fff;border:1px solid var(--border);border-radius:24px;box-shadow:var(--shadow);padding:18px;display:none;}
+.resultat-seksjon.vis{display:block;}
+.sort-title{text-align:center;font-size:24px;font-weight:900;margin-bottom:4px}
+.sort-help{text-align:center;color:var(--muted);margin-bottom:14px}
+.sjangerliste{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:10px;margin:16px 0;}
+.sjangerboks{border-radius:20px;border:2px solid var(--border);padding:12px 8px;text-align:center;background:#fcfbfd;}
+.sjangerboks .ikon{font-size:28px}
+.sjangerboks .navn{font-weight:900;font-size:14px;margin-top:4px}
+.sjangerboks .antall{font-size:12px;color:var(--muted);margin-top:4px}
+.konklusjon{background:var(--pink2);border:2px solid #ffc1d6;border-radius:18px;padding:14px 16px;font-weight:700;text-align:center;margin-top:16px;line-height:1.5;}
+.tenk{margin-top:16px;background:#fff8e6;border:2px solid var(--yellow);border-radius:18px;padding:14px 16px;line-height:1.5;}
+.tenk .sp{font-weight:900;margin-bottom:6px;}
+.modal{display:none;position:fixed;inset:0;background:rgba(47,42,53,.94);z-index:100;padding:12px;overflow:auto;}
+.modal.vis{display:flex;align-items:center;justify-content:center;}
+.modal img{max-width:100%;border-radius:16px;}
+.modal-lukk{position:fixed;top:10px;right:18px;color:#fff;font-size:40px;cursor:pointer;font-weight:900;z-index:101;}
+.tilbake{display:inline-block;margin-bottom:8px;color:var(--muted);text-decoration:none;font-weight:700;font-size:14px;}
+@media(max-width:700px){.sjangerliste{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media(max-width:430px){.choices{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <a class="tilbake" href="index.html">← Til forsiden</a>
+
+  <header class="hero">
+    <div class="emoji">🎤🎸🥁🎹✨</div>
+    <h1>Musikk-mangfold</h1>
+    <div class="subtitle">Alle er musikkstjerner – men de er ikke like!</div>
+    <div class="rule">MANGFOLD = forskjellige slags / variasjon</div>
+  </header>
+
+  <img class="bilde" src="img/musikkstjerner.png" alt="Musikkstjerner" onclick="zoom()">
+
+  <div class="topbar">
+    <div class="pill" id="roundText">Stjerne 1 av 10</div>
+    <div class="pill" id="scoreText">⭐ 0 poeng</div>
+  </div>
+
+  <section class="task">
+    <div class="category">Hvilken sjanger?</div>
+    <div class="question">Hva slags musikk spiller de?</div>
+
+    <div class="stjerne">
+      <div class="navn" id="stjerneNavn">—</div>
+      <div class="hint" id="stjerneHint"></div>
+    </div>
+
+    <div class="choices" id="valg"></div>
+
+    <div class="feedback" id="feedback">Velg et svar 👆</div>
+    <button class="next" id="nextBtn">Neste stjerne ➜</button>
+    <button class="restart" id="restartBtn">Spill igjen ↻</button>
+  </section>
+
+  <section class="resultat-seksjon" id="resultatSeksjon">
+    <div class="sort-title">Se på mangfoldet! ✨</div>
+    <div class="sort-help">Alle ti er musikkstjerner – men se hvor forskjellige de er:</div>
+
+    <div class="sjangerliste" id="sjangerliste"></div>
+
+    <div class="konklusjon">
+      Ti musikkstjerner fordelte seg på fire forskjellige sjangre.<br>
+      Det er <strong>stort mangfold</strong> i musikk! 🌈
+    </div>
+
+    <div class="tenk">
+      <div class="sp">🤔 Tenk litt:</div>
+      Hvis alle ti stjernene spilte K-pop, ville det vært stort eller lite mangfold?<br><br>
+      Og hva med i naturen? Hvis en skog bare hadde én type tre – ville det vært stort eller lite mangfold?
+    </div>
+  </section>
+</div>
+
+<div class="modal" id="modal" onclick="lukkModal()">
+  <span class="modal-lukk">&times;</span>
+  <img src="img/musikkstjerner.png" alt="Musikkstjerner">
+</div>
+
+<script>
+function zoom(){ document.getElementById('modal').classList.add('vis'); }
+function lukkModal(){ document.getElementById('modal').classList.remove('vis'); }
+
+var SJANGRE = ["K-pop","Rock","Metal","Pop"];
+
+var STJERNER = [
+  {navn:"Jennie", hint:"BLACKPINK", sjanger:"K-pop"},
+  {navn:"Lisa", hint:"BLACKPINK", sjanger:"K-pop"},
+  {navn:"G-Dragon", hint:"BIGBANG", sjanger:"K-pop"},
+  {navn:"Billie Eilish", hint:"alternativ", sjanger:"Pop"},
+  {navn:"Lady Gaga", hint:"", sjanger:"Pop"},
+  {navn:"KISS", hint:"sminke og gitarer", sjanger:"Rock"},
+  {navn:"ZZ Top", hint:"lange skjegg", sjanger:"Rock"},
+  {navn:"Metallica", hint:"hard og høy musikk", sjanger:"Metal"},
+  {navn:"Michael Jackson", hint:"moonwalk", sjanger:"Pop"},
+  {navn:"Selena Gomez", hint:"", sjanger:"Pop"}
+];
+
+function embland(arr){var a=arr.slice();for(var i=a.length-1;i>0;i--){var j=Math.floor(Math.random()*(i+1));var t=a[i];a[i]=a[j];a[j]=t;}return a;}
+
+var rekke = embland(STJERNER);
+var i = 0, poeng = 0, svart = false;
+
+var roundText = document.getElementById('roundText');
+var scoreText = document.getElementById('scoreText');
+var navnEl = document.getElementById('stjerneNavn');
+var hintEl = document.getElementById('stjerneHint');
+var valgEl = document.getElementById('valg');
+var fbEl = document.getElementById('feedback');
+var nextBtn = document.getElementById('nextBtn');
+var restartBtn = document.getElementById('restartBtn');
+var resultatSeksjon = document.getElementById('resultatSeksjon');
+
+function visStjerne(){
+  svart = false;
+  var s = rekke[i];
+  roundText.textContent = 'Stjerne ' + (i+1) + ' av ' + rekke.length;
+  scoreText.textContent = '⭐ ' + poeng + ' poeng';
+  navnEl.textContent = s.navn;
+  hintEl.textContent = s.hint ? '(' + s.hint + ')' : '';
+  valgEl.innerHTML = SJANGRE.map(function(sj){
+    return '<button class="sjanger" data-sj="' + sj + '">' + sj + '</button>';
+  }).join('');
+  valgEl.querySelectorAll('.sjanger').forEach(function(b){
+    b.onclick = function(){ svar(b, b.dataset.sj, s.sjanger); };
+  });
+  fbEl.className = 'feedback';
+  fbEl.textContent = 'Velg et svar 👆';
+  nextBtn.style.display = 'none';
+}
+
+function svar(btn, valgt, riktig){
+  if(svart) return;
+  svart = true;
+  valgEl.querySelectorAll('.sjanger').forEach(function(b){
+    b.style.pointerEvents = 'none';
+    if(b.dataset.sj === riktig) b.classList.add('riktig');
+  });
+  if(valgt === riktig){
+    poeng++;
+    fbEl.className = 'feedback good';
+    fbEl.textContent = '✅ Riktig! ' + rekke[i].navn + ' spiller ' + riktig + '.';
+  } else {
+    btn.classList.add('feil');
+    fbEl.className = 'feedback try';
+    fbEl.textContent = '💡 Nesten! ' + rekke[i].navn + ' spiller ' + riktig + '.';
+  }
+  scoreText.textContent = '⭐ ' + poeng + ' poeng';
+  nextBtn.style.display = 'block';
+  nextBtn.textContent = (i === rekke.length - 1) ? 'Se mangfoldet ➜' : 'Neste stjerne ➜';
+}
+
+nextBtn.onclick = function(){
+  i++;
+  if(i >= rekke.length){ visResultat(); return; }
+  visStjerne();
+};
+
+function visResultat(){
+  document.querySelector('.task').style.display = 'none';
+  resultatSeksjon.classList.add('vis');
+  var ikoner = {"K-pop":"🎤","Rock":"🎸","Metal":"🤘","Pop":"✨"};
+  var telling = {};
+  SJANGRE.forEach(function(sj){ telling[sj] = 0; });
+  STJERNER.forEach(function(s){ telling[s.sjanger]++; });
+  document.getElementById('sjangerliste').innerHTML = SJANGRE.map(function(sj){
+    return '<div class="sjangerboks"><div class="ikon">' + ikoner[sj] + '</div>' +
+           '<div class="navn">' + sj + '</div>' +
+           '<div class="antall">' + telling[sj] + ' stjerner</div></div>';
+  }).join('');
+  restartBtn.style.display = 'block';
+  resultatSeksjon.scrollIntoView({behavior:'smooth'});
+}
+
+restartBtn.onclick = function(){
+  rekke = embland(STJERNER);
+  i = 0; poeng = 0;
+  document.querySelector('.task').style.display = 'block';
+  resultatSeksjon.classList.remove('vis');
+  restartBtn.style.display = 'none';
+  visStjerne();
+  window.scrollTo({top:0,behavior:'smooth'});
+};
+
+visStjerne();
+</script>
+</body>
+</html>
