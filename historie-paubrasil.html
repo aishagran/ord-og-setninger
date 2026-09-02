@@ -1,0 +1,412 @@
+<!DOCTYPE html>
+<html lang="no">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Pau-brasil – Edels Verden</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --cream:#F6F1E6;--paper:#FFFEFA;--navy:#1C2C42;--navy-2:#29455F;--ink:#1B2438;--muted:#746F66;
+  --coral:#BE6E56;--coral-soft:#F3DFD6;--rule:#E4DCCB;
+  --correct:#3E6C63;--correct-bg:#E1EBE7;--feil:#B5483A;--feil-bg:#F5E1DC;
+  --shadow:0 12px 34px rgba(28,44,66,0.08);
+}
+*{box-sizing:border-box;margin:0;padding:0;}
+html{scroll-behavior:smooth;}
+body{font-family:'Inter',sans-serif;background:radial-gradient(circle at 10% 0%,#FFF9EE 0,transparent 24rem),var(--cream);color:var(--ink);min-height:100vh;padding-bottom:3rem;-webkit-font-smoothing:antialiased;}
+a{-webkit-tap-highlight-color:transparent;}
+a:focus-visible,button:focus-visible{outline:2px solid var(--coral);outline-offset:3px;}
+.serif{font-family:'Fraunces',serif;}
+.topnav{display:flex;align-items:center;justify-content:space-between;padding:0.9rem 1.2rem;max-width:680px;margin:0 auto;position:sticky;top:0;background:rgba(246,241,230,0.9);backdrop-filter:blur(16px);border-bottom:1px solid rgba(28,44,66,0.07);z-index:40;}
+.avatar{width:2.65rem;height:2.65rem;border-radius:50%;background:var(--navy);color:#EDE6D6;display:flex;align-items:center;justify-content:center;font-family:'Fraunces',serif;font-style:italic;font-weight:600;font-size:1.08rem;flex-shrink:0;box-shadow:0 8px 20px rgba(28,44,66,0.16);text-decoration:none;}
+.navlinks{display:flex;gap:1.35rem;}
+.navlinks a{color:var(--ink);text-decoration:none;font-weight:600;font-size:0.92rem;}
+.navlinks a:hover{color:var(--coral);}
+.side{max-width:680px;margin:0 auto;padding:2rem 1.2rem 0;}
+.tilbake{display:inline-flex;margin-bottom:1.6rem;color:var(--muted);text-decoration:none;font-size:0.82rem;font-weight:600;}
+.eyebrow{font-size:0.68rem;letter-spacing:0.15em;text-transform:uppercase;font-weight:700;color:var(--coral);margin-bottom:0.6rem;}
+.topp{padding-bottom:1.6rem;border-bottom:1px solid var(--rule);}
+h1.tittel{font-size:clamp(2rem,8.5vw,2.9rem);line-height:1.02;font-weight:500;letter-spacing:-0.03em;}
+.lede{color:var(--muted);font-size:0.94rem;line-height:1.6;max-width:27rem;margin-top:0.9rem;}
+.stegnav{display:flex;gap:0.35rem;margin:1.4rem 0;}
+.stegdot{flex:1;height:5px;border-radius:3px;background:var(--rule);}
+.stegdot.ferdig{background:var(--coral);}
+.stegdot.aktiv{background:var(--navy);}
+.stegtittel{font-size:0.72rem;letter-spacing:0.08em;text-transform:uppercase;color:var(--muted);font-weight:700;margin-bottom:1rem;}
+.tela{display:none;}
+.tela.aktiv{display:block;animation:inn 0.25s;}
+@keyframes inn{from{opacity:0;}to{opacity:1;}}
+.boks{background:var(--paper);border:1px solid rgba(28,44,66,0.08);border-radius:20px;padding:1.25rem 1.3rem;margin-bottom:0.9rem;box-shadow:0 7px 24px rgba(28,44,66,0.045);}
+.steg-label{font-size:0.66rem;letter-spacing:0.09em;text-transform:uppercase;color:var(--coral);font-weight:700;margin-bottom:0.6rem;}
+.lede-liten{color:var(--muted);font-size:0.88rem;line-height:1.5;margin-bottom:0.9rem;}
+.bilde{width:100%;border-radius:16px;cursor:zoom-in;box-shadow:0 8px 24px rgba(28,44,66,0.1);margin-bottom:1rem;display:block;}
+.linje{padding:0.35rem 0;font-size:1rem;line-height:1.6;}
+.frem{background:rgba(190,110,86,0.16);border-radius:5px;padding:0.1rem 0.35rem;font-weight:700;color:var(--coral);}
+.sporsmal{font-size:1rem;line-height:1.55;margin-bottom:0.7rem;color:var(--ink);}
+.sporsmal-stor{font-family:'Fraunces',serif;font-size:1.25rem;font-weight:500;margin-bottom:0.8rem;}
+.knapp{display:block;width:100%;background:var(--cream);border:1.5px solid var(--rule);color:var(--ink);padding:0.7rem 0.9rem;border-radius:14px;cursor:pointer;margin-bottom:0.5rem;text-align:left;line-height:1.4;font-size:0.94rem;font-family:'Inter',sans-serif;}
+.knapp.riktig{border-color:var(--correct);background:var(--correct-bg);color:var(--correct);}
+.knapp.feil{border-color:var(--feil);background:var(--feil-bg);color:var(--feil);}
+.knapprad{margin-bottom:1.1rem;}
+.knapprad:last-child{margin-bottom:0;}
+.sporsmalboks{background:var(--cream);border-left:3px solid var(--coral);padding:0.85rem 0.95rem;border-radius:10px;color:var(--ink);font-size:0.92rem;line-height:1.5;margin-bottom:0.9rem;}
+.tekstboks{width:100%;min-height:80px;padding:0.9rem;border:1.5px solid var(--rule);border-radius:14px;font-family:'Inter';font-size:0.96rem;background:var(--paper);color:var(--ink);resize:vertical;line-height:1.55;}
+.tekstboks:focus{outline:none;border-color:var(--coral);}
+.feltrad{margin-bottom:0.9rem;}
+.feltrad:last-child{margin-bottom:0;}
+.feltrad label{display:block;font-size:0.95rem;margin-bottom:0.35rem;color:var(--ink);line-height:1.5;}
+.feltrad label strong{font-family:'Fraunces',serif;color:var(--coral);font-size:1.05rem;}
+.felt{width:100%;padding:0.65rem 0.85rem;border:1.5px solid var(--rule);border-radius:12px;font-family:'Inter';font-size:0.94rem;background:var(--paper);color:var(--ink);}
+.felt:focus{outline:none;border-color:var(--coral);}
+.knapp-hoved{width:100%;background:var(--navy);color:#fff;padding:0.75rem;border:none;border-radius:14px;font-family:'Inter';font-weight:600;font-size:0.92rem;cursor:pointer;margin-top:0.2rem;}
+.knapp-lav{background:var(--cream);border:1.5px solid var(--rule);color:var(--coral);padding:0.5rem 0.9rem;border-radius:12px;font-weight:600;font-size:0.82rem;cursor:pointer;margin-bottom:0.7rem;font-family:'Inter';}
+.knapprad2{display:flex;gap:0.6rem;justify-content:space-between;margin-top:1.1rem;}
+.svar{margin-top:0.7rem;padding:0.7rem 0.85rem;border-radius:12px;font-weight:600;display:none;line-height:1.55;font-size:0.88rem;}
+.svar.vis{display:block;}
+.svar.riktig{background:var(--correct-bg);color:var(--correct);}
+.svar.feil{background:var(--feil-bg);color:var(--feil);}
+.ordbank{display:flex;flex-wrap:wrap;gap:0.4rem;background:var(--cream);border-radius:14px;padding:0.85rem;margin-bottom:1rem;}
+.ordbank .o{background:var(--paper);border:1.5px solid var(--rule);border-radius:999px;padding:0.32rem 0.8rem;font-size:0.86rem;font-weight:600;}
+.ordvev{display:none;background:var(--cream);border:1.5px solid var(--coral);border-radius:14px;padding:0.9rem 1rem;margin-bottom:0.7rem;}
+.ordvev.vis{display:block;}
+.ordvev-niva{padding:0.45rem 0;border-top:1px dashed var(--rule);font-size:0.86rem;line-height:1.5;color:var(--ink);}
+.ordvev-niva:first-child{border-top:none;padding-top:0;}
+.ordvev-tag{display:inline-block;font-size:0.6rem;font-weight:700;text-transform:uppercase;letter-spacing:0.05em;color:var(--coral);margin-right:0.4rem;}
+.byggfelt{min-height:52px;background:var(--cream);border:1.5px dashed var(--coral);border-radius:14px;padding:0.6rem;margin-bottom:1rem;display:flex;flex-direction:column;gap:0.4rem;}
+.byggfelt:empty::before{content:'Trykk på setningene i riktig rekkefølge...';color:#B8AC98;font-size:0.83rem;font-style:italic;}
+.brikkebank{display:flex;flex-direction:column;gap:0.4rem;margin-bottom:1rem;}
+.brikke{display:block;background:var(--paper);border:1.5px solid var(--rule);color:var(--ink);padding:0.6rem 0.8rem;border-radius:12px;font-size:0.92rem;cursor:pointer;text-align:left;line-height:1.4;}
+.brikke.brukt{opacity:0.25;pointer-events:none;}
+.hjelpeord{display:flex;flex-wrap:wrap;gap:0.35rem;margin-bottom:0.8rem;}
+.hjelpeord .h{background:var(--coral-soft);border-radius:999px;padding:0.25rem 0.7rem;font-size:0.8rem;color:#7a4632;font-weight:600;}
+.valgboks{display:none;margin-top:0.7rem;}
+.valgboks.vis{display:block;}
+.footer{text-align:center;font-size:0.75rem;color:var(--muted);margin-top:2.5rem;padding:1.25rem;}
+.modal{display:none;position:fixed;inset:0;background:rgba(28,36,56,0.94);z-index:100;padding:0.5rem;overflow:auto;}
+.modal.vis{display:flex;align-items:center;justify-content:center;}
+.modal img{max-width:100%;border-radius:14px;}
+.modal-lukk{position:fixed;top:0.8rem;right:1.2rem;color:#fff;font-size:2.4rem;cursor:pointer;font-weight:bold;z-index:101;}
+@media(prefers-reduced-motion:reduce){*{scroll-behavior:auto!important;}}
+</style>
+</head>
+<body>
+
+<div class="topnav">
+  <a class="avatar" href="index.html" aria-label="Til forsiden">E</a>
+  <div class="navlinks">
+    <a href="historier.html">Historier</a>
+    <a href="index.html#skolefag">Skolefag</a>
+  </div>
+</div>
+
+<main class="side">
+  <a class="tilbake" href="index.html#skolefag">← Fra skolen</a>
+
+  <section class="topp">
+    <div class="eyebrow">Naturfag &middot; Biologisk mangfold</div>
+    <h1 class="tittel serif">Pau-brasil</h1>
+    <p class="lede">Historien om et tre fra Brasil – og hvorfor det nesten forsvant.</p>
+  </section>
+
+  <div class="stegnav" id="stegnav">
+    <div class="stegdot aktiv"></div><div class="stegdot"></div><div class="stegdot"></div><div class="stegdot"></div><div class="stegdot"></div>
+  </div>
+
+  <!-- TELA 0: LES -->
+  <div class="tela aktiv" id="tela0">
+    <div class="stegtittel">Steg 1 av 5 · Les historien</div>
+    <div class="boks">
+      <img class="bilde" src="img/paubrasil-historie.png" alt="Historien om Pau-brasil" onclick="zoom('img/paubrasil-historie.png')">
+      <div class="linje">For lenge, lenge siden levde urfolk i Brasil. De kjente naturen godt og passet på skogen. Pau-brasil-trærne stod stolte i skogen.</div>
+      <div class="linje">De brukte treet med respekt. Det ga farge til klær og ting, men de tok bare det de trengte. Alt levde sammen i balanse.</div>
+      <div class="linje">Så kom det skip fra et annet land. <span class="frem">Kolonistene</span> ville ha mye pau-brasil-tre.</div>
+      <div class="linje">De <span class="frem">hogg ned</span> mange, mange trær. De tok mer og mer. Skogen ble mindre og mindre.</div>
+      <div class="linje">Pau-brasil-trærne ble nesten borte. Mange dyr og planter mistet hjemmet sitt. Naturens <span class="frem">mangfold</span> ble skadet.</div>
+      <div class="linje">I dag jobber mange for å beskytte skogen og pau-brasil.</div>
+      <div class="linje" style="font-weight:600;">Pau-brasil er en del av naturen vår. Når vi beskytter én art, beskytter vi mange!</div>
+      <button class="knapp-lav" style="margin-top:0.6rem;" onclick="lesHoyt(HISTORIE_TEKST)">🔊 Hør historien</button>
+    </div>
+    <div class="knapprad2" style="justify-content:flex-end;">
+      <button class="knapp-hoved" style="width:auto;padding:0.75rem 1.4rem;" onclick="visTela(1)">Neste →</button>
+    </div>
+  </div>
+
+  <!-- TELA 1: FINN RIKTIG ORD -->
+  <div class="tela" id="tela1">
+    <div class="stegtittel">Steg 2 av 5 · Finn riktig ord</div>
+    <div class="boks">
+      <div class="steg-label">Ordbank</div>
+      <div class="ordbank">
+        <span class="o">art</span><span class="o">organisme</span><span class="o">biologisk mangfold</span><span class="o">kolonister</span><span class="o">hogge ned</span>
+      </div>
+      <div class="knapprad">
+        <div class="sporsmal">1. Pau-brasil er en ______ fra Brasil.</div>
+        <button class="knapp" onclick="velgEn(this,0,0,'o1F')">art</button>
+        <button class="knapp" onclick="velgEn(this,0,1,'o1F')">organisme</button>
+        <button class="knapp" onclick="velgEn(this,0,2,'o1F')">kolonister</button>
+        <div class="svar" id="o1F"></div>
+      </div>
+      <div class="knapprad">
+        <div class="sporsmal">2. Et tre er en levende ______.</div>
+        <button class="knapp" onclick="velgEn(this,1,0,'o2F')">art</button>
+        <button class="knapp" onclick="velgEn(this,1,1,'o2F')">organisme</button>
+        <button class="knapp" onclick="velgEn(this,1,2,'o2F')">kolonist</button>
+        <div class="svar" id="o2F"></div>
+      </div>
+      <div class="knapprad">
+        <div class="sporsmal">3. Mange forskjellige planter og dyr kalles ______.</div>
+        <button class="knapp" onclick="velgEn(this,2,0,'o3F')">én art</button>
+        <button class="knapp" onclick="velgEn(this,2,1,'o3F')">kolonister</button>
+        <button class="knapp" onclick="velgEn(this,2,2,'o3F')">biologisk mangfold</button>
+        <div class="svar" id="o3F"></div>
+      </div>
+      <div class="knapprad">
+        <div class="sporsmal">4. Europeerne som kom til Brasil var ______.</div>
+        <button class="knapp" onclick="velgEn(this,1,0,'o4F')">urfolk</button>
+        <button class="knapp" onclick="velgEn(this,1,1,'o4F')">kolonister</button>
+        <button class="knapp" onclick="velgEn(this,1,2,'o4F')">organismer</button>
+        <div class="svar" id="o4F"></div>
+      </div>
+      <div class="knapprad">
+        <div class="sporsmal">5. De begynte å ______ mange pau-brasil-trær.</div>
+        <button class="knapp" onclick="velgEn(this,2,0,'o5F')">beskytte</button>
+        <button class="knapp" onclick="velgEn(this,2,1,'o5F')">plante</button>
+        <button class="knapp" onclick="velgEn(this,2,2,'o5F')">hogge ned</button>
+        <div class="svar" id="o5F"></div>
+      </div>
+    </div>
+    <div class="knapprad2">
+      <button class="knapp-lav" onclick="visTela(0)">← Forrige</button>
+      <button class="knapp-hoved" style="width:auto;padding:0.75rem 1.4rem;" onclick="visTela(2)">Neste →</button>
+    </div>
+  </div>
+
+  <!-- TELA 2: REKKEFØLGE -->
+  <div class="tela" id="tela2">
+    <div class="stegtittel">Steg 3 av 5 · Sett i riktig rekkefølge</div>
+    <div class="boks">
+      <div class="lede-liten">Trykk på setningene i den rekkefølgen de skjedde.</div>
+      <div class="byggfelt" id="rekkeSvar"></div>
+      <div class="brikkebank" id="rekkeBank"></div>
+      <button class="knapp-lav" onclick="tomRekke()">↺ Start på nytt</button>
+      <button class="knapp-hoved" onclick="sjekkRekke()">Sjekk rekkefølge</button>
+      <div class="svar" id="rekkeF"></div>
+    </div>
+    <div class="knapprad2">
+      <button class="knapp-lav" onclick="visTela(1)">← Forrige</button>
+      <button class="knapp-hoved" style="width:auto;padding:0.75rem 1.4rem;" onclick="visTela(3)">Neste →</button>
+    </div>
+  </div>
+
+  <!-- TELA 3: HVA SKJEDDE OG HVORFOR -->
+  <div class="tela" id="tela3">
+    <div class="stegtittel">Steg 4 av 5 · Hva skjedde – og hvorfor?</div>
+    <div class="boks">
+      <div class="lede-liten">Fullfør hver setning. Husk: etter «derfor» kommer verbet først!</div>
+      <div class="feltrad">
+        <label><strong>Først</strong></label>
+        <input class="felt" id="s1" placeholder="Skriv her...">
+      </div>
+      <div class="feltrad">
+        <label><strong>Så</strong></label>
+        <input class="felt" id="s2" placeholder="Skriv her...">
+      </div>
+      <div class="feltrad">
+        <label><strong>Men</strong></label>
+        <input class="felt" id="s3" placeholder="Skriv her...">
+      </div>
+      <div class="feltrad">
+        <label><strong>Derfor</strong></label>
+        <input class="felt" id="s4" placeholder="verbet først!">
+      </div>
+      <div class="feltrad">
+        <label><strong>I dag</strong></label>
+        <input class="felt" id="s5" placeholder="Skriv her...">
+      </div>
+      <button class="knapp-hoved" onclick="sendKjede()">Send til mamma 💛</button>
+      <div class="svar" id="kjedeF"></div>
+    </div>
+    <div class="knapprad2">
+      <button class="knapp-lav" onclick="visTela(2)">← Forrige</button>
+      <button class="knapp-hoved" style="width:auto;padding:0.75rem 1.4rem;" onclick="visTela(4)">Neste →</button>
+    </div>
+  </div>
+
+  <!-- TELA 4: TENK OG SVAR -->
+  <div class="tela" id="tela4">
+    <div class="stegtittel">Steg 5 av 5 · Tenk og svar</div>
+
+    <div class="boks">
+      <div class="sporsmal-stor">Hvorfor ble pau-brasil truet?</div>
+      <div class="hjelpeord">
+        <span class="h">mennesker</span><span class="h">hogge ned</span><span class="h">mange trær</span><span class="h">færre</span>
+      </div>
+      <textarea class="tekstboks" id="t1" placeholder="Skriv her..."></textarea>
+      <button class="knapp-hoved" style="margin-top:0.7rem;" onclick="sendFri('t1','t1F','Pau-brasil - Hvorfor truet',10)">Send til mamma 💛</button>
+      <div class="svar" id="t1F"></div>
+    </div>
+
+    <div class="boks">
+      <div class="sporsmal-stor">Hvorfor er pau-brasil en del av det biologiske mangfoldet?</div>
+      <div class="hjelpeord">
+        <span class="h">art</span><span class="h">plante</span><span class="h">levende</span><span class="h">naturen</span>
+      </div>
+      <textarea class="tekstboks" id="t2" placeholder="Skriv her..."></textarea>
+      <button class="knapp-hoved" style="margin-top:0.7rem;" onclick="sendFri('t2','t2F','Pau-brasil - Del av mangfoldet',10)">Send til mamma 💛</button>
+      <div class="svar" id="t2F"></div>
+    </div>
+
+    <div class="boks" style="border-color:var(--coral);border-width:2px;">
+      <div class="steg-label">⭐ Dagens viktigste spørsmål</div>
+      <div class="sporsmal-stor">Hva betyr «biologisk mangfold»?</div>
+      <div class="lede-liten">Prøv helt selv først – uten hjelp.</div>
+      <textarea class="tekstboks" id="t3" placeholder="Biologisk mangfold betyr..."></textarea>
+      <button class="knapp-lav" style="margin-top:0.7rem;" id="hjelpBtn" onclick="visValg()">🆘 Jeg trenger hjelp</button>
+      <div class="valgboks" id="valgboks">
+        <div class="lede-liten">Hvilken passer best?</div>
+        <button class="knapp" onclick="velgEn(this,1,0,'t3valgF')">A. At alle planter er like.</button>
+        <button class="knapp" onclick="velgEn(this,1,1,'t3valgF')">B. At det finnes mange forskjellige levende organismer.</button>
+        <button class="knapp" onclick="velgEn(this,1,2,'t3valgF')">C. At mennesker hogger ned trær.</button>
+        <div class="svar" id="t3valgF"></div>
+      </div>
+      <button class="knapp-hoved" style="margin-top:0.7rem;" onclick="sendMangfold()">Send til mamma 💛</button>
+      <div class="svar" id="t3F"></div>
+    </div>
+
+    <div class="knapprad2">
+      <button class="knapp-lav" onclick="visTela(3)">← Forrige</button>
+    </div>
+  </div>
+
+</main>
+
+<div class="footer">Pau-brasil · Edels Verden</div>
+
+<div class="modal" id="bildeModal" onclick="lukkModal()">
+  <span class="modal-lukk">&times;</span>
+  <img id="modalBilde" src="" alt="">
+</div>
+
+<script>
+var MAAL = "Pau-brasil – art, organisme, biologisk mangfold, kolonister";
+
+var HISTORIE_TEKST = "For lenge, lenge siden levde urfolk i Brasil. De kjente naturen godt og passet på skogen. De brukte treet med respekt, men de tok bare det de trengte. Så kom det skip fra et annet land. Kolonistene ville ha mye pau-brasil-tre. De hogg ned mange, mange trær, og skogen ble mindre og mindre. Pau-brasil-trærne ble nesten borte. Mange dyr og planter mistet hjemmet sitt, og naturens mangfold ble skadet. I dag jobber mange for å beskytte skogen og pau-brasil.";
+
+function zoom(src){ document.getElementById('modalBilde').src=src; document.getElementById('bildeModal').classList.add('vis'); }
+function lukkModal(){ document.getElementById('bildeModal').classList.remove('vis'); }
+
+function visTela(n){
+  document.querySelectorAll('.tela').forEach(function(t,i){ t.classList.toggle('aktiv', i===n); });
+  document.querySelectorAll('#stegnav .stegdot').forEach(function(d,i){
+    d.classList.toggle('aktiv', i===n);
+    d.classList.toggle('ferdig', i<n);
+  });
+  window.scrollTo({top:0,behavior:'smooth'});
+}
+
+function velgEn(btn, riktigIdx, valgtIdx, svarId){
+  var knapper = btn.parentElement.querySelectorAll('.knapp');
+  knapper.forEach(function(b){b.style.pointerEvents='none';});
+  var f=document.getElementById(svarId);
+  if(valgtIdx===riktigIdx){ btn.classList.add('riktig'); f.className='svar vis riktig'; f.innerHTML='✅ Riktig!'; }
+  else{ btn.classList.add('feil'); if(knapper[riktigIdx]) knapper[riktigIdx].classList.add('riktig'); f.className='svar vis feil'; f.innerHTML='💡 Nesten! Riktig svar er markert med grønt.'; }
+}
+
+function lesHoyt(tekst){
+  if(!('speechSynthesis' in window)) return;
+  window.speechSynthesis.cancel();
+  var setninger = tekst.match(/[^.!?]+[.!?]*/g) || [tekst];
+  var idx=0;
+  function neste(){
+    if(idx>=setninger.length) return;
+    var u=new SpeechSynthesisUtterance(setninger[idx]);
+    u.lang='nb-NO'; u.rate=0.92;
+    u.onend=function(){idx++;setTimeout(neste,300);};
+    window.speechSynthesis.speak(u);
+  }
+  neste();
+}
+
+/* ---- Hjelp: viser valgalternativene bare hvis hun ber om det ---- */
+var brukteHjelp = false;
+function visValg(){
+  brukteHjelp = true;
+  document.getElementById('valgboks').classList.add('vis');
+  document.getElementById('hjelpBtn').style.display = 'none';
+}
+
+/* ---- Sending ---- */
+function send(tekst, svarId, oppgave, niva, poeng){
+  var f=document.getElementById(svarId);
+  f.className='svar vis'; f.style.background='var(--cream)'; f.style.color='var(--muted)'; f.innerHTML='⏳ Sender...';
+  fetch('https://formspree.io/f/mqeolldg',{method:'POST',headers:{'Content-Type':'application/json','Accept':'application/json'},
+    body:JSON.stringify({Tekst_hun_skrev:tekst, oppgave:oppgave, maal:MAAL, dato:new Date().toLocaleString('no-NO'), stotte_niva:niva, stotte_poeng:poeng})})
+   .then(function(r){
+     if(r.ok){ f.className='svar vis riktig'; f.innerHTML='✅ Sendt til mamma! 🎉'; }
+     else{ f.className='svar vis feil'; f.innerHTML='❌ Noe gikk galt. Prøv igjen!'; }
+   })
+   .catch(function(){ f.className='svar vis feil'; f.innerHTML='❌ Sjekk internett og prøv igjen!'; });
+}
+function sendFri(taId, svarId, oppgave, minLen){
+  var t=document.getElementById(taId).value;
+  var f=document.getElementById(svarId);
+  minLen = minLen||3;
+  if(t.trim().length<minLen){ f.className='svar vis feil'; f.innerHTML='⏳ Skriv litt mer først!'; return; }
+  send(t, svarId, oppgave, null, null);
+}
+function sendKjede(){
+  var v=['s1','s2','s3','s4','s5'].map(function(id){return document.getElementById(id).value.trim();});
+  var f=document.getElementById('kjedeF');
+  if(v.filter(Boolean).length<2){ f.className='svar vis feil'; f.innerHTML='⏳ Fyll ut minst to!'; return; }
+  var ord=['Først','Så','Men','Derfor','I dag'];
+  var tekst = v.map(function(x,i){ return x ? ord[i]+' '+x : null; }).filter(Boolean).join('. ') + '.';
+  send(tekst, 'kjedeF', 'Pau-brasil - Først/så/men/derfor/i dag', null, null);
+}
+function sendMangfold(){
+  var t=document.getElementById('t3').value.trim();
+  var f=document.getElementById('t3F');
+  if(t.length<8){ f.className='svar vis feil'; f.innerHTML='⏳ Skriv litt mer først!'; return; }
+  send(t, 't3F', 'Pau-brasil - Hva betyr biologisk mangfold', brukteHjelp?2:0, brukteHjelp?1:3);
+}
+
+/* ---- Rekkefølge ---- */
+var REKKE_RIKTIG = [
+  "Urfolk levde i Brasil og kjente skogen godt.",
+  "Europeiske kolonister kom til Brasil.",
+  "Mange pau-brasil-trær ble hogget ned.",
+  "Pau-brasil ble en truet art.",
+  "I dag prøver mennesker å beskytte pau-brasil."
+];
+function embland(arr){var a=arr.slice();for(var i=a.length-1;i>0;i--){var j=Math.floor(Math.random()*(i+1));var t=a[i];a[i]=a[j];a[j]=t;}return a;}
+function settOppRekke(){
+  var sh = embland(REKKE_RIKTIG);
+  document.getElementById('rekkeBank').innerHTML = sh.map(function(w){
+    return '<span class="brikke" data-w="'+w+'" onclick="leggTilRekke(this)">'+w+'</span>';
+  }).join('');
+  document.getElementById('rekkeSvar').innerHTML='';
+}
+function leggTilRekke(el){
+  el.classList.add('brukt');
+  var k=document.createElement('span');
+  k.className='brikke i-svar';
+  k.textContent=el.dataset.w;
+  k.onclick=function(){k.remove();el.classList.remove('brukt');};
+  document.getElementById('rekkeSvar').appendChild(k);
+}
+function tomRekke(){
+  document.getElementById('rekkeSvar').innerHTML='';
+  document.querySelectorAll('#rekkeBank .brikke').forEach(function(b){b.classList.remove('brukt');});
+}
+function sjekkRekke(){
+  var svar=[].slice.call(document.querySelectorAll('#rekkeSvar .i-svar')).map(function(b){return b.textContent;}).join('|');
+  var f=document.getElementById('rekkeF');
+  if(svar===REKKE_RIKTIG.join('|')){ f.className='svar vis riktig'; f.innerHTML='✅ Perfekt rekkefølge!'; }
+  else{ f.className='svar vis feil'; f.innerHTML='💡 Ikke helt. Tips: hvem var i Brasil aller først – før skipene kom?'; }
+}
+
+settOppRekke();
+</script>
+</body>
+</html>
