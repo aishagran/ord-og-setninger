@@ -101,7 +101,7 @@ h1.tittel{font-size:clamp(1.9rem,8vw,2.7rem);line-height:1.05;font-weight:500;le
   <a class="avatar" href="index.html" aria-label="Til forsiden">E</a>
   <div class="navlinks">
     <a href="historier.html">Historier</a>
-    <a href="index.html#skolefag">Skolefag</a>
+    <a href="skolefag.html">Skolefag</a>
   </div>
 </div>
 
@@ -218,7 +218,7 @@ h1.tittel{font-size:clamp(1.9rem,8vw,2.7rem);line-height:1.05;font-weight:500;le
       <div class="sporsmalboks">Kaken og granitten slutter begge å kunne renne. Men noe er forskjellig med hvordan det skjer. Hva?</div>
       <button class="knapp-lav" id="ordvevBtn_s1" onclick="ordvevHjelp('kontrast','ordvevBoks_s1','ordvevBtn_s1')">🆘 Trenger du hjelp?</button>
       <div class="ordvev" id="ordvevBoks_s1"></div>
-      <textarea class="tekstboks" id="s1" placeholder="Skriv her..."></textarea>
+      <textarea class="tekstboks" id="s1" placeholder="Skriv her..." autocomplete="off"></textarea>
       <button class="knapp-hoved" style="margin-top:0.3rem;" onclick="sendFri('s1','s1F','Flytende-fast - Hva har de til felles',10,'kontrast')">Send til mamma 💛</button>
       <div class="svar" id="s1F"></div>
     </div>
@@ -226,9 +226,9 @@ h1.tittel{font-size:clamp(1.9rem,8vw,2.7rem);line-height:1.05;font-weight:500;le
     <div class="boks">
       <div class="steg-label">2 · Nevn tre ting</div>
       <div class="sporsmalboks">Nevn tre ting som kan størkne (noe som kunne renne, slutter å kunne renne).</div>
-      <div class="feltrad"><label>1.</label><input class="felt" id="t1" placeholder="f.eks. sjokolade"></div>
-      <div class="feltrad"><label>2.</label><input class="felt" id="t2"></div>
-      <div class="feltrad"><label>3.</label><input class="felt" id="t3"></div>
+      <div class="feltrad"><label>1.</label><input class="felt" id="t1" placeholder="f.eks. sjokolade" autocomplete="off"></div>
+      <div class="feltrad"><label>2.</label><input class="felt" id="t2" autocomplete="off"></div>
+      <div class="feltrad"><label>3.</label><input class="felt" id="t3" autocomplete="off"></div>
       <button class="knapp-hoved" onclick="sendTre()">Send til mamma 💛</button>
       <div class="svar" id="treF"></div>
     </div>
@@ -250,7 +250,7 @@ h1.tittel{font-size:clamp(1.9rem,8vw,2.7rem);line-height:1.05;font-weight:500;le
       </div>
       <div id="fortellBoks" style="display:none;margin-top:1rem;">
         <div class="sporsmalboks">✍️ Fortell hva du hørte, med dine egne ord.</div>
-        <textarea class="tekstboks" id="fortellTekst" placeholder="Skriv det du husker..."></textarea>
+        <textarea class="tekstboks" id="fortellTekst" placeholder="Skriv det du husker..." autocomplete="off"></textarea>
         <button class="knapp-hoved" style="margin-top:0.7rem;" onclick="sendFri('fortellTekst','fortellFasit','Flytende-fast - Lytt og fortell',10)">Send til mamma 💛</button>
         <div class="svar" id="fortellFasit"></div>
       </div>
@@ -457,6 +457,21 @@ function lesDelMedStemme(tekst, ferdig){
 }
 
 visBygg();
+
+/* Hindrer at nettleseren fyller inn gammel tekst når siden åpnes på nytt */
+(function(){
+  function tomFelter(){
+    document.querySelectorAll('textarea, input[type="text"], input:not([type])').forEach(function(el){
+      el.value = '';
+    });
+  }
+  window.addEventListener('pageshow', function(e){ if(e.persisted) tomFelter(); });
+  if(document.readyState === 'loading'){
+    document.addEventListener('DOMContentLoaded', tomFelter);
+  } else {
+    tomFelter();
+  }
+})();
 </script>
 </body>
 </html>

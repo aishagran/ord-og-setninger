@@ -94,7 +94,7 @@ h1.tittel{font-size:clamp(2.2rem,10vw,3.2rem);line-height:1;font-weight:500;lett
   <a class="avatar" href="index.html" aria-label="Til forsiden">E</a>
   <div class="navlinks">
     <a href="historier.html">Historier</a>
-    <a href="index.html#skolefag">Skolefag</a>
+    <a href="skolefag.html">Skolefag</a>
   </div>
 </div>
 
@@ -217,15 +217,15 @@ h1.tittel{font-size:clamp(2.2rem,10vw,3.2rem);line-height:1;font-weight:500;lett
       <div class="lede-liten">Ingen alternativer denne gangen. Skriv svaret selv.</div>
       <div class="feltrad">
         <label>Hva gjør tre personer når de lager en gruppe?</label>
-        <input class="felt" id="b1" placeholder="De ...">
+        <input class="felt" id="b1" placeholder="De ..." autocomplete="off">
       </div>
       <div class="feltrad">
         <label>Hva skjer når vann fryser?</label>
-        <input class="felt" id="b2" placeholder="Det ...">
+        <input class="felt" id="b2" placeholder="Det ..." autocomplete="off">
       </div>
       <div class="feltrad">
         <label>Hvordan dannes magmatiske bergarter?</label>
-        <input class="felt" id="b3" placeholder="De dannes når ...">
+        <input class="felt" id="b3" placeholder="De dannes når ..." autocomplete="off">
       </div>
       <button class="knapp-hoved" onclick="sendTre()">Send til mamma 💛</button>
       <div class="svar" id="b3F"></div>
@@ -236,7 +236,7 @@ h1.tittel{font-size:clamp(2.2rem,10vw,3.2rem);line-height:1;font-weight:500;lett
       <div class="sporsmalboks">Forklar ordet «danne» med dine egne ord. Hva betyr det?</div>
       <button class="knapp-lav" id="ordvevBtn_s1" onclick="ordvevHjelp('danne','ordvevBoks_s1','ordvevBtn_s1')">🆘 Jeg trenger hjelp</button>
       <div class="ordvev" id="ordvevBoks_s1"></div>
-      <textarea class="tekstboks" id="s1" placeholder="Skriv her..."></textarea>
+      <textarea class="tekstboks" id="s1" placeholder="Skriv her..." autocomplete="off"></textarea>
       <button class="knapp-hoved" style="margin-top:0.3rem;" onclick="sendFri('s1','s1F','Danne - Egne ord',10,'danne')">Send til mamma 💛</button>
       <div class="svar" id="s1F"></div>
     </div>
@@ -244,7 +244,7 @@ h1.tittel{font-size:clamp(2.2rem,10vw,3.2rem);line-height:1;font-weight:500;lett
     <div class="boks">
       <div class="steg-label">3 · Din egen setning</div>
       <div class="sporsmalboks">Lag én setning med «danne» om noe helt annet – ikke K-pop, ikke stein.</div>
-      <textarea class="tekstboks" id="s2" style="min-height:65px;" placeholder="Skriv her..."></textarea>
+      <textarea class="tekstboks" id="s2" style="min-height:65px;" placeholder="Skriv her..." autocomplete="off"></textarea>
       <button class="knapp-hoved" style="margin-top:0.7rem;" onclick="sendFri('s2','s2F','Danne - Egen setning',8)">Send til mamma 💛</button>
       <div class="svar" id="s2F"></div>
     </div>
@@ -351,6 +351,21 @@ function ordvevHjelp(id, boksId, btnId){
   var btn = document.getElementById(btnId);
   if(steg>=4){ btn.style.display='none'; } else { btn.textContent = '🆘 Enda mer hjelp'; }
 }
+
+/* Hindrer at nettleseren fyller inn gammel tekst når siden åpnes på nytt */
+(function(){
+  function tomFelter(){
+    document.querySelectorAll('textarea, input[type="text"], input:not([type])').forEach(function(el){
+      el.value = '';
+    });
+  }
+  window.addEventListener('pageshow', function(e){ if(e.persisted) tomFelter(); });
+  if(document.readyState === 'loading'){
+    document.addEventListener('DOMContentLoaded', tomFelter);
+  } else {
+    tomFelter();
+  }
+})();
 </script>
 </body>
 </html>

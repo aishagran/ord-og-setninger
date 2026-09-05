@@ -107,7 +107,7 @@ h1.tittel{font-size:clamp(1.9rem,8vw,2.6rem);line-height:1.1;font-weight:500;let
   <a class="avatar" href="index.html" aria-label="Til forsiden">E</a>
   <div class="navlinks">
     <a href="historier.html">Historier</a>
-    <a href="index.html#skolefag">Skolefag</a>
+    <a href="skolefag.html">Skolefag</a>
   </div>
 </div>
 
@@ -131,31 +131,31 @@ h1.tittel{font-size:clamp(1.9rem,8vw,2.6rem);line-height:1.1;font-weight:500;let
       <div class="lede-liten">Still ett spørsmål om gangen, høyt. Skriv bare stikkord av det Edel faktisk sier – ikke lag setninger ennå. Ikke rett språket hennes nå.</div>
       <div class="feltrad">
         <label>1. Hvor var du?</label>
-        <textarea class="tekstboks" id="stikk_hvor" placeholder="stikkord..."></textarea>
+        <textarea class="tekstboks" id="stikk_hvor" placeholder="stikkord..." autocomplete="off"></textarea>
       </div>
       <div class="feltrad">
         <label>2. Hvem var du sammen med?</label>
-        <textarea class="tekstboks" id="stikk_hvem" placeholder="stikkord..."></textarea>
+        <textarea class="tekstboks" id="stikk_hvem" placeholder="stikkord..." autocomplete="off"></textarea>
       </div>
       <div class="feltrad">
         <label>3. Hva gjorde dere først?</label>
-        <textarea class="tekstboks" id="stikk_forst" placeholder="stikkord..."></textarea>
+        <textarea class="tekstboks" id="stikk_forst" placeholder="stikkord..." autocomplete="off"></textarea>
       </div>
       <div class="feltrad">
         <label>4. Hva gjorde dere etterpå?</label>
-        <textarea class="tekstboks" id="stikk_etterpa" placeholder="stikkord..."></textarea>
+        <textarea class="tekstboks" id="stikk_etterpa" placeholder="stikkord..." autocomplete="off"></textarea>
       </div>
       <div class="feltrad">
         <label>5. Hva var morsomst?</label>
-        <textarea class="tekstboks" id="stikk_moro" placeholder="stikkord..."></textarea>
+        <textarea class="tekstboks" id="stikk_moro" placeholder="stikkord..." autocomplete="off"></textarea>
       </div>
       <div class="feltrad">
         <label>6. Var noe vanskelig?</label>
-        <textarea class="tekstboks" id="stikk_vanskelig" placeholder="stikkord... (helt greit å hoppe over)"></textarea>
+        <textarea class="tekstboks" id="stikk_vanskelig" placeholder="stikkord... (helt greit å hoppe over)" autocomplete="off"></textarea>
       </div>
       <div class="feltrad">
         <label>7. Hva husker du best?</label>
-        <textarea class="tekstboks" id="stikk_husker" placeholder="stikkord..."></textarea>
+        <textarea class="tekstboks" id="stikk_husker" placeholder="stikkord..." autocomplete="off"></textarea>
       </div>
     </div>
     <div class="knapprad" style="justify-content:flex-end;">
@@ -172,7 +172,7 @@ h1.tittel{font-size:clamp(1.9rem,8vw,2.6rem);line-height:1.1;font-weight:500;let
       <div class="delsteg-teller">Spørsmål 1 av 7</div>
       <div class="boks">
         <div class="sporsmal-stor">Hvor var du?</div>
-        <input class="felt" id="svar_hvor" placeholder="Skriv her...">
+        <input class="felt" id="svar_hvor" placeholder="Skriv her..." autocomplete="off">
         <button class="knapp-hjelp" style="margin-top:0.8rem;" onclick="visHjelp('hvor')">🆘 Jeg trenger hjelp</button>
         <div class="chips" id="hjelp_hvor"></div>
       </div>
@@ -182,7 +182,7 @@ h1.tittel{font-size:clamp(1.9rem,8vw,2.6rem);line-height:1.1;font-weight:500;let
       <div class="delsteg-teller">Spørsmål 2 av 7</div>
       <div class="boks">
         <div class="sporsmal-stor">Hvem var du sammen med?</div>
-        <input class="felt" id="svar_hvem" placeholder="Skriv her...">
+        <input class="felt" id="svar_hvem" placeholder="Skriv her..." autocomplete="off">
         <button class="knapp-hjelp" style="margin-top:0.8rem;" onclick="visHjelp('hvem')">🆘 Jeg trenger hjelp</button>
         <div class="chips" id="hjelp_hvem"></div>
       </div>
@@ -192,7 +192,7 @@ h1.tittel{font-size:clamp(1.9rem,8vw,2.6rem);line-height:1.1;font-weight:500;let
       <div class="delsteg-teller">Spørsmål 3 av 7</div>
       <div class="boks">
         <div class="sporsmal-stor">Hva gjorde dere først?</div>
-        <input class="felt" id="svar_forst" placeholder="Skriv her...">
+        <input class="felt" id="svar_forst" placeholder="Skriv her..." autocomplete="off">
         <button class="knapp-hjelp" style="margin-top:0.8rem;" onclick="visHjelp('forst')">🆘 Jeg trenger hjelp</button>
         <div class="chips" id="hjelp_forst"></div>
       </div>
@@ -202,7 +202,7 @@ h1.tittel{font-size:clamp(1.9rem,8vw,2.6rem);line-height:1.1;font-weight:500;let
       <div class="delsteg-teller">Spørsmål 4 av 7</div>
       <div class="boks">
         <div class="sporsmal-stor">Hva gjorde dere etterpå?</div>
-        <input class="felt" id="svar_etterpa" placeholder="Skriv her...">
+        <input class="felt" id="svar_etterpa" placeholder="Skriv her..." autocomplete="off">
         <button class="knapp-hjelp" style="margin-top:0.8rem;" onclick="visHjelp('etterpa')">🆘 Jeg trenger hjelp</button>
         <div class="chips" id="hjelp_etterpa"></div>
       </div>
@@ -212,7 +212,7 @@ h1.tittel{font-size:clamp(1.9rem,8vw,2.6rem);line-height:1.1;font-weight:500;let
       <div class="delsteg-teller">Spørsmål 5 av 7</div>
       <div class="boks">
         <div class="sporsmal-stor">Hva var morsomst?</div>
-        <input class="felt" id="svar_moro" placeholder="Skriv her...">
+        <input class="felt" id="svar_moro" placeholder="Skriv her..." autocomplete="off">
         <button class="knapp-hjelp" style="margin-top:0.8rem;" onclick="visHjelp('moro')">🆘 Jeg trenger hjelp</button>
         <div class="chips" id="hjelp_moro"></div>
       </div>
@@ -223,7 +223,7 @@ h1.tittel{font-size:clamp(1.9rem,8vw,2.6rem);line-height:1.1;font-weight:500;let
       <div class="boks">
         <div class="sporsmal-stor">Var noe vanskelig?</div>
         <div class="lede-liten">Helt greit å la stå tomt.</div>
-        <input class="felt" id="svar_vanskelig" placeholder="Skriv her...">
+        <input class="felt" id="svar_vanskelig" placeholder="Skriv her..." autocomplete="off">
         <button class="knapp-hjelp" style="margin-top:0.8rem;" onclick="visHjelp('vanskelig')">🆘 Jeg trenger hjelp</button>
         <div class="chips" id="hjelp_vanskelig"></div>
       </div>
@@ -233,7 +233,7 @@ h1.tittel{font-size:clamp(1.9rem,8vw,2.6rem);line-height:1.1;font-weight:500;let
       <div class="delsteg-teller">Spørsmål 7 av 7</div>
       <div class="boks">
         <div class="sporsmal-stor">Hva husker du best?</div>
-        <input class="felt" id="svar_husker" placeholder="Skriv her...">
+        <input class="felt" id="svar_husker" placeholder="Skriv her..." autocomplete="off">
         <button class="knapp-hjelp" style="margin-top:0.8rem;" onclick="visHjelp('husker')">🆘 Jeg trenger hjelp</button>
         <div class="chips" id="hjelp_husker"></div>
       </div>
@@ -277,7 +277,7 @@ h1.tittel{font-size:clamp(1.9rem,8vw,2.6rem);line-height:1.1;font-weight:500;let
       <div class="steg-label">Fortell nå</div>
       <div class="sporsmalboks">Se på kortene over og fortell historien høyt til mamma, med dine egne ord.</div>
       <div class="sjekk">
-        <input type="checkbox" id="fortaltSjekk" onchange="fortaltEndret()">
+        <input type="checkbox" id="fortaltSjekk" onchange="fortaltEndret()" autocomplete="off">
         <label for="fortaltSjekk">✓ Edel har fortalt historien høyt</label>
       </div>
     </div>
@@ -304,15 +304,15 @@ h1.tittel{font-size:clamp(1.9rem,8vw,2.6rem);line-height:1.1;font-weight:500;let
       <div class="steg-label">Sammenlign med din egen dag</div>
       <div class="feltrad">
         <label>Hva stemmer med din dag?</label>
-        <textarea class="tekstboks" id="modell1" placeholder="Skriv her..."></textarea>
+        <textarea class="tekstboks" id="modell1" placeholder="Skriv her..." autocomplete="off"></textarea>
       </div>
       <div class="feltrad">
         <label>Hva stemmer ikke?</label>
-        <textarea class="tekstboks" id="modell2" placeholder="Skriv her..."></textarea>
+        <textarea class="tekstboks" id="modell2" placeholder="Skriv her..." autocomplete="off"></textarea>
       </div>
       <div class="feltrad">
         <label>Hva var annerledes for deg?</label>
-        <textarea class="tekstboks" id="modell3" placeholder="Skriv her..."></textarea>
+        <textarea class="tekstboks" id="modell3" placeholder="Skriv her..." autocomplete="off"></textarea>
       </div>
     </div>
     <div class="knapprad">
@@ -330,37 +330,37 @@ h1.tittel{font-size:clamp(1.9rem,8vw,2.6rem);line-height:1.1;font-weight:500;let
       <div class="delsteg-teller">Setning 1 av 5</div>
       <div class="boks">
         <div class="sporsmal-stor">Jeg var på leirskole med ...</div>
-        <input class="felt" id="s_med" placeholder="Skriv her...">
+        <input class="felt" id="s_med" placeholder="Skriv her..." autocomplete="off">
       </div>
     </div>
     <div class="delsteg" data-s="2">
       <div class="delsteg-teller">Setning 2 av 5</div>
       <div class="boks">
         <div class="sporsmal-stor">Først ...</div>
-        <input class="felt" id="s_forst" placeholder="Skriv her...">
+        <input class="felt" id="s_forst" placeholder="Skriv her..." autocomplete="off">
       </div>
     </div>
     <div class="delsteg" data-s="3">
       <div class="delsteg-teller">Setning 3 av 5</div>
       <div class="boks">
         <div class="sporsmal-stor">Etterpå ...</div>
-        <input class="felt" id="s_etterpa" placeholder="Skriv her...">
+        <input class="felt" id="s_etterpa" placeholder="Skriv her..." autocomplete="off">
       </div>
     </div>
     <div class="delsteg" data-s="4">
       <div class="delsteg-teller">Setning 4 av 5</div>
       <div class="boks">
         <div class="sporsmal-stor">Det morsomste var ...</div>
-        <input class="felt" id="s_morsomst" placeholder="hva var morsomst?" style="margin-bottom:0.7rem;">
+        <input class="felt" id="s_morsomst" placeholder="hva var morsomst?" style="margin-bottom:0.7rem;" autocomplete="off">
         <div class="sporsmal-stor" style="font-size:1.1rem;">... fordi ...</div>
-        <input class="felt" id="s_fordi" placeholder="hvorfor?">
+        <input class="felt" id="s_fordi" placeholder="hvorfor?" autocomplete="off">
       </div>
     </div>
     <div class="delsteg" data-s="5">
       <div class="delsteg-teller">Setning 5 av 5</div>
       <div class="boks">
         <div class="sporsmal-stor">Til slutt ...</div>
-        <input class="felt" id="s_tilslutt" placeholder="Skriv her...">
+        <input class="felt" id="s_tilslutt" placeholder="Skriv her..." autocomplete="off">
       </div>
     </div>
 
@@ -378,16 +378,16 @@ h1.tittel{font-size:clamp(1.9rem,8vw,2.6rem);line-height:1.1;font-weight:500;let
       </div>
       <div class="ekstra-felt" id="felt_vanskelig">
         <div class="sporsmalboks">Noe var vanskelig, men ...</div>
-        <input class="felt" id="s_vanskelig" placeholder="hva var vanskelig?" style="margin-bottom:0.6rem;">
-        <input class="felt" id="s_men" placeholder="men hva skjedde? (f.eks. jeg prøvde likevel)">
+        <input class="felt" id="s_vanskelig" placeholder="hva var vanskelig?" style="margin-bottom:0.6rem;" autocomplete="off">
+        <input class="felt" id="s_men" placeholder="men hva skjedde? (f.eks. jeg prøvde likevel)" autocomplete="off">
       </div>
       <div class="ekstra-felt" id="felt_minne">
         <div class="sporsmalboks">Det beste minnet mitt er ...</div>
-        <input class="felt" id="s_minne" placeholder="Skriv her...">
+        <input class="felt" id="s_minne" placeholder="Skriv her..." autocomplete="off">
       </div>
       <div class="ekstra-felt" id="felt_folelse">
         <div class="sporsmalboks">Jeg følte meg ...</div>
-        <input class="felt" id="s_folelse" placeholder="Skriv her...">
+        <input class="felt" id="s_folelse" placeholder="Skriv her..." autocomplete="off">
       </div>
       <button class="knapp-hoved full" style="margin-top:1rem;" onclick="visTela(5)">Gå til siste steg →</button>
     </div>
@@ -404,9 +404,9 @@ h1.tittel{font-size:clamp(1.9rem,8vw,2.6rem);line-height:1.1;font-weight:500;let
     </div>
     <div class="boks">
       <div class="steg-label">Sjekk sammen med mamma</div>
-      <div class="sjekk"><input type="checkbox" id="sjekk1"><label for="sjekk1">Stemmer alt?</label></div>
-      <div class="sjekk"><input type="checkbox" id="sjekk2"><label for="sjekk2">Er noe viktig glemt?</label></div>
-      <div class="sjekk"><input type="checkbox" id="sjekk3"><label for="sjekk3">Er dette dine ord?</label></div>
+      <div class="sjekk"><input type="checkbox" id="sjekk1" autocomplete="off"><label for="sjekk1">Stemmer alt?</label></div>
+      <div class="sjekk"><input type="checkbox" id="sjekk2" autocomplete="off"><label for="sjekk2">Er noe viktig glemt?</label></div>
+      <div class="sjekk"><input type="checkbox" id="sjekk3" autocomplete="off"><label for="sjekk3">Er dette dine ord?</label></div>
     </div>
     <div class="boks">
       <div class="knapprad" style="justify-content:stretch;">
@@ -601,6 +601,21 @@ function sendTilMamma(){
    })
    .catch(function(){ f.className='svar vis feil'; f.innerHTML='❌ Sjekk internett og prøv igjen!'; });
 }
+
+/* Hindrer at nettleseren fyller inn gammel tekst når siden åpnes på nytt */
+(function(){
+  function tomFelter(){
+    document.querySelectorAll('textarea, input[type="text"], input:not([type])').forEach(function(el){
+      el.value = '';
+    });
+  }
+  window.addEventListener('pageshow', function(e){ if(e.persisted) tomFelter(); });
+  if(document.readyState === 'loading'){
+    document.addEventListener('DOMContentLoaded', tomFelter);
+  } else {
+    tomFelter();
+  }
+})();
 </script>
 </body>
 </html>

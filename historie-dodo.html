@@ -93,12 +93,12 @@ h1.tittel{font-size:clamp(2rem,8.5vw,2.9rem);line-height:1.02;font-weight:500;le
   <a class="avatar" href="index.html" aria-label="Til forsiden">E</a>
   <div class="navlinks">
     <a href="historier.html">Historier</a>
-    <a href="index.html#skolefag">Skolefag</a>
+    <a href="skolefag.html">Skolefag</a>
   </div>
 </div>
 
 <main class="side">
-  <a class="tilbake" href="index.html#skolefag">← Fra skolen</a>
+  <a class="tilbake" href="skolefag.html">← Skolefag</a>
 
   <section class="topp">
     <div class="eyebrow">Naturfag &middot; Engelsk</div>
@@ -178,7 +178,7 @@ h1.tittel{font-size:clamp(2rem,8.5vw,2.9rem);line-height:1.02;font-weight:500;le
       <div class="sporsmal-stor">Hva betyr «utdødd»?</div>
       <button class="knapp-lav" id="ordvevBtn_utdodd" onclick="ordvevHjelp('utdodd','ordvevBoks_utdodd','ordvevBtn_utdodd')">🆘 Jeg trenger hjelp</button>
       <div class="ordvev" id="ordvevBoks_utdodd"></div>
-      <textarea class="tekstboks" id="o1" placeholder="Utdødd betyr..."></textarea>
+      <textarea class="tekstboks" id="o1" placeholder="Utdødd betyr..." autocomplete="off"></textarea>
       <button class="knapp-hoved" style="margin-top:0.3rem;" onclick="sendFri('o1','o1F','Dodo - Forklar utdødd',8,'utdodd')">Send til mamma 💛</button>
       <div class="svar" id="o1F"></div>
     </div>
@@ -187,7 +187,7 @@ h1.tittel{font-size:clamp(2rem,8.5vw,2.9rem);line-height:1.02;font-weight:500;le
       <div class="sporsmal-stor">Hva betyr «mangfold»?</div>
       <button class="knapp-lav" id="ordvevBtn_mangfold" onclick="ordvevHjelp('mangfold','ordvevBoks_mangfold','ordvevBtn_mangfold')">🆘 Jeg trenger hjelp</button>
       <div class="ordvev" id="ordvevBoks_mangfold"></div>
-      <textarea class="tekstboks" id="o2" placeholder="Mangfold betyr..."></textarea>
+      <textarea class="tekstboks" id="o2" placeholder="Mangfold betyr..." autocomplete="off"></textarea>
       <button class="knapp-hoved" style="margin-top:0.3rem;" onclick="sendFri('o2','o2F','Dodo - Forklar mangfold',8,'mangfold')">Send til mamma 💛</button>
       <div class="svar" id="o2F"></div>
     </div>
@@ -196,7 +196,7 @@ h1.tittel{font-size:clamp(2rem,8.5vw,2.9rem);line-height:1.02;font-weight:500;le
       <div class="sporsmal-stor">Hva betyr «biologisk mangfold»?</div>
       <button class="knapp-lav" id="ordvevBtn_biologisk" onclick="ordvevHjelp('biologisk','ordvevBoks_biologisk','ordvevBtn_biologisk')">🆘 Jeg trenger hjelp</button>
       <div class="ordvev" id="ordvevBoks_biologisk"></div>
-      <textarea class="tekstboks" id="o3" placeholder="Biologisk mangfold betyr..."></textarea>
+      <textarea class="tekstboks" id="o3" placeholder="Biologisk mangfold betyr..." autocomplete="off"></textarea>
       <button class="knapp-hoved" style="margin-top:0.3rem;" onclick="sendFri('o3','o3F','Dodo - Forklar biologisk mangfold',8,'biologisk')">Send til mamma 💛</button>
       <div class="svar" id="o3F"></div>
     </div>
@@ -214,23 +214,23 @@ h1.tittel{font-size:clamp(2rem,8.5vw,2.9rem);line-height:1.02;font-weight:500;le
       <div class="steg-label">Svar kort først – så som hel setning</div>
       <div class="feltrad">
         <label><strong>Hvem?</strong> Hvem handler historien om?</label>
-        <input class="felt" id="d1" placeholder="Skriv her...">
+        <input class="felt" id="d1" placeholder="Skriv her..." autocomplete="off">
       </div>
       <div class="feltrad">
         <label><strong>Hvor?</strong> Hvor levde dodoen?</label>
-        <input class="felt" id="d2" placeholder="Skriv her...">
+        <input class="felt" id="d2" placeholder="Skriv her..." autocomplete="off">
       </div>
       <div class="feltrad">
         <label><strong>Hva skjedde?</strong></label>
-        <input class="felt" id="d3" placeholder="Skriv her...">
+        <input class="felt" id="d3" placeholder="Skriv her..." autocomplete="off">
       </div>
       <div class="feltrad">
         <label><strong>Hvordan?</strong> Hvordan skjedde det?</label>
-        <input class="felt" id="d4" placeholder="Skriv her...">
+        <input class="felt" id="d4" placeholder="Skriv her..." autocomplete="off">
       </div>
       <div class="feltrad">
         <label><strong>Hvorfor?</strong> Hvorfor forsvant dodoen?</label>
-        <input class="felt" id="d5" placeholder="Skriv her...">
+        <input class="felt" id="d5" placeholder="Skriv her..." autocomplete="off">
       </div>
       <button class="knapp-hoved" onclick="sendDetaljer()">Send til mamma 💛</button>
       <div class="svar" id="dF"></div>
@@ -265,7 +265,7 @@ h1.tittel{font-size:clamp(2rem,8.5vw,2.9rem);line-height:1.02;font-weight:500;le
       <div class="svar" id="m1F"></div>
       <div class="feltrad" style="margin-top:1rem;">
         <label>Mindre biologisk mangfold, <strong>fordi</strong>...</label>
-        <input class="felt" id="m2" placeholder="hvorfor?">
+        <input class="felt" id="m2" placeholder="hvorfor?" autocomplete="off">
       </div>
       <button class="knapp-hoved" onclick="sendFordi()">Send til mamma 💛</button>
       <div class="svar" id="m2F"></div>
@@ -274,7 +274,7 @@ h1.tittel{font-size:clamp(2rem,8.5vw,2.9rem);line-height:1.02;font-weight:500;le
     <div class="boks">
       <div class="steg-label">Fortell hele historien</div>
       <div class="sporsmalboks">Uten å se på teksten: fortell historien om dodoen med dine egne ord. Bruk gjerne <strong>først – så – etterpå – til slutt</strong>.</div>
-      <textarea class="tekstboks" id="g1" style="min-height:120px;" placeholder="Skriv her..."></textarea>
+      <textarea class="tekstboks" id="g1" style="min-height:120px;" placeholder="Skriv her..." autocomplete="off"></textarea>
       <button class="knapp-hoved" style="margin-top:0.7rem;" onclick="sendFri('g1','g1F','Dodo - Gjenfortelling',20)">Send til mamma 💛</button>
       <div class="svar" id="g1F"></div>
     </div>
@@ -342,19 +342,20 @@ var ORDVEV = {
     forveksling: "Ikke det samme som «sjelden». Sjelden = det finnes få. Utdødd = det finnes ingen."
   },
   mangfold: {
-    kategori: "Det handler om hvor mange forskjellige slags det finnes.",
-    funksjon: "Er alle like, eller er de forskjellige? Mange forskjellige slags = mangfold.",
+    kategori: "Tenk på ti fugler. Hvis alle er helt like – er det mangfold da?",
+    funksjon: "Hva må være annerledes for at vi skal kalle det mangfold?",
     lyd: "Ordet har to deler: MANG-FOLD. «Mange» ligger inni ordet!",
     forveksling: "Det handler ikke om ANTALL, men om VARIASJON. Ti like fugler er ikke mangfold. Ti forskjellige er."
   },
   biologisk: {
-    kategori: "Det er «mangfold», men om noe helt bestemt.",
-    funksjon: "Biologisk handler om det som lever: dyr, planter, insekter, trær.",
+    kategori: "Tenk på ordet «biologisk». Handler det om noe levende eller ikke-levende?",
+    funksjon: "Hva kan vi ha mange forskjellige av i naturen – dyr, planter og …?",
     lyd: "BIO- betyr liv. Biologi = læren om det som lever.",
     forveksling: "Ikke steiner og fjell – de lever ikke. Biologisk mangfold handler om levende organismer."
   }
 };
 var ordvevSteg = {};
+var ordvevVist = {};
 function ordvevHjelp(id, boksId, btnId){
   var v = ORDVEV[id];
   var steg = (ordvevSteg[id]||0) + 1;
@@ -362,14 +363,27 @@ function ordvevHjelp(id, boksId, btnId){
   ordvevSteg[id] = steg;
   var boks = document.getElementById(boksId);
   var html = '';
-  if(steg>=1) html += '<div class="ordvev-niva"><span class="ordvev-tag">Hva slags ord</span>'+v.kategori+'</div>';
-  if(steg>=2) html += '<div class="ordvev-niva"><span class="ordvev-tag">Tenk på</span>'+v.funksjon+'</div>';
-  if(steg>=3) html += '<div class="ordvev-niva"><span class="ordvev-tag">Hvordan det høres</span>'+v.lyd+'</div>';
-  if(steg>=4) html += '<div class="ordvev-niva"><span class="ordvev-tag">NB</span>'+v.forveksling+'</div>';
+  var vist = [];
+  if(steg>=1){ html += '<div class="ordvev-niva"><span class="ordvev-tag">Hva slags ord</span>'+v.kategori+'</div>'; vist.push(v.kategori); }
+  if(steg>=2){ html += '<div class="ordvev-niva"><span class="ordvev-tag">Tenk på</span>'+v.funksjon+'</div>'; vist.push(v.funksjon); }
+  if(steg>=3){ html += '<div class="ordvev-niva"><span class="ordvev-tag">Hvordan det høres</span>'+v.lyd+'</div>'; vist.push(v.lyd); }
+  if(steg>=4){ html += '<div class="ordvev-niva"><span class="ordvev-tag">NB</span>'+v.forveksling+'</div>'; vist.push(v.forveksling); }
+  ordvevVist[id] = vist.join(' ');
   boks.className='ordvev vis';
   boks.innerHTML = html;
   var btn = document.getElementById(btnId);
   if(steg>=4){ btn.style.display='none'; } else { btn.textContent = '🆘 Enda mer hjelp'; }
+}
+
+/* Sjekker om svaret i praksis er en kopi av hintet som ble vist */
+function lignerHint(svar, hintTekst){
+  if(!hintTekst) return false;
+  var rens = function(s){ return s.toLowerCase().replace(/[«».,!?:;–-]/g,' ').split(/\s+/).filter(function(w){return w.length>3;}); };
+  var sOrd = rens(svar);
+  if(sOrd.length===0) return false;
+  var hOrd = rens(hintTekst);
+  var treff = sOrd.filter(function(w){ return hOrd.indexOf(w)!==-1; }).length;
+  return (treff / sOrd.length) >= 0.6;
 }
 
 function stottePoeng(steg){
@@ -383,8 +397,9 @@ function send(tekst, svarId, oppgave, ordvevId){
   f.className='svar vis'; f.style.background='var(--cream)'; f.style.color='var(--muted)'; f.innerHTML='⏳ Sender...';
   var niva = ordvevId ? (ordvevSteg[ordvevId]||0) : null;
   var poeng = ordvevId ? stottePoeng(niva) : null;
+  var ekko = ordvevId ? lignerHint(tekst, ordvevVist[ordvevId]) : null;
   fetch('https://formspree.io/f/mqeolldg',{method:'POST',headers:{'Content-Type':'application/json','Accept':'application/json'},
-    body:JSON.stringify({Tekst_hun_skrev:tekst, oppgave:oppgave, maal:MAAL, dato:new Date().toLocaleString('no-NO'), stotte_niva:niva, stotte_poeng:poeng})})
+    body:JSON.stringify({Tekst_hun_skrev:tekst, oppgave:oppgave, maal:MAAL, dato:new Date().toLocaleString('no-NO'), stotte_niva:niva, stotte_poeng:poeng, svar_ligner_hint:ekko})})
    .then(function(r){
      if(r.ok){ f.className='svar vis riktig'; f.innerHTML='✅ Sendt til mamma! 🎉'; }
      else{ f.className='svar vis feil'; f.innerHTML='❌ Noe gikk galt. Prøv igjen!'; }
@@ -448,6 +463,21 @@ function sjekkRekke(){
 }
 
 settOppRekke();
+
+/* Hindrer at nettleseren fyller inn gammel tekst når siden åpnes på nytt */
+(function(){
+  function tomFelter(){
+    document.querySelectorAll('textarea, input[type="text"], input:not([type])').forEach(function(el){
+      el.value = '';
+    });
+  }
+  window.addEventListener('pageshow', function(e){ if(e.persisted) tomFelter(); });
+  if(document.readyState === 'loading'){
+    document.addEventListener('DOMContentLoaded', tomFelter);
+  } else {
+    tomFelter();
+  }
+})();
 </script>
 </body>
 </html>

@@ -127,12 +127,12 @@ h1.tittel{font-size:clamp(2.1rem,9vw,3rem);line-height:1;font-weight:500;letter-
   <a class="avatar" href="index.html" aria-label="Til forsiden">E</a>
   <div class="navlinks">
     <a href="historier.html">Historier</a>
-    <a href="index.html#skolefag">Skolefag</a>
+    <a href="skolefag.html">Skolefag</a>
   </div>
 </div>
 
 <main class="side">
-  <a class="tilbake" href="index.html#skolefag">← Fra skolen</a>
+  <a class="tilbake" href="skolefag.html">← Skolefag</a>
 
   <section class="topp">
     <div>
@@ -193,7 +193,7 @@ h1.tittel{font-size:clamp(2.1rem,9vw,3rem);line-height:1;font-weight:500;letter-
     <div class="boks">
       <div class="steg-label">1 · Aktivering</div>
       <div class="sporsmalboks">Hva tror du en bergart er?</div>
-      <textarea class="tekstboks" id="m1" placeholder="Skriv det du tror..." style="min-height:70px;"></textarea>
+      <textarea class="tekstboks" id="m1" placeholder="Skriv det du tror..." style="min-height:70px;" autocomplete="off"></textarea>
       <button class="knapp-hoved" style="margin-top:0.7rem;" onclick="sendFri('m1','m1F','Dag 1 - Aktivering',1)">Send til mamma 💛</button>
       <div class="svar" id="m1F"></div>
     </div>
@@ -251,13 +251,13 @@ h1.tittel{font-size:clamp(2.1rem,9vw,3rem);line-height:1;font-weight:500;letter-
       <div class="steg-label">4 · Fyll inn</div>
       <div class="feltrad">
         <label>Fjell består av __________.</label>
-        <input class="felt" id="m4a" placeholder="Skriv ordet...">
+        <input class="felt" id="m4a" placeholder="Skriv ordet..." autocomplete="off">
       </div>
       <button class="knapp-hoved" onclick="sjekkOrd('m4a','m4aF',['bergarter','bergart'])">Sjekk</button>
       <div class="svar" id="m4aF"></div>
       <div class="feltrad" style="margin-top:1rem;">
         <label>En stein er et stykke av en __________.</label>
-        <input class="felt" id="m4b" placeholder="Skriv ordet...">
+        <input class="felt" id="m4b" placeholder="Skriv ordet..." autocomplete="off">
       </div>
       <button class="knapp-hoved" onclick="sjekkOrd('m4b','m4bF',['bergart'])">Sjekk</button>
       <div class="svar" id="m4bF"></div>
@@ -266,7 +266,7 @@ h1.tittel{font-size:clamp(2.1rem,9vw,3rem);line-height:1;font-weight:500;letter-
     <div class="boks">
       <div class="steg-label">5 · Produksjon</div>
       <div class="sporsmalboks">Modellsetning: <em>«En bergart er et materiale som fjell består av.»</em><br><br>Nå forklarer du ordet til Pipoka.</div>
-      <textarea class="tekstboks" id="m5" placeholder="Skriv én eller to setninger..."></textarea>
+      <textarea class="tekstboks" id="m5" placeholder="Skriv én eller to setninger..." autocomplete="off"></textarea>
       <button class="knapp-hoved" style="margin-top:0.7rem;" onclick="sendFri('m5','m5F','Dag 1 - Forklar til Pipoka',5)">Send til mamma 💛</button>
       <div class="svar" id="m5F"></div>
     </div>
@@ -308,11 +308,11 @@ h1.tittel{font-size:clamp(2.1rem,9vw,3rem);line-height:1;font-weight:500;letter-
       <div class="steg-label">4 · Årsak og resultat</div>
       <div class="feltrad">
         <label>Magmaen størkner fordi __________.</label>
-        <input class="felt" id="t4a">
+        <input class="felt" id="t4a" autocomplete="off">
       </div>
       <div class="feltrad">
         <label>Magmaen kjøles ned. Dermed __________.</label>
-        <input class="felt" id="t4b">
+        <input class="felt" id="t4b" autocomplete="off">
       </div>
       <button class="knapp-lav" onclick="visForslag('t4F','Magmaen størkner fordi temperaturen blir lavere. Magmaen kjøles ned. Dermed dannes granitt.')">💡 Se forslag</button>
       <div class="svar" id="t4F"></div>
@@ -321,13 +321,13 @@ h1.tittel{font-size:clamp(2.1rem,9vw,3rem);line-height:1;font-weight:500;letter-
     <div class="boks">
       <div class="steg-label">5 · Recontagem</div>
       <div class="sporsmalboks">🗣️ Fortell Pipoka hvordan granitt blir dannet. (3–4 setninger)</div>
-      <textarea class="tekstboks" id="t5a" placeholder="Skriv her..."></textarea>
+      <textarea class="tekstboks" id="t5a" placeholder="Skriv her..." autocomplete="off"></textarea>
       <button class="knapp-hoved" style="margin-top:0.7rem;" onclick="sendFri('t5a','t5aF','Dag 2 - Recontagem 1',10)">Send til mamma 💛</button>
       <div class="svar" id="t5aF"></div>
       <button class="knapp-lav" style="margin-top:0.5rem;" onclick="document.getElementById('t5modell').classList.toggle('vis')">💡 Vis modell og prøv igjen</button>
       <div class="hjelpboks" id="t5modell">
         <div class="hjelp-eks">Først finnes det varm magma under bakken. Etterpå kjøles magmaen ned. Magmaen størkner fordi temperaturen blir lavere. Dermed dannes granitt.</div>
-        <textarea class="tekstboks" id="t5b" style="margin-top:0.7rem;" placeholder="Prøv igjen med egne ord..."></textarea>
+        <textarea class="tekstboks" id="t5b" style="margin-top:0.7rem;" placeholder="Prøv igjen med egne ord..." autocomplete="off"></textarea>
         <button class="knapp-hoved" style="margin-top:0.6rem;" onclick="sendFri('t5b','t5bF','Dag 2 - Recontagem 2 (etter modell)',10)">Send til mamma 💛</button>
         <div class="svar" id="t5bF"></div>
       </div>
@@ -342,7 +342,7 @@ h1.tittel{font-size:clamp(2.1rem,9vw,3rem);line-height:1;font-weight:500;letter-
     <div class="boks">
       <div class="steg-label">1 · Fri gjenkalling</div>
       <div class="sporsmalboks">Uten å se på bildene: hva er en bergart, og hvordan blir granitt til? Fortell med egne ord.</div>
-      <textarea class="tekstboks" id="r1" placeholder="Skriv her..."></textarea>
+      <textarea class="tekstboks" id="r1" placeholder="Skriv her..." autocomplete="off"></textarea>
       <button class="knapp-lav" id="ordvevBtn_r1" onclick="ordvevHjelp('granitt_prosess','ordvevBoks_r1','ordvevBtn_r1')">🆘 Jeg trenger hjelp</button>
       <div class="ordvev" id="ordvevBoks_r1"></div>
       <button class="knapp-hoved" style="margin-top:0.3rem;" onclick="sendFri('r1','r1F','Dag 3 - Fri gjenkalling',15,'granitt_prosess')">Send til mamma 💛</button>
@@ -399,7 +399,7 @@ h1.tittel{font-size:clamp(2.1rem,9vw,3rem);line-height:1;font-weight:500;letter-
       <div class="steg-label">4 · Lytt og skriv</div>
       <div class="lede-liten">Hør setningen. Skriv med egne ord hva du hørte.</div>
       <button class="knapp-lav" onclick="lesHoyt('Magma er smeltet stein under bakken. Når magmaen kjøles ned, størkner den og blir til granitt.')">🔊 Hør</button>
-      <textarea class="tekstboks" id="r4" placeholder="Skriv det du hørte..."></textarea>
+      <textarea class="tekstboks" id="r4" placeholder="Skriv det du hørte..." autocomplete="off"></textarea>
       <button class="knapp-lav" onclick="visForslag('r4F','Magma er smeltet stein under bakken. Når magmaen kjøles ned, størkner den og blir til granitt.')">💡 Se hva som ble sagt</button>
       <div class="svar" id="r4F"></div>
     </div>
@@ -407,7 +407,7 @@ h1.tittel{font-size:clamp(2.1rem,9vw,3rem);line-height:1;font-weight:500;letter-
     <div class="boks">
       <div class="steg-label">5 · Kort oppsummering</div>
       <div class="sporsmalboks">Skriv en kort oppsummering: hva har du lært om bergart og granitt så langt?</div>
-      <textarea class="tekstboks" id="r5" placeholder="Skriv her..."></textarea>
+      <textarea class="tekstboks" id="r5" placeholder="Skriv her..." autocomplete="off"></textarea>
       <button class="knapp-hoved" style="margin-top:0.7rem;" onclick="sendFri('r5','r5F','Dag 3 - Oppsummering',10)">Send til mamma 💛</button>
       <div class="svar" id="r5F"></div>
     </div>
@@ -449,13 +449,13 @@ h1.tittel{font-size:clamp(2.1rem,9vw,3rem);line-height:1;font-weight:500;letter-
       <div class="sporsmalboks">Pipoka sier: «Granitt er en sedimentær bergart.»</div>
       <div class="feltrad">
         <label>Nei, granitt er en __________ bergart,</label>
-        <input class="felt" id="o2a">
+        <input class="felt" id="o2a" autocomplete="off">
       </div>
       <button class="knapp-hoved" onclick="sjekkOrd('o2a','o2aF',['magmatisk'])">Sjekk</button>
       <div class="svar" id="o2aF"></div>
       <div class="feltrad" style="margin-top:1rem;">
         <label>fordi __________.</label>
-        <input class="felt" id="o2b" placeholder="den blir dannet av...">
+        <input class="felt" id="o2b" placeholder="den blir dannet av..." autocomplete="off">
       </div>
       <button class="knapp-lav" onclick="visForslag('o2bF','den blir dannet av magma.')">💡 Se forslag</button>
       <div class="svar" id="o2bF"></div>
@@ -474,7 +474,7 @@ h1.tittel{font-size:clamp(2.1rem,9vw,3rem);line-height:1;font-weight:500;letter-
       <div class="steg-label">4 · Din egen setning</div>
       <div class="feltrad">
         <label>En __________ bergart blir dannet når __________.</label>
-        <input class="felt" id="o4" placeholder="Velg magmatisk, sedimentær eller metamorf...">
+        <input class="felt" id="o4" placeholder="Velg magmatisk, sedimentær eller metamorf..." autocomplete="off">
       </div>
       <button class="knapp-hoved" style="margin-top:0.5rem;" onclick="sendFri('o4','o4F','Dag 4 - Egen setning',5)">Send til mamma 💛</button>
       <div class="svar" id="o4F"></div>
@@ -535,7 +535,7 @@ h1.tittel{font-size:clamp(2.1rem,9vw,3rem);line-height:1;font-weight:500;letter-
       <div class="steg-label">4 · Fordi og derfor</div>
       <div class="feltrad">
         <label>Granitt brukes i __________ fordi __________.</label>
-        <input class="felt" id="to4">
+        <input class="felt" id="to4" autocomplete="off">
       </div>
       <button class="knapp-lav" onclick="visForslag('to4F','Granitt brukes i trapper fordi den er hard og slitesterk. Granitt er slitesterk. Derfor kan den brukes i bygninger.')">💡 Se forslag</button>
       <div class="svar" id="to4F"></div>
@@ -544,7 +544,7 @@ h1.tittel{font-size:clamp(2.1rem,9vw,3rem);line-height:1;font-weight:500;letter-
     <div class="boks">
       <div class="steg-label">5 · Overføring til livet</div>
       <div class="sporsmalboks">Hvor kan vi finne bergarter i byen?</div>
-      <textarea class="tekstboks" id="to5" style="min-height:70px;" placeholder="Skriv her..."></textarea>
+      <textarea class="tekstboks" id="to5" style="min-height:70px;" placeholder="Skriv her..." autocomplete="off"></textarea>
       <button class="knapp-lav" onclick="visForslag('to5hint','I bygninger, trapper, veier, benkeplater eller monumenter.')">💡 Trenger du hjelp?</button>
       <div class="svar" id="to5hint"></div>
       <button class="knapp-hoved" style="margin-top:0.7rem;" onclick="sendFri('to5','to5F','Dag 5 - Overføring',5)">Send til mamma 💛</button>
@@ -568,7 +568,7 @@ h1.tittel{font-size:clamp(2.1rem,9vw,3rem);line-height:1;font-weight:500;letter-
         <span class="ordpille">slitesterk</span>
       </div>
       <div class="sporsmalboks" style="margin-top:0.9rem;">Velg 2–3 av ordene. Hva betyr de? Bruk dem i en setning.</div>
-      <textarea class="tekstboks" id="f1" placeholder="Skriv her..."></textarea>
+      <textarea class="tekstboks" id="f1" placeholder="Skriv her..." autocomplete="off"></textarea>
       <button class="knapp-hoved" style="margin-top:0.7rem;" onclick="sendFri('f1','f1F','Dag 6 - Ordforklaring',5)">Send til mamma 💛</button>
       <div class="svar" id="f1F"></div>
     </div>
@@ -581,7 +581,7 @@ h1.tittel{font-size:clamp(2.1rem,9vw,3rem);line-height:1;font-weight:500;letter-
         <span class="ordpille">Derfor</span><span class="ordpille">brukes</span><span class="ordpille">Til slutt</span>
       </div>
       <div class="sporsmalboks" style="margin-top:0.9rem;">Fortell hvordan granitt blir dannet og hvordan den kan brukes.</div>
-      <textarea class="tekstboks" id="f2" placeholder="Skriv her..."></textarea>
+      <textarea class="tekstboks" id="f2" placeholder="Skriv her..." autocomplete="off"></textarea>
       <button class="knapp-hoved" style="margin-top:0.7rem;" onclick="sendFri('f2','f2F','Dag 6 - Recontagem med støtte',10)">Send til mamma 💛</button>
       <div class="svar" id="f2F"></div>
     </div>
@@ -593,7 +593,7 @@ h1.tittel{font-size:clamp(2.1rem,9vw,3rem);line-height:1;font-weight:500;letter-
         <span class="ordpille">derfor</span><span class="ordpille">til slutt</span>
       </div>
       <div class="sporsmalboks" style="margin-top:0.9rem;">Fortell på nytt, med egne ord. 4–6 setninger.</div>
-      <textarea class="tekstboks" id="f3" placeholder="Skriv her..."></textarea>
+      <textarea class="tekstboks" id="f3" placeholder="Skriv her..." autocomplete="off"></textarea>
       <button class="knapp-hoved" style="margin-top:0.7rem;" onclick="sendFri('f3','f3F','Dag 6 - Andre forsøk',10)">Send til mamma 💛</button>
       <div class="svar" id="f3F"></div>
     </div>
@@ -605,7 +605,7 @@ h1.tittel{font-size:clamp(2.1rem,9vw,3rem);line-height:1;font-weight:500;letter-
       <div class="linje">Granitt blir dannet når ____________________.</div>
       <div class="linje">Granitt brukes i ____________________.</div>
       <div class="linje">Den kan brukes der fordi ____________________.</div>
-      <textarea class="tekstboks" id="f4" style="margin-top:0.8rem;" placeholder="Skriv de fire setningene ferdig her..."></textarea>
+      <textarea class="tekstboks" id="f4" style="margin-top:0.8rem;" placeholder="Skriv de fire setningene ferdig her..." autocomplete="off"></textarea>
       <button class="knapp-hoved" style="margin-top:0.7rem;" onclick="sendFri('f4','f4F','Dag 6 - Avsluttende skriving',15)">Send til mamma 💛</button>
       <div class="svar" id="f4F"></div>
     </div>
@@ -749,6 +749,21 @@ function lesHoyt(tekst){
 }
 
 settOppRekke();
+
+/* Hindrer at nettleseren fyller inn gammel tekst når siden åpnes på nytt */
+(function(){
+  function tomFelter(){
+    document.querySelectorAll('textarea, input[type="text"], input:not([type])').forEach(function(el){
+      el.value = '';
+    });
+  }
+  window.addEventListener('pageshow', function(e){ if(e.persisted) tomFelter(); });
+  if(document.readyState === 'loading'){
+    document.addEventListener('DOMContentLoaded', tomFelter);
+  } else {
+    tomFelter();
+  }
+})();
 </script>
 </body>
 </html>

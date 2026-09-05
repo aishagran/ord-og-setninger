@@ -104,7 +104,7 @@ h1.tittel{font-size:clamp(2.1rem,9vw,3rem);line-height:1;font-weight:500;letter-
   <a class="avatar" href="index.html" aria-label="Til forsiden">E</a>
   <div class="navlinks">
     <a href="historier.html">Historier</a>
-    <a href="index.html#skolefag">Skolefag</a>
+    <a href="skolefag.html">Skolefag</a>
   </div>
 </div>
 
@@ -215,11 +215,11 @@ h1.tittel{font-size:clamp(2.1rem,9vw,3rem);line-height:1;font-weight:500;letter-
       <div class="steg-label">1 · Hvorfor er det slitesterkt?</div>
       <div class="feltrad">
         <label>Noe som er slitesterkt er...</label>
-        <input class="felt" id="s1a" placeholder="f.eks. granitt, en jernstang">
+        <input class="felt" id="s1a" placeholder="f.eks. granitt, en jernstang" autocomplete="off">
       </div>
       <div class="feltrad">
         <label>...fordi</label>
-        <input class="felt" id="s1b" placeholder="hvorfor er det slitesterkt?">
+        <input class="felt" id="s1b" placeholder="hvorfor er det slitesterkt?" autocomplete="off">
       </div>
       <button class="knapp-lav" id="ordvevBtn_s1" onclick="ordvevHjelp('slitesterk','ordvevBoks_s1','ordvevBtn_s1')">🆘 Trenger du hjelp?</button>
       <div class="ordvev" id="ordvevBoks_s1"></div>
@@ -231,11 +231,11 @@ h1.tittel{font-size:clamp(2.1rem,9vw,3rem);line-height:1;font-weight:500;letter-
       <div class="steg-label">2 · Noe som IKKE er slitesterkt</div>
       <div class="feltrad">
         <label>Noe som ikke er slitesterkt er...</label>
-        <input class="felt" id="s2a" placeholder="f.eks. papir, en trepinne">
+        <input class="felt" id="s2a" placeholder="f.eks. papir, en trepinne" autocomplete="off">
       </div>
       <div class="feltrad">
         <label>...fordi</label>
-        <input class="felt" id="s2b" placeholder="hvorfor er det ikke slitesterkt?">
+        <input class="felt" id="s2b" placeholder="hvorfor er det ikke slitesterkt?" autocomplete="off">
       </div>
       <button class="knapp-hoved" onclick="sendMotsatt()">Send til mamma 💛</button>
       <div class="svar" id="s2F"></div>
@@ -258,7 +258,7 @@ h1.tittel{font-size:clamp(2.1rem,9vw,3rem);line-height:1;font-weight:500;letter-
       </div>
       <div id="fortellBoks" style="display:none;margin-top:1rem;">
         <div class="sporsmalboks">✍️ Fortell hva du hørte, med dine egne ord.</div>
-        <textarea class="tekstboks" id="fortellTekst" placeholder="Skriv det du husker..."></textarea>
+        <textarea class="tekstboks" id="fortellTekst" placeholder="Skriv det du husker..." autocomplete="off"></textarea>
         <button class="knapp-lav" id="ordvevBtn_lytt" onclick="ordvevHjelp('slitesterk','ordvevBoks_lytt','ordvevBtn_lytt')">🆘 Trenger du hjelp?</button>
         <div class="ordvev" id="ordvevBoks_lytt"></div>
         <button class="knapp-hoved" style="margin-top:0.3rem;" onclick="sendFri('fortellTekst','fortellFasit','Slitesterk - Lytt og fortell',10,'slitesterk')">Send til mamma 💛</button>
@@ -484,10 +484,10 @@ function startLytt(){
   document.getElementById('fortellBoks').style.display = 'none';
   document.getElementById('lyttFerdigKnapper').style.display = 'none';
   if(window.speechSynthesis) window.speechSynthesis.cancel();
+  if(lyttLydObjekt){ lyttLydObjekt.pause(); lyttLydObjekt = null; }
   visLyttStatus(true);
   spillDel(0);
 }
-var lyttLydObjekt = null;
 function spillDel(i){
   if(i >= LYTT_DELER.length){ lyttFerdig(); return; }
   var d = LYTT_DELER[i];
@@ -522,6 +522,21 @@ function lesDelMedStemme(tekst, ferdig){
 
 visBygg();
 settOppSort();
+
+/* Hindrer at nettleseren fyller inn gammel tekst når siden åpnes på nytt */
+(function(){
+  function tomFelter(){
+    document.querySelectorAll('textarea, input[type="text"], input:not([type])').forEach(function(el){
+      el.value = '';
+    });
+  }
+  window.addEventListener('pageshow', function(e){ if(e.persisted) tomFelter(); });
+  if(document.readyState === 'loading'){
+    document.addEventListener('DOMContentLoaded', tomFelter);
+  } else {
+    tomFelter();
+  }
+})();
 </script>
 </body>
 </html>

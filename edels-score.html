@@ -71,7 +71,7 @@ h1.tittel{font-size:clamp(2rem,8.5vw,2.8rem);line-height:1;font-weight:500;lette
   <a class="avatar" href="index.html" aria-label="Til forsiden">E</a>
   <div class="navlinks">
     <a href="historier.html">Historier</a>
-    <a href="index.html#skolefag">Skolefag</a>
+    <a href="skolefag.html">Skolefag</a>
   </div>
 </div>
 
@@ -137,7 +137,7 @@ h1.tittel{font-size:clamp(2rem,8.5vw,2.8rem);line-height:1;font-weight:500;lette
 
   <div class="boks">
     <div class="forsta-sporsmal">5. Fortell med egne ord: hva er forskjellen på «fordi» og «derfor»?</div>
-    <textarea class="tekstboks" id="egneOrd" placeholder="Skriv her..."></textarea>
+    <textarea class="tekstboks" id="egneOrd" placeholder="Skriv her..." autocomplete="off"></textarea>
     <button class="knapp-hoved" onclick="sendForstaelse()">Send til mamma 💛</button>
     <div class="svar" id="f5"></div>
   </div>
@@ -182,6 +182,21 @@ function sendForstaelse(){
    })
    .catch(function(){ f.className='svar vis feil'; f.innerHTML='❌ Sjekk internett og prøv igjen!'; });
 }
+
+/* Hindrer at nettleseren fyller inn gammel tekst når siden åpnes på nytt */
+(function(){
+  function tomFelter(){
+    document.querySelectorAll('textarea, input[type="text"], input:not([type])').forEach(function(el){
+      el.value = '';
+    });
+  }
+  window.addEventListener('pageshow', function(e){ if(e.persisted) tomFelter(); });
+  if(document.readyState === 'loading'){
+    document.addEventListener('DOMContentLoaded', tomFelter);
+  } else {
+    tomFelter();
+  }
+})();
 </script>
 </body>
 </html>

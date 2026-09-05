@@ -96,12 +96,12 @@ h1.tittel{font-size:clamp(2.1rem,9vw,3rem);line-height:1;font-weight:500;letter-
   <a class="avatar" href="index.html" aria-label="Til forsiden">E</a>
   <div class="navlinks">
     <a href="historier.html">Historier</a>
-    <a href="index.html#skolefag">Skolefag</a>
+    <a href="skolefag.html">Skolefag</a>
   </div>
 </div>
 
 <main class="side">
-  <a class="tilbake" href="index.html#skolefag">← Fra skolen</a>
+  <a class="tilbake" href="skolefag.html">← Skolefag</a>
 
   <section class="topp">
     <div class="eyebrow">Skolefag · Sosialt</div>
@@ -214,7 +214,7 @@ h1.tittel{font-size:clamp(2.1rem,9vw,3rem);line-height:1;font-weight:500;letter-
       <div class="hjelpboks" id="h1">
         <div class="hjelp-eks">Jeg likte maten fordi den smakte godt.<br>Jeg likte bålkosen fordi det var koselig.<br>Jeg likte turene fordi jeg fikk se mye fin natur.</div>
       </div>
-      <textarea class="tekstboks" id="s1" placeholder="Skriv her..."></textarea>
+      <textarea class="tekstboks" id="s1" placeholder="Skriv her..." autocomplete="off"></textarea>
       <button class="knapp-hoved" style="margin-top:0.7rem;" onclick="sendFri('s1','s1F','Leirskole - Forklar hva jeg likte',10)">Send til mamma 💛</button>
       <div class="svar" id="s1F"></div>
     </div>
@@ -224,11 +224,11 @@ h1.tittel{font-size:clamp(2.1rem,9vw,3rem);line-height:1;font-weight:500;letter-
       <div class="sporsmalboks">Noen ganger er ikke alt like gøy, og det er helt greit. Var det noe du savnet, eller noe som var litt vanskelig? Helt greit å la stå tomt hvis ikke.</div>
       <div class="feltrad">
         <label>Det var litt vanskelig med...</label>
-        <input class="felt" id="s2a" placeholder="hva var vanskelig?">
+        <input class="felt" id="s2a" placeholder="hva var vanskelig?" autocomplete="off">
       </div>
       <div class="feltrad">
         <label>...fordi</label>
-        <input class="felt" id="s2b" placeholder="hvorfor var det vanskelig?">
+        <input class="felt" id="s2b" placeholder="hvorfor var det vanskelig?" autocomplete="off">
       </div>
       <button class="knapp-hoved" style="margin-top:0.3rem;" onclick="sendFelt2('Leirskole - Noe som var vanskelig')">Send til mamma 💛</button>
       <div class="svar" id="s2F"></div>
@@ -239,7 +239,7 @@ h1.tittel{font-size:clamp(2.1rem,9vw,3rem);line-height:1;font-weight:500;letter-
       <div class="sporsmalboks">Selv om ikke alt var perfekt, hva gjorde turen verdt det?</div>
       <div class="feltrad">
         <label>Turen var verdt det fordi</label>
-        <input class="felt" id="s3" placeholder="Skriv her...">
+        <input class="felt" id="s3" placeholder="Skriv her..." autocomplete="off">
       </div>
       <button class="knapp-hoved" style="margin-top:0.3rem;" onclick="sendFelt3('Leirskole - Til slutt')">Send til mamma 💛</button>
       <div class="svar" id="s3F"></div>
@@ -262,7 +262,7 @@ h1.tittel{font-size:clamp(2.1rem,9vw,3rem);line-height:1;font-weight:500;letter-
       </div>
       <div id="fortellBoks" style="display:none;margin-top:1rem;">
         <div class="sporsmalboks">✍️ Fortell hva du hørte, med dine egne ord.</div>
-        <textarea class="tekstboks" id="fortellTekst" placeholder="Skriv det du husker..."></textarea>
+        <textarea class="tekstboks" id="fortellTekst" placeholder="Skriv det du husker..." autocomplete="off"></textarea>
         <button class="knapp-hoved" style="margin-top:0.7rem;" onclick="sendFri('fortellTekst','fortellFasit','Leirskole - Lytt og fortell',10)">Send til mamma 💛</button>
         <div class="svar" id="fortellFasit"></div>
       </div>
@@ -447,6 +447,21 @@ function lesDelMedStemme(tekst, ferdig){
 }
 
 visBygg();
+
+/* Hindrer at nettleseren fyller inn gammel tekst når siden åpnes på nytt */
+(function(){
+  function tomFelter(){
+    document.querySelectorAll('textarea, input[type="text"], input:not([type])').forEach(function(el){
+      el.value = '';
+    });
+  }
+  window.addEventListener('pageshow', function(e){ if(e.persisted) tomFelter(); });
+  if(document.readyState === 'loading'){
+    document.addEventListener('DOMContentLoaded', tomFelter);
+  } else {
+    tomFelter();
+  }
+})();
 </script>
 </body>
 </html>

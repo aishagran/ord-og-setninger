@@ -86,7 +86,7 @@ h1.tittel{font-size:clamp(2.1rem,9vw,3rem);line-height:1;font-weight:500;letter-
   <a class="avatar" href="index.html" aria-label="Til forsiden">E</a>
   <div class="navlinks">
     <a href="historier.html">Historier</a>
-    <a href="index.html#skolefag">Skolefag</a>
+    <a href="skolefag.html">Skolefag</a>
   </div>
 </div>
 
@@ -113,10 +113,10 @@ h1.tittel{font-size:clamp(2.1rem,9vw,3rem);line-height:1;font-weight:500;letter-
   <div class="boks">
     <div class="steg-label">1 · Fri gjenkalling</div>
     <div class="sporsmalboks">Uten hjelp: fullfør denne setningen med egne ord. Testen viser at ...</div>
-    <textarea class="tekstboks" id="r1" placeholder="Skriv her..."></textarea>
+    <textarea class="tekstboks" id="r1" placeholder="Skriv her..." autocomplete="off"></textarea>
     <button class="knapp-lav" id="ordvevBtn_r1" onclick="ordvevHjelp('knyttet','ordvevBoks_r1','ordvevBtn_r1')">🆘 Jeg trenger hjelp</button>
     <div class="ordvev" id="ordvevBoks_r1"></div>
-    <button class="knapp-hoved" style="margin-top:0.3rem;" onclick="sendFri('r1','r1F','Repetisjon at-setninger - Fri gjenkalling',10)">Send til mamma 💛</button>
+    <button class="knapp-hoved" style="margin-top:0.3rem;" onclick="sendFri('r1','r1F','Repetisjon at-setninger - Fri gjenkalling',10,'knyttet')">Send til mamma 💛</button>
     <div class="svar" id="r1F"></div>
   </div>
 
@@ -153,13 +153,13 @@ h1.tittel{font-size:clamp(2.1rem,9vw,3rem);line-height:1;font-weight:500;letter-
     <div class="lede-liten">Disse setningene har feil rekkefølge. Skriv dem riktig.</div>
     <div class="feltrad">
       <label>Feil: «Han sa at er han glad.» Riktig:</label>
-      <input class="felt" id="f1" placeholder="Skriv riktig setning...">
+      <input class="felt" id="f1" placeholder="Skriv riktig setning..." autocomplete="off">
       <button class="knapp-lav" style="margin-top:0.5rem;" onclick="sjekkFeilRettet('f1','f1F','han er glad')">Sjekk</button>
       <div class="svar" id="f1F"></div>
     </div>
     <div class="feltrad">
       <label>Feil: «Hun tror at kan hun svømme.» Riktig:</label>
-      <input class="felt" id="f2" placeholder="Skriv riktig setning...">
+      <input class="felt" id="f2" placeholder="Skriv riktig setning..." autocomplete="off">
       <button class="knapp-lav" style="margin-top:0.5rem;" onclick="sjekkFeilRettet('f2','f2F','hun kan svømme')">Sjekk</button>
       <div class="svar" id="f2F"></div>
     </div>
@@ -173,7 +173,7 @@ h1.tittel{font-size:clamp(2.1rem,9vw,3rem);line-height:1;font-weight:500;letter-
     <div class="svar" id="v5F"></div>
     <div class="feltrad" style="margin-top:1rem;">
       <label>Fyll inn: Familien min er ___ til...</label>
-      <input class="felt" id="s4" placeholder="knyttet til hva?">
+      <input class="felt" id="s4" placeholder="knyttet til hva?" autocomplete="off">
     </div>
     <button class="knapp-hoved" onclick="sendFri('s4','s4F','Repetisjon at-setninger - Knyttet',3)">Send til mamma 💛</button>
     <div class="svar" id="s4F"></div>
@@ -193,15 +193,15 @@ h1.tittel{font-size:clamp(2.1rem,9vw,3rem);line-height:1;font-weight:500;letter-
     <div class="sporsmalboks">Fullfør hele kjeden: at → derfor → dermed.</div>
     <div class="feltrad">
       <label>Testen viser at...</label>
-      <input class="felt" id="k1" placeholder="hvem, hva">
+      <input class="felt" id="k1" placeholder="hvem, hva" autocomplete="off">
     </div>
     <div class="feltrad">
       <label>Derfor...</label>
-      <input class="felt" id="k2" placeholder="verb først!">
+      <input class="felt" id="k2" placeholder="verb først!" autocomplete="off">
     </div>
     <div class="feltrad">
       <label>Dermed...</label>
-      <input class="felt" id="k3" placeholder="verb først!">
+      <input class="felt" id="k3" placeholder="verb først!" autocomplete="off">
     </div>
     <button class="knapp-hoved" onclick="sendKjede()">Send til mamma 💛</button>
     <div class="svar" id="kjedeF"></div>
@@ -229,14 +229,22 @@ function sjekkFeilRettet(inputId, svarId, godta){
   else{ f.className='svar vis feil'; f.innerHTML='💡 Prøv igjen. Husk: hvem/hva rett etter at.'; }
 }
 
-function sendFri(taId, svarId, oppgave, minLen){
+function stottePoeng(steg){
+  if(!steg) return 3;
+  if(steg<=2) return 2;
+  if(steg===3) return 1;
+  return 0;
+}
+function sendFri(taId, svarId, oppgave, minLen, ordvevId){
   var t=document.getElementById(taId).value;
   var f=document.getElementById(svarId);
   minLen = minLen||3;
   if(t.trim().length<minLen){ f.className='svar vis feil'; f.innerHTML='⏳ Skriv litt mer først!'; return; }
   f.className='svar vis'; f.style.background='var(--cream)'; f.style.color='var(--muted)'; f.innerHTML='⏳ Sender...';
+  var niva = ordvevId ? (ordvevSteg[ordvevId]||0) : null;
+  var poeng = ordvevId ? stottePoeng(niva) : null;
   fetch('https://formspree.io/f/mqeolldg',{method:'POST',headers:{'Content-Type':'application/json','Accept':'application/json'},
-    body:JSON.stringify({Tekst_hun_skrev:t, oppgave:oppgave, maal:MAAL, dato:new Date().toLocaleString('no-NO')})})
+    body:JSON.stringify({Tekst_hun_skrev:t, oppgave:oppgave, maal:MAAL, dato:new Date().toLocaleString('no-NO'), stotte_niva:niva, stotte_poeng:poeng})})
    .then(function(r){
      if(r.ok){ f.className='svar vis riktig'; f.innerHTML='✅ Sendt til mamma! 🎉'; }
      else{ f.className='svar vis feil'; f.innerHTML='❌ Noe gikk galt. Prøv igjen!'; }
@@ -352,6 +360,21 @@ function sjekkBygg(btn,riktig){
 function nesteBygg(){ iB++; visBygg(); }
 
 visBygg();
+
+/* Hindrer at nettleseren fyller inn gammel tekst når siden åpnes på nytt */
+(function(){
+  function tomFelter(){
+    document.querySelectorAll('textarea, input[type="text"], input:not([type])').forEach(function(el){
+      el.value = '';
+    });
+  }
+  window.addEventListener('pageshow', function(e){ if(e.persisted) tomFelter(); });
+  if(document.readyState === 'loading'){
+    document.addEventListener('DOMContentLoaded', tomFelter);
+  } else {
+    tomFelter();
+  }
+})();
 </script>
 </body>
 </html>

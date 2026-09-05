@@ -97,12 +97,12 @@ h1.tittel{font-size:clamp(2rem,8.5vw,2.9rem);line-height:1.02;font-weight:500;le
   <a class="avatar" href="index.html" aria-label="Til forsiden">E</a>
   <div class="navlinks">
     <a href="historier.html">Historier</a>
-    <a href="index.html#skolefag">Skolefag</a>
+    <a href="skolefag.html">Skolefag</a>
   </div>
 </div>
 
 <main class="side">
-  <a class="tilbake" href="index.html#skolefag">← Fra skolen</a>
+  <a class="tilbake" href="skolefag.html">← Skolefag</a>
 
   <section class="topp">
     <div class="eyebrow">Naturfag &middot; Biologisk mangfold</div>
@@ -207,23 +207,23 @@ h1.tittel{font-size:clamp(2rem,8.5vw,2.9rem);line-height:1.02;font-weight:500;le
       <div class="lede-liten">Fullfør hver setning. Husk: etter «derfor» kommer verbet først!</div>
       <div class="feltrad">
         <label><strong>Først</strong></label>
-        <input class="felt" id="s1" placeholder="Skriv her...">
+        <input class="felt" id="s1" placeholder="Skriv her..." autocomplete="off">
       </div>
       <div class="feltrad">
         <label><strong>Så</strong></label>
-        <input class="felt" id="s2" placeholder="Skriv her...">
+        <input class="felt" id="s2" placeholder="Skriv her..." autocomplete="off">
       </div>
       <div class="feltrad">
         <label><strong>Men</strong></label>
-        <input class="felt" id="s3" placeholder="Skriv her...">
+        <input class="felt" id="s3" placeholder="Skriv her..." autocomplete="off">
       </div>
       <div class="feltrad">
         <label><strong>Derfor</strong></label>
-        <input class="felt" id="s4" placeholder="verbet først!">
+        <input class="felt" id="s4" placeholder="verbet først!" autocomplete="off">
       </div>
       <div class="feltrad">
         <label><strong>I dag</strong></label>
-        <input class="felt" id="s5" placeholder="Skriv her...">
+        <input class="felt" id="s5" placeholder="Skriv her..." autocomplete="off">
       </div>
       <button class="knapp-hoved" onclick="sendKjede()">Send til mamma 💛</button>
       <div class="svar" id="kjedeF"></div>
@@ -243,7 +243,7 @@ h1.tittel{font-size:clamp(2rem,8.5vw,2.9rem);line-height:1.02;font-weight:500;le
       <div class="hjelpeord">
         <span class="h">mennesker</span><span class="h">hogge ned</span><span class="h">mange trær</span><span class="h">færre</span>
       </div>
-      <textarea class="tekstboks" id="t1" placeholder="Skriv her..."></textarea>
+      <textarea class="tekstboks" id="t1" placeholder="Skriv her..." autocomplete="off"></textarea>
       <button class="knapp-hoved" style="margin-top:0.7rem;" onclick="sendFri('t1','t1F','Pau-brasil - Hvorfor truet',10)">Send til mamma 💛</button>
       <div class="svar" id="t1F"></div>
     </div>
@@ -253,7 +253,7 @@ h1.tittel{font-size:clamp(2rem,8.5vw,2.9rem);line-height:1.02;font-weight:500;le
       <div class="hjelpeord">
         <span class="h">art</span><span class="h">plante</span><span class="h">levende</span><span class="h">naturen</span>
       </div>
-      <textarea class="tekstboks" id="t2" placeholder="Skriv her..."></textarea>
+      <textarea class="tekstboks" id="t2" placeholder="Skriv her..." autocomplete="off"></textarea>
       <button class="knapp-hoved" style="margin-top:0.7rem;" onclick="sendFri('t2','t2F','Pau-brasil - Del av mangfoldet',10)">Send til mamma 💛</button>
       <div class="svar" id="t2F"></div>
     </div>
@@ -262,7 +262,7 @@ h1.tittel{font-size:clamp(2rem,8.5vw,2.9rem);line-height:1.02;font-weight:500;le
       <div class="steg-label">⭐ Dagens viktigste spørsmål</div>
       <div class="sporsmal-stor">Hva betyr «biologisk mangfold»?</div>
       <div class="lede-liten">Prøv helt selv først – uten hjelp.</div>
-      <textarea class="tekstboks" id="t3" placeholder="Biologisk mangfold betyr..."></textarea>
+      <textarea class="tekstboks" id="t3" placeholder="Biologisk mangfold betyr..." autocomplete="off"></textarea>
       <button class="knapp-lav" style="margin-top:0.7rem;" id="hjelpBtn" onclick="visValg()">🆘 Jeg trenger hjelp</button>
       <div class="valgboks" id="valgboks">
         <div class="lede-liten">Hvilken passer best?</div>
@@ -407,6 +407,21 @@ function sjekkRekke(){
 }
 
 settOppRekke();
+
+/* Hindrer at nettleseren fyller inn gammel tekst når siden åpnes på nytt */
+(function(){
+  function tomFelter(){
+    document.querySelectorAll('textarea, input[type="text"], input:not([type])').forEach(function(el){
+      el.value = '';
+    });
+  }
+  window.addEventListener('pageshow', function(e){ if(e.persisted) tomFelter(); });
+  if(document.readyState === 'loading'){
+    document.addEventListener('DOMContentLoaded', tomFelter);
+  } else {
+    tomFelter();
+  }
+})();
 </script>
 </body>
 </html>

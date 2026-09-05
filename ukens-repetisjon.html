@@ -1,0 +1,440 @@
+<!DOCTYPE html>
+<html lang="no">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ukens repetisjon – Edels Verden</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --cream:#F6F1E6;--paper:#FFFEFA;--navy:#1C2C42;--navy-2:#29455F;--ink:#1B2438;--muted:#746F66;
+  --coral:#BE6E56;--coral-soft:#F3DFD6;--rule:#E4DCCB;
+  --correct:#3E6C63;--correct-bg:#E1EBE7;--feil:#B5483A;--feil-bg:#F5E1DC;
+  --shadow:0 12px 34px rgba(28,44,66,0.08);
+}
+*{box-sizing:border-box;margin:0;padding:0;}
+html{scroll-behavior:smooth;}
+body{font-family:'Inter',sans-serif;background:radial-gradient(circle at 10% 0%,#FFF9EE 0,transparent 24rem),var(--cream);color:var(--ink);min-height:100vh;padding-bottom:3rem;-webkit-font-smoothing:antialiased;}
+a{-webkit-tap-highlight-color:transparent;}
+a:focus-visible,button:focus-visible{outline:2px solid var(--coral);outline-offset:3px;}
+.serif{font-family:'Fraunces',serif;}
+.topnav{display:flex;align-items:center;justify-content:space-between;padding:0.9rem 1.2rem;max-width:680px;margin:0 auto;position:sticky;top:0;background:rgba(246,241,230,0.9);backdrop-filter:blur(16px);border-bottom:1px solid rgba(28,44,66,0.07);z-index:40;}
+.avatar{width:2.65rem;height:2.65rem;border-radius:50%;background:var(--navy);color:#EDE6D6;display:flex;align-items:center;justify-content:center;font-family:'Fraunces',serif;font-style:italic;font-weight:600;font-size:1.08rem;flex-shrink:0;box-shadow:0 8px 20px rgba(28,44,66,0.16);text-decoration:none;}
+.navlinks{display:flex;gap:1.35rem;}
+.navlinks a{color:var(--ink);text-decoration:none;font-weight:600;font-size:0.92rem;}
+.navlinks a:hover{color:var(--coral);}
+.side{max-width:680px;margin:0 auto;padding:2rem 1.2rem 0;}
+.tilbake{display:inline-flex;margin-bottom:1.6rem;color:var(--muted);text-decoration:none;font-size:0.82rem;font-weight:600;}
+.eyebrow{font-size:0.68rem;letter-spacing:0.15em;text-transform:uppercase;font-weight:700;color:var(--coral);margin-bottom:0.6rem;}
+.topp{padding-bottom:1.6rem;border-bottom:1px solid var(--rule);}
+h1.tittel{font-size:clamp(2rem,8.5vw,2.9rem);line-height:1.02;font-weight:500;letter-spacing:-0.03em;}
+.lede{color:var(--muted);font-size:0.94rem;line-height:1.6;max-width:27rem;margin-top:0.9rem;}
+.stegnav{display:flex;gap:0.35rem;margin:1.4rem 0;}
+.stegdot{flex:1;height:5px;border-radius:3px;background:var(--rule);}
+.stegdot.ferdig{background:var(--coral);}
+.stegdot.aktiv{background:var(--navy);}
+.stegtittel{font-size:0.72rem;letter-spacing:0.08em;text-transform:uppercase;color:var(--muted);font-weight:700;margin-bottom:1rem;}
+.tela{display:none;}
+.tela.aktiv{display:block;animation:inn 0.25s;}
+@keyframes inn{from{opacity:0;}to{opacity:1;}}
+.boks{background:var(--paper);border:1px solid rgba(28,44,66,0.08);border-radius:20px;padding:1.25rem 1.3rem;margin-bottom:0.9rem;box-shadow:0 7px 24px rgba(28,44,66,0.045);}
+.steg-label{font-size:0.66rem;letter-spacing:0.09em;text-transform:uppercase;color:var(--coral);font-weight:700;margin-bottom:0.6rem;}
+.lede-liten{color:var(--muted);font-size:0.88rem;line-height:1.5;margin-bottom:0.9rem;}
+.linje{padding:0.35rem 0;font-size:1rem;line-height:1.6;}
+.frem{background:rgba(190,110,86,0.16);border-radius:5px;padding:0.1rem 0.35rem;font-weight:700;color:var(--coral);}
+.sporsmal{font-size:1rem;line-height:1.55;margin-bottom:0.7rem;color:var(--ink);}
+.sporsmal-stor{font-family:'Fraunces',serif;font-size:1.3rem;font-weight:500;margin-bottom:0.5rem;}
+.knapp{display:block;width:100%;background:var(--cream);border:1.5px solid var(--rule);color:var(--ink);padding:0.7rem 0.9rem;border-radius:14px;cursor:pointer;margin-bottom:0.5rem;text-align:left;line-height:1.4;font-size:0.94rem;font-family:'Inter',sans-serif;}
+.knapp.riktig{border-color:var(--correct);background:var(--correct-bg);color:var(--correct);}
+.knapp.feil{border-color:var(--feil);background:var(--feil-bg);color:var(--feil);}
+.knapprad{margin-bottom:1.1rem;}
+.knapprad:last-child{margin-bottom:0;}
+.sporsmalboks{background:var(--cream);border-left:3px solid var(--coral);padding:0.85rem 0.95rem;border-radius:10px;color:var(--ink);font-size:0.92rem;line-height:1.5;margin-bottom:0.9rem;}
+.tekstboks{width:100%;min-height:75px;padding:0.9rem;border:1.5px solid var(--rule);border-radius:14px;font-family:'Inter';font-size:0.96rem;background:var(--paper);color:var(--ink);resize:vertical;line-height:1.55;}
+.tekstboks:focus{outline:none;border-color:var(--coral);}
+.felt{width:100%;padding:0.65rem 0.85rem;border:1.5px solid var(--rule);border-radius:12px;font-family:'Inter';font-size:0.94rem;background:var(--paper);color:var(--ink);}
+.felt:focus{outline:none;border-color:var(--coral);}
+.knapp-hoved{width:100%;background:var(--navy);color:#fff;padding:0.75rem;border:none;border-radius:14px;font-family:'Inter';font-weight:600;font-size:0.92rem;cursor:pointer;margin-top:0.2rem;}
+.knapp-lav{background:var(--cream);border:1.5px solid var(--rule);color:var(--coral);padding:0.5rem 0.9rem;border-radius:12px;font-weight:600;font-size:0.82rem;cursor:pointer;margin-bottom:0.7rem;font-family:'Inter';}
+.knapprad2{display:flex;gap:0.6rem;justify-content:space-between;margin-top:1.1rem;}
+.svar{margin-top:0.7rem;padding:0.7rem 0.85rem;border-radius:12px;font-weight:600;display:none;line-height:1.55;font-size:0.88rem;}
+.svar.vis{display:block;}
+.svar.riktig{background:var(--correct-bg);color:var(--correct);}
+.svar.feil{background:var(--feil-bg);color:var(--feil);}
+.ordvev{display:none;background:var(--cream);border:1.5px solid var(--coral);border-radius:14px;padding:0.9rem 1rem;margin-bottom:0.7rem;}
+.ordvev.vis{display:block;}
+.ordvev-niva{padding:0.45rem 0;border-top:1px dashed var(--rule);font-size:0.86rem;line-height:1.5;color:var(--ink);}
+.ordvev-niva:first-child{border-top:none;padding-top:0;}
+.ordvev-tag{display:inline-block;font-size:0.6rem;font-weight:700;text-transform:uppercase;letter-spacing:0.05em;color:var(--coral);margin-right:0.4rem;}
+
+/* Definisjonsramme */
+.deframme{background:var(--cream);border-radius:16px;padding:1rem;margin-bottom:0.9rem;}
+.defrad{display:flex;flex-wrap:wrap;align-items:center;gap:0.5rem;font-size:1.05rem;line-height:2.2;}
+.defrad .låst{font-family:'Fraunces',serif;font-weight:600;color:var(--navy);}
+.defrad .låst.ord{color:var(--coral);}
+.defrad input{flex:1;min-width:9rem;padding:0.5rem 0.8rem;border:1.5px solid var(--rule);border-radius:10px;font-family:'Inter';font-size:0.94rem;background:var(--paper);color:var(--ink);}
+.defrad input:focus{outline:none;border-color:var(--coral);}
+.modell{background:var(--paper);border:1px dashed var(--rule);border-radius:12px;padding:0.7rem 0.85rem;font-size:0.88rem;color:var(--muted);line-height:1.6;margin-top:0.6rem;}
+.modell b{color:var(--ink);}
+
+.temaboks{display:flex;flex-wrap:wrap;gap:0.4rem;margin-bottom:0.9rem;}
+.temapille{background:var(--cream);border:1px solid var(--rule);border-radius:999px;padding:0.28rem 0.7rem;font-size:0.78rem;color:var(--ink);}
+.bilde{width:100%;border-radius:16px;cursor:zoom-in;box-shadow:0 8px 24px rgba(28,44,66,0.1);margin-bottom:1rem;display:block;}
+.modal{display:none;position:fixed;inset:0;background:rgba(28,36,56,0.94);z-index:100;padding:0.5rem;overflow:auto;}
+.modal.vis{display:flex;align-items:center;justify-content:center;}
+.modal img{max-width:100%;border-radius:14px;}
+.modal-lukk{position:fixed;top:0.8rem;right:1.2rem;color:#fff;font-size:2.4rem;cursor:pointer;font-weight:bold;z-index:101;}
+.footer{text-align:center;font-size:0.75rem;color:var(--muted);margin-top:2.5rem;padding:1.25rem;}
+@media(prefers-reduced-motion:reduce){*{scroll-behavior:auto!important;}}
+</style>
+</head>
+<body>
+
+<div class="topnav">
+  <a class="avatar" href="index.html" aria-label="Til forsiden">E</a>
+  <div class="navlinks">
+    <a href="historier.html">Historier</a>
+    <a href="skolefag.html">Skolefag</a>
+  </div>
+</div>
+
+<main class="side">
+  <a class="tilbake" href="index.html">← Til forsiden</a>
+
+  <section class="topp">
+    <div class="eyebrow">Ukens repetisjon</div>
+    <h1 class="tittel serif">Husker du?</h1>
+    <p class="lede">Ikke noe nytt i dag – bare ordene du allerede kan, på nye måter.</p>
+  </section>
+
+  <div class="stegnav" id="stegnav">
+    <div class="stegdot aktiv"></div><div class="stegdot"></div><div class="stegdot"></div><div class="stegdot"></div>
+  </div>
+
+  <!-- TELA 0: FRI GJENKALLING -->
+  <div class="tela aktiv" id="tela0">
+    <div class="stegtittel">Steg 1 av 4 · Hva husker du?</div>
+
+    <div class="boks">
+      <div class="lede-liten">Uten å se på de gamle sidene. Ett spørsmål om gangen.</div>
+      <div class="sporsmal-stor">Hva skjer når noe <em>størkner</em>?</div>
+      <button class="knapp-lav" id="bStorkne" onclick="ordvevHjelp('storkne','vStorkne','bStorkne')">🆘 Jeg trenger hjelp</button>
+      <div class="ordvev" id="vStorkne"></div>
+      <textarea class="tekstboks" id="g1" placeholder="Skriv her..." autocomplete="off"></textarea>
+      <button class="knapp-hoved" style="margin-top:0.3rem;" onclick="sendFri('g1','g1F','Repetisjon - Størkne',8,'storkne')">Send til mamma 💛</button>
+      <div class="svar" id="g1F"></div>
+    </div>
+
+    <div class="boks">
+      <div class="sporsmal-stor">Hva betyr <em>slitesterk</em>?</div>
+      <button class="knapp-lav" id="bSlite" onclick="ordvevHjelp('slitesterk','vSlite','bSlite')">🆘 Jeg trenger hjelp</button>
+      <div class="ordvev" id="vSlite"></div>
+      <textarea class="tekstboks" id="g2" placeholder="Skriv her..." autocomplete="off"></textarea>
+      <button class="knapp-hoved" style="margin-top:0.3rem;" onclick="sendFri('g2','g2F','Repetisjon - Slitesterk',8,'slitesterk')">Send til mamma 💛</button>
+      <div class="svar" id="g2F"></div>
+    </div>
+
+    <div class="boks">
+      <div class="sporsmal-stor">Hva betyr <em>utdødd</em>?</div>
+      <button class="knapp-lav" id="bUtdodd" onclick="ordvevHjelp('utdodd','vUtdodd','bUtdodd')">🆘 Jeg trenger hjelp</button>
+      <div class="ordvev" id="vUtdodd"></div>
+      <textarea class="tekstboks" id="g3" placeholder="Skriv her..." autocomplete="off"></textarea>
+      <button class="knapp-hoved" style="margin-top:0.3rem;" onclick="sendFri('g3','g3F','Repetisjon - Utdødd',8,'utdodd')">Send til mamma 💛</button>
+      <div class="svar" id="g3F"></div>
+    </div>
+
+    <div class="knapprad2" style="justify-content:flex-end;">
+      <button class="knapp-hoved" style="width:auto;padding:0.75rem 1.4rem;" onclick="visTela(1)">Neste →</button>
+    </div>
+  </div>
+
+  <!-- TELA 1: DEFINISJONSVERKSTED -->
+  <div class="tela" id="tela1">
+    <div class="stegtittel">Steg 2 av 4 · Definisjonsverksted</div>
+
+    <div class="boks">
+      <div class="steg-label">Slik lager vi en forklaring</div>
+      <img class="bilde" src="img/forklaringsoppskrift.png" alt="Slik forklarer vi et ord: ORDET + betyr at + en hel setning" onclick="zoom('img/forklaringsoppskrift.png')">
+      <div class="lede-liten" style="margin-bottom:0;">Legg merke til: etter «betyr» kommer <strong>at</strong>, og så en <strong>hel setning</strong>. Fyll bare inn den siste delen!</div>
+    </div>
+
+    <div class="boks">
+      <div class="steg-label">Din tur</div>
+
+      <div class="deframme">
+        <div class="defrad">
+          <span class="låst ord">Mangfold</span><span class="låst">betyr at det finnes</span>
+          <input class="felt" id="d1" placeholder="..." autocomplete="off">
+        </div>
+      </div>
+
+      <div class="deframme">
+        <div class="defrad">
+          <span class="låst ord">Å danne</span><span class="låst">betyr</span>
+          <input class="felt" id="d2" placeholder="å ..." autocomplete="off">
+        </div>
+        <div class="modell">Husk: etter «betyr» kommer også <b>å</b> når det er et verb. Å danne betyr <b>å forme</b>.</div>
+      </div>
+
+      <div class="deframme">
+        <div class="defrad">
+          <span class="låst ord">Å størkne</span><span class="låst">betyr at noe</span>
+          <input class="felt" id="d3" placeholder="..." autocomplete="off">
+        </div>
+      </div>
+
+      <div class="deframme">
+        <div class="defrad">
+          <span class="låst ord">En organisme</span><span class="låst">er</span>
+          <input class="felt" id="d4" placeholder="noe som ..." autocomplete="off">
+        </div>
+      </div>
+
+      <button class="knapp-hoved" onclick="sendDefinisjoner()">Send til mamma 💛</button>
+      <div class="svar" id="dF"></div>
+    </div>
+
+    <div class="knapprad2">
+      <button class="knapp-lav" onclick="visTela(0)">← Forrige</button>
+      <button class="knapp-hoved" style="width:auto;padding:0.75rem 1.4rem;" onclick="visTela(2)">Neste →</button>
+    </div>
+  </div>
+
+  <!-- TELA 2: FORDI-TRENING -->
+  <div class="tela" id="tela2">
+    <div class="stegtittel">Steg 3 av 4 · Fordi og at</div>
+
+    <div class="boks">
+      <div class="steg-label">To ord som ikke skal stå sammen</div>
+      <div class="linje">Vi sier <span class="frem">fordi</span>. Vi sier <span class="frem">at</span>.</div>
+      <div class="linje">Men vi sier <strong>aldri</strong> «fordi at» – bare ett av dem om gangen!</div>
+      <div class="modell" style="margin-top:0.7rem;">
+        ✅ Skogen ble mindre <b>fordi</b> de hogg ned trær.<br>
+        ✅ Jeg tror <b>at</b> skogen ble mindre.<br>
+        ❌ Skogen ble mindre <b>fordi at</b> de hogg ned trær.
+      </div>
+    </div>
+
+    <div class="boks">
+      <div class="steg-label">Hvilken er riktig?</div>
+      <div class="knapprad">
+        <div class="sporsmal">1.</div>
+        <button class="knapp" onclick="velgEn(this,1,0,'f1F')">Dodoen forsvant fordi at menneskene jaktet.</button>
+        <button class="knapp" onclick="velgEn(this,1,1,'f1F')">Dodoen forsvant fordi menneskene jaktet.</button>
+        <div class="svar" id="f1F"></div>
+      </div>
+      <div class="knapprad">
+        <div class="sporsmal">2.</div>
+        <button class="knapp" onclick="velgEn(this,0,0,'f2F')">Jeg tror at pau-brasil er en art.</button>
+        <button class="knapp" onclick="velgEn(this,0,1,'f2F')">Jeg tror fordi at pau-brasil er en art.</button>
+        <div class="svar" id="f2F"></div>
+      </div>
+      <div class="knapprad">
+        <div class="sporsmal">3. Etter «fordi»: hvor skal «ikke» stå?</div>
+        <button class="knapp" onclick="velgEn(this,1,0,'f3F')">...fordi de har ikke mer skog.</button>
+        <button class="knapp" onclick="velgEn(this,1,1,'f3F')">...fordi de ikke har mer skog.</button>
+        <div class="svar" id="f3F"></div>
+      </div>
+    </div>
+
+    <div class="boks">
+      <div class="steg-label">Skriv selv</div>
+      <div class="sporsmalboks">Fullfør med <strong>fordi</strong> – uten «at»!</div>
+      <div class="deframme">
+        <div class="defrad">
+          <span class="låst">Biologisk mangfold er viktig</span><span class="låst ord">fordi</span>
+          <input class="felt" id="fs1" placeholder="..." autocomplete="off">
+        </div>
+      </div>
+      <button class="knapp-hoved" onclick="sendFordi()">Send til mamma 💛</button>
+      <div class="svar" id="fsF"></div>
+    </div>
+
+    <div class="knapprad2">
+      <button class="knapp-lav" onclick="visTela(1)">← Forrige</button>
+      <button class="knapp-hoved" style="width:auto;padding:0.75rem 1.4rem;" onclick="visTela(3)">Neste →</button>
+    </div>
+  </div>
+
+  <!-- TELA 3: ALT SAMMEN -->
+  <div class="tela" id="tela3">
+    <div class="stegtittel">Steg 4 av 4 · Alt sammen</div>
+
+    <div class="boks">
+      <div class="steg-label">Ordene fra hele uka</div>
+      <div class="temaboks">
+        <span class="temapille">størkne</span><span class="temapille">flytende</span><span class="temapille">slitesterk</span>
+        <span class="temapille">danne</span><span class="temapille">består av</span><span class="temapille">mangfold</span>
+        <span class="temapille">organisme</span><span class="temapille">art</span><span class="temapille">utdødd</span>
+      </div>
+      <div class="sporsmalboks">Velg <strong>tre</strong> av ordene. Skriv én setning med hvert ord.</div>
+      <textarea class="tekstboks" id="a1" style="min-height:110px;" placeholder="1.&#10;2.&#10;3." autocomplete="off"></textarea>
+      <button class="knapp-hoved" style="margin-top:0.7rem;" onclick="sendFri('a1','a1F','Repetisjon - Tre egne setninger',20)">Send til mamma 💛</button>
+      <div class="svar" id="a1F"></div>
+    </div>
+
+    <div class="boks">
+      <div class="steg-label">Den store sammenhengen</div>
+      <div class="sporsmalboks">Både granitt og pau-brasil er en del av naturen. Men bare det ene er en <strong>organisme</strong>. Hvilket – og hvorfor?</div>
+      <textarea class="tekstboks" id="a2" placeholder="Skriv her..." autocomplete="off"></textarea>
+      <button class="knapp-hoved" style="margin-top:0.7rem;" onclick="sendFri('a2','a2F','Repetisjon - Organisme eller ikke',12)">Send til mamma 💛</button>
+      <div class="svar" id="a2F"></div>
+    </div>
+
+    <div class="knapprad2">
+      <button class="knapp-lav" onclick="visTela(2)">← Forrige</button>
+    </div>
+  </div>
+
+</main>
+
+<div class="footer">Ukens repetisjon · Edels Verden</div>
+
+<div class="modal" id="bildeModal" onclick="lukkModal()">
+  <span class="modal-lukk">&times;</span>
+  <img id="modalBilde" src="" alt="">
+</div>
+
+<script>
+function zoom(src){ document.getElementById('modalBilde').src=src; document.getElementById('bildeModal').classList.add('vis'); }
+function lukkModal(){ document.getElementById('bildeModal').classList.remove('vis'); }
+
+var MAAL = "Ukens repetisjon – gjenkalling, definisjonsform, fordi uten at";
+
+function visTela(n){
+  document.querySelectorAll('.tela').forEach(function(t,i){ t.classList.toggle('aktiv', i===n); });
+  document.querySelectorAll('#stegnav .stegdot').forEach(function(d,i){
+    d.classList.toggle('aktiv', i===n);
+    d.classList.toggle('ferdig', i<n);
+  });
+  window.scrollTo({top:0,behavior:'smooth'});
+}
+
+function velgEn(btn, riktigIdx, valgtIdx, svarId){
+  var knapper = btn.parentElement.querySelectorAll('.knapp');
+  knapper.forEach(function(b){b.style.pointerEvents='none';});
+  var f=document.getElementById(svarId);
+  if(valgtIdx===riktigIdx){ btn.classList.add('riktig'); f.className='svar vis riktig'; f.innerHTML='✅ Riktig!'; }
+  else{ btn.classList.add('feil'); if(knapper[riktigIdx]) knapper[riktigIdx].classList.add('riktig'); f.className='svar vis feil'; f.innerHTML='💡 Nesten! Riktig svar er markert med grønt.'; }
+}
+
+/* ---- Ordvev ---- */
+var ORDVEV = {
+  storkne: {
+    kategori: "Det er en forandring – noe skjer med noe over tid.",
+    funksjon: "Før kunne det renne. Etterpå kan det ikke renne lenger. Tenk på sjokolade i kjøleskapet.",
+    lyd: "Ordet begynner på ST- og har 2 stavelser: STØRK-NE.",
+    forveksling: "Ikke «smelte» – det er motsatt vei. Og ikke «tørke» – det handler om vann."
+  },
+  slitesterk: {
+    kategori: "Det beskriver hvordan noe tåler bruk.",
+    funksjon: "Du kan bruke det mye, og det blir likevel ikke ødelagt. Granitt er det. Papir er det ikke.",
+    lyd: "To deler: SLITE-STERK.",
+    forveksling: "Ikke bare om stein! En mursten og en sko-såle kan også være slitesterke."
+  },
+  utdodd: {
+    kategori: "Det handler om hvor mange som er igjen av et dyr eller en plante.",
+    funksjon: "Finnes det noen igjen? Nei – ikke én eneste. Tenk på dodoen.",
+    lyd: "Ordet begynner på UT-: UT-DØDD.",
+    forveksling: "Ikke det samme som «truet». Truet = det finnes få igjen. Utdødd = det finnes ingen."
+  }
+};
+var ordvevSteg = {};
+var ordvevVist = {};
+function ordvevHjelp(id, boksId, btnId){
+  var v = ORDVEV[id];
+  var steg = (ordvevSteg[id]||0) + 1;
+  if(steg>4) steg=4;
+  ordvevSteg[id] = steg;
+  var boks = document.getElementById(boksId);
+  var html = '';
+  var vist = [];
+  if(steg>=1){ html += '<div class="ordvev-niva"><span class="ordvev-tag">Hva slags ord</span>'+v.kategori+'</div>'; vist.push(v.kategori); }
+  if(steg>=2){ html += '<div class="ordvev-niva"><span class="ordvev-tag">Tenk på</span>'+v.funksjon+'</div>'; vist.push(v.funksjon); }
+  if(steg>=3){ html += '<div class="ordvev-niva"><span class="ordvev-tag">Hvordan det høres</span>'+v.lyd+'</div>'; vist.push(v.lyd); }
+  if(steg>=4){ html += '<div class="ordvev-niva"><span class="ordvev-tag">NB</span>'+v.forveksling+'</div>'; vist.push(v.forveksling); }
+  ordvevVist[id] = vist.join(' ');
+  boks.className='ordvev vis';
+  boks.innerHTML = html;
+  var btn = document.getElementById(btnId);
+  if(steg>=4){ btn.style.display='none'; } else { btn.textContent = '🆘 Enda mer hjelp'; }
+}
+
+/* Sjekker om svaret i praksis er en kopi av hintet som ble vist */
+function lignerHint(svar, hintTekst){
+  if(!hintTekst) return false;
+  var rens = function(s){ return s.toLowerCase().replace(/[«».,!?:;–-]/g,' ').split(/\s+/).filter(function(w){return w.length>3;}); };
+  var sOrd = rens(svar);
+  if(sOrd.length===0) return false;
+  var hOrd = rens(hintTekst);
+  var treff = sOrd.filter(function(w){ return hOrd.indexOf(w)!==-1; }).length;
+  return (treff / sOrd.length) >= 0.6;
+}
+
+/* ---- Sending ---- */
+function stottePoeng(steg){
+  if(!steg) return 3;
+  if(steg<=2) return 2;
+  if(steg===3) return 1;
+  return 0;
+}
+function send(tekst, svarId, oppgave, niva, poeng, ekko){
+  var f=document.getElementById(svarId);
+  f.className='svar vis'; f.style.background='var(--cream)'; f.style.color='var(--muted)'; f.innerHTML='⏳ Sender...';
+  fetch('https://formspree.io/f/mqeolldg',{method:'POST',headers:{'Content-Type':'application/json','Accept':'application/json'},
+    body:JSON.stringify({Tekst_hun_skrev:tekst, oppgave:oppgave, maal:MAAL, dato:new Date().toLocaleString('no-NO'), stotte_niva:niva, stotte_poeng:poeng, svar_ligner_hint:(typeof ekko==='undefined'?null:ekko)})})
+   .then(function(r){
+     if(r.ok){ f.className='svar vis riktig'; f.innerHTML='✅ Sendt til mamma! 🎉'; }
+     else{ f.className='svar vis feil'; f.innerHTML='❌ Noe gikk galt. Prøv igjen!'; }
+   })
+   .catch(function(){ f.className='svar vis feil'; f.innerHTML='❌ Sjekk internett og prøv igjen!'; });
+}
+function sendFri(taId, svarId, oppgave, minLen, ordvevId){
+  var t=document.getElementById(taId).value;
+  var f=document.getElementById(svarId);
+  minLen = minLen||3;
+  if(t.trim().length<minLen){ f.className='svar vis feil'; f.innerHTML='⏳ Skriv litt mer først!'; return; }
+  var niva = ordvevId ? (ordvevSteg[ordvevId]||0) : null;
+  var poeng = ordvevId ? stottePoeng(niva) : null;
+  var ekko = ordvevId ? lignerHint(t, ordvevVist[ordvevId]) : null;
+  send(t, svarId, oppgave, niva, poeng, ekko);
+}
+function sendDefinisjoner(){
+  var d1=document.getElementById('d1').value.trim();
+  var d2=document.getElementById('d2').value.trim();
+  var d3=document.getElementById('d3').value.trim();
+  var d4=document.getElementById('d4').value.trim();
+  var f=document.getElementById('dF');
+  if([d1,d2,d3,d4].filter(Boolean).length<1){ f.className='svar vis feil'; f.innerHTML='⏳ Fyll ut minst én!'; return; }
+  var deler=[];
+  if(d1) deler.push('Mangfold betyr at det finnes '+d1+'.');
+  if(d2) deler.push('Å danne betyr '+d2+'.');
+  if(d3) deler.push('Å størkne betyr at noe '+d3+'.');
+  if(d4) deler.push('En organisme er '+d4+'.');
+  send(deler.join(' '), 'dF', 'Repetisjon - Definisjonsverksted', null, null);
+}
+function sendFordi(){
+  var t=document.getElementById('fs1').value.trim();
+  var f=document.getElementById('fsF');
+  if(t.length<5){ f.className='svar vis feil'; f.innerHTML='⏳ Skriv litt mer først!'; return; }
+  send('Biologisk mangfold er viktig fordi '+t+'.', 'fsF', 'Repetisjon - Fordi uten at', null, null);
+}
+
+/* Hindrer at nettleseren fyller inn gammel tekst når siden åpnes på nytt */
+(function(){
+  function tomFelter(){
+    document.querySelectorAll('textarea, input[type="text"], input:not([type])').forEach(function(el){
+      el.value = '';
+    });
+  }
+  window.addEventListener('pageshow', function(e){ if(e.persisted) tomFelter(); });
+  if(document.readyState === 'loading'){
+    document.addEventListener('DOMContentLoaded', tomFelter);
+  } else {
+    tomFelter();
+  }
+})();
+</script>
+</body>
+</html>

@@ -105,7 +105,7 @@ h1.tittel{font-size:clamp(2.1rem,9vw,3rem);line-height:1;font-weight:500;letter-
   <a class="avatar" href="index.html" aria-label="Til forsiden">E</a>
   <div class="navlinks">
     <a href="historier.html">Historier</a>
-    <a href="index.html#skolefag">Skolefag</a>
+    <a href="skolefag.html">Skolefag</a>
   </div>
 </div>
 
@@ -227,15 +227,15 @@ h1.tittel{font-size:clamp(2.1rem,9vw,3rem);line-height:1;font-weight:500;letter-
       <div class="lede-liten">Noe som kan størkne: sjokolade, smør, lys, magma – eller noe du kommer på selv.</div>
       <div class="feltrad">
         <label>Noe som kan størkne er...</label>
-        <input class="felt" id="s1a" placeholder="f.eks. sjokolade">
+        <input class="felt" id="s1a" placeholder="f.eks. sjokolade" autocomplete="off">
       </div>
       <div class="feltrad">
         <label>Det er flytende når det er...</label>
-        <input class="felt" id="s1b" placeholder="f.eks. varmt">
+        <input class="felt" id="s1b" placeholder="f.eks. varmt" autocomplete="off">
       </div>
       <div class="feltrad">
         <label>Slutter å kunne renne fordi...</label>
-        <input class="felt" id="s1c" placeholder="f.eks. det blir kaldt">
+        <input class="felt" id="s1c" placeholder="f.eks. det blir kaldt" autocomplete="off">
       </div>
       <button class="knapp-hoved" onclick="sendEksempel()">Send til mamma 💛</button>
       <div class="svar" id="s1F"></div>
@@ -248,7 +248,7 @@ h1.tittel{font-size:clamp(2.1rem,9vw,3rem);line-height:1;font-weight:500;letter-
       <div class="hjelpboks" id="h2">
         <div class="hjelp-eks">Sjokoladen ble flytende fordi Edel varmet den.<br>Dermed kunne hun lage sjokoladegulrøtter.<br>Pynten sto i kjøleskapet, dermed størknet den igjen.</div>
       </div>
-      <textarea class="tekstboks" id="s2" placeholder="Skriv her..."></textarea>
+      <textarea class="tekstboks" id="s2" placeholder="Skriv her..." autocomplete="off"></textarea>
       <button class="knapp-lav" id="ordvevBtn_s2" onclick="ordvevHjelp('storknet_pynt','ordvevBoks_s2','ordvevBtn_s2')">🆘 Trenger du et ord?</button>
       <div class="ordvev" id="ordvevBoks_s2"></div>
       <button class="knapp-hoved" style="margin-top:0.3rem;" onclick="sendFri('s2','s2F','Størknet - Fortell om sjokoladepynten',10,'storknet_pynt')">Send til mamma 💛</button>
@@ -272,7 +272,7 @@ h1.tittel{font-size:clamp(2.1rem,9vw,3rem);line-height:1;font-weight:500;letter-
       </div>
       <div id="fortellBoks" style="display:none;margin-top:1rem;">
         <div class="sporsmalboks">✍️ Fortell hva du hørte, med dine egne ord.</div>
-        <textarea class="tekstboks" id="fortellTekst" placeholder="Skriv det du husker..."></textarea>
+        <textarea class="tekstboks" id="fortellTekst" placeholder="Skriv det du husker..." autocomplete="off"></textarea>
         <button class="knapp-lav" id="ordvevBtn_lytt" onclick="ordvevHjelp('storknet_pynt','ordvevBoks_lytt','ordvevBtn_lytt')">🆘 Trenger du et ord?</button>
         <div class="ordvev" id="ordvevBoks_lytt"></div>
         <button class="knapp-hoved" style="margin-top:0.3rem;" onclick="sendFri('fortellTekst','fortellFasit','Størknet - Lytt og fortell',10,'storknet_pynt')">Send til mamma 💛</button>
@@ -482,6 +482,21 @@ function lesDelMedStemme(tekst, ferdig){
 }
 
 visBygg();
+
+/* Hindrer at nettleseren fyller inn gammel tekst når siden åpnes på nytt */
+(function(){
+  function tomFelter(){
+    document.querySelectorAll('textarea, input[type="text"], input:not([type])').forEach(function(el){
+      el.value = '';
+    });
+  }
+  window.addEventListener('pageshow', function(e){ if(e.persisted) tomFelter(); });
+  if(document.readyState === 'loading'){
+    document.addEventListener('DOMContentLoaded', tomFelter);
+  } else {
+    tomFelter();
+  }
+})();
 </script>
 </body>
 </html>
