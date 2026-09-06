@@ -1,0 +1,426 @@
+<!DOCTYPE html>
+<html lang="no">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Vann som forsvinner – Edels Verden</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --cream:#F6F1E6;--paper:#FFFEFA;--navy:#1C2C42;--navy-2:#29455F;--ink:#1B2438;--muted:#746F66;
+  --coral:#BE6E56;--coral-soft:#F3DFD6;--rule:#E4DCCB;
+  --correct:#3E6C63;--correct-bg:#E1EBE7;--feil:#B5483A;--feil-bg:#F5E1DC;
+  --shadow:0 12px 34px rgba(28,44,66,0.08);
+}
+*{box-sizing:border-box;margin:0;padding:0;}
+html{scroll-behavior:smooth;}
+body{font-family:'Inter',sans-serif;background:radial-gradient(circle at 10% 0%,#FFF9EE 0,transparent 24rem),var(--cream);color:var(--ink);min-height:100vh;padding-bottom:3rem;-webkit-font-smoothing:antialiased;}
+a{-webkit-tap-highlight-color:transparent;}
+a:focus-visible,button:focus-visible{outline:2px solid var(--coral);outline-offset:3px;}
+.serif{font-family:'Fraunces',serif;}
+.topnav{display:flex;align-items:center;justify-content:space-between;padding:0.9rem 1.2rem;max-width:680px;margin:0 auto;position:sticky;top:0;background:rgba(246,241,230,0.9);backdrop-filter:blur(16px);border-bottom:1px solid rgba(28,44,66,0.07);z-index:40;}
+.avatar{width:2.65rem;height:2.65rem;border-radius:50%;background:var(--navy);color:#EDE6D6;display:flex;align-items:center;justify-content:center;font-family:'Fraunces',serif;font-style:italic;font-weight:600;font-size:1.08rem;flex-shrink:0;box-shadow:0 8px 20px rgba(28,44,66,0.16);text-decoration:none;}
+.navlinks{display:flex;gap:1.35rem;}
+.navlinks a{color:var(--ink);text-decoration:none;font-weight:600;font-size:0.92rem;}
+.navlinks a:hover{color:var(--coral);}
+.side{max-width:680px;margin:0 auto;padding:2rem 1.2rem 0;}
+.tilbake{display:inline-flex;margin-bottom:1.4rem;color:var(--muted);text-decoration:none;font-size:0.82rem;font-weight:600;}
+.eyebrow{font-size:0.68rem;letter-spacing:0.15em;text-transform:uppercase;font-weight:700;color:var(--coral);margin-bottom:0.6rem;}
+.topp{padding-bottom:1.3rem;border-bottom:1px solid var(--rule);}
+h1.tittel{font-size:clamp(1.9rem,8vw,2.6rem);line-height:1.05;font-weight:500;letter-spacing:-0.02em;}
+.lede{color:var(--muted);font-size:0.94rem;line-height:1.6;max-width:27rem;margin-top:0.8rem;}
+.dagensord{display:inline-flex;align-items:center;gap:0.5rem;background:var(--navy);color:#EDE6D6;border-radius:999px;padding:0.4rem 1rem;margin-top:0.9rem;font-size:0.85rem;font-weight:600;}
+.dagensord .o{font-family:'Fraunces',serif;font-size:1.05rem;}
+.stegnav{display:flex;gap:0.3rem;margin:1.2rem 0;}
+.stegdot{flex:1;height:5px;border-radius:3px;background:var(--rule);}
+.stegdot.ferdig{background:var(--coral);}
+.stegdot.aktiv{background:var(--navy);}
+.stegtittel{font-size:0.72rem;letter-spacing:0.08em;text-transform:uppercase;color:var(--muted);font-weight:700;margin-bottom:1rem;}
+.tela{display:none;}
+.tela.aktiv{display:block;animation:inn 0.25s;}
+@keyframes inn{from{opacity:0;}to{opacity:1;}}
+.boks{background:var(--paper);border:1px solid rgba(28,44,66,0.08);border-radius:20px;padding:1.25rem 1.3rem;margin-bottom:0.9rem;box-shadow:0 7px 24px rgba(28,44,66,0.045);}
+.steg-label{font-size:0.66rem;letter-spacing:0.09em;text-transform:uppercase;color:var(--coral);font-weight:700;margin-bottom:0.6rem;}
+.lede-liten{color:var(--muted);font-size:0.88rem;line-height:1.5;margin-bottom:0.9rem;}
+.bilde{width:100%;border-radius:16px;cursor:zoom-in;box-shadow:0 8px 24px rgba(28,44,66,0.1);margin-bottom:1rem;display:block;}
+.linje{padding:0.35rem 0;font-size:1.02rem;line-height:1.6;}
+.frem{background:rgba(190,110,86,0.16);border-radius:5px;padding:0.1rem 0.35rem;font-weight:700;color:var(--coral);}
+.sporsmal-stor{font-family:'Fraunces',serif;font-size:1.3rem;font-weight:500;margin-bottom:0.6rem;line-height:1.25;}
+.knapp{display:block;width:100%;background:var(--cream);border:1.5px solid var(--rule);color:var(--ink);padding:0.7rem 0.9rem;border-radius:14px;cursor:pointer;margin-bottom:0.5rem;text-align:left;line-height:1.4;font-size:0.94rem;font-family:'Inter',sans-serif;}
+.knapp.riktig{border-color:var(--correct);background:var(--correct-bg);color:var(--correct);}
+.knapp.feil{border-color:var(--feil);background:var(--feil-bg);color:var(--feil);}
+.tekstboks{width:100%;min-height:70px;padding:0.9rem;border:1.5px solid var(--rule);border-radius:14px;font-family:'Inter';font-size:0.96rem;background:var(--paper);color:var(--ink);resize:vertical;line-height:1.55;}
+.tekstboks:focus{outline:none;border-color:var(--coral);}
+.felt{width:100%;padding:0.65rem 0.85rem;border:1.5px solid var(--rule);border-radius:12px;font-family:'Inter';font-size:0.94rem;background:var(--paper);color:var(--ink);}
+.felt:focus{outline:none;border-color:var(--coral);}
+.knapp-hoved{width:100%;background:var(--navy);color:#fff;padding:0.75rem;border:none;border-radius:14px;font-family:'Inter';font-weight:600;font-size:0.92rem;cursor:pointer;margin-top:0.2rem;}
+.knapp-lav{background:var(--cream);border:1.5px solid var(--rule);color:var(--coral);padding:0.5rem 0.9rem;border-radius:12px;font-weight:600;font-size:0.82rem;cursor:pointer;margin-bottom:0.7rem;font-family:'Inter';}
+.knapp-lyd{background:var(--cream);border:1.5px solid var(--rule);color:var(--navy);padding:0.5rem 0.9rem;border-radius:12px;font-weight:600;font-size:0.82rem;cursor:pointer;margin-right:0.4rem;margin-bottom:0.7rem;font-family:'Inter';}
+.knapprad2{display:flex;gap:0.6rem;justify-content:space-between;margin-top:1.1rem;}
+.svar{margin-top:0.7rem;padding:0.7rem 0.85rem;border-radius:12px;font-weight:600;display:none;line-height:1.55;font-size:0.88rem;}
+.svar.vis{display:block;}
+.svar.riktig{background:var(--correct-bg);color:var(--correct);}
+.svar.feil{background:var(--feil-bg);color:var(--feil);}
+.muntlig{display:flex;align-items:flex-start;gap:0.65rem;background:var(--cream);border-radius:12px;padding:0.8rem 0.9rem;margin-bottom:0.9rem;}
+.muntlig input{margin-top:0.15rem;width:1.15rem;height:1.15rem;flex-shrink:0;accent-color:var(--coral);}
+.muntlig label{font-size:0.9rem;line-height:1.45;cursor:pointer;}
+.stige{display:none;background:var(--cream);border:1.5px solid var(--coral);border-radius:14px;padding:0.9rem 1rem;margin-bottom:0.7rem;}
+.stige.vis{display:block;}
+.stige-trinn{padding:0.5rem 0;border-top:1px dashed var(--rule);font-size:0.92rem;line-height:1.5;}
+.stige-trinn:first-child{border-top:none;padding-top:0;}
+.stige-nr{display:inline-block;font-size:0.6rem;font-weight:700;color:var(--coral);margin-right:0.4rem;}
+.stige-trinn img{width:100%;border-radius:12px;margin-top:0.5rem;display:block;}
+.ordkort{background:linear-gradient(130deg,var(--navy),var(--navy-2));color:#fff;border-radius:20px;padding:1.4rem 1.3rem;text-align:center;margin-bottom:0.9rem;}
+.ordkort .ord{font-family:'Fraunces',serif;font-size:2.1rem;font-weight:500;letter-spacing:-0.02em;}
+.ordkort .betyr{color:#C7D3DE;font-size:1rem;line-height:1.5;margin-top:0.6rem;}
+.byggfelt{min-height:48px;background:var(--cream);border:1.5px dashed var(--coral);border-radius:14px;padding:0.6rem;margin-bottom:0.8rem;display:flex;flex-wrap:wrap;gap:0.3rem;align-items:center;}
+.byggfelt:empty::before{content:'Trykk på blokkene i riktig rekkefølge...';color:#B8AC98;font-size:0.83rem;font-style:italic;}
+.brikkebank{display:flex;flex-wrap:wrap;gap:0.4rem;margin-bottom:0.8rem;}
+.brikke{display:inline-block;background:var(--paper);border:1.5px solid var(--rule);color:var(--ink);padding:0.45rem 0.75rem;border-radius:10px;font-size:0.95rem;font-weight:600;cursor:pointer;}
+.brikke.brukt{opacity:0.25;pointer-events:none;}
+.brikke.rolle-bindeord{color:#5b3a9e;background:rgba(124,58,237,0.16);border-color:#b49ce0;}
+.brikke.rolle-subjekt{color:#0a5c3f;background:rgba(52,211,153,0.2);border-color:#34D399;}
+.brikke.rolle-verb{color:#7a5c00;background:rgba(212,175,55,0.26);border-color:#D4AF37;font-weight:800;}
+.avslutning{text-align:center;padding:1.4rem 1rem;}
+.avslutning .emoji{font-size:2.4rem;}
+.avslutning .tekst{font-family:'Fraunces',serif;font-size:1.12rem;margin-top:0.5rem;line-height:1.45;}
+.footer{text-align:center;font-size:0.75rem;color:var(--muted);margin-top:2.5rem;padding:1.25rem;}
+.modal{display:none;position:fixed;inset:0;background:rgba(28,36,56,0.94);z-index:100;padding:0.5rem;overflow:auto;}
+.modal.vis{display:flex;align-items:center;justify-content:center;}
+.modal img{max-width:100%;border-radius:14px;}
+.modal-lukk{position:fixed;top:0.8rem;right:1.2rem;color:#fff;font-size:2.4rem;cursor:pointer;font-weight:bold;z-index:101;}
+@media(prefers-reduced-motion:reduce){*{scroll-behavior:auto!important;}}
+</style>
+</head>
+<body>
+
+<div class="topnav">
+  <a class="avatar" href="index.html" aria-label="Til forsiden">E</a>
+  <div class="navlinks">
+    <a href="historier.html">Historier</a>
+    <a href="skolefag.html">Skolefag</a>
+  </div>
+</div>
+
+<main class="side">
+  <a class="tilbake" href="skolefag.html">← Skolefag</a>
+
+  <section class="topp">
+    <div class="eyebrow">Naturfag &middot; Engelsk</div>
+    <h1 class="tittel serif">Vann som forsvinner</h1>
+    <p class="lede">Hva skjer med vannet når noe blir tørt? I dag lærer vi ett nytt ord.</p>
+    <div class="dagensord">Dagens ord: <span class="o">fordampe</span></div>
+  </section>
+
+  <div class="stegnav" id="stegnav">
+    <div class="stegdot aktiv"></div><div class="stegdot"></div><div class="stegdot"></div><div class="stegdot"></div><div class="stegdot"></div><div class="stegdot"></div>
+  </div>
+
+  <!-- 1: FØRSTE FORSØK + HINTSTIGE -->
+  <div class="tela aktiv" id="tela0">
+    <div class="stegtittel">Steg 1 av 6 · Prøv selv først</div>
+    <div class="boks">
+      <img class="bilde" src="img/fordampe-skjorte.png" alt="Først er skjorten våt. Etterpå henger den ute." onclick="zoom('img/fordampe-skjorte.png')">
+      <div class="linje">Skjorten er våt. Etter en stund blir den tørr.</div>
+      <div class="sporsmal-stor">Hva skjer med vannet?</div>
+      <button class="knapp-lyd" onclick="lesHoyt('Skjorten er våt. Etter en stund blir den tørr. Hva skjer med vannet?')">🔊 Les høyt</button>
+      <div class="muntlig">
+        <input type="checkbox" id="m1">
+        <label for="m1">Jeg har sagt svaret høyt først</label>
+      </div>
+      <textarea class="tekstboks" id="t1" placeholder="Skriv et kort svar..." autocomplete="off"></textarea>
+      <button class="knapp-lav" style="margin-top:0.7rem;" id="btn1" onclick="stige('t1','stige1','btn1')">💡 Jeg trenger et hint</button>
+      <div class="stige" id="stige1"></div>
+      <button class="knapp-hoved" onclick="sendSvar('t1','f1','Fordampe - Første forsøk (skjorte)','m1')">Send til mamma 💛</button>
+      <div class="svar" id="f1"></div>
+    </div>
+    <div class="knapprad2" style="justify-content:flex-end;">
+      <button class="knapp-hoved" style="width:auto;padding:0.75rem 1.4rem;" onclick="visTela(1)">Neste →</button>
+    </div>
+  </div>
+
+  <!-- 2: LÆR ORDET -->
+  <div class="tela" id="tela1">
+    <div class="stegtittel">Steg 2 av 6 · Lær ordet</div>
+    <div class="ordkort">
+      <div class="ord">å fordampe</div>
+      <div class="betyr">Flytende vann blir til vanndamp.</div>
+    </div>
+    <div class="boks">
+      <img class="bilde" src="img/fordampe-hele.png" alt="Våt – henges opp – vannet fordamper – tørr" onclick="zoom('img/fordampe-hele.png')">
+      <div class="linje">Vannet i skjorten <span class="frem">fordamper</span>.</div>
+      <div class="linje">Derfor blir skjorten tørr.</div>
+      <button class="knapp-lyd" onclick="lesHoyt('Å fordampe betyr at flytende vann blir til vanndamp. Vannet i skjorten fordamper. Derfor blir skjorten tørr.')">🔊 Les høyt</button>
+      <div class="muntlig" style="margin-top:0.5rem;margin-bottom:0;">
+        <input type="checkbox" id="m2">
+        <label for="m2">Jeg har sagt setningene høyt</label>
+      </div>
+    </div>
+    <div class="knapprad2">
+      <button class="knapp-lav" onclick="visTela(0)">← Forrige</button>
+      <button class="knapp-hoved" style="width:auto;padding:0.75rem 1.4rem;" onclick="visTela(2)">Neste →</button>
+    </div>
+  </div>
+
+  <!-- 3: NY SITUASJON – VANNPYTT -->
+  <div class="tela" id="tela2">
+    <div class="stegtittel">Steg 3 av 6 · En helt annen situasjon</div>
+    <div class="boks">
+      <img class="bilde" src="img/fordampe-pytt.png" alt="Først er det en vannpytt. Senere er den borte." onclick="zoom('img/fordampe-pytt.png')">
+      <div class="linje">Først er det vann på bakken. Senere er vannpytten borte.</div>
+      <div class="sporsmal-stor">Hva skjedde med vannet?</div>
+      <button class="knapp-lyd" onclick="lesHoyt('Først er det vann på bakken. Senere er vannpytten borte. Hva skjedde med vannet?')">🔊 Les høyt</button>
+      <div class="muntlig">
+        <input type="checkbox" id="m3">
+        <label for="m3">Jeg har sagt svaret høyt først</label>
+      </div>
+      <textarea class="tekstboks" id="t3" placeholder="Skriv her..." autocomplete="off"></textarea>
+      <button class="knapp-lav" style="margin-top:0.7rem;" id="btn3" onclick="stige('t3','stige3','btn3')">💡 Jeg trenger et hint</button>
+      <div class="stige" id="stige3"></div>
+      <button class="knapp-hoved" onclick="sendSvar('t3','f3','Fordampe - Vannpytt','m3')">Send til mamma 💛</button>
+      <div class="svar" id="f3"></div>
+    </div>
+    <div class="boks">
+      <div class="steg-label">Sett blokkene i riktig rekkefølge</div>
+      <div class="byggfelt" id="bygg1Svar"></div>
+      <div class="brikkebank" id="bygg1Bank"></div>
+      <button class="knapp-lav" onclick="tomBygg(1)">↺ Start på nytt</button>
+      <button class="knapp-hoved" onclick="sjekkBygg(1)">Sjekk svar</button>
+      <div class="svar" id="bygg1F"></div>
+    </div>
+    <div class="knapprad2">
+      <button class="knapp-lav" onclick="visTela(1)">← Forrige</button>
+      <button class="knapp-hoved" style="width:auto;padding:0.75rem 1.4rem;" onclick="visTela(3)">Neste →</button>
+    </div>
+  </div>
+
+  <!-- 4: NY SITUASJON – HÅR -->
+  <div class="tela" id="tela3">
+    <div class="stegtittel">Steg 4 av 6 · Enda en situasjon</div>
+    <div class="boks">
+      <img class="bilde" src="img/fordampe-haar.png" alt="Først er håret vått. Senere er det tørt." onclick="zoom('img/fordampe-haar.png')">
+      <div class="linje">Håret til Edel er vått. Etter en stund blir håret tørt.</div>
+      <div class="sporsmal-stor">Hva skjer med vannet i håret?</div>
+      <button class="knapp-lyd" onclick="lesHoyt('Håret til Edel er vått. Etter en stund blir håret tørt. Hva skjer med vannet i håret?')">🔊 Les høyt</button>
+      <div class="muntlig">
+        <input type="checkbox" id="m4">
+        <label for="m4">Jeg har sagt svaret høyt først</label>
+      </div>
+      <input class="felt" id="t4" placeholder="Skriv ett ord..." autocomplete="off">
+      <button class="knapp-hoved" style="margin-top:0.7rem;" onclick="sendSvar('t4','f4','Fordampe - Vått hår','m4')">Send til mamma 💛</button>
+      <div class="svar" id="f4"></div>
+    </div>
+    <div class="knapprad2">
+      <button class="knapp-lav" onclick="visTela(2)">← Forrige</button>
+      <button class="knapp-hoved" style="width:auto;padding:0.75rem 1.4rem;" onclick="visTela(4)">Neste →</button>
+    </div>
+  </div>
+
+  <!-- 5: BYGG EN FORKLARING -->
+  <div class="tela" id="tela4">
+    <div class="stegtittel">Steg 5 av 6 · Bygg en forklaring</div>
+    <div class="boks">
+      <div class="byggfelt" id="bygg2Svar"></div>
+      <div class="brikkebank" id="bygg2Bank"></div>
+      <button class="knapp-lav" onclick="tomBygg(2)">↺ Start på nytt</button>
+      <button class="knapp-hoved" onclick="sjekkBygg(2)">Sjekk svar</button>
+      <div class="svar" id="bygg2F"></div>
+      <div class="muntlig" style="margin-top:0.9rem;">
+        <input type="checkbox" id="m5">
+        <label for="m5">Jeg har lest setningen høyt</label>
+      </div>
+    </div>
+    <div class="boks">
+      <div class="steg-label">Skriv setningen med egne ord</div>
+      <textarea class="tekstboks" id="t5" placeholder="Skriv her..." autocomplete="off"></textarea>
+      <button class="knapp-hoved" style="margin-top:0.7rem;" onclick="sendSvar('t5','f5','Fordampe - Egen forklaring','m5')">Send til mamma 💛</button>
+      <div class="svar" id="f5"></div>
+    </div>
+    <div class="knapprad2">
+      <button class="knapp-lav" onclick="visTela(3)">← Forrige</button>
+      <button class="knapp-hoved" style="width:auto;padding:0.75rem 1.4rem;" onclick="visTela(5)">Neste →</button>
+    </div>
+  </div>
+
+  <!-- 6: FINN ORDET IGJEN -->
+  <div class="tela" id="tela5">
+    <div class="stegtittel">Steg 6 av 6 · Finn ordet igjen</div>
+    <div class="boks">
+      <div class="lede-liten">Uten bilder denne gangen.</div>
+      <div class="sporsmal-stor">Hva heter det når flytende vann blir til vanndamp?</div>
+      <button class="knapp-lyd" onclick="lesHoyt('Hva heter det når flytende vann blir til vanndamp?')">🔊 Les høyt</button>
+      <div class="muntlig">
+        <input type="checkbox" id="m6">
+        <label for="m6">Jeg har sagt svaret høyt først</label>
+      </div>
+      <input class="felt" id="t6" placeholder="Skriv ordet..." autocomplete="off">
+      <button class="knapp-lav" style="margin-top:0.7rem;" id="btn6" onclick="stige('t6','stige6','btn6')">💡 Jeg trenger et hint</button>
+      <div class="stige" id="stige6"></div>
+      <button class="knapp-hoved" onclick="sendSvar('t6','f6','Fordampe - Sluttest','m6')">Send til mamma 💛</button>
+      <div class="svar" id="f6"></div>
+    </div>
+    <div class="boks">
+      <div class="avslutning">
+        <div class="emoji">💧☀️</div>
+        <div class="tekst">Du jobbet godt med å finne et nytt ord<br>og bruke det i flere situasjoner!</div>
+        <div class="dagensord" style="margin-top:1rem;">Dagens ord var: <span class="o">fordampe</span></div>
+      </div>
+    </div>
+    <div class="knapprad2">
+      <button class="knapp-lav" onclick="visTela(4)">← Forrige</button>
+    </div>
+  </div>
+
+</main>
+
+<div class="footer">Vann som forsvinner · Edels Verden</div>
+
+<div class="modal" id="bildeModal" onclick="lukkModal()">
+  <span class="modal-lukk">&times;</span>
+  <img id="modalBilde" src="" alt="">
+</div>
+
+<script>
+var MAAL = "Fordampe – ett ord, flere situasjoner";
+
+function zoom(src){ document.getElementById('modalBilde').src=src; document.getElementById('bildeModal').classList.add('vis'); }
+function lukkModal(){ document.getElementById('bildeModal').classList.remove('vis'); }
+
+function visTela(n){
+  document.querySelectorAll('.tela').forEach(function(t,i){ t.classList.toggle('aktiv', i===n); });
+  document.querySelectorAll('#stegnav .stegdot').forEach(function(d,i){
+    d.classList.toggle('aktiv', i===n);
+    d.classList.toggle('ferdig', i<n);
+  });
+  window.scrollTo({top:0,behavior:'smooth'});
+}
+
+function lesHoyt(tekst){
+  if(!('speechSynthesis' in window)) return;
+  window.speechSynthesis.cancel();
+  var setninger = tekst.match(/[^.!?]+[.!?]*/g) || [tekst];
+  var i=0;
+  function neste(){
+    if(i>=setninger.length) return;
+    var u=new SpeechSynthesisUtterance(setninger[i]);
+    u.lang='nb-NO'; u.rate=0.92;
+    u.onend=function(){i++;setTimeout(neste,300);};
+    u.onerror=function(){i++;setTimeout(neste,150);};
+    window.speechSynthesis.speak(u);
+  }
+  neste();
+}
+
+/* ---- Hintstige: samme stige overalt ---- */
+var HINT = [
+  "Hva skjer med vannet? Les spørsmålet en gang til, rolig.",
+  "Solen varmer vannet.",
+  "Se: bittesmå vanndråper går opp i lufta.|img/fordampe-partikler.png",
+  "Ordet begynner slik: <strong>for…</strong>",
+  "Velg: <strong>Vannet fordamper</strong> eller <strong>Vannet fryser</strong>?",
+  "Vannet <strong>fordamper</strong>. Si hele setningen: «Vannet fordamper når solen varmer det.»"
+];
+var stigeSteg = {};
+var forsteForsok = {};
+
+function stige(feltId, boksId, btnId){
+  if(!(feltId in forsteForsok)){
+    var el = document.getElementById(feltId);
+    forsteForsok[feltId] = el ? el.value.trim() : '';
+  }
+  var n = (stigeSteg[feltId]||0) + 1;
+  if(n > HINT.length) n = HINT.length;
+  stigeSteg[feltId] = n;
+  var html = '';
+  for(var i=0;i<n;i++){
+    var deler = HINT[i].split('|');
+    html += '<div class="stige-trinn"><span class="stige-nr">HINT '+(i+1)+'</span>'+deler[0];
+    if(deler[1]) html += '<img src="'+deler[1]+'" alt="Vanndråper som går opp i lufta">';
+    html += '</div>';
+  }
+  var boks = document.getElementById(boksId);
+  boks.className = 'stige vis';
+  boks.innerHTML = html;
+  var btn = document.getElementById(btnId);
+  if(n >= HINT.length){ btn.style.display='none'; } else { btn.textContent = '💡 Enda et hint'; }
+}
+
+/* ---- Setningsbyggere ---- */
+var BYGG = {
+  1: {riktig:["Vannet","fordampet","fordi solen varmet det"],
+      roller:{"Vannet":"subjekt","fordampet":"verb","fordi solen varmet det":"bindeord"},
+      fasit:"Vannet fordampet fordi solen varmet det."},
+  2: {riktig:["Klærne","blir tørre","fordi","vannet","fordamper"],
+      roller:{"Klærne":"subjekt","blir tørre":"verb","fordi":"bindeord","vannet":"subjekt","fordamper":"verb"},
+      fasit:"Klærne blir tørre fordi vannet fordamper."}
+};
+function embland(a){a=a.slice();for(var i=a.length-1;i>0;i--){var j=Math.floor(Math.random()*(i+1));var t=a[i];a[i]=a[j];a[j]=t;}return a;}
+function settOppBygg(n){
+  var b = BYGG[n];
+  document.getElementById('bygg'+n+'Bank').innerHTML = embland(b.riktig).map(function(w){
+    return '<span class="brikke rolle-'+b.roller[w]+'" data-w="'+w+'" onclick="leggTil(this,'+n+')">'+w+'</span>';
+  }).join('');
+  document.getElementById('bygg'+n+'Svar').innerHTML='';
+}
+function leggTil(el, n){
+  el.classList.add('brukt');
+  var k=document.createElement('span');
+  k.className=el.className.replace('brukt','').trim();
+  k.textContent=el.dataset.w;
+  k.onclick=function(){k.remove();el.classList.remove('brukt');};
+  document.getElementById('bygg'+n+'Svar').appendChild(k);
+}
+function tomBygg(n){
+  document.getElementById('bygg'+n+'Svar').innerHTML='';
+  document.querySelectorAll('#bygg'+n+'Bank .brikke').forEach(function(b){b.classList.remove('brukt');});
+}
+function sjekkBygg(n){
+  var b = BYGG[n];
+  var svar=[].slice.call(document.querySelectorAll('#bygg'+n+'Svar .brikke')).map(function(x){return x.textContent;}).join(' ');
+  var f=document.getElementById('bygg'+n+'F');
+  if(svar === b.riktig.join(' ')){ f.className='svar vis riktig'; f.innerHTML='✅ Perfekt! '+b.fasit; }
+  else{ f.className='svar vis feil'; f.innerHTML='💡 Ikke helt. Husk: hvem/hva først, så hva som skjer.'; }
+}
+
+/* ---- Sending ---- */
+function stottePoeng(n){ if(!n) return 3; if(n<=2) return 2; if(n<=4) return 1; return 0; }
+function sendSvar(feltId, svarId, oppgave, muntligId){
+  var t = document.getElementById(feltId).value;
+  var f = document.getElementById(svarId);
+  if(t.trim().length < 3){ f.className='svar vis feil'; f.innerHTML='⏳ Skriv litt først!'; return; }
+  f.className='svar vis'; f.style.background='var(--cream)'; f.style.color='var(--muted)'; f.innerHTML='⏳ Sender...';
+  var n = stigeSteg[feltId] || 0;
+  var data = {
+    Tekst_hun_skrev: t,
+    oppgave: oppgave,
+    maal: MAAL,
+    dato: new Date().toLocaleString('no-NO'),
+    stotte_niva: n,
+    stotte_poeng: stottePoeng(n),
+    forste_forsok: (feltId in forsteForsok) ? (forsteForsok[feltId] || '(tomt)') : t.trim(),
+    sagt_hoyt: (muntligId && document.getElementById(muntligId)) ? (document.getElementById(muntligId).checked ? 'ja' : 'nei') : ''
+  };
+  fetch('https://formspree.io/f/mqeolldg',{method:'POST',headers:{'Content-Type':'application/json','Accept':'application/json'},body:JSON.stringify(data)})
+   .then(function(r){
+     if(r.ok){ f.className='svar vis riktig'; f.innerHTML='✅ Sendt til mamma! 🎉'; }
+     else{ f.className='svar vis feil'; f.innerHTML='❌ Noe gikk galt. Prøv igjen!'; }
+   })
+   .catch(function(){ f.className='svar vis feil'; f.innerHTML='❌ Sjekk internett og prøv igjen!'; });
+}
+
+settOppBygg(1);
+settOppBygg(2);
+
+/* Hindrer at nettleseren fyller inn gammel tekst når siden åpnes på nytt */
+(function(){
+  function tomFelter(){
+    document.querySelectorAll('textarea, input[type="text"], input:not([type])').forEach(function(el){ el.value=''; });
+    document.querySelectorAll('input[type="checkbox"]').forEach(function(el){ el.checked=false; });
+  }
+  window.addEventListener('pageshow', function(e){ if(e.persisted) tomFelter(); });
+  if(document.readyState === 'loading'){ document.addEventListener('DOMContentLoaded', tomFelter); } else { tomFelter(); }
+})();
+</script>
+</body>
+</html>
