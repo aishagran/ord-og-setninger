@@ -14,7 +14,7 @@
   --shadow:0 12px 34px rgba(28,44,66,0.08);
 }
 *{box-sizing:border-box;margin:0;padding:0;}
-html{scroll-behavior:smooth;}
+html{scroll-behavior:smooth;scroll-padding-top:5.5rem;}
 body{font-family:'Inter',sans-serif;background:radial-gradient(circle at 10% 0%,#FFF9EE 0,transparent 24rem),var(--cream);color:var(--ink);min-height:100vh;padding-bottom:3rem;-webkit-font-smoothing:antialiased;}
 a{-webkit-tap-highlight-color:transparent;}
 a:focus-visible,button:focus-visible{outline:2px solid var(--coral);outline-offset:3px;}
@@ -24,7 +24,7 @@ a:focus-visible,button:focus-visible{outline:2px solid var(--coral);outline-offs
 .navlinks{display:flex;gap:1.35rem;}
 .navlinks a{color:var(--ink);text-decoration:none;font-weight:600;font-size:0.92rem;}
 .navlinks a:hover{color:var(--coral);}
-.side{max-width:680px;margin:0 auto;padding:2rem 1.2rem 0;}
+.side{max-width:680px;margin:0 auto;padding:2.4rem 1.2rem 0;}
 .tilbake{display:inline-flex;margin-bottom:1.4rem;color:var(--muted);text-decoration:none;font-size:0.82rem;font-weight:600;}
 .eyebrow{font-size:0.68rem;letter-spacing:0.15em;text-transform:uppercase;font-weight:700;color:var(--coral);margin-bottom:0.6rem;}
 .topp{padding-bottom:1.3rem;border-bottom:1px solid var(--rule);}
@@ -34,7 +34,7 @@ h1.tittel{font-size:clamp(1.9rem,8vw,2.6rem);line-height:1.05;font-weight:500;le
 .stegdot{flex:1;height:5px;border-radius:3px;background:var(--rule);}
 .stegdot.ferdig{background:var(--coral);}
 .stegdot.aktiv{background:var(--navy);}
-.stegtittel{font-size:0.72rem;letter-spacing:0.08em;text-transform:uppercase;color:var(--muted);font-weight:700;margin-bottom:1rem;}
+.stegtittel{font-size:0.72rem;letter-spacing:0.08em;text-transform:uppercase;color:var(--muted);font-weight:700;margin-bottom:1rem;padding-top:0.5rem;scroll-margin-top:5.5rem;}
 .tela{display:none;}
 .tela.aktiv{display:block;animation:inn 0.25s;}
 @keyframes inn{from{opacity:0;}to{opacity:1;}}
@@ -72,8 +72,8 @@ h1.tittel{font-size:clamp(1.9rem,8vw,2.6rem);line-height:1.05;font-weight:500;le
 .eg{background:var(--cream);border:1.5px solid var(--rule);border-radius:999px;padding:0.4rem 0.9rem;font-size:0.9rem;}
 .eg .ikon{margin-right:0.35rem;}
 .viktig{background:var(--coral-soft);border:1.5px solid var(--coral);border-radius:16px;padding:1.1rem 1.2rem;}
-.viktig .tittel2{font-family:'Fraunces',serif;font-weight:600;color:#7a4632;margin-bottom:0.5rem;font-size:1.05rem;}
-.viktig .tekst{color:#7a4632;font-size:0.95rem;line-height:1.6;}
+.viktig .tittel2{font-family:'Fraunces',serif;font-weight:600;color:#7a4632;margin-bottom:0.5rem;font-size:1.15rem;}
+.viktig .tekst{color:#7a4632;font-size:1.125rem;line-height:1.6;}
 .unik{text-align:center;padding:1.3rem 1rem;}
 .unik .hjerte{font-size:2.4rem;}
 .unik .tekst{font-family:'Fraunces',serif;font-size:1.3rem;margin-top:0.5rem;color:var(--coral);}
@@ -105,12 +105,12 @@ h1.tittel{font-size:clamp(1.9rem,8vw,2.6rem);line-height:1.05;font-weight:500;le
   </section>
 
   <div class="stegnav" id="stegnav">
-    <div class="stegdot aktiv"></div><div class="stegdot"></div><div class="stegdot"></div><div class="stegdot"></div><div class="stegdot"></div>
+    <div class="stegdot aktiv"></div><div class="stegdot"></div><div class="stegdot"></div><div class="stegdot"></div><div class="stegdot"></div><div class="stegdot"></div>
   </div>
 
   <!-- 1: SAMMENHENGEN -->
   <div class="tela aktiv" id="tela0">
-    <div class="stegtittel">Steg 1 av 5 · Slik henger ordene sammen</div>
+    <div class="stegtittel">Steg 1 av 6 · Slik henger ordene sammen</div>
     <div class="kjede">
       <div class="rad">
         <span class="boks2">Gener</span>
@@ -142,7 +142,7 @@ h1.tittel{font-size:clamp(1.9rem,8vw,2.6rem);line-height:1.05;font-weight:500;le
 
   <!-- 2: NEVN ÉN EGENSKAP -->
   <div class="tela" id="tela1">
-    <div class="stegtittel">Steg 2 av 5 · Se på bildet</div>
+    <div class="stegtittel">Steg 2 av 6 · Se på bildet</div>
     <div class="boks">
       <img class="bilde" src="img/hvem-ligner.png" alt="Hvem ligner Edel på? Mamma, Edel og pappa" onclick="zoom('img/hvem-ligner.png')">
       <div class="sporsmal-stor">Nevn én egenskap du ser på bildet.</div>
@@ -164,7 +164,7 @@ h1.tittel{font-size:clamp(1.9rem,8vw,2.6rem);line-height:1.05;font-weight:500;le
 
   <!-- 3: HVA LIGNER -->
   <div class="tela" id="tela2">
-    <div class="stegtittel">Steg 3 av 5 · Se nøye etter</div>
+    <div class="stegtittel">Steg 3 av 6 · Se nøye etter</div>
     <div class="boks">
       <div class="lede-liten">Se på øynene, håret og smilet. Skriv det du legger merke til.</div>
       <div class="sporsmal-stor" style="font-size:1.1rem;">Hva ligner på mamma?</div>
@@ -186,18 +186,16 @@ h1.tittel{font-size:clamp(1.9rem,8vw,2.6rem);line-height:1.05;font-weight:500;le
     </div>
   </div>
 
-  <!-- 4: VIKTIG Å HUSKE -->
+  <!-- 4: HVA ER EN EGENSKAP -->
   <div class="tela" id="tela3">
-    <div class="stegtittel">Steg 4 av 5 · Viktig å huske</div>
+    <div class="stegtittel">Steg 4 av 6 · Hva er en egenskap?</div>
     <div class="boks">
-      <div class="viktig">
-        <div class="tittel2">Et bilde kan ikke bevise alt</div>
-        <div class="tekst">Vi kan se hvem Edel ligner på. Men et bilde kan ikke bevise nøyaktig hvem hver egenskap kommer fra. Edel har arvet gener fra <strong>begge</strong> foreldrene.</div>
-      </div>
-      <button class="knapp-lyd" style="margin-top:0.9rem;" onclick="lesHoyt('Vi kan se hvem Edel ligner på. Men et bilde kan ikke bevise nøyaktig hvem hver egenskap kommer fra. Edel har arvet gener fra begge foreldrene.')">🔊 Les høyt</button>
-      <div class="sporsmal-stor" style="font-size:1.1rem;margin-top:0.5rem;">Kan vi vite helt sikkert hvem de brune øynene kommer fra, bare ved å se på bildet?</div>
-      <button class="knapp" onclick="velgEn(this,1,0,'v1F')">Ja, det ser vi tydelig</button>
-      <button class="knapp" onclick="velgEn(this,1,1,'v1F')">Nei, et bilde kan ikke bevise det</button>
+      <div class="linje">En egenskap forteller hvordan kroppen ser ut eller fungerer.</div>
+      <div class="linje">Øyenfarge er en <span class="frem">egenskap</span>.</div>
+      <button class="knapp-lyd" style="margin-top:0.6rem;" onclick="lesHoyt('En egenskap forteller hvordan kroppen ser ut eller fungerer. Øyenfarge er en egenskap.')">🔊 Les høyt</button>
+      <div class="sporsmal-stor" style="font-size:1.15rem;margin-top:0.5rem;">Hvilken egenskap ser du hos Edel?</div>
+      <button class="knapp" onclick="velgEn(this,0,0,'v1F')">Brune øyne</button>
+      <button class="knapp" onclick="velgEn(this,0,1,'v1F')">At hun står mellom mamma og pappa</button>
       <div class="svar" id="v1F"></div>
     </div>
     <div class="knapprad2">
@@ -206,9 +204,29 @@ h1.tittel{font-size:clamp(1.9rem,8vw,2.6rem);line-height:1.05;font-weight:500;le
     </div>
   </div>
 
-  <!-- 5: FORKLAR ALT SAMMEN -->
+  <!-- 5: VITENSKAPELIG FORSIKTIGHET -->
   <div class="tela" id="tela4">
-    <div class="stegtittel">Steg 5 av 5 · Forklar alt sammen</div>
+    <div class="stegtittel">Steg 5 av 6 · Viktig å huske</div>
+    <div class="boks">
+      <div class="viktig">
+        <div class="tittel2">Et bilde viser ikke alt</div>
+        <div class="tekst">Vi kan se noen likheter mellom Edel og foreldrene hennes. Men vi kan ikke vite sikkert om en egenskap kommer fra mamma eller pappa. Edel har arvet gener fra <strong>begge</strong>.</div>
+      </div>
+      <button class="knapp-lyd" style="margin-top:0.9rem;" onclick="lesHoyt('Vi kan se noen likheter mellom Edel og foreldrene hennes. Men vi kan ikke vite sikkert om en egenskap kommer fra mamma eller pappa. Edel har arvet gener fra begge.')">🔊 Les høyt</button>
+      <div class="sporsmal-stor" style="font-size:1.15rem;margin-top:0.5rem;">Kan vi vite sikkert om de brune øynene kommer fra mamma eller pappa, bare ved å se på bildet?</div>
+      <button class="knapp" onclick="velgEn(this,1,0,'v2F')">Ja, det kan vi se.</button>
+      <button class="knapp" onclick="velgEn(this,1,1,'v2F')">Nei, det kan vi ikke vite bare fra bildet.</button>
+      <div class="svar" id="v2F"></div>
+    </div>
+    <div class="knapprad2">
+      <button class="knapp-lav" onclick="visTela(3)">← Forrige</button>
+      <button class="knapp-hoved" style="width:auto;padding:0.75rem 1.4rem;" onclick="visTela(5)">Neste →</button>
+    </div>
+  </div>
+
+  <!-- 5: FORKLAR ALT SAMMEN -->
+  <div class="tela" id="tela5">
+    <div class="stegtittel">Steg 6 av 6 · Forklar alt sammen</div>
     <div class="boks">
       <div class="lede-liten">Uten bildet. Bruk ordene <strong>gener</strong> og <strong>egenskaper</strong>.</div>
       <div class="sporsmal-stor">Hva har gener med egenskaper å gjøre?</div>
@@ -256,12 +274,19 @@ function visTela(n){
   window.scrollTo({top:0,behavior:'smooth'});
 }
 
+var TILBAKEMELDING = {
+  'v1F': {ja:'Ja! Øyenfarge er en egenskap. Gener kan være med på å bestemme øyenfargen.',
+          nei:'Nesten! Å stå mellom mamma og pappa er ikke en egenskap. En egenskap forteller hvordan kroppen ser ut eller fungerer.'},
+  'v2F': {ja:'Riktig. Edel har arvet gener fra begge foreldrene sine.',
+          nei:'Nesten! Vi ser likheter, men et bilde kan ikke vise det sikkert.'}
+};
 function velgEn(btn, riktigIdx, valgtIdx, svarId){
   var knapper = btn.parentElement.querySelectorAll('.knapp');
   knapper.forEach(function(b){b.style.pointerEvents='none';});
   var f=document.getElementById(svarId);
-  if(valgtIdx===riktigIdx){ btn.classList.add('riktig'); f.className='svar vis riktig'; f.innerHTML='✅ Riktig! Vi ser at dere ligner, men bildet kan ikke bevise hvem hver egenskap kommer fra.'; }
-  else{ btn.classList.add('feil'); if(knapper[riktigIdx]) knapper[riktigIdx].classList.add('riktig'); f.className='svar vis feil'; f.innerHTML='💡 Nesten! Vi ser likheter, men et bilde kan ikke bevise det helt sikkert.'; }
+  var m = TILBAKEMELDING[svarId] || {ja:'Riktig!', nei:'Nesten!'};
+  if(valgtIdx===riktigIdx){ btn.classList.add('riktig'); f.className='svar vis riktig'; f.innerHTML='✅ '+m.ja; }
+  else{ btn.classList.add('feil'); if(knapper[riktigIdx]) knapper[riktigIdx].classList.add('riktig'); f.className='svar vis feil'; f.innerHTML='💡 '+m.nei; }
 }
 
 function lesHoyt(tekst){

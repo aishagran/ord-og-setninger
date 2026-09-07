@@ -14,7 +14,7 @@
   --shadow:0 12px 34px rgba(28,44,66,0.08);
 }
 *{box-sizing:border-box;margin:0;padding:0;}
-html{scroll-behavior:smooth;}
+html{scroll-behavior:smooth;scroll-padding-top:5.5rem;}
 body{font-family:'Inter',sans-serif;background:radial-gradient(circle at 10% 0%,#FFF9EE 0,transparent 24rem),var(--cream);color:var(--ink);min-height:100vh;padding-bottom:3rem;-webkit-font-smoothing:antialiased;}
 a{-webkit-tap-highlight-color:transparent;}
 a:focus-visible,button:focus-visible{outline:2px solid var(--coral);outline-offset:3px;}
@@ -24,7 +24,7 @@ a:focus-visible,button:focus-visible{outline:2px solid var(--coral);outline-offs
 .navlinks{display:flex;gap:1.35rem;}
 .navlinks a{color:var(--ink);text-decoration:none;font-weight:600;font-size:0.92rem;}
 .navlinks a:hover{color:var(--coral);}
-.side{max-width:680px;margin:0 auto;padding:2rem 1.2rem 0;}
+.side{max-width:680px;margin:0 auto;padding:2.4rem 1.2rem 0;}
 .tilbake{display:inline-flex;margin-bottom:1.4rem;color:var(--muted);text-decoration:none;font-size:0.82rem;font-weight:600;}
 .eyebrow{font-size:0.68rem;letter-spacing:0.15em;text-transform:uppercase;font-weight:700;color:var(--coral);margin-bottom:0.6rem;}
 .topp{padding-bottom:1.4rem;border-bottom:1px solid var(--rule);}
@@ -34,7 +34,7 @@ h1.tittel{font-size:clamp(1.9rem,8vw,2.6rem);line-height:1.05;font-weight:500;le
 .stegdot{flex:1;height:5px;border-radius:3px;background:var(--rule);}
 .stegdot.ferdig{background:var(--coral);}
 .stegdot.aktiv{background:var(--navy);}
-.stegtittel{font-size:0.72rem;letter-spacing:0.08em;text-transform:uppercase;color:var(--muted);font-weight:700;margin-bottom:1rem;}
+.stegtittel{font-size:0.72rem;letter-spacing:0.08em;text-transform:uppercase;color:var(--muted);font-weight:700;margin-bottom:1rem;padding-top:0.5rem;scroll-margin-top:5.5rem;}
 .tela{display:none;}
 .tela.aktiv{display:block;animation:inn 0.25s;}
 @keyframes inn{from{opacity:0;}to{opacity:1;}}
