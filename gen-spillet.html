@@ -1,0 +1,463 @@
+<!DOCTYPE html>
+<html lang="no">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Genspillet: Mamma + pappa = Edel</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --cream:#F6F1E6;--paper:#FFFEFA;--navy:#1C2C42;--navy-2:#29455F;--ink:#1B2438;--muted:#746F66;
+  --coral:#BE6E56;--coral-soft:#F3DFD6;--rule:#E4DCCB;
+  --mamma:#C4626F;--mamma-bg:#F7E4E7;
+  --pappa:#4A6E9B;--pappa-bg:#E3EBF4;
+  --correct:#3E6C63;--correct-bg:#E1EBE7;--feil:#B5483A;--feil-bg:#F5E1DC;
+  --shadow:0 12px 34px rgba(28,44,66,0.08);
+}
+*{box-sizing:border-box;margin:0;padding:0;}
+html{scroll-behavior:smooth;scroll-padding-top:5.5rem;}
+body{font-family:'Inter',sans-serif;background:radial-gradient(circle at 10% 0%,#FFF9EE 0,transparent 24rem),var(--cream);color:var(--ink);min-height:100vh;padding-bottom:3rem;-webkit-font-smoothing:antialiased;}
+a{-webkit-tap-highlight-color:transparent;}
+a:focus-visible,button:focus-visible{outline:2px solid var(--coral);outline-offset:3px;}
+.serif{font-family:'Fraunces',serif;}
+.topnav{display:flex;align-items:center;justify-content:space-between;padding:0.9rem 1.2rem;max-width:680px;margin:0 auto;position:sticky;top:0;background:rgba(246,241,230,0.9);backdrop-filter:blur(16px);border-bottom:1px solid rgba(28,44,66,0.07);z-index:40;}
+.avatar{width:2.65rem;height:2.65rem;border-radius:50%;background:var(--navy);color:#EDE6D6;display:flex;align-items:center;justify-content:center;font-family:'Fraunces',serif;font-style:italic;font-weight:600;font-size:1.08rem;flex-shrink:0;box-shadow:0 8px 20px rgba(28,44,66,0.16);text-decoration:none;}
+.navlinks{display:flex;gap:1.35rem;}
+.navlinks a{color:var(--ink);text-decoration:none;font-weight:600;font-size:0.92rem;}
+.navlinks a:hover{color:var(--coral);}
+.side{max-width:680px;margin:0 auto;padding:2.4rem 1.2rem 0;}
+.tilbake{display:inline-flex;margin-bottom:1.4rem;color:var(--muted);text-decoration:none;font-size:0.82rem;font-weight:600;}
+.eyebrow{font-size:0.68rem;letter-spacing:0.15em;text-transform:uppercase;font-weight:700;color:var(--coral);margin-bottom:0.6rem;}
+.topp{padding-bottom:1.3rem;border-bottom:1px solid var(--rule);}
+h1.tittel{font-size:clamp(1.9rem,8vw,2.6rem);line-height:1.05;font-weight:500;letter-spacing:-0.02em;}
+.lede{color:var(--muted);font-size:0.94rem;line-height:1.6;max-width:27rem;margin-top:0.8rem;}
+.stegnav{display:flex;gap:0.3rem;margin:1.2rem 0;}
+.stegdot{flex:1;height:5px;border-radius:3px;background:var(--rule);}
+.stegdot.ferdig{background:var(--coral);}
+.stegdot.aktiv{background:var(--navy);}
+.stegtittel{font-size:0.72rem;letter-spacing:0.08em;text-transform:uppercase;color:var(--muted);font-weight:700;margin-bottom:1rem;padding-top:0.5rem;scroll-margin-top:5.5rem;}
+.tela{display:none;}
+.tela.aktiv{display:block;animation:inn 0.25s;}
+@keyframes inn{from{opacity:0;}to{opacity:1;}}
+.boks{background:var(--paper);border:1px solid rgba(28,44,66,0.08);border-radius:20px;padding:1.25rem 1.3rem;margin-bottom:0.9rem;box-shadow:0 7px 24px rgba(28,44,66,0.045);}
+.steg-label{font-size:0.66rem;letter-spacing:0.09em;text-transform:uppercase;color:var(--coral);font-weight:700;margin-bottom:0.6rem;}
+.lede-liten{color:var(--muted);font-size:0.88rem;line-height:1.5;margin-bottom:0.9rem;}
+.bilde{width:100%;border-radius:16px;cursor:zoom-in;box-shadow:0 8px 24px rgba(28,44,66,0.1);margin-bottom:1rem;display:block;}
+.linje{padding:0.35rem 0;font-size:1.02rem;line-height:1.65;}
+.frem{background:rgba(190,110,86,0.16);border-radius:5px;padding:0.1rem 0.35rem;font-weight:700;color:var(--coral);}
+.sporsmal-stor{font-family:'Fraunces',serif;font-size:1.22rem;font-weight:500;margin-bottom:0.6rem;line-height:1.3;}
+.knapp{display:block;width:100%;background:var(--cream);border:1.5px solid var(--rule);color:var(--ink);padding:0.7rem 0.9rem;border-radius:14px;cursor:pointer;margin-bottom:0.5rem;text-align:left;line-height:1.4;font-size:0.94rem;font-family:'Inter',sans-serif;}
+.knapp.riktig{border-color:var(--correct);background:var(--correct-bg);color:var(--correct);}
+.knapp.feil{border-color:var(--feil);background:var(--feil-bg);color:var(--feil);}
+.tekstboks{width:100%;min-height:70px;padding:0.9rem;border:1.5px solid var(--rule);border-radius:14px;font-family:'Inter';font-size:0.96rem;background:var(--paper);color:var(--ink);resize:vertical;line-height:1.55;}
+.tekstboks:focus{outline:none;border-color:var(--coral);}
+.knapp-hoved{width:100%;background:var(--navy);color:#fff;padding:0.75rem;border:none;border-radius:14px;font-family:'Inter';font-weight:600;font-size:0.92rem;cursor:pointer;margin-top:0.2rem;}
+.knapp-lav{background:var(--cream);border:1.5px solid var(--rule);color:var(--coral);padding:0.5rem 0.9rem;border-radius:12px;font-weight:600;font-size:0.82rem;cursor:pointer;margin-bottom:0.7rem;font-family:'Inter';}
+.knapprad2{display:flex;gap:0.6rem;justify-content:space-between;margin-top:1.1rem;}
+.svar{margin-top:0.7rem;padding:0.7rem 0.85rem;border-radius:12px;font-weight:600;display:none;line-height:1.55;font-size:0.88rem;}
+.svar.vis{display:block;}
+.svar.riktig{background:var(--correct-bg);color:var(--correct);}
+.svar.feil{background:var(--feil-bg);color:var(--feil);}
+.muntlig{display:flex;align-items:flex-start;gap:0.65rem;background:var(--cream);border-radius:12px;padding:0.8rem 0.9rem;margin-bottom:0.9rem;}
+.muntlig input{margin-top:0.15rem;width:1.15rem;height:1.15rem;flex-shrink:0;accent-color:var(--coral);}
+.muntlig label{font-size:0.9rem;line-height:1.45;cursor:pointer;}
+
+/* Foreldre-panel */
+.forelder{border-radius:18px;padding:1rem 1.1rem;margin-bottom:0.9rem;}
+.forelder.mamma{background:var(--mamma-bg);border:1.5px solid var(--mamma);}
+.forelder.pappa{background:var(--pappa-bg);border:1.5px solid var(--pappa);}
+.forelder .navn{font-family:'Fraunces',serif;font-size:1.2rem;font-weight:600;margin-bottom:0.15rem;}
+.forelder.mamma .navn{color:var(--mamma);}
+.forelder.pappa .navn{color:var(--pappa);}
+.forelder .sum{font-size:0.85rem;color:var(--muted);}
+.slippsone{min-height:3.2rem;margin-top:0.7rem;border-radius:12px;border:1.5px dashed rgba(0,0,0,0.15);padding:0.5rem;display:flex;flex-wrap:wrap;gap:0.35rem;align-items:flex-start;}
+.slippsone:empty::before{content:'Trykk på et kort under';color:rgba(0,0,0,0.3);font-size:0.82rem;font-style:italic;}
+
+/* DNA-kort */
+.kortbank{display:flex;flex-wrap:wrap;gap:0.4rem;margin-top:0.3rem;}
+.dnakort{display:inline-flex;align-items:baseline;gap:0.4rem;background:var(--paper);border:1.5px solid var(--rule);border-radius:12px;padding:0.5rem 0.75rem;font-size:0.9rem;cursor:pointer;font-weight:600;}
+.dnakort .pst{font-family:'Fraunces',serif;color:var(--coral);font-size:0.95rem;}
+.dnakort.brukt{opacity:0.22;pointer-events:none;}
+.dnakort.i-mamma{background:var(--paper);border-color:var(--mamma);color:var(--mamma);}
+.dnakort.i-mamma .pst{color:var(--mamma);}
+.dnakort.i-pappa{background:var(--paper);border-color:var(--pappa);color:var(--pappa);}
+.dnakort.i-pappa .pst{color:var(--pappa);}
+.dnakort.usikker{border-style:dashed;color:var(--muted);}
+.dnakort.usikker .pst{color:var(--muted);}
+
+/* Resultat */
+.resultat{background:linear-gradient(130deg,var(--navy),var(--navy-2));color:#fff;border-radius:20px;padding:1.4rem 1.2rem;text-align:center;}
+.resultat .regnestykke{font-family:'Fraunces',serif;font-size:1.15rem;line-height:2;}
+.resultat .del{background:rgba(255,255,255,0.12);border-radius:10px;padding:0.25rem 0.6rem;}
+.resultat .lik{color:#AFC0D6;margin:0 0.3rem;}
+.resultat .edel{font-size:1.6rem;color:#fff;display:block;margin-top:0.5rem;}
+.resultat .under{color:#C7D3DE;font-size:0.92rem;line-height:1.55;margin-top:0.9rem;}
+
+/* Sorteringsspill */
+.sortkolonner{display:grid;grid-template-columns:1fr 1fr;gap:0.7rem;margin-bottom:0.9rem;}
+.sortkol{border-radius:14px;padding:0.8rem 0.7rem;min-height:5rem;}
+.sortkol.ja{background:var(--correct-bg);border:1.5px solid var(--correct);}
+.sortkol.nei{background:var(--feil-bg);border:1.5px solid var(--feil);}
+.sortkol .tit{font-size:0.68rem;font-weight:700;letter-spacing:0.06em;text-transform:uppercase;margin-bottom:0.5rem;}
+.sortkol.ja .tit{color:var(--correct);}
+.sortkol.nei .tit{color:var(--feil);}
+.sortkol .innhold{display:flex;flex-wrap:wrap;gap:0.3rem;}
+.minikort{background:var(--paper);border:1px solid var(--rule);border-radius:999px;padding:0.25rem 0.6rem;font-size:0.82rem;}
+.sortvalg{display:flex;gap:0.5rem;margin-top:0.6rem;}
+.sortvalg button{flex:1;}
+.naakort{background:var(--cream);border-radius:14px;padding:1rem;text-align:center;font-family:'Fraunces',serif;font-size:1.25rem;}
+.avslutning{text-align:center;padding:1.4rem 1rem;}
+.avslutning .emoji{font-size:2.4rem;}
+.avslutning .tekst{font-family:'Fraunces',serif;font-size:1.12rem;margin-top:0.5rem;line-height:1.45;}
+.footer{text-align:center;font-size:0.75rem;color:var(--muted);margin-top:2.5rem;padding:1.25rem;}
+.modal{display:none;position:fixed;inset:0;background:rgba(28,36,56,0.94);z-index:100;padding:0.5rem;overflow:auto;}
+.modal.vis{display:flex;align-items:center;justify-content:center;}
+.modal img{max-width:100%;border-radius:14px;}
+.modal-lukk{position:fixed;top:0.8rem;right:1.2rem;color:#fff;font-size:2.4rem;cursor:pointer;font-weight:bold;z-index:101;}
+@media(max-width:430px){.sortkolonner{grid-template-columns:1fr}}
+@media(prefers-reduced-motion:reduce){*{scroll-behavior:auto!important;}}
+</style>
+</head>
+<body>
+
+<div class="topnav">
+  <a class="avatar" href="index.html" aria-label="Til forsiden">E</a>
+  <div class="navlinks">
+    <a href="historier.html">Historier</a>
+    <a href="skolefag.html">Skolefag</a>
+  </div>
+</div>
+
+<main class="side">
+  <a class="tilbake" href="skolefag.html">← Skolefag</a>
+
+  <section class="topp">
+    <div class="eyebrow">Naturfag &middot; Spill</div>
+    <h1 class="tittel serif">Mamma + pappa = Edel</h1>
+    <p class="lede">Omtrent halvparten av DNA-et kommer fra hver av foreldrene. Sammen danner det Edels helt egen blanding.</p>
+  </section>
+
+  <div class="stegnav" id="stegnav">
+    <div class="stegdot aktiv"></div><div class="stegdot"></div><div class="stegdot"></div><div class="stegdot"></div><div class="stegdot"></div><div class="stegdot"></div>
+  </div>
+
+  <!-- 1: HVEM -->
+  <div class="tela aktiv" id="tela0">
+    <div class="stegtittel">Del 1 av 6 · Hvem?</div>
+    <div class="boks">
+      <img class="bilde" src="img/gen-foreldre.png" alt="Mamma Aisha og pappa Kjell Egil gir gener til Edel" onclick="zoom('img/gen-foreldre.png')">
+      <div class="linje">Edel har arvet omtrent halvparten av DNA-et sitt fra mamma Aisha, og omtrent halvparten fra pappa Kjell Egil.</div>
+      <div class="sporsmal-stor" style="margin-top:0.9rem;">Hvem har Edel arvet gener fra?</div>
+      <button class="knapp" onclick="velgEn(this,0,0,'v1F')">Fra mamma og pappa</button>
+      <button class="knapp" onclick="velgEn(this,0,1,'v1F')">Bare fra mamma</button>
+      <button class="knapp" onclick="velgEn(this,0,2,'v1F')">Bare fra pappa</button>
+      <div class="svar" id="v1F"></div>
+    </div>
+    <div class="knapprad2" style="justify-content:flex-end;">
+      <button class="knapp-hoved" style="width:auto;padding:0.75rem 1.4rem;" onclick="visTela(1)">Neste →</button>
+    </div>
+  </div>
+
+  <!-- 2: PAPPAS HALVPART -->
+  <div class="tela" id="tela1">
+    <div class="stegtittel">Del 2 av 6 · Pappas halvpart</div>
+    <div class="boks">
+      <div class="lede-liten">Denne delen kommer fra pappa Kjell Egil. Testen har fordelt DNA-et hans mellom flere nordeuropeiske grupper.</div>
+      <div class="forelder pappa">
+        <div class="navn">Pappa Kjell Egil</div>
+        <div class="sum" id="sumPappa">0 % plassert</div>
+        <div class="slippsone" id="sonePappa"></div>
+      </div>
+      <div class="steg-label">Trykk på kortene</div>
+      <div class="kortbank" id="bankPappa"></div>
+      <div class="svar" id="fPappa"></div>
+    </div>
+    <div class="knapprad2">
+      <button class="knapp-lav" onclick="visTela(0)">← Forrige</button>
+      <button class="knapp-hoved" style="width:auto;padding:0.75rem 1.4rem;" onclick="visTela(2)">Neste →</button>
+    </div>
+  </div>
+
+  <!-- 3: MAMMAS HALVPART -->
+  <div class="tela" id="tela2">
+    <div class="stegtittel">Del 3 av 6 · Mammas halvpart</div>
+    <div class="boks">
+      <div class="lede-liten">Denne delen kommer fra mamma Aisha. Én liten bit er usikker – testen vet ikke helt.</div>
+      <div class="forelder mamma">
+        <div class="navn">Mamma Aisha</div>
+        <div class="sum" id="sumMamma">0 % plassert</div>
+        <div class="slippsone" id="soneMamma"></div>
+      </div>
+      <div class="steg-label">Trykk på kortene</div>
+      <div class="kortbank" id="bankMamma"></div>
+      <div class="svar" id="fMamma"></div>
+    </div>
+    <div class="knapprad2">
+      <button class="knapp-lav" onclick="visTela(1)">← Forrige</button>
+      <button class="knapp-hoved" style="width:auto;padding:0.75rem 1.4rem;" onclick="visTela(3)">Neste →</button>
+    </div>
+  </div>
+
+  <!-- 4: FORM EDEL -->
+  <div class="tela" id="tela3">
+    <div class="stegtittel">Del 4 av 6 · Sammen blir det Edel</div>
+    <div class="boks">
+      <div class="resultat">
+        <div class="regnestykke">
+          <span class="del">Mamma 49,9 %</span><span class="lik">+</span><span class="del">Pappa 50,1 %</span>
+          <span class="edel">= Edel 100 %</span>
+        </div>
+        <div class="under">Edel har arvet gener fra begge foreldrene.<br>Derfor har hun sin egen unike kombinasjon.</div>
+      </div>
+    </div>
+    <div class="boks">
+      <img class="bilde" src="img/gen-verden.png" alt="Familier fra mange steder i verden" onclick="zoom('img/gen-verden.png')" style="margin-bottom:0.9rem;">
+      <div class="linje">Alle mennesker arver gener fra foreldrene sine. Derfor er alle litt forskjellige – og helt seg selv.</div>
+    </div>
+    <div class="knapprad2">
+      <button class="knapp-lav" onclick="visTela(2)">← Forrige</button>
+      <button class="knapp-hoved" style="width:auto;padding:0.75rem 1.4rem;" onclick="visTela(4)">Neste →</button>
+    </div>
+  </div>
+
+  <!-- 5: EGENSKAP ELLER IKKE -->
+  <div class="tela" id="tela4">
+    <div class="stegtittel">Del 5 av 6 · Egenskap eller ikke?</div>
+    <div class="boks">
+      <img class="bilde" src="img/gen-egenskapkort.png" alt="Egenskaper og ting som ikke er egenskaper" onclick="zoom('img/gen-egenskapkort.png')">
+      <div class="lede-liten">Gener kan være med på å bestemme egenskaper. Men ikke alt er en egenskap!</div>
+      <div class="sortkolonner">
+        <div class="sortkol ja"><div class="tit">Egenskap</div><div class="innhold" id="kolJa"></div></div>
+        <div class="sortkol nei"><div class="tit">Ikke egenskap</div><div class="innhold" id="kolNei"></div></div>
+      </div>
+      <div class="naakort" id="naaKort">—</div>
+      <div class="sortvalg">
+        <button class="knapp" style="text-align:center;margin-bottom:0;" onclick="sorter(true)">Egenskap</button>
+        <button class="knapp" style="text-align:center;margin-bottom:0;" onclick="sorter(false)">Ikke egenskap</button>
+      </div>
+      <div class="svar" id="sortF"></div>
+    </div>
+    <div class="boks">
+      <div class="sporsmal-stor">Nevn én egenskap Edel har.</div>
+      <div class="muntlig">
+        <input type="checkbox" id="m5">
+        <label for="m5">Jeg har sagt svaret høyt først</label>
+      </div>
+      <textarea class="tekstboks" id="t5" placeholder="Skriv her..." autocomplete="off"></textarea>
+      <button class="knapp-hoved" style="margin-top:0.7rem;" onclick="sendSvar('t5','f5','Genspillet - Nevn en egenskap','m5')">Send til mamma 💛</button>
+      <div class="svar" id="f5"></div>
+    </div>
+    <div class="knapprad2">
+      <button class="knapp-lav" onclick="visTela(3)">← Forrige</button>
+      <button class="knapp-hoved" style="width:auto;padding:0.75rem 1.4rem;" onclick="visTela(5)">Neste →</button>
+    </div>
+  </div>
+
+  <!-- 6: UTEN HJELP -->
+  <div class="tela" id="tela5">
+    <div class="stegtittel">Del 6 av 6 · Uten hjelp</div>
+    <div class="boks">
+      <div class="lede-liten">Uten bilder og uten kort.</div>
+      <div class="sporsmal-stor">Hva er gener?</div>
+      <div class="muntlig">
+        <input type="checkbox" id="m6a">
+        <label for="m6a">Jeg har sagt svaret høyt først</label>
+      </div>
+      <textarea class="tekstboks" id="t6a" placeholder="Gener er..." autocomplete="off"></textarea>
+      <button class="knapp-hoved" style="margin-top:0.7rem;" onclick="sendSvar('t6a','f6a','Genspillet - Sluttest: hva er gener','m6a')">Send til mamma 💛</button>
+      <div class="svar" id="f6a"></div>
+    </div>
+    <div class="boks">
+      <div class="sporsmal-stor">Hvordan ble Edels unike blanding dannet?</div>
+      <div class="muntlig">
+        <input type="checkbox" id="m6b">
+        <label for="m6b">Jeg har sagt svaret høyt først</label>
+      </div>
+      <textarea class="tekstboks" id="t6b" style="min-height:90px;" placeholder="Skriv her..." autocomplete="off"></textarea>
+      <button class="knapp-hoved" style="margin-top:0.7rem;" onclick="sendSvar('t6b','f6b','Genspillet - Sluttest: unik blanding','m6b')">Send til mamma 💛</button>
+      <div class="svar" id="f6b"></div>
+    </div>
+    <div class="boks">
+      <div class="avslutning">
+        <div class="emoji">🧬💛</div>
+        <div class="tekst">Halvparten fra mamma, halvparten fra pappa<br>– og helt din egen blanding.</div>
+      </div>
+    </div>
+    <div class="knapprad2">
+      <button class="knapp-lav" onclick="visTela(4)">← Forrige</button>
+    </div>
+  </div>
+
+</main>
+
+<div class="footer">Genspillet · Edels Verden</div>
+
+<div class="modal" id="bildeModal" onclick="lukkModal()">
+  <span class="modal-lukk">&times;</span>
+  <img id="modalBilde" src="" alt="">
+</div>
+
+<script>
+var MAAL = "Genspillet – arv, halvparten fra hver, egenskaper";
+
+function zoom(src){ document.getElementById('modalBilde').src=src; document.getElementById('bildeModal').classList.add('vis'); }
+function lukkModal(){ document.getElementById('bildeModal').classList.remove('vis'); }
+
+function visTela(n){
+  document.querySelectorAll('.tela').forEach(function(t,i){ t.classList.toggle('aktiv', i===n); });
+  document.querySelectorAll('#stegnav .stegdot').forEach(function(d,i){
+    d.classList.toggle('aktiv', i===n);
+    d.classList.toggle('ferdig', i<n);
+  });
+  window.scrollTo({top:0,behavior:'smooth'});
+}
+
+var TILBAKEMELDING = {
+  'v1F':{ja:'Riktig! Edel har arvet gener fra begge foreldrene sine.', nei:'Nesten! Gener kommer fra begge foreldrene.'}
+};
+function velgEn(btn, riktigIdx, valgtIdx, svarId){
+  var knapper = btn.parentElement.querySelectorAll('.knapp');
+  knapper.forEach(function(b){b.style.pointerEvents='none';});
+  var f=document.getElementById(svarId);
+  var m = TILBAKEMELDING[svarId] || {ja:'Riktig!', nei:'Nesten!'};
+  if(valgtIdx===riktigIdx){ btn.classList.add('riktig'); f.className='svar vis riktig'; f.innerHTML='✅ '+m.ja; }
+  else{ btn.classList.add('feil'); if(knapper[riktigIdx]) knapper[riktigIdx].classList.add('riktig'); f.className='svar vis feil'; f.innerHTML='💡 '+m.nei; }
+}
+
+/* ---- DNA-kort: trykk for å plassere (fungerer på mobil) ---- */
+var PAPPA = [
+  {navn:'Skandinavisk', pst:'35,8 %'},
+  {navn:'Engelsk', pst:'12,5 %'},
+  {navn:'Finsk', pst:'1,8 %'}
+];
+var MAMMA = [
+  {navn:'Nigeriansk', pst:'22,5 %'},
+  {navn:'Iberisk', pst:'14,3 %'},
+  {navn:'Kenyansk', pst:'5,6 %'},
+  {navn:'Mellomamerikansk og Andes', pst:'5,4 %'},
+  {navn:'Usikkert', pst:'2,1 %', usikker:true}
+];
+
+function embland(a){a=a.slice();for(var i=a.length-1;i>0;i--){var j=Math.floor(Math.random()*(i+1));var t=a[i];a[i]=a[j];a[j]=t;}return a;}
+
+function byggKort(liste, bankId, soneId, sumId, farge, fasitSum, feedbackId){
+  var bank = document.getElementById(bankId);
+  bank.innerHTML = embland(liste).map(function(k,i){
+    var cls = 'dnakort' + (k.usikker ? ' usikker' : '');
+    var etikett = k.usikker ? k.navn + ' ?' : k.navn;
+    return '<span class="'+cls+'" data-pst="'+k.pst+'" data-navn="'+etikett+'">'+
+             '<span>'+etikett+'</span><span class="pst">'+k.pst+'</span>'+
+           '</span>';
+  }).join('');
+  var plassert = 0;
+  bank.querySelectorAll('.dnakort').forEach(function(kort){
+    kort.onclick = function(){
+      kort.classList.add('brukt');
+      var k = document.createElement('span');
+      k.className = 'dnakort i-'+farge + (kort.classList.contains('usikker') ? ' usikker' : '');
+      k.innerHTML = '<span>'+kort.dataset.navn+'</span><span class="pst">'+kort.dataset.pst+'</span>';
+      k.onclick = function(){ k.remove(); kort.classList.remove('brukt'); plassert -= parseFloat(kort.dataset.pst.replace(',','.')); oppdater(); };
+      document.getElementById(soneId).appendChild(k);
+      plassert += parseFloat(kort.dataset.pst.replace(',','.'));
+      oppdater();
+    };
+  });
+  function oppdater(){
+    var vist = Math.round(plassert*10)/10;
+    document.getElementById(sumId).textContent = String(vist).replace('.',',') + ' % plassert';
+    var f = document.getElementById(feedbackId);
+    if(Math.abs(vist - fasitSum) < 0.05){
+      f.className = 'svar vis riktig';
+      f.innerHTML = '✅ Ferdig! Til sammen ' + String(fasitSum).replace('.',',') + ' % – omtrent halvparten av Edels DNA.';
+    } else {
+      f.className = 'svar';
+    }
+  }
+}
+
+/* ---- Sortering: egenskap eller ikke ---- */
+var SORT = [
+  {navn:'krøllete hår', ok:true},
+  {navn:'brune øyne', ok:true},
+  {navn:'hudfarge', ok:true},
+  {navn:'høyde', ok:true},
+  {navn:'mobiltelefon', ok:false},
+  {navn:'ryggsekk', ok:false},
+  {navn:'stol', ok:false},
+  {navn:'sko', ok:false}
+];
+var sortRekke = [], sortIdx = 0, sortPoeng = 0;
+function startSort(){
+  sortRekke = embland(SORT); sortIdx = 0; sortPoeng = 0;
+  document.getElementById('kolJa').innerHTML = '';
+  document.getElementById('kolNei').innerHTML = '';
+  visNaa();
+}
+function visNaa(){
+  var el = document.getElementById('naaKort');
+  var f = document.getElementById('sortF');
+  if(sortIdx >= sortRekke.length){
+    el.textContent = '🎉 Ferdig!';
+    f.className = 'svar vis riktig';
+    f.innerHTML = '✅ ' + sortPoeng + ' av ' + sortRekke.length + ' riktig. En egenskap forteller hvordan kroppen er eller fungerer.';
+    document.querySelectorAll('.sortvalg button').forEach(function(b){ b.style.pointerEvents='none'; b.style.opacity='0.4'; });
+    return;
+  }
+  el.textContent = sortRekke[sortIdx].navn;
+}
+function sorter(valgtJa){
+  if(sortIdx >= sortRekke.length) return;
+  var k = sortRekke[sortIdx];
+  var riktig = (valgtJa === k.ok);
+  if(riktig) sortPoeng++;
+  var mini = document.createElement('span');
+  mini.className = 'minikort';
+  mini.textContent = k.navn;
+  document.getElementById(k.ok ? 'kolJa' : 'kolNei').appendChild(mini);
+  var f = document.getElementById('sortF');
+  f.className = 'svar vis ' + (riktig ? 'riktig' : 'feil');
+  f.innerHTML = riktig ? '✅ Riktig!' : '💡 Nesten! «'+k.navn+'» hører hjemme i den andre boksen.';
+  sortIdx++;
+  setTimeout(visNaa, 700);
+}
+
+/* ---- Sending ---- */
+function send(tekst, svarId, oppgave, muntligId){
+  var f=document.getElementById(svarId);
+  f.className='svar vis'; f.style.background='var(--cream)'; f.style.color='var(--muted)'; f.innerHTML='⏳ Sender...';
+  fetch('https://formspree.io/f/mqeolldg',{method:'POST',headers:{'Content-Type':'application/json','Accept':'application/json'},
+    body:JSON.stringify({
+      Tekst_hun_skrev:tekst, oppgave:oppgave, maal:MAAL,
+      dato:new Date().toLocaleString('no-NO'),
+      sagt_hoyt:(muntligId && document.getElementById(muntligId)) ? (document.getElementById(muntligId).checked ? 'ja':'nei') : ''
+    })})
+   .then(function(r){
+     if(r.ok){ f.className='svar vis riktig'; f.innerHTML='✅ Sendt til mamma! 🎉'; }
+     else{ f.className='svar vis feil'; f.innerHTML='❌ Noe gikk galt. Prøv igjen!'; }
+   })
+   .catch(function(){ f.className='svar vis feil'; f.innerHTML='❌ Sjekk internett og prøv igjen!'; });
+}
+function sendSvar(feltId, svarId, oppgave, muntligId){
+  var t=document.getElementById(feltId).value;
+  var f=document.getElementById(svarId);
+  if(t.trim().length<3){ f.className='svar vis feil'; f.innerHTML='⏳ Skriv litt først!'; return; }
+  send(t, svarId, oppgave, muntligId);
+}
+
+byggKort(PAPPA,'bankPappa','sonePappa','sumPappa','pappa',50.1,'fPappa');
+byggKort(MAMMA,'bankMamma','soneMamma','sumMamma','mamma',49.9,'fMamma');
+startSort();
+
+/* Hindrer at nettleseren fyller inn gammel tekst når siden åpnes på nytt */
+(function(){
+  function tomFelter(){
+    document.querySelectorAll('textarea, input[type="text"], input:not([type])').forEach(function(el){ el.value=''; });
+    document.querySelectorAll('input[type="checkbox"]').forEach(function(el){ el.checked=false; });
+  }
+  window.addEventListener('pageshow', function(e){ if(e.persisted) tomFelter(); });
+  if(document.readyState==='loading'){ document.addEventListener('DOMContentLoaded', tomFelter); } else { tomFelter(); }
+})();
+</script>
+</body>
+</html>
