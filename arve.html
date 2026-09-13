@@ -1,0 +1,371 @@
+<!DOCTYPE html>
+<html lang="no">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#F6F1E6">
+  <title>Arve – Edels Verden</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:wght@500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root{--cream:#F6F1E6;--paper:#FFFEFA;--navy:#1C2C42;--muted:#6F6B64;--coral:#BE6E56;--coral-soft:#F3DFD6;--blue-soft:#E3EBF1;--green:#47705D;--green-soft:#E3EFE8;--rule:#E4DCCB;--shadow:0 12px 34px rgba(28,44,66,.09)}
+    *{box-sizing:border-box}
+    html{font-size:18px}
+    body{margin:0;min-height:100vh;background:radial-gradient(circle at 10% 0,#FFF9EE 0,transparent 24rem),var(--cream);color:var(--navy);font-family:Inter,sans-serif;-webkit-font-smoothing:antialiased}
+    button,textarea{font:inherit}
+    button{-webkit-tap-highlight-color:transparent}
+    button:focus-visible,a:focus-visible,textarea:focus-visible{outline:3px solid #E59B72;outline-offset:3px}
+    .topbar{position:sticky;top:0;z-index:20;display:grid;grid-template-columns:auto 1fr auto;align-items:center;gap:.8rem;max-width:760px;margin:auto;padding:.75rem 1rem;background:rgba(246,241,230,.94);backdrop-filter:blur(14px);border-bottom:1px solid rgba(28,44,66,.08)}
+    .back,.parent{min-height:44px;border:1px solid var(--rule);border-radius:14px;background:var(--paper);color:var(--navy);padding:.55rem .75rem;text-decoration:none;font-weight:700;cursor:pointer}
+    .brand{text-align:center;font-family:Fraunces,serif;font-weight:600}
+    .progress-wrap{max-width:680px;margin:.8rem auto 0;padding:0 1rem}
+    .progress-label{display:flex;justify-content:space-between;margin-bottom:.35rem;color:var(--muted);font-size:.72rem;font-weight:700}
+    .progress{height:8px;background:#E7DFD1;border-radius:999px;overflow:hidden}
+    .progress>span{display:block;width:14.28%;height:100%;background:var(--coral);border-radius:inherit;transition:width .25s ease}
+    main{max-width:680px;margin:auto;padding:1rem 1rem 3rem}
+    .screen{display:none;animation:enter .22s ease}
+    .screen.active{display:block}
+    @keyframes enter{from{opacity:0;transform:translateY(7px)}to{opacity:1;transform:none}}
+    .card{background:var(--paper);border:1px solid rgba(28,44,66,.08);border-radius:25px;padding:clamp(1.15rem,4vw,2rem);box-shadow:var(--shadow)}
+    .step{margin:0 0 .55rem;color:var(--coral);font-size:.67rem;font-weight:800;letter-spacing:.11em;text-transform:uppercase}
+    h1,h2{font-family:Fraunces,serif;font-weight:600;line-height:1.15;margin:.2rem 0 .8rem}
+    h1{font-size:clamp(1.8rem,7vw,2.7rem)}
+    h2{font-size:clamp(1.55rem,6vw,2.25rem)}
+    .intro{color:var(--muted);line-height:1.55;margin:0 0 1.2rem}
+    .prompt{font-family:Fraunces,serif;font-size:clamp(1.35rem,5vw,1.75rem);line-height:1.3;margin:1rem 0}
+    .read{display:inline-flex;align-items:center;gap:.45rem;min-height:44px;border:1px solid var(--rule);border-radius:14px;background:#FAF6EC;color:var(--navy);padding:.58rem .8rem;font-weight:700;cursor:pointer}
+    .answer{width:100%;min-height:115px;margin:1rem 0 .55rem;padding:1rem;border:2px solid var(--rule);border-radius:17px;background:#fff;color:var(--navy);line-height:1.5;resize:vertical}
+    .oral{display:flex;align-items:center;gap:.7rem;min-height:48px;margin:.55rem 0 1rem;padding:.7rem .8rem;border:1px solid var(--rule);border-radius:14px;background:#FAF6EC;font-weight:600}
+    .oral input{width:22px;height:22px;accent-color:var(--coral)}
+    .actions{display:flex;flex-wrap:wrap;justify-content:space-between;gap:.7rem;margin-top:1.2rem}
+    .primary,.secondary,.hint-btn{min-height:50px;border-radius:15px;padding:.72rem 1rem;font-weight:800;cursor:pointer;text-decoration:none;display:inline-flex;align-items:center;justify-content:center}
+    .primary{margin-left:auto;border:0;background:var(--navy);color:#fff}
+    .secondary{border:1px solid var(--rule);background:var(--paper);color:var(--navy)}
+    .hint-btn{border:1px solid #E8C7B9;background:var(--coral-soft);color:#7D4234}
+    button:disabled{opacity:.42;cursor:not-allowed}
+    .hint-box,.feedback{display:none;margin-top:.85rem;padding:.85rem 1rem;border-radius:15px;line-height:1.5}
+    .hint-box.show{display:block;background:#FFF4DF;border:1px solid #EDD9AA}
+    .feedback.show{display:block;background:var(--green-soft);border:1px solid #BAD5C5;color:#284E3E}
+    .learning-image{display:block;width:100%;height:auto;margin:1rem 0;border-radius:20px;border:1px solid var(--rule)}
+    .definition{margin:1rem 0;padding:1rem;border-radius:17px;background:var(--coral-soft);font-family:Fraunces,serif;font-size:1.25rem;line-height:1.45}
+    .choices{display:grid;gap:.7rem;margin-top:1rem}
+    .choice{display:flex;align-items:center;gap:.9rem;width:100%;min-height:64px;padding:.85rem 1rem;text-align:left;border:2px solid var(--rule);border-radius:17px;background:#fff;color:var(--navy);cursor:pointer;font-weight:650}
+    .choice .icon{font-size:1.7rem;flex:0 0 2rem;text-align:center}
+    .choice.selected{border-color:var(--coral);background:#FFF7F2}
+    .choice.good{border-color:#76A78D;background:var(--green-soft)}
+    .choice.try-again{border-color:#D7B589;background:#FFF7E8}
+    .sentence-zone{min-height:76px;margin:1rem 0;padding:.75rem;border:2px dashed #CFC4B3;border-radius:17px;background:#FCF9F2;display:flex;flex-wrap:wrap;align-content:center;gap:.45rem}
+    .tokens{display:flex;flex-wrap:wrap;gap:.55rem}
+    .token{min-height:46px;border:1px solid #B9C9D8;border-radius:13px;background:var(--blue-soft);color:var(--navy);padding:.55rem .75rem;font-weight:700;cursor:pointer}
+    .token.used{opacity:.35}
+    .fill-line{font-family:Fraunces,serif;font-size:clamp(1.25rem,5vw,1.6rem);line-height:1.5;margin:1rem 0;text-align:center}
+    .blank{display:inline-block;min-width:8rem;border-bottom:3px solid var(--coral);color:var(--coral);text-align:center;padding:0 .2rem;font-weight:700}
+    .dog-visual{display:grid;place-items:center;min-height:180px;margin:1rem 0;border-radius:20px;background:linear-gradient(145deg,#F6E8DE,#E7EEF3);font-size:5rem}
+    .finish{text-align:center}
+    .finish .star{font-size:4rem;margin:.3rem}
+    .finish p{color:var(--muted);line-height:1.55}
+    dialog{width:min(92vw,620px);border:0;border-radius:22px;padding:0;box-shadow:0 25px 80px rgba(20,30,45,.25)}
+    dialog::backdrop{background:rgba(28,44,66,.45)}
+    .parent-panel{padding:1.25rem}
+    .parent-panel pre{white-space:pre-wrap;word-break:break-word;padding:1rem;border-radius:14px;background:#F5F2EA;color:#343A45;font-size:.78rem;line-height:1.5}
+    .parent-panel .actions{justify-content:flex-end}
+    @media(max-width:520px){html{font-size:16px}.topbar{gap:.45rem;padding:.65rem}.back,.parent{padding:.5rem .6rem;font-size:.78rem}.card{border-radius:21px}.actions>*{flex:1 1 auto}.primary{margin-left:0}.choice{min-height:58px}}
+    @media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+  </style>
+</head>
+<body>
+  <header class="topbar">
+    <a class="back" href="index.html" aria-label="Til forsiden">← Hjem</a>
+    <div class="brand">Edels Verden</div>
+    <button class="parent" id="openParent" type="button">Til mamma</button>
+  </header>
+
+  <div class="progress-wrap" aria-label="Fremgang i økten">
+    <div class="progress-label"><span id="progressText">Steg 1 av 7</span><span>ca. 10 min</span></div>
+    <div class="progress"><span id="progressBar"></span></div>
+  </div>
+
+  <main>
+    <section class="screen active" data-step="0">
+      <div class="card">
+        <p class="step">Først prøver du selv</p>
+        <h1>Hva betyr å arve gener?</h1>
+        <p class="intro">Si svaret høyt først. Skriv deretter det du sa. Ordet blir ikke forklart før forsøket er lagret.</p>
+        <button class="read" type="button" data-speak="Hva betyr å arve gener? Si svaret høyt først.">🔊 Les høyt</button>
+        <label class="oral"><input id="oralFirst" type="checkbox"> Jeg har sagt svaret høyt</label>
+        <label for="firstAnswer"><strong>Mitt første svar</strong></label>
+        <textarea class="answer" id="firstAnswer" placeholder="Skriv det du sa …"></textarea>
+        <button class="secondary" id="saveFirst" type="button">Lagre første forsøk</button>
+        <div class="feedback" id="savedFirst">Første forsøk er lagret. Nå kan du fortsette eller be om et hint.</div>
+        <div class="hint-box" id="hintBox"></div>
+        <div class="actions">
+          <button class="hint-btn" id="hintButton" type="button" disabled>Jeg trenger et hint</button>
+          <button class="primary next" type="button" disabled>Neste →</button>
+        </div>
+      </div>
+    </section>
+
+    <section class="screen" data-step="1">
+      <div class="card">
+        <p class="step">Se og lær</p>
+        <h2>Arve</h2>
+        <button class="read" type="button" data-speak="Å arve gener betyr å få gener fra foreldrene sine. Edel har arvet gener fra mamma og pappa.">🔊 Les høyt</button>
+        <img class="learning-image" src="img/oppdrag-arv-banner.png" alt="To DNA-tråder som kommer til Edel fra mamma og pappa">
+        <div class="definition"><strong>Å arve gener</strong> betyr å få gener fra foreldrene sine.</div>
+        <div class="actions"><button class="primary next" type="button">Jeg er klar →</button></div>
+      </div>
+    </section>
+
+    <section class="screen" data-step="2">
+      <div class="card">
+        <p class="step">Bygg en setning</p>
+        <h2>Sett ordene i riktig rekkefølge</h2>
+        <button class="read" type="button" data-speak="Sett ordene i riktig rekkefølge. Si hele setningen når du er ferdig.">🔊 Les høyt</button>
+        <div class="sentence-zone" id="sentenceZone" aria-live="polite"></div>
+        <div class="tokens" id="tokens">
+          <button class="token" type="button" data-order="0">Edel</button>
+          <button class="token" type="button" data-order="1">har arvet</button>
+          <button class="token" type="button" data-order="2">gener</button>
+          <button class="token" type="button" data-order="3">fra mamma og pappa.</button>
+        </div>
+        <label class="oral"><input id="oralSentence" type="checkbox"> Jeg har sagt hele setningen høyt</label>
+        <div class="feedback" id="sentenceFeedback"></div>
+        <div class="actions">
+          <button class="secondary" id="resetSentence" type="button">Prøv på nytt</button>
+          <button class="primary" id="checkSentence" type="button">Sjekk setningen</button>
+          <button class="primary next" type="button" disabled>Neste →</button>
+        </div>
+      </div>
+    </section>
+
+    <section class="screen" data-step="3">
+      <div class="card">
+        <p class="step">Fyll inn</p>
+        <h2>Fullfør setningen</h2>
+        <button class="read" type="button" data-speak="Fullfør setningen. Jeg har arvet, og så velger du ordene.">🔊 Les høyt</button>
+        <div class="fill-line">Jeg har arvet <span class="blank" id="blankA">___</span> fra <span class="blank" id="blankB">___</span>.</div>
+        <div class="tokens" id="fillTokens">
+          <button class="token" type="button" data-word="gener">gener</button>
+          <button class="token" type="button" data-word="mamma og pappa">mamma og pappa</button>
+          <button class="token" type="button" data-word="Pipoka">Pipoka</button>
+          <button class="token" type="button" data-word="sykkelen">sykkelen</button>
+        </div>
+        <div class="feedback" id="fillFeedback"></div>
+        <div class="actions">
+          <button class="secondary" id="resetFill" type="button">Prøv på nytt</button>
+          <button class="primary" id="checkFill" type="button">Sjekk svaret</button>
+          <button class="primary next" type="button" disabled>Neste →</button>
+        </div>
+      </div>
+    </section>
+
+    <section class="screen" data-step="4">
+      <div class="card">
+        <p class="step">Ny situasjon</p>
+        <h2>Pipoka har krøllete pels</h2>
+        <div class="dog-visual" aria-hidden="true">🐕‍🦺〰️</div>
+        <p class="prompt">Pipoka har arvet den fra foreldrene sine. Hva har du arvet fra mamma eller pappa?</p>
+        <button class="read" type="button" data-speak="Pipoka har arvet krøllete pels fra foreldrene sine. Hva har du arvet fra mamma eller pappa? Si svaret høyt først.">🔊 Les høyt</button>
+        <label class="oral"><input id="oralPipoka" type="checkbox"> Jeg har sagt svaret høyt</label>
+        <textarea class="answer" id="pipokaAnswer" placeholder="Jeg har arvet …"></textarea>
+        <div class="feedback" id="pipokaFeedback"></div>
+        <div class="actions">
+          <button class="primary" id="savePipoka" type="button">Lagre svaret</button>
+          <button class="primary next" type="button" disabled>Neste →</button>
+        </div>
+      </div>
+    </section>
+
+    <section class="screen" data-step="5">
+      <div class="card">
+        <p class="step">Til slutt – uten bilde</p>
+        <h2>Hva betyr å arve?</h2>
+        <p class="prompt">Forklar med egne ord og gi ett nytt eksempel.</p>
+        <button class="read" type="button" data-speak="Hva betyr å arve? Forklar med egne ord og gi ett nytt eksempel.">🔊 Les høyt</button>
+        <label class="oral"><input id="oralFinal" type="checkbox"> Jeg har sagt svaret høyt</label>
+        <textarea class="answer" id="finalAnswer" placeholder="Å arve betyr …"></textarea>
+        <div class="feedback" id="finalFeedback"></div>
+        <div class="actions"><button class="primary" id="finish" type="button">Fullfør økten</button></div>
+      </div>
+    </section>
+
+    <section class="screen" data-step="6">
+      <div class="card finish">
+        <div class="star">⭐</div>
+        <h2>Økten er ferdig</h2>
+        <p>Du jobbet godt med å finne ord, forklare og lage setninger i dag.</p>
+        <div class="actions">
+          <a class="secondary" href="index.html">Til forsiden</a>
+          <button class="primary" id="restart" type="button">Start på nytt</button>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <dialog id="parentDialog">
+    <div class="parent-panel">
+      <h2>Oppsummering til mamma</h2>
+      <p class="intro">Dette er undervisningsnotater, ikke en vurdering eller diagnose.</p>
+      <pre id="parentSummary">Ingen svar er lagret ennå.</pre>
+      <div class="actions">
+        <button class="secondary" id="exportJson" type="button">Eksporter JSON</button>
+        <button class="secondary" id="closeParent" type="button">Lukk</button>
+      </div>
+    </div>
+  </dialog>
+
+  <script>
+    (() => {
+      const KEY = 'edelsVerden.arve.v1';
+      const blank = () => ({
+        startedAt: new Date().toISOString(), currentStep: 0, completed: false,
+        firstAnswer: '', finalAnswer: '', pipokaAnswer: '', hintsUsed: [],
+        oralFirst: false, oralSentence: false, oralPipoka: false, oralFinal: false,
+        sentenceAttempts: [], fillAttempts: []
+      });
+      let state;
+      try { state = {...blank(), ...JSON.parse(localStorage.getItem(KEY) || '{}')}; }
+      catch { state = blank(); }
+
+      const screens = [...document.querySelectorAll('.screen')];
+      const progressBar = document.getElementById('progressBar');
+      const progressText = document.getElementById('progressText');
+      const save = () => localStorage.setItem(KEY, JSON.stringify(state));
+
+      function showStep(step) {
+        state.currentStep = Math.max(0, Math.min(6, step));
+        screens.forEach((screen, i) => screen.classList.toggle('active', i === state.currentStep));
+        const visibleStep = Math.min(state.currentStep + 1, 6);
+        progressText.textContent = state.currentStep === 6 ? 'Ferdig' : `Steg ${visibleStep} av 6`;
+        progressBar.style.width = state.currentStep === 6 ? '100%' : `${visibleStep / 6 * 100}%`;
+        save(); window.scrollTo({top: 0, behavior: 'smooth'});
+      }
+
+      document.querySelectorAll('.next').forEach(btn => btn.addEventListener('click', () => showStep(state.currentStep + 1)));
+
+      document.querySelectorAll('[data-speak]').forEach(btn => btn.addEventListener('click', () => {
+        if (!('speechSynthesis' in window)) return;
+        speechSynthesis.cancel();
+        const utterance = new SpeechSynthesisUtterance(btn.dataset.speak);
+        utterance.lang = 'nb-NO'; utterance.rate = .88;
+        speechSynthesis.speak(utterance);
+      }));
+
+      const firstAnswer = document.getElementById('firstAnswer');
+      const oralFirst = document.getElementById('oralFirst');
+      const saveFirst = document.getElementById('saveFirst');
+      const hintButton = document.getElementById('hintButton');
+      const firstNext = screens[0].querySelector('.next');
+      firstAnswer.value = state.firstAnswer;
+      oralFirst.checked = state.oralFirst;
+      function firstReady(){ saveFirst.disabled = !(firstAnswer.value.trim() && oralFirst.checked); }
+      firstAnswer.addEventListener('input', firstReady); oralFirst.addEventListener('change', firstReady); firstReady();
+      saveFirst.addEventListener('click', () => {
+        state.firstAnswer = firstAnswer.value.trim(); state.oralFirst = oralFirst.checked;
+        save(); document.getElementById('savedFirst').classList.add('show');
+        hintButton.disabled = false; firstNext.disabled = false; saveFirst.disabled = true;
+      });
+      if (state.firstAnswer) { document.getElementById('savedFirst').classList.add('show'); hintButton.disabled = false; firstNext.disabled = false; saveFirst.disabled = true; }
+
+      const hints = [
+        'Tenk på mamma og pappa.',
+        'Det er noe du har fått fra dem.',
+        'Det handler om gener.',
+        'Ordet begynner med «ar …».',
+        'Velg mellom: arve eller egenskap.',
+        'Å arve gener betyr å få gener fra foreldrene sine.'
+      ];
+      hintButton.addEventListener('click', () => {
+        const index = Math.min(state.hintsUsed.length, hints.length - 1);
+        if (!state.hintsUsed.includes(index + 1)) state.hintsUsed.push(index + 1);
+        const box = document.getElementById('hintBox');
+        box.textContent = hints[index]; box.classList.add('show'); save();
+        if (index === hints.length - 1) hintButton.disabled = true;
+      });
+
+      const built = [];
+      const zone = document.getElementById('sentenceZone');
+      const tokenButtons = [...document.querySelectorAll('#tokens .token')];
+      function renderSentence(){ zone.textContent = built.map(i => tokenButtons[i].textContent).join(' '); tokenButtons.forEach((b,i) => b.classList.toggle('used',built.includes(i))); }
+      tokenButtons.forEach((btn,i) => btn.addEventListener('click', () => { if (!built.includes(i)) { built.push(i); renderSentence(); }}));
+      document.getElementById('resetSentence').addEventListener('click', () => { built.length=0; renderSentence(); document.getElementById('sentenceFeedback').classList.remove('show'); });
+      document.getElementById('checkSentence').addEventListener('click', () => {
+        const correct = built.join(',') === '0,1,2,3';
+        state.oralSentence = document.getElementById('oralSentence').checked;
+        state.sentenceAttempts.push({order:[...built], correct, oral:state.oralSentence, at:new Date().toISOString()}); save();
+        const feedback = document.getElementById('sentenceFeedback'); feedback.classList.add('show');
+        feedback.textContent = !state.oralSentence ? 'Si hele setningen høyt før du fortsetter.' : correct ? 'Ja! «Edel har arvet gener fra mamma og pappa.»' : 'Du har alle delene. Begynn med «Edel» og finn handlingen etterpå.';
+        if (correct && state.oralSentence) screens[2].querySelector('.next').disabled = false;
+      });
+
+      const fillChosen = [];
+      const fillTokenButtons = [...document.querySelectorAll('#fillTokens .token')];
+      const blankA = document.getElementById('blankA');
+      const blankB = document.getElementById('blankB');
+      function renderFill(){
+        blankA.textContent = fillChosen[0] ? fillChosen[0] : '___';
+        blankB.textContent = fillChosen[1] ? fillChosen[1] : '___';
+        fillTokenButtons.forEach(b => b.classList.toggle('used', fillChosen.includes(b.dataset.word)));
+      }
+      fillTokenButtons.forEach(btn => btn.addEventListener('click', () => {
+        if (fillChosen.length >= 2 || fillChosen.includes(btn.dataset.word)) return;
+        fillChosen.push(btn.dataset.word); renderFill();
+      }));
+      document.getElementById('resetFill').addEventListener('click', () => { fillChosen.length = 0; renderFill(); document.getElementById('fillFeedback').classList.remove('show'); });
+      document.getElementById('checkFill').addEventListener('click', () => {
+        const correct = fillChosen[0] === 'gener' && fillChosen[1] === 'mamma og pappa';
+        state.fillAttempts.push({chosen:[...fillChosen], correct, at:new Date().toISOString()}); save();
+        const feedback = document.getElementById('fillFeedback'); feedback.classList.add('show');
+        feedback.textContent = correct ? 'Ja! Jeg har arvet gener fra mamma og pappa.' : 'Vi snakker om deg og genene dine her. Prøv med: gener … mamma og pappa.';
+        if (correct) screens[3].querySelector('.next').disabled = false;
+      });
+
+      const pipokaAnswer = document.getElementById('pipokaAnswer'); pipokaAnswer.value = state.pipokaAnswer;
+      document.getElementById('savePipoka').addEventListener('click', () => {
+        const oral = document.getElementById('oralPipoka').checked;
+        if (!pipokaAnswer.value.trim() || !oral) return;
+        state.pipokaAnswer = pipokaAnswer.value.trim(); state.oralPipoka = oral; save();
+        const feedback = document.getElementById('pipokaFeedback'); feedback.textContent = 'Bra! Du brukte «arve» om deg selv, ikke bare om Pipoka.'; feedback.classList.add('show');
+        screens[4].querySelector('.next').disabled = false;
+      });
+
+      const finalAnswer = document.getElementById('finalAnswer'); finalAnswer.value = state.finalAnswer;
+      document.getElementById('finish').addEventListener('click', () => {
+        const oral = document.getElementById('oralFinal').checked;
+        if (!finalAnswer.value.trim() || !oral) { const f=document.getElementById('finalFeedback'); f.textContent='Si svaret høyt og skriv det før du fullfører.'; f.classList.add('show'); return; }
+        state.finalAnswer = finalAnswer.value.trim(); state.oralFinal = oral; state.completed = true; state.completedAt = new Date().toISOString(); save();
+        try {
+          fetch('https://formspree.io/f/mqeolldg', {
+            method: 'POST', headers: {'Content-Type':'application/json','Accept':'application/json'},
+            body: JSON.stringify({ Tekst_hun_skrev: summary(), oppgave: 'Arve - Registro (sammendrag)', maal: 'Arve', dato: new Date().toLocaleString('no-NO') })
+          }).catch(() => {});
+        } catch (e) {}
+        showStep(6);
+      });
+
+      const dialog = document.getElementById('parentDialog');
+      function summary(){
+        const s = state.sentenceAttempts.at(-1); const f = state.fillAttempts.at(-1);
+        return [
+          `Første svar: ${state.firstAnswer || 'Ikke lagret'}`,
+          `Hint brukt: ${state.hintsUsed.length ? state.hintsUsed.join(', ') : 'Ingen'}`,
+          `Bygde setning (Edel har arvet ... fra ...): ${s ? (s.correct && s.oral ? 'Riktig og sagt høyt' : 'Med mer øving') : 'Ikke gjennomført'}`,
+          `Fylte inn (Jeg har arvet ... fra ...): ${f ? (f.correct ? 'Riktig' : 'Vi øver fortsatt') : 'Ikke gjennomført'}`,
+          `Ny situasjon (hva jeg selv har arvet): ${state.pipokaAnswer || 'Ikke lagret'}`,
+          `Svar til slutt: ${state.finalAnswer || 'Ikke lagret'}`,
+          `Status: ${state.completed ? 'Fullført' : 'Kan fortsettes senere'}`
+        ].join('\n');
+      }
+      document.getElementById('openParent').addEventListener('click', () => { document.getElementById('parentSummary').textContent=summary(); dialog.showModal(); });
+      document.getElementById('closeParent').addEventListener('click', () => dialog.close());
+      document.getElementById('exportJson').addEventListener('click', () => {
+        const blob=new Blob([JSON.stringify(state,null,2)],{type:'application/json'}); const url=URL.createObjectURL(blob); const a=document.createElement('a');
+        a.href=url; a.download=`edel-arve-${new Date().toISOString().slice(0,10)}.json`; a.click(); URL.revokeObjectURL(url);
+      });
+      document.getElementById('restart').addEventListener('click', () => { if(confirm('Vil du starte økten på nytt?')) { state=blank(); save(); location.reload(); }});
+
+      if (state.completed) showStep(6); else showStep(state.currentStep || 0);
+    })();
+  </script>
+</body>
+</html>
