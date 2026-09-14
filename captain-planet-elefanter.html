@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="no">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Captain Planet – Elefantene er i fare · Edels Verden</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{--cream:#F6F1E6;--paper:#FFFEFA;--navy:#1C2C42;--navy2:#29455F;--ink:#1B2438;--muted:#746F66;--coral:#BE6E56;--coral-soft:#F3DFD6;--rule:#E4DCCB;--green:#3E6C63;--green-bg:#E1EBE7;--blue:#52769A;--blue-bg:#E4EDF5;--shadow:0 12px 34px rgba(28,44,66,.08)}
+*{box-sizing:border-box;margin:0;padding:0}html{scroll-behavior:smooth}body{font-family:'Inter',sans-serif;background:radial-gradient(circle at 10% 0%,#FFF9EE 0,transparent 24rem),var(--cream);color:var(--ink);min-height:100vh;padding-bottom:3rem;-webkit-font-smoothing:antialiased}button,textarea,input{font:inherit}a{text-decoration:none;color:inherit}button{touch-action:manipulation}.serif{font-family:'Fraunces',serif}.topnav{display:flex;align-items:center;justify-content:space-between;padding:.9rem 1.2rem;max-width:680px;margin:0 auto;position:sticky;top:0;background:rgba(246,241,230,.92);backdrop-filter:blur(16px);border-bottom:1px solid rgba(28,44,66,.07);z-index:40}.avatar{width:2.65rem;height:2.65rem;border-radius:50%;background:var(--navy);color:#EDE6D6;display:flex;align-items:center;justify-content:center;font-family:'Fraunces',serif;font-style:italic;font-weight:600}.navlinks{display:flex;gap:1.1rem}.navlinks a{font-size:.86rem;font-weight:600}.side{max-width:680px;margin:0 auto;padding:1.8rem 1.2rem 0}.tilbake{display:inline-flex;margin-bottom:1.2rem;color:var(--muted);font-size:.82rem;font-weight:600}.hero{background:linear-gradient(135deg,var(--navy),var(--navy2));color:#fff;border-radius:24px;padding:1.35rem;box-shadow:0 18px 40px rgba(28,44,66,.16);margin-bottom:1rem}.eyebrow{font-size:.66rem;letter-spacing:.13em;text-transform:uppercase;font-weight:800;color:#F1B8A4;margin-bottom:.55rem}h1{font-family:'Fraunces',serif;font-size:clamp(2rem,8vw,3rem);line-height:1.02;font-weight:600}.hero p{color:#D5E0E8;line-height:1.55;margin-top:.7rem;font-size:.92rem}.progress{display:flex;gap:.35rem;margin:1.1rem 0 1.35rem}.dot{height:5px;flex:1;border-radius:999px;background:var(--rule)}.dot.done{background:var(--coral)}.dot.active{background:var(--navy)}.screen{display:none}.screen.active{display:block;animation:fade .2s ease}@keyframes fade{from{opacity:.2;transform:translateY(4px)}to{opacity:1;transform:none}}.step-title{font-size:.7rem;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);font-weight:800;margin-bottom:.8rem}.card{background:var(--paper);border:1px solid rgba(28,44,66,.08);border-radius:20px;padding:1.2rem;margin-bottom:.9rem;box-shadow:0 7px 24px rgba(28,44,66,.045)}.story-img{width:100%;border-radius:17px;display:block;margin-bottom:1rem;box-shadow:0 8px 24px rgba(28,44,66,.1)}.story-text{font-size:.98rem;line-height:1.7}.story-text p+p{margin-top:.75rem}.speak{width:100%;border:0;border-radius:13px;padding:.72rem .9rem;background:var(--blue-bg);color:#315777;font-weight:750;margin-top:.85rem;cursor:pointer}.question{font-family:'Fraunces',serif;font-size:1.35rem;line-height:1.3;margin-bottom:.75rem}.small{font-size:.84rem;color:var(--muted);line-height:1.5;margin-bottom:.75rem}.textarea{width:100%;min-height:92px;padding:.85rem;border:1.5px solid var(--rule);border-radius:14px;background:#fff;line-height:1.5;resize:vertical}.textarea:focus{outline:none;border-color:var(--coral)}.mainbtn,.lowbtn{width:100%;border:0;border-radius:14px;padding:.78rem .95rem;font-weight:750;cursor:pointer;margin-top:.7rem}.mainbtn{background:var(--navy);color:#fff}.lowbtn{background:var(--coral-soft);color:#7A4632;border:1px solid #E9B7A5}.navrow{display:flex;gap:.65rem;justify-content:space-between;margin-top:1rem}.navrow button{width:auto;min-width:7.4rem}.notice{display:none;margin-top:.75rem;padding:.75rem .85rem;border-radius:12px;font-size:.88rem;line-height:1.5;font-weight:600}.notice.show{display:block}.notice.ok{background:var(--green-bg);color:var(--green)}.notice.neutral{background:var(--cream);color:var(--muted)}.hintbox{display:none;margin-top:.7rem;background:var(--cream);border:1.5px solid var(--coral);border-radius:14px;padding:.8rem .9rem}.hintbox.show{display:block}.hintrow{padding:.48rem 0;border-top:1px dashed var(--rule);font-size:.88rem;line-height:1.5}.hintrow:first-child{border-top:0}.hinttag{display:block;font-size:.59rem;letter-spacing:.08em;text-transform:uppercase;color:var(--coral);font-weight:800;margin-bottom:.15rem}.teach{background:#EEF4EA;border-left:4px solid #6D8B5B;border-radius:14px;padding:1rem;line-height:1.6;margin-top:.8rem}.teach strong{color:#46633A}.choice{display:block;width:100%;padding:.75rem .85rem;margin:.5rem 0;border:1.5px solid var(--rule);background:var(--cream);border-radius:13px;text-align:left;cursor:pointer}.choice.selected{border-color:var(--blue);background:var(--blue-bg)}.adult{background:#E7EDF3;border:1px solid rgba(94,122,153,.25)}.adult summary{cursor:pointer;font-weight:800;color:var(--navy)}.loggrid{display:grid;gap:.55rem;margin-top:.85rem;font-size:.82rem}.logitem{background:#fff;border-radius:11px;padding:.65rem;border:1px solid rgba(28,44,66,.08)}.footer{text-align:center;color:var(--muted);font-size:.74rem;margin-top:2.2rem}.pillrow{display:flex;flex-wrap:wrap;gap:.4rem;margin-top:.8rem}.pill{font-size:.7rem;padding:.34rem .6rem;border-radius:999px;background:var(--cream);border:1px solid var(--rule);color:var(--muted);font-weight:700}@media(max-width:430px){.navlinks{gap:.75rem}.navlinks a{font-size:.78rem}.side{padding-top:1.3rem}.hero{padding:1.1rem}}
+</style>
+</head>
+<body>
+<div class="topnav"><a class="avatar" href="index.html" aria-label="Til forsiden">E</a><div class="navlinks"><a href="historier.html">Historier</a><a href="skolefag.html">Skolefag</a></div></div>
+<main class="side">
+<a class="tilbake" href="skolefag.html">← Til skolefag</a>
+<section class="hero"><div class="eyebrow">Naturfag · Historieøvelse</div><h1>Captain Planet</h1><p>Elefantene er i fare · forstå historien, finn ordene og bruk dem på en ny måte.</p><div class="pillrow"><span class="pill">art</span><span class="pill">utdødd</span><span class="pill">biologisk mangfold</span></div></section>
+<div class="progress" id="progress"></div>
+
+<section class="screen active" id="s0">
+<div class="step-title">1 av 8 · Først blir vi kjent</div>
+<div class="card"><img class="story-img" src="img/captain-planet-original.png" alt="Captain Planet og de fem Planeteers"><div class="story-text" id="introText"><p><strong>Captain Planet</strong> var en tegneserie som startet i 1990. Serien handlet om jorda, naturen og miljøet.</p><p>Gaia representerte jorda. Når naturen var i fare, ba hun fem ungdommer om hjelp. De het Kwame, Wheeler, Linka, Gi og Ma-Ti.</p><p>Hver av dem hadde en ring med en egen kraft: jord, ild, vind, vann eller hjerte. Når de fem kreftene ble samlet, kunne Captain Planet komme og hjelpe dem.</p><p>I historiene møtte de problemer som forurensning, dyr som kunne forsvinne og mennesker som ødela naturen.</p></div><button class="speak" onclick="speak('introText')">🔊 Les teksten høyt</button></div>
+<div class="navrow"><span></span><button class="mainbtn" onclick="go(1)">Neste →</button></div>
+</section>
+
+<section class="screen" id="s1">
+<div class="step-title">2 av 8 · Forstå historien</div>
+<div class="card"><div class="question">Hvorfor jobbet Planeteers sammen?</div><div class="small">Svar med egne ord. Det finnes flere gode måter å forklare det på.</div><textarea class="textarea" id="q1" placeholder="Skriv her …"></textarea><button class="mainbtn" onclick="saveOpen('q1','comprehension','forståelse');go(2)">Lagre og gå videre</button></div>
+</section>
+
+<section class="screen" id="s2">
+<div class="step-title">3 av 8 · Hva kan skje?</div>
+<div class="card"><img class="story-img" src="img/elefanter-i-fare.png" alt="Elefanter i fare på savannen"><div class="story-text"><p>I episoden <strong>«Last of Her Kind»</strong> er afrikanske elefanter i fare. De blir drept for elfenben.</p></div><div class="question" style="margin-top:1rem">Hva kan skje hvis alle elefantene forsvinner?</div><div class="small">Svar først uten hjelp. Vi ser etter hva du forstår, ikke bare etter ett bestemt ord.</div><textarea class="textarea" id="q2" placeholder="Skriv her …"></textarea><button class="mainbtn" onclick="saveFirstThen(3)">Lagre første svar</button></div>
+</section>
+
+<section class="screen" id="s3">
+<div class="step-title">4 av 8 · Finn ordet</div>
+<div class="card"><div class="question">Hva kaller vi det når en art har forsvunnet helt og ikke finnes lenger?</div><div class="small">Prøv først uten hjelp. Hvis du trenger det, får du én liten ledetråd om gangen.</div><textarea class="textarea" id="q3" placeholder="Skriv her …"></textarea><button class="mainbtn" onclick="saveLexical()">Lagre svaret</button><button class="lowbtn" id="hintBtn" onclick="nextHint()">Jeg trenger én ledetråd</button><div class="hintbox" id="hintBox"></div><div class="teach" id="teachBox" style="display:none"><strong>Ordet er utdødd.</strong> Utdødd betyr at en art har forsvunnet helt. Det finnes ingen levende individer igjen.</div><div class="notice neutral" id="q3note"></div></div>
+<div class="navrow"><button class="lowbtn" onclick="go(2)">← Forrige</button><button class="mainbtn" onclick="go(4)">Neste →</button></div>
+</section>
+
+<section class="screen" id="s4">
+<div class="step-title">5 av 8 · Hjelpen er borte</div>
+<div class="card"><div class="question">Dodoen finnes ikke lenger noe sted på jorda. Hva sier vi om dodoen?</div><div class="small">Nå er ledetrådene borte. Prøv selv.</div><textarea class="textarea" id="q4" placeholder="Skriv her …"></textarea><button class="mainbtn" onclick="saveOpen('q4','retest','utdødd');go(5)">Lagre og gå videre</button></div>
+</section>
+
+<section class="screen" id="s5">
+<div class="step-title">6 av 8 · Koble sammen</div>
+<div class="card"><img class="story-img" src="img/mangfold-afrika.png" alt="Mange forskjellige arter på den afrikanske savannen"><div class="question">Hvis mange forskjellige arter forsvinner, hva skjer med det biologiske mangfoldet?</div><div class="small">Forklar hva du tror skjer, og gjerne hvorfor.</div><textarea class="textarea" id="q5" placeholder="Skriv her …"></textarea><button class="mainbtn" onclick="saveOpen('q5','causality','biologisk mangfold');go(6)">Lagre og gå videre</button></div>
+</section>
+
+<section class="screen" id="s6">
+<div class="step-title">7 av 8 · Ny situasjon</div>
+<div class="card"><img class="story-img" src="img/mangfold-norge.png" alt="Mange forskjellige arter i norsk natur"><div class="story-text"><p>På en øy finnes det en sjelden fugleart. Det finnes bare noen få fugler igjen.</p></div><div class="question" style="margin-top:1rem">Hva tror du kan skje hvis fuglene ikke blir beskyttet?</div><div class="small">Dette er en ny situasjon. Bruk det du har lært.</div><textarea class="textarea" id="q6" placeholder="Skriv her …"></textarea><button class="mainbtn" onclick="saveOpen('q6','generalization','utdødd/art');go(7)">Lagre og gå videre</button></div>
+</section>
+
+<section class="screen" id="s7">
+<div class="step-title">8 av 8 · Helt til slutt</div>
+<div class="card"><div class="question">Hva betyr <em>utdødd</em>?</div><textarea class="textarea" id="q7a" placeholder="Skriv med egne ord …"></textarea></div>
+<div class="card"><div class="question">Hva betyr <em>biologisk mangfold</em>?</div><textarea class="textarea" id="q7b" placeholder="Skriv med egne ord …"></textarea><button class="mainbtn" onclick="finish()">Ferdig med økten</button><div class="notice ok" id="finishNote"></div></div>
+<details class="card adult"><summary>Til mamma · se registreringen</summary><div class="loggrid" id="logView"></div><button class="lowbtn" onclick="downloadJSON()">Last ned JSON</button><button class="lowbtn" onclick="downloadCSV()">Last ned CSV</button></details>
+</section>
+</main>
+<div class="footer">Captain Planet · Edels Verden</div>
+<script>
+const KEY='edels_captain_planet_elefanter_v1';
+let data=JSON.parse(localStorage.getItem(KEY)||'{}');
+if(!data.session) data={session:{started:new Date().toISOString(),page:0},answers:{},support:{utdodd:0},events:[]};
+const hints=[
+  {level:1,label:'Reformulering',text:'Tenk på et dyr som ikke finnes mer noe sted på jorda.'},
+  {level:2,label:'Kontekst',text:'Dodoen er et eksempel. Arten finnes ikke lenger.'},
+  {level:3,label:'Semantisk ledetråd',text:'Ordet betyr at det ikke finnes ett eneste levende individ igjen.'},
+  {level:4,label:'Visuell støtte',text:'Se for deg en tom naturbokside der dyret bare finnes som et gammelt bilde.'},
+  {level:5,label:'Alternativer',text:'Er ordet truet, utdødd eller vanlig?'},
+  {level:6,label:'Begynnelsen av ordet',text:'Ordet begynner med «ut…».'},
+  {level:7,label:'Modell',text:'Ordet er «utdødd». Si eller skriv det én gang til med egne ord.'}
+];
+function persist(){localStorage.setItem(KEY,JSON.stringify(data));}
+function progress(){const p=document.getElementById('progress');p.innerHTML='';for(let i=0;i<8;i++){const d=document.createElement('div');d.className='dot '+(i<data.session.page?'done':i===data.session.page?'active':'');p.appendChild(d)}}
+function go(n){document.querySelectorAll('.screen').forEach((el,i)=>el.classList.toggle('active',i===n));data.session.page=n;persist();progress();window.scrollTo({top:0,behavior:'smooth'});if(n===7) renderLog();}
+function record(id,obj){data.answers[id]=Object.assign({time:new Date().toISOString()},obj);data.events.push({time:new Date().toISOString(),id:id,type:obj.taskType||'answer'});persist();}
+function saveOpen(id,taskType,target){const el=document.getElementById(id);record(id,{literal:el.value.trim(),taskType,target,supportLevel:0});}
+function saveFirstThen(next){const t=document.getElementById('q2').value.trim();record('q2',{literal:t,taskType:'concept_comprehension',target:'utdødd concept',supportLevel:0,firstResponse:true});go(next);}
+function saveLexical(){const t=document.getElementById('q3').value.trim();if(!data.answers.q3 || !data.answers.q3.firstResponse){record('q3',{literal:t,firstResponse:true,taskType:'lexical_retrieval',target:'utdødd',supportLevel:data.support.utdodd||0});document.getElementById('q3note').className='notice neutral show';document.getElementById('q3note').textContent='Første svar er lagret. Du kan nå bruke en ledetråd hvis du trenger det.';}else{data.answers.q3.afterSupport=t;data.answers.q3.supportLevel=data.support.utdodd||0;persist();document.getElementById('q3note').className='notice ok show';document.getElementById('q3note').textContent='Nytt forsøk er lagret.';}}
+function nextHint(){if(!data.answers.q3||!data.answers.q3.firstResponse){document.getElementById('q3note').className='notice neutral show';document.getElementById('q3note').textContent='Skriv og lagre første svar før du åpner en ledetråd.';return;}let n=(data.support.utdodd||0)+1;if(n>7)n=7;data.support.utdodd=n;data.answers.q3.supportLevel=n;persist();const box=document.getElementById('hintBox');box.className='hintbox show';box.innerHTML=hints.slice(0,n).map(h=>`<div class="hintrow"><span class="hinttag">Nivå ${h.level} · ${h.label}</span>${h.text}</div>`).join('');const btn=document.getElementById('hintBtn');btn.textContent=n<7?'Én ledetråd til':'Alle ledetråder er vist';if(n===7){document.getElementById('teachBox').style.display='block';btn.disabled=true;}}
+function speak(id){const text=document.getElementById(id).innerText;if(!('speechSynthesis'in window))return;window.speechSynthesis.cancel();const u=new SpeechSynthesisUtterance(text);u.lang='nb-NO';u.rate=.92;window.speechSynthesis.speak(u)}
+function finish(){saveOpen('q7a','final_retrieval','utdødd');saveOpen('q7b','final_retrieval','biologisk mangfold');data.session.completed=new Date().toISOString();persist();const f=document.getElementById('finishNote');f.className='notice ok show';f.textContent='Ferdig! Bra jobbet. Nå er svarene lagret på denne enheten.';renderLog();sendSummary();}
+function renderLog(){const v=document.getElementById('logView');if(!v)return;const labels={q1:'Forståelse',q2:'Konsept før målord',q3:'Finn ordet utdødd',q4:'Nytt forsøk uten hjelp',q5:'Biologisk mangfold / årsak',q6:'Generalisering',q7a:'Sluttgjenkalling utdødd',q7b:'Sluttgjenkalling mangfold'};v.innerHTML=Object.entries(data.answers).map(([k,a])=>`<div class="logitem"><strong>${labels[k]||k}</strong><br>Første/literal: ${escapeHtml(a.literal||'—')}<br>Støttenivå: ${a.supportLevel??0}${a.afterSupport?'<br>Etter hjelp: '+escapeHtml(a.afterSupport):''}</div>`).join('')||'<div class="logitem">Ingen svar lagret ennå.</div>';}
+function escapeHtml(s){return String(s).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]))}
+function downloadJSON(){const blob=new Blob([JSON.stringify(data,null,2)],{type:'application/json'});dl(blob,'captain-planet-elefanter.json')}
+function downloadCSV(){let rows=[['id','taskType','target','literal','supportLevel','afterSupport','time']];Object.entries(data.answers).forEach(([id,a])=>rows.push([id,a.taskType||'',a.target||'',a.literal||'',a.supportLevel??0,a.afterSupport||'',a.time||'']));const csv=rows.map(r=>r.map(x=>'"'+String(x).replace(/"/g,'""')+'"').join(',')).join('\n');dl(new Blob([csv],{type:'text/csv;charset=utf-8'}),'captain-planet-elefanter.csv')}
+function dl(blob,name){const a=document.createElement('a');a.href=URL.createObjectURL(blob);a.download=name;a.click();setTimeout(()=>URL.revokeObjectURL(a.href),500)}
+function sendSummary(){fetch('https://formspree.io/f/mqeolldg',{method:'POST',headers:{'Content-Type':'application/json','Accept':'application/json'},body:JSON.stringify({oppgave:'Captain Planet - Elefantene er i fare',maal:'forståelse → konsept → leksikalsk gjenhenting → retest → generalisering',dato:new Date().toLocaleString('no-NO'),stotte_niva_utdodd:data.support.utdodd||0,svar:JSON.stringify(data.answers)})}).catch(()=>{});}
+window.addEventListener('load',()=>{go(data.session.page||0);});
+</script>
+</body>
+</html>
