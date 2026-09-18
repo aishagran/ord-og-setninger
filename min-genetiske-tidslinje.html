@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="no">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Min genetiske tidslinje · Edels Verden</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{--cream:#F6F1E6;--paper:#FFFEFA;--navy:#1C2C42;--navy2:#29455F;--ink:#1B2438;--muted:#746F66;--coral:#BE6E56;--coral-soft:#F3DFD6;--rule:#E4DCCB;--green:#3E6C63;--green-bg:#E1EBE7;--blue:#52769A;--blue-bg:#E4EDF5;--shadow:0 12px 34px rgba(28,44,66,.08)}
+*{box-sizing:border-box;margin:0;padding:0}html{scroll-behavior:smooth}body{font-family:'Inter',sans-serif;background:radial-gradient(circle at 10% 0%,#FFF9EE 0,transparent 24rem),var(--cream);color:var(--ink);min-height:100vh;padding-bottom:3rem;-webkit-font-smoothing:antialiased}button,textarea,input{font:inherit}a{text-decoration:none;color:inherit}button{touch-action:manipulation}.serif{font-family:'Fraunces',serif}.topnav{display:flex;align-items:center;justify-content:space-between;padding:.9rem 1.2rem;max-width:680px;margin:0 auto;position:sticky;top:0;background:rgba(246,241,230,.92);backdrop-filter:blur(16px);border-bottom:1px solid rgba(28,44,66,.07);z-index:40}.avatar{width:2.65rem;height:2.65rem;border-radius:50%;background:var(--navy);color:#EDE6D6;display:flex;align-items:center;justify-content:center;font-family:'Fraunces',serif;font-style:italic;font-weight:600}.navlinks{display:flex;gap:1.1rem}.navlinks a{font-size:.86rem;font-weight:600}.side{max-width:680px;margin:0 auto;padding:1.8rem 1.2rem 0}.tilbake{display:inline-flex;margin-bottom:1.2rem;color:var(--muted);font-size:.82rem;font-weight:600}.hero{background:linear-gradient(135deg,var(--navy),var(--navy2));color:#fff;border-radius:24px;padding:1.35rem;box-shadow:0 18px 40px rgba(28,44,66,.16);margin-bottom:1rem}.eyebrow{font-size:.66rem;letter-spacing:.13em;text-transform:uppercase;font-weight:800;color:#F1B8A4;margin-bottom:.55rem}h1{font-family:'Fraunces',serif;font-size:clamp(1.9rem,7.5vw,2.6rem);line-height:1.05;font-weight:600}.hero p{color:#D5E0E8;line-height:1.55;margin-top:.7rem;font-size:.9rem}.progress{display:flex;gap:.3rem;margin:1.1rem 0 1.35rem}.dot{height:5px;flex:1;border-radius:999px;background:var(--rule)}.dot.done{background:var(--coral)}.dot.active{background:var(--navy)}.screen{display:none}.screen.active{display:block;animation:fade .2s ease}@keyframes fade{from{opacity:.2;transform:translateY(4px)}to{opacity:1;transform:none}}.step-title{font-size:.7rem;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);font-weight:800;margin-bottom:.8rem}.card{background:var(--paper);border:1px solid rgba(28,44,66,.08);border-radius:20px;padding:1.2rem;margin-bottom:.9rem;box-shadow:0 7px 24px rgba(28,44,66,.045)}.story-img{width:100%;border-radius:17px;display:block;margin-bottom:1rem;box-shadow:0 8px 24px rgba(28,44,66,.1)}.emoji-visual{display:grid;place-items:center;min-height:110px;margin-bottom:1rem;border-radius:17px;background:linear-gradient(145deg,#F6E8DE,#E7EEF3);font-size:2.4rem;gap:.4rem}.story-text{font-size:.98rem;line-height:1.7}.story-text p+p{margin-top:.6rem}.speak{width:100%;border:0;border-radius:13px;padding:.7rem .9rem;background:var(--blue-bg);color:#315777;font-weight:750;margin-top:.8rem;cursor:pointer}.question{font-family:'Fraunces',serif;font-size:1.25rem;line-height:1.32;margin-bottom:.7rem}.small{font-size:.83rem;color:var(--muted);line-height:1.5;margin-bottom:.7rem}.textarea{width:100%;min-height:82px;padding:.85rem;border:1.5px solid var(--rule);border-radius:14px;background:#fff;line-height:1.5;resize:vertical}.textarea:focus{outline:none;border-color:var(--coral)}.oral{display:flex;align-items:center;gap:.65rem;min-height:44px;margin:.6rem 0;padding:.65rem .8rem;border:1px solid var(--rule);border-radius:13px;background:var(--cream);font-weight:600;font-size:.88rem}.oral input{width:20px;height:20px;accent-color:var(--coral)}.mainbtn,.lowbtn{width:100%;border:0;border-radius:14px;padding:.75rem .9rem;font-weight:750;cursor:pointer;margin-top:.65rem}.mainbtn{background:var(--navy);color:#fff}.mainbtn:disabled{opacity:.4;cursor:not-allowed}.lowbtn{background:var(--coral-soft);color:#7A4632;border:1px solid #E9B7A5}.navrow{display:flex;gap:.6rem;justify-content:space-between;margin-top:.9rem}.navrow button{width:auto;min-width:7rem}.notice{display:none;margin-top:.7rem;padding:.7rem .85rem;border-radius:12px;font-size:.87rem;line-height:1.5;font-weight:600}.notice.show{display:block}.notice.neutral{background:var(--cream);color:var(--muted)}.notice.ok{background:var(--green-bg);color:var(--green)}.hintbox{display:none;margin-top:.65rem;background:var(--cream);border:1.5px solid var(--coral);border-radius:14px;padding:.75rem .85rem}.hintbox.show{display:block}.hintrow{padding:.45rem 0;border-top:1px dashed var(--rule);font-size:.87rem;line-height:1.5}.hintrow:first-child{border-top:0}.hinttag{display:block;font-size:.58rem;letter-spacing:.08em;text-transform:uppercase;color:var(--coral);font-weight:800;margin-bottom:.15rem}.reflect{background:#EEF4EA;border-left:4px solid #6D8B5B;border-radius:14px;padding:.85rem 1rem;line-height:1.55;margin:.8rem 0;font-weight:600;color:#46633A}.seq{display:flex;flex-wrap:wrap;align-items:center;gap:.4rem;justify-content:center;margin-bottom:1rem;font-size:1.4rem}.seq .arrow{color:var(--coral);font-weight:800;font-size:1.1rem}.compare-tag{display:inline-block;font-size:.62rem;letter-spacing:.07em;text-transform:uppercase;font-weight:800;padding:.28rem .55rem;border-radius:999px;margin-bottom:.7rem}.compare-tag.a{background:var(--coral-soft);color:#7A4632}.compare-tag.b{background:var(--blue-bg);color:#315777}.adult{background:#E7EDF3;border:1px solid rgba(94,122,153,.25)}.adult summary{cursor:pointer;font-weight:800;color:var(--navy)}.loggrid{display:grid;gap:.6rem;margin-top:.85rem;font-size:.82rem}.logitem{background:#fff;border-radius:11px;padding:.7rem;border:1px solid rgba(28,44,66,.08)}.logitem select{margin-top:.35rem;width:100%;padding:.4rem;border-radius:8px;border:1px solid var(--rule);font-size:.76rem}.logitem .fieldrow{display:grid;grid-template-columns:1fr 1fr;gap:.4rem;margin-top:.4rem}.footer{text-align:center;color:var(--muted);font-size:.74rem;margin-top:2.2rem}.pillrow{display:flex;flex-wrap:wrap;gap:.4rem;margin-top:.8rem}.pill{font-size:.68rem;padding:.32rem .58rem;border-radius:999px;background:var(--cream);border:1px solid var(--rule);color:var(--muted);font-weight:700}@media(max-width:430px){.navlinks{gap:.75rem}.navlinks a{font-size:.78rem}.side{padding-top:1.3rem}.hero{padding:1.1rem}.logitem .fieldrow{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+<div class="topnav"><a class="avatar" href="index.html" aria-label="Til forsiden">E</a><div class="navlinks"><a href="historier.html">Historier</a><a href="skolefag.html">Skolefag</a></div></div>
+<main class="side">
+<a class="tilbake" href="skolefag.html">← Til skolefag</a>
+<section class="hero"><div class="eyebrow">Naturfag · Undersøkelse</div><h1>Min genetiske tidslinje</h1><p>To familier, én Edel. Vi ser på generasjoner, gener og egenskaper – og sammenligner å si det høyt med å skrive det ned.</p><div class="pillrow"><span class="pill">generasjoner</span><span class="pill">gener · arv</span><span class="pill">egenskap</span><span class="pill">muntlig × skriftlig</span></div></section>
+<div class="progress" id="progress"></div>
+
+<section class="screen active" id="s0">
+<div class="step-title">1 av 9 · Se og forstå</div>
+<div class="card">
+  <img class="story-img" src="img/min-familie-tidslinje.png" alt="Min familie – genetisk tidslinje">
+  <div class="story-text" id="s0text"><p>Dette er familien til Edel.</p><p>Vera og Nilton er foreldrene til Aisha.</p><p>Edel Sogge og Kai er foreldrene til Kjell Egil.</p><p>Aisha og Kjell Egil er foreldrene til Edel.</p><p>Dette kaller vi <strong>generasjoner</strong>.</p></div>
+  <button class="speak" onclick="speak('s0text')">🔊 Les høyt</button>
+</div>
+<div class="navrow"><span></span><button class="mainbtn" onclick="go(1)">Neste →</button></div>
+</section>
+
+<section class="screen" id="s1">
+<div class="step-title">2 av 9 · Muntlig, uten hjelp</div>
+<div class="card">
+  <img class="story-img" src="img/min-familie-tidslinje.png" alt="Min familie – genetisk tidslinje">
+  <div class="question">🎤 Hvem er foreldrene til Aisha?</div>
+  <textarea class="textarea" id="q1a" placeholder="Skriv det du sa …"></textarea>
+  <button class="mainbtn" onclick="saveOpen('q1a','','foreldre_aisha')">Lagre</button>
+</div>
+<div class="card">
+  <div class="question">🎤 Hvem er foreldrene til Kjell Egil?</div>
+  <textarea class="textarea" id="q1b" placeholder="Skriv det du sa …"></textarea>
+  <button class="mainbtn" onclick="saveOpen('q1b','','foreldre_kjellegil')">Lagre og gå videre</button>
+</div>
+<div class="navrow"><button class="lowbtn" style="width:auto" onclick="go(0)">← Tilbake</button><button class="mainbtn" style="width:auto" onclick="go(2)">Neste →</button></div>
+</section>
+
+<section class="screen" id="s2">
+<div class="step-title">3 av 9 · Sekvens</div>
+<div class="card">
+  <div class="seq"><span>👵👴</span><span class="arrow">→</span><span>👩👨</span><span class="arrow">→</span><span>👧</span></div>
+  <div class="question">Hva kommer først? Hva kommer etterpå?</div>
+  <textarea class="textarea" id="q2" placeholder="Skriv det du sa …"></textarea>
+  <button class="mainbtn" id="q2save" onclick="saveFirst('q2','','sekvens_generasjoner')">Lagre første svar</button>
+  <div class="notice neutral" id="q2note"></div>
+  <button class="lowbtn" id="hint2btn" onclick="nextHint('sekvens',2)" style="display:none">Jeg trenger et hint</button>
+  <div class="hintbox" id="hintbox2"></div>
+</div>
+<div class="navrow"><button class="lowbtn" style="width:auto" onclick="go(1)">← Tilbake</button><button class="mainbtn" style="width:auto" onclick="go(3)">Neste →</button></div>
+</section>
+
+<section class="screen" id="s3">
+<div class="step-title">4 av 9 · Gammel kunnskap, nye ord borte</div>
+<div class="card">
+  <div class="question">🎤 Edel har egenskaper fra både mamma og pappa. Hvordan kan det skje?</div>
+  <textarea class="textarea" id="q3" placeholder="Skriv det du sa …"></textarea>
+  <button class="mainbtn" onclick="saveOpen('q3','','spontan_arv')">Lagre og gå videre</button>
+</div>
+<div class="navrow"><button class="lowbtn" style="width:auto" onclick="go(2)">← Tilbake</button><button class="mainbtn" style="width:auto" onclick="go(4)">Neste →</button></div>
+</section>
+
+<section class="screen" id="s4">
+<div class="step-title">5 av 9 · Egenskap</div>
+<div class="card">
+  <img class="story-img" src="img/min-familie-tidslinje.png" alt="Min familie – genetisk tidslinje">
+  <div class="question">🎤 Nevn en egenskap Edel kan ha arvet. Hvordan kan du forklare det?</div>
+  <textarea class="textarea" id="q4" placeholder="Skriv det du sa …"></textarea>
+  <button class="mainbtn" onclick="saveOpen('q4','','egenskap_forklaring')">Lagre og gå videre</button>
+</div>
+<div class="navrow"><button class="lowbtn" style="width:auto" onclick="go(3)">← Tilbake</button><button class="mainbtn" style="width:auto" onclick="go(5)">Neste →</button></div>
+</section>
+
+<section class="screen" id="s5">
+<div class="step-title">6 av 9 · Det viktige testet</div>
+<div class="card">
+  <span class="compare-tag a">A · Snakke først</span>
+  <div class="question">🎤 Hvorfor kan Edel ligne både på mamma og pappa?</div>
+  <div class="small">Si hele svaret høyt først.</div>
+  <textarea class="textarea" id="q5oral" placeholder="Skriv akkurat det som ble sagt høyt …"></textarea>
+  <button class="mainbtn" id="q5oralsave" onclick="lockOral()">Lagre det muntlige svaret</button>
+  <div class="notice neutral" id="q5oralnote"></div>
+  <div class="reflect" id="q5reflect" style="display:none">💭 Tenk på setningen du nettopp sa.</div>
+  <div id="q5writewrap" style="display:none">
+    <div class="question" style="margin-top:.9rem">✏️ Nå skriver du svaret ditt.</div>
+    <textarea class="textarea" id="q5write" placeholder="Skriv svaret her …"></textarea>
+    <button class="mainbtn" onclick="saveWrite5()">Lagre den skriftlige versjonen</button>
+  </div>
+</div>
+<div class="navrow"><button class="lowbtn" style="width:auto" onclick="go(4)">← Tilbake</button><button class="mainbtn" style="width:auto" id="s5next" onclick="go(6)" disabled>Neste →</button></div>
+</section>
+
+<section class="screen" id="s6">
+<div class="step-title">7 av 9 · Skriftlig uten forberedelse</div>
+<div class="card">
+  <span class="compare-tag b">B · Skrive direkte</span>
+  <div class="question">✏️ Hvordan kan Edel ha fått brune øyne? Skriv svaret ditt.</div>
+  <textarea class="textarea" id="q6" placeholder="Skriv svaret her …"></textarea>
+  <button class="mainbtn" onclick="saveOpen('q6','','skriving_direkte')">Lagre og gå videre</button>
+</div>
+<div class="navrow"><button class="lowbtn" style="width:auto" onclick="go(5)">← Tilbake</button><button class="mainbtn" style="width:auto" onclick="go(7)">Neste →</button></div>
+</section>
+
+<section class="screen" id="s7">
+<div class="step-title">8 av 9 · Generalisering</div>
+<div class="card">
+  <img class="story-img" src="img/familie-kawaii.png" alt="En ny familie">
+  <div class="story-text" id="s7text"><p>Et barn har krøllete hår. Moren har krøllete hår.</p></div>
+  <button class="speak" onclick="speak('s7text')">🔊 Les høyt</button>
+  <div class="question" style="margin-top:.9rem">🎤 Hvordan kan gener være med på å forklare dette?</div>
+  <textarea class="textarea" id="q7" placeholder="Skriv det du sa …"></textarea>
+  <button class="mainbtn" onclick="saveOpen('q7','','generalisering_ny_familie')">Lagre og gå videre</button>
+</div>
+<div class="navrow"><button class="lowbtn" style="width:auto" onclick="go(6)">← Tilbake</button><button class="mainbtn" style="width:auto" onclick="go(8)">Neste →</button></div>
+</section>
+
+<section class="screen" id="s8">
+<div class="step-title">9 av 9 · Til slutt</div>
+<div class="card">
+  <div class="question">🎤 Fortell meg én ting du husker om gener, arv eller egenskaper.</div>
+  <textarea class="textarea" id="q8" placeholder="Skriv det du sa …"></textarea>
+  <button class="mainbtn" onclick="finish()">Ferdig med økten</button>
+  <div class="notice ok" id="finishNote"></div>
+</div>
+<details class="card adult"><summary>Til mamma · se registreringen</summary><div class="loggrid" id="logView"></div><button class="lowbtn" onclick="downloadJSON()">Last ned JSON</button><button class="lowbtn" onclick="downloadCSV()">Last ned CSV</button></details>
+</section>
+</main>
+<div class="footer">Min genetiske tidslinje · Edels Verden</div>
+<script>
+const KEY='edels_genetiske_tidslinje_v1';
+let data=JSON.parse(localStorage.getItem(KEY)||'{}');
+if(!data.session) data={session:{started:new Date().toISOString(),page:0},answers:{},support:{sekvens:0},events:[]};
+const HINTS={sekvens:[
+  {level:1,label:'Reformulering',text:'Tenk på hvem som er eldst i familien, og hvem som er yngst.'},
+  {level:2,label:'Kontekst',text:'Besteforeldrene var barn før foreldrene ble født, og foreldrene var barn før Edel ble født.'},
+  {level:3,label:'Semantisk ledetråd',text:'Det handler om rekkefølge over tid – hvem kom til verden først.'},
+  {level:4,label:'Visuell støtte',text:'Se på bildet: 👵👴 er eldst, 👧 er yngst.'},
+  {level:5,label:'Alternativer',text:'Kommer besteforeldrene før eller etter barnet?'},
+  {level:6,label:'Begynnelsen av setningen',text:'Start slik: «Først kommer …»'},
+  {level:7,label:'Modell',text:'Først kommer besteforeldrene, så foreldrene, og etterpå barnet. Si eller skriv det én gang til.'}
+]};
+function persist(){localStorage.setItem(KEY,JSON.stringify(data))}
+function progress(){const p=document.getElementById('progress');p.innerHTML='';for(let i=0;i<9;i++){const d=document.createElement('div');d.className='dot '+(i<data.session.page?'done':i===data.session.page?'active':'');p.appendChild(d)}}
+function go(n){document.querySelectorAll('.screen').forEach((el,i)=>el.classList.toggle('active',i===n));data.session.page=n;persist();progress();window.scrollTo({top:0,behavior:'smooth'});if(n===8)renderLog()}
+function record(id,obj){data.answers[id]=Object.assign({time:new Date().toISOString()},data.answers[id]||{},obj);data.events.push({time:new Date().toISOString(),id});persist()}
+function saveOpen(id,oralId,taskType){const el=document.getElementById(id);const oral=oralId?document.getElementById(oralId).checked:null;record(id,{literal:el.value.trim(),oral,taskType,supportLevel:0})}
+function saveFirst(id,oralId,taskType){const el=document.getElementById(id);const already=data.answers[id]&&data.answers[id].firstResponse;
+  if(!already){record(id,{literal:el.value.trim(),firstResponse:true,taskType,supportLevel:0});
+    const note=document.getElementById(id+'note');note.className='notice neutral show';note.textContent='Første svar er lagret. Bruk et hint hvis det trengs.';
+    document.getElementById('hint2btn').style.display='block';
+  } else {data.answers[id].afterSupport=el.value.trim();persist();
+    const note=document.getElementById(id+'note');note.className='notice ok show';note.textContent='Nytt forsøk er lagret.';
+  }
+}
+function nextHint(word,screenNum){let n=(data.support[word]||0)+1;if(n>7)n=7;data.support[word]=n;
+  if(data.answers.q2)data.answers.q2.supportLevel=n;persist();
+  const box=document.getElementById('hintbox'+screenNum);box.className='hintbox show';
+  box.innerHTML=HINTS[word].slice(0,n).map(h=>`<div class="hintrow"><span class="hinttag">Nivå ${h.level} · ${h.label}</span>${h.text}</div>`).join('');
+  const btn=document.getElementById('hint'+screenNum+'btn');btn.textContent=n<7?'Én ledetråd til':'Alle ledetråder er vist';if(n===7)btn.disabled=true;
+}
+function speak(id){const text=document.getElementById(id).innerText;if(!('speechSynthesis'in window))return;window.speechSynthesis.cancel();const u=new SpeechSynthesisUtterance(text);u.lang='nb-NO';u.rate=.92;window.speechSynthesis.speak(u)}
+function lockOral(){const el=document.getElementById('q5oral');if(el.value.trim().length<2)return;
+  record('q5oral',{literal:el.value.trim(),oral:true,taskType:'ligner_muntlig_forst',supportLevel:0});
+  el.disabled=true;document.getElementById('q5oralsave').disabled=true;
+  const note=document.getElementById('q5oralnote');note.className='notice ok show';note.textContent='Muntlig svar lagret.';
+  document.getElementById('q5reflect').style.display='block';
+  document.getElementById('q5writewrap').style.display='block';
+}
+function saveWrite5(){const el=document.getElementById('q5write');if(el.value.trim().length<2)return;
+  record('q5write',{literal:el.value.trim(),relatedTo:'q5oral',taskType:'ligner_skriftlig_etter_muntlig',supportLevel:0});
+  document.getElementById('s5next').disabled=false;
+}
+function finish(){record('q8',{literal:document.getElementById('q8').value.trim(),taskType:'fri_gjenkalling',supportLevel:0});data.session.completed=new Date().toISOString();persist();const f=document.getElementById('finishNote');f.className='notice ok show';f.textContent='Ferdig! Bra jobbet i dag. Svarene er lagret på denne enheten.';renderLog();sendSummary()}
+const KONSEPT=['— velg —','Ja, tydelig','Delvis','Nei, ikke ennå'];
+const KVALITET=['— velg —','Fullstendig setning','Enkel, men forståelig','Enkeltord/fragment','Ba om hjelp til å formulere'];
+function renderLog(){
+  const v=document.getElementById('logView');if(!v)return;
+  const labels={q1a:'2. Foreldrene til Aisha',q1b:'2. Foreldrene til Kjell Egil',q2:'3. Sekvens generasjoner',q3:'4. Spontan gjenhenting: arv',q4:'5. Egenskap – forklaring',q5oral:'6A. Ligner på begge – MUNTLIG (først)',q5write:'6B. Ligner på begge – SKRIFTLIG (etter muntlig)',q6:'7. Brune øyne – SKRIFTLIG (direkte)',q7:'8. Generalisering – ny familie',q8:'9. Fri gjenkalling'};
+  v.innerHTML=Object.entries(data.answers).map(([k,a])=>{
+    const konseptSel=`<select onchange="setField('${k}','konsept',this.value)">`+KONSEPT.map(t=>`<option ${a.konsept===t?'selected':''}>${t}</option>`).join('')+`</select>`;
+    const kvalSel=`<select onchange="setField('${k}','kvalitet',this.value)">`+KVALITET.map(t=>`<option ${a.kvalitet===t?'selected':''}>${t}</option>`).join('')+`</select>`;
+    const autokorr=`<label style="display:block;margin-top:.3rem"><input type="checkbox" ${a.autokorreksjon?'checked':''} onchange="setField('${k}','autokorreksjon',this.checked)"> Selvkorrigerte underveis</label>`;
+    return `<div class="logitem"><strong>${labels[k]||k}</strong><br>Svar: ${escapeHtml(a.literal||'—')}${a.afterSupport?'<br>Etter hjelp: '+escapeHtml(a.afterSupport):''}${a.supportLevel?'<br>Støttenivå: '+a.supportLevel:''}<div class="fieldrow">${konseptSel}${kvalSel}</div>${autokorr}</div>`;
+  }).join('')||'<div class="logitem">Ingen svar lagret ennå.</div>';
+}
+function setField(id,field,val){if(data.answers[id]){data.answers[id][field]=val;persist()}}
+function escapeHtml(s){return String(s).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]))}
+function downloadJSON(){dl(new Blob([JSON.stringify(data,null,2)],{type:'application/json'}),'genetiske-tidslinje.json')}
+function downloadCSV(){let rows=[['id','taskType','literal','afterSupport','supportLevel','konsept','kvalitet','autokorreksjon','time']];Object.entries(data.answers).forEach(([id,a])=>rows.push([id,a.taskType||'',a.literal||'',a.afterSupport||'',a.supportLevel??0,a.konsept||'',a.kvalitet||'',a.autokorreksjon?'ja':'nei',a.time||'']));const csv=rows.map(r=>r.map(x=>'"'+String(x).replace(/"/g,'""')+'"').join(',')).join('\n');dl(new Blob([csv],{type:'text/csv;charset=utf-8'}),'genetiske-tidslinje.csv')}
+function dl(blob,name){const a=document.createElement('a');a.href=URL.createObjectURL(blob);a.download=name;a.click();setTimeout(()=>URL.revokeObjectURL(a.href),500)}
+function sendSummary(){fetch('https://formspree.io/f/mqeolldg',{method:'POST',headers:{'Content-Type':'application/json','Accept':'application/json'},body:JSON.stringify({oppgave:'Min genetiske tidslinje',maal:'generasjoner → gener/arv → egenskap → muntlig×skriftlig (hypotese fra logoped)',dato:new Date().toLocaleString('no-NO'),stotte_niva_sekvens:data.support.sekvens||0,svar:JSON.stringify(data.answers)})}).catch(()=>{})}
+window.addEventListener('load',()=>{go(data.session.page||0)});
+</script>
+</body>
+</html>
