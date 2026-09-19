@@ -1,0 +1,119 @@
+<!doctype html>
+<html lang="nb">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>K-drama-mangfold – Edels Verden</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{--cream:#F6F1E6;--paper:#FFFEFA;--navy:#1C2C42;--navy-2:#29455F;--ink:#1B2438;--muted:#746F66;--coral:#BE6E56;--coral-soft:#F3DFD6;--rule:#E4DCCB;--shadow:0 12px 34px rgba(28,44,66,0.08)}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'Inter',sans-serif;background:radial-gradient(circle at 10% 0%,#FFF9EE 0,transparent 24rem),var(--cream);color:var(--ink);min-height:100vh;-webkit-font-smoothing:antialiased}
+.serif{font-family:'Fraunces',serif}
+main{max-width:680px;margin:auto;padding:1.4rem 1.2rem 3rem}
+.top{display:flex;justify-content:space-between;align-items:center;gap:12px}
+.top strong{font-family:'Fraunces',serif;font-weight:600;font-size:1.2rem}
+.small{font-size:0.82rem;color:var(--muted);margin-top:0.15rem}
+.pill{background:var(--paper);border:1px solid var(--rule);border-radius:999px;padding:0.5rem 0.9rem;font-weight:700;font-size:0.85rem;flex-shrink:0}
+.progress{height:8px;background:var(--rule);border-radius:9px;overflow:hidden;margin-top:0.9rem}
+.bar{height:100%;background:var(--coral);width:20%;transition:width 0.25s ease}
+.card{background:var(--paper);border:1px solid rgba(28,44,66,0.08);border-radius:22px;padding:1.4rem;margin-top:1rem;box-shadow:0 7px 24px rgba(28,44,66,0.045)}
+.step{font-weight:700;font-size:0.7rem;letter-spacing:0.1em;text-transform:uppercase;color:var(--coral)}
+.hero{width:100%;border-radius:16px;margin:0.9rem 0;display:block}
+.q{font-family:'Fraunces',serif;font-size:1.3rem;font-weight:500;line-height:1.32;margin-top:0.6rem}
+textarea,input{width:100%;font:inherit;font-family:'Inter',sans-serif;border:2px solid var(--rule);border-radius:14px;padding:0.85rem;background:var(--paper);min-height:52px;margin-top:0.9rem;color:var(--ink)}
+textarea{min-height:100px}
+textarea:focus,input:focus{outline:2px solid var(--coral);outline-offset:1px;border-color:var(--coral)}
+.btns{display:flex;gap:0.6rem;flex-wrap:wrap;margin-top:0.9rem}
+button{border:0;border-radius:999px;padding:0.7rem 1.1rem;font:inherit;font-weight:700;font-size:0.88rem;background:var(--navy);color:#EDE6D6;cursor:pointer}
+button.secondary{background:var(--coral-soft);color:#7A4530}
+button:disabled{opacity:0.45;cursor:default}
+.hint{margin-top:0.8rem;padding:0.8rem 1rem;border-radius:14px;background:var(--coral-soft);color:#5B3220;font-size:0.92rem;line-height:1.4}
+.genres{display:grid;grid-template-columns:repeat(2,1fr);gap:0.55rem;margin:0.9rem 0}
+.genre{padding:0.75rem;border:2px solid var(--rule);border-radius:14px;background:var(--paper);font-family:'Inter',sans-serif;font-weight:600;color:var(--ink)}
+.genre.sel{border-color:var(--coral);background:var(--coral-soft);color:#7A4530}
+.hidden{display:none}
+.adult{font-size:0.88rem;background:var(--paper);border:1px dashed var(--rule)}
+.adult strong{font-family:'Fraunces',serif;font-weight:600;font-size:1rem}
+.adult p{margin-top:0.5rem;color:var(--muted);line-height:1.55}
+.ok{background:#E4F0DF;color:#3E6C4A;padding:0.8rem 1rem;border-radius:14px;margin-top:0.9rem;font-weight:600}
+@media(max-width:600px){main{padding:1rem 0.9rem 2.4rem}.card{padding:1.05rem}.q{font-size:1.14rem}}
+</style></head>
+<body><main>
+<div class="top"><div><strong>🎬 K-drama</strong><div class="small">En liten økt om forskjellige typer</div></div><div class="pill" id="count">1 / 5</div></div>
+<div class="progress"><div class="bar" id="bar"></div></div>
+
+<section class="card" id="s1"><div class="step">Del 1 · Se og tenk</div><img class="hero" src="kdrama-mangfold.jpeg" alt="Illustrasjon med ulike K-drama og sjangre"><p class="q">Hva legger du merke til ved disse K-dramaene? Er de like, eller er de forskjellige? Forklar.</p><textarea id="a1" placeholder="Skriv svaret ditt her …"></textarea><div class="btns"><button onclick="save(1)">Lagre svaret</button><button class="secondary" onclick="speak('Hva legger du merke til ved disse K-dramaene? Er de like, eller er de forskjellige? Forklar.')">🔊 Les opp</button></div></section>
+
+<section class="card hidden" id="s2"><div class="step">Del 2 · Finn ordet</div><p class="q">Når vi har mange forskjellige typer K-drama, hvilket ord kan vi bruke om variasjonen?</p><input id="a2" autocomplete="off"><div class="btns"><button onclick="save(2)">Lagre svaret</button><button class="secondary" onclick="showHint()">Jeg trenger litt hjelp</button><button class="secondary" onclick="speak('Når vi har mange forskjellige typer K-drama, hvilket ord kan vi bruke om variasjonen?')">🔊 Les opp</button></div><div id="hint" class="hint hidden"></div></section>
+
+<section class="card hidden" id="s3"><div class="step">Del 3 · Sammenlign</div><p><strong>Edel</strong> har fem romantiske K-drama som ligner på hverandre.</p><p><strong>Jennifer</strong> har romantikk, skrekk, fantasy, komedie og action.</p><p class="q">Hvem har størst mangfold av sjangre? Hvorfor?</p><textarea id="a3"></textarea><div class="btns"><button onclick="save(3)">Lagre svaret</button><button class="secondary" onclick="speak('Hvem har størst mangfold av sjangre? Hvorfor?')">🔊 Les opp</button></div></section>
+
+<section class="card hidden" id="s4"><div class="step">Del 4 · Velg</div><p class="q">Velg tre forskjellige K-drama-sjangre du liker.</p><div class="genres" id="genres"></div><p>Jeg liker:</p><input id="a4" readonly><p>Det er mangfold fordi …</p><textarea id="a4b"></textarea><div class="btns"><button onclick="save(4)">Lagre svaret</button></div></section>
+
+<section class="card hidden" id="s5"><div class="step">Del 5 · Uten setningsstarter</div><p class="q">Forklar med egne ord: Hva betyr mangfold når vi snakker om filmer og serier?</p><textarea id="a5"></textarea><div class="btns"><button onclick="save(5)">Fullfør økten</button><button class="secondary" onclick="speak('Forklar med egne ord. Hva betyr mangfold når vi snakker om filmer og serier?')">🔊 Les opp</button></div><div id="done" class="ok hidden">🌟 Ferdig! Bra jobbet.</div></section>
+
+<section class="card adult"><strong>For voksen</strong><p>Forskningsmål: undersøke om Edel generaliserer <em>mangfold</em> fra biologisk mangfold til en ny kategori. Første svar lagres før hjelp. På del 2 registreres hint separat. Ikke korriger grammatikk eller stavemåte mens hun svarer.</p><div class="btns"><button class="secondary" onclick="downloadData()">Last ned øktdata (JSON)</button></div></section>
+</main>
+<script src="edels-data.js"></script>
+<script>
+const KEY='edels_kdrama_mangfold_v1'; let data=JSON.parse(localStorage.getItem(KEY)||'{"started":"'+new Date().toISOString()+'","answers":{},"supports":[]}'); let step=1, hintLevel=0;
+const genreList=['Romantikk','Fantasy','Skrekk','Komedie','Historisk','Action','Skole']; const chosen=[];
+
+// --- EdelsData v2 wiring ---
+const SESSION_KEY='edels_kdrama_mangfold_v1_session';
+let sessionId=localStorage.getItem(SESSION_KEY);
+if(!sessionId || !EdelsData.getSession(sessionId) || EdelsData.getSession(sessionId).status==='completed'){
+  sessionId=EdelsData.createSession({title:'K-drama – Mangfold',researchGoal:'generalization_far_transfer',schoolSubject:'naturfag'});
+  localStorage.setItem(SESSION_KEY,sessionId);
+}
+const STEP_META={
+  1:{researchGoal:'spontaneous_description_of_variation',taskType:'observation',question:'Hva legger du merke til ved disse K-dramaene? Er de like, eller er de forskjellige? Forklar.'},
+  2:{researchGoal:'concept_retrieval_generalization',taskType:'word_retrieval',question:'Når vi har mange forskjellige typer K-drama, hvilket ord kan vi bruke om variasjonen?'},
+  3:{researchGoal:'comparative_judgment_of_diversity',taskType:'comparison',question:'Hvem har størst mangfold av sjangre? Hvorfor?'},
+  4:{researchGoal:'generalization_production',taskType:'categorization_justification',question:'Velg tre forskjellige K-drama-sjangre du liker, og forklar hvorfor det er mangfold.'},
+  5:{researchGoal:'definition_without_scaffold',taskType:'free_definition',question:'Forklar med egne ord: Hva betyr mangfold når vi snakker om filmer og serier?'}
+};
+const trialIds={};
+function ensureTrial(n){
+  if(trialIds[n]) return trialIds[n];
+  const m=STEP_META[n];
+  trialIds[n]=EdelsData.startTrial(sessionId,{target:'mangfold',researchGoal:m.researchGoal,taskType:m.taskType,modality:'written',condition:'kdrama_mangfold',question:m.question,context:'kdrama_step'+n});
+  return trialIds[n];
+}
+
+function persist(){localStorage.setItem(KEY,JSON.stringify(data))}
+function show(n){document.querySelectorAll('section[id^=s]').forEach(x=>x.classList.add('hidden'));document.getElementById('s'+n).classList.remove('hidden');step=n;count.textContent=n+' / 5';bar.style.width=(n*20)+'%';ensureTrial(n);scrollTo({top:0,behavior:'smooth'})}
+function val(n){if(n===4)return {genres:[...chosen],why:a4b.value}; return document.getElementById('a'+n).value}
+function save(n){
+  let v=val(n);let empty=typeof v==='string'?!v.trim():!v.why.trim(); if(empty){alert('Skriv et svar først.');return}
+  if(!data.answers['q'+n]){
+    data.answers['q'+n]={first_response:v,shown_at:data['shown'+n]||null,saved_at:new Date().toISOString(),support_level:n===2?hintLevel:0};
+    const tid=ensureTrial(n);
+    const answerText=typeof v==='string'?v:JSON.stringify(v);
+    EdelsData.saveFirstResponse(sessionId,tid,answerText,{source:'kdrama_mangfold_ui'});
+  }
+  persist();
+  if(n<5){data['shown'+(n+1)]=new Date().toISOString();persist();show(n+1)}
+  else{
+    data.completed=new Date().toISOString();persist();done.classList.remove('hidden');document.querySelector('#s5 button').disabled=true;
+    EdelsData.finishAndSubmit(sessionId);
+  }
+}
+function showHint(){
+  const hints=['Tenk på et ord som betyr at det finnes mange forskjellige typer.','Ordet kan brukes om natur, mennesker, mat, musikk og filmer.','Ordet begynner med «mang…».','Ordet er «mangfold».'];
+  if(hintLevel<hints.length){
+    hintLevel++; const hintEl=document.getElementById('hint'); hintEl.textContent=hints[hintLevel-1];hintEl.classList.remove('hidden');
+    const level=[3,2,6,7][hintLevel-1];
+    data.supports.push({question:'q2',level,content:hints[hintLevel-1],time:new Date().toISOString()});
+    const tid=ensureTrial(2);
+    EdelsData.addSupport(sessionId,tid,level,'hint_ladder',hints[hintLevel-1]);
+    persist();
+  }
+}
+function speak(t){speechSynthesis.cancel();let u=new SpeechSynthesisUtterance(t);u.lang='nb-NO';speechSynthesis.speak(u)}
+genreList.forEach(g=>{let b=document.createElement('button');b.className='genre';b.textContent=g;b.onclick=()=>{if(chosen.includes(g)){chosen.splice(chosen.indexOf(g),1);b.classList.remove('sel')}else if(chosen.length<3){chosen.push(g);b.classList.add('sel')}a4.value=chosen.join(', ')};genres.appendChild(b)});
+function downloadData(){let blob=new Blob([JSON.stringify(data,null,2)],{type:'application/json'}),u=URL.createObjectURL(blob),a=document.createElement('a');a.href=u;a.download='kdrama-mangfold-'+new Date().toISOString().slice(0,10)+'.json';a.click();URL.revokeObjectURL(u)}
+data.shown1=data.shown1||new Date().toISOString();persist();
+ensureTrial(1);
+</script></body></html>
