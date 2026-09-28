@@ -1,0 +1,352 @@
+<!doctype html>
+<html lang="nb">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Edelpote: Tirill og Krekling – Edels Verden</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{--cream:#F6F1E6;--paper:#FFFEFA;--navy:#1C2C42;--navy-2:#29455F;--ink:#1B2438;--muted:#746F66;--coral:#BE6E56;--coral-soft:#F3DFD6;--rule:#E4DCCB;--green:#E4F0DF;--shadow:0 12px 34px rgba(28,44,66,0.08)}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'Inter',sans-serif;background:radial-gradient(circle at 10% 0%,#FFF9EE 0,transparent 24rem),var(--cream);color:var(--ink);min-height:100vh;-webkit-font-smoothing:antialiased}
+.serif{font-family:'Fraunces',serif}
+main{max-width:680px;margin:auto;padding:1.4rem 1.2rem 3rem}
+.top{display:flex;justify-content:space-between;align-items:center;gap:12px}
+.top strong{font-family:'Fraunces',serif;font-weight:600;font-size:1.2rem}
+.small{font-size:0.82rem;color:var(--muted);margin-top:0.15rem}
+.pill{background:var(--paper);border:1px solid var(--rule);border-radius:999px;padding:0.5rem 0.9rem;font-weight:700;font-size:0.85rem;flex-shrink:0;white-space:nowrap}
+.progress{height:8px;background:var(--rule);border-radius:9px;overflow:hidden;margin-top:0.9rem}
+.bar{height:100%;background:var(--coral);width:8%;transition:width 0.25s ease}
+.card{background:var(--paper);border:1px solid rgba(28,44,66,0.08);border-radius:22px;padding:1.4rem;margin-top:1rem;box-shadow:0 7px 24px rgba(28,44,66,0.045)}
+.step{font-weight:700;font-size:0.7rem;letter-spacing:0.1em;text-transform:uppercase;color:var(--coral)}
+.hero{width:100%;border-radius:16px;margin:0.9rem 0;display:block}
+.hero-small{max-width:220px;border-radius:14px;margin:0.9rem auto;display:block;box-shadow:var(--shadow)}
+.q{font-family:'Fraunces',serif;font-size:1.22rem;font-weight:500;line-height:1.34;margin-top:0.6rem}
+.mic{font-size:0.82rem;color:var(--muted);margin-top:0.4rem}
+textarea,input[type=text]{width:100%;font:inherit;font-family:'Inter',sans-serif;border:2px solid var(--rule);border-radius:14px;padding:0.85rem;background:var(--paper);min-height:52px;margin-top:0.9rem;color:var(--ink)}
+textarea{min-height:90px}
+textarea:focus,input:focus{outline:2px solid var(--coral);outline-offset:1px;border-color:var(--coral)}
+.oral{display:flex;align-items:center;gap:0.5rem;margin-top:0.7rem;font-size:0.85rem;color:var(--muted)}
+.oral input{width:auto;margin:0}
+.btns{display:flex;gap:0.6rem;flex-wrap:wrap;margin-top:0.9rem}
+button{border:0;border-radius:999px;padding:0.7rem 1.1rem;font:inherit;font-weight:700;font-size:0.88rem;background:var(--navy);color:#EDE6D6;cursor:pointer}
+button.secondary{background:var(--coral-soft);color:#7A4530}
+button.ghost{background:transparent;color:var(--muted);border:1px solid var(--rule)}
+button:disabled{opacity:0.45;cursor:default}
+.hidden{display:none}
+.recap{background:var(--cream);border:1px dashed var(--rule);border-radius:14px;padding:0.8rem 1rem;font-size:0.88rem;color:var(--muted);line-height:1.5;margin-top:0.6rem}
+.recap strong{color:var(--ink)}
+.hint{margin-top:0.8rem;padding:0.8rem 1rem;border-radius:14px;background:var(--coral-soft);color:#5B3220;font-size:0.92rem;line-height:1.4}
+.adult{font-size:0.88rem;background:var(--paper);border:1px dashed var(--rule)}
+.adult strong{font-family:'Fraunces',serif;font-weight:600;font-size:1rem}
+.adult p{margin-top:0.5rem;color:var(--muted);line-height:1.55}
+.ok{background:var(--green);color:#3E6C4A;padding:0.8rem 1rem;border-radius:14px;margin-top:0.9rem;font-weight:600}
+@media(max-width:600px){main{padding:1rem 0.9rem 2.4rem}.card{padding:1.05rem}.q{font-size:1.1rem}}
+</style></head>
+<body><main>
+<div class="top"><div><strong>⚔️ Edelpote</strong><div class="small">Tirill og Krekling</div></div><div class="pill" id="count">Steg 1</div></div>
+<div class="progress"><div class="bar" id="bar"></div></div>
+
+<div id="stepHost"></div>
+
+</main>
+<script src="edels-data.js"></script>
+<script>
+// Om edels-data.js ikke kunne lastes (f.eks. filen åpnet alene, uten mappen ved siden av),
+// bruk en enkel erstatning slik at selve øvelsen fortsatt virker — bare uten lagring.
+if(typeof EdelsData==='undefined'){
+  console.warn('edels-data.js ble ikke funnet – kjører uten lagring.');
+  window.EdelsData={
+    createSession:()=>'offline-'+Date.now(),
+    getSession:()=>null,
+    startTrial:()=>'t-'+Date.now()+'-'+Math.random(),
+    responseStarted:()=>{},
+    saveFirstResponse:()=>{},
+    addSupport:()=>{},
+    setSupportResponse:()=>{},
+    saveGeneralization:()=>{},
+    finishAndSubmit:()=>{}
+  };
+}
+// ---------- EdelsData session ----------
+const SESSION_KEY='edels_edelpote_tirill_v1_session';
+let sessionId=localStorage.getItem(SESSION_KEY);
+try{
+  if(!sessionId || !EdelsData.getSession(sessionId) || EdelsData.getSession(sessionId).status==='completed'){
+    sessionId=EdelsData.createSession({title:'Edelpote: Tirill og Krekling',researchGoal:'comprehension_and_vocabulary_investigation',schoolSubject:'norsk'});
+    localStorage.setItem(SESSION_KEY,sessionId);
+  }
+}catch(e){
+  console.warn('Kunne ikke starte lagret økt, starter en midlertidig en.',e);
+  sessionId=EdelsData.createSession({title:'Edelpote: Tirill og Krekling',researchGoal:'comprehension_and_vocabulary_investigation',schoolSubject:'norsk'});
+}
+function downloadSessionData(){
+  const s=EdelsData.getSession(sessionId);
+  const blob=new Blob([JSON.stringify(s,null,2)],{type:'application/json'});
+  const a=document.createElement('a');
+  a.href=URL.createObjectURL(blob);
+  a.download='edelpote-tirill-'+new Date().toISOString().slice(0,10)+'.json';
+  a.click(); URL.revokeObjectURL(a.href);
+}
+
+// ---------- Hint ladder for "overvinne" (0-7 støtteskala, 1:1 mot metodologien) ----------
+const SCALE_LEVELS=[1,2,3,4,5,6,7];
+const OVERVINNE_HINTS=[
+  {text:'Les setningen en gang til: «Overvinn meg eller møt din skjebne!» ropte Tirill.'},
+  {text:'Tirill later som hun kjemper med noen.'},
+  {text:'Det handler om hvem som vinner.'},
+  {text:'Se for deg to som kjemper – én vinner til slutt.', img:'img/hint-visual-overvinn.jpg'},
+  {text:'Betyr det «vinne over noen» eller «gjemme seg»?'},
+  {text:'Ordet begynner med «overvi…».'},
+  {text:'Å overvinne noen kan bety å vinne over eller beseire dem.'}
+];
+
+// ---------- Plan ----------
+const PLAN=[
+  {id:'tela1',kind:'probe',title:'Del 1 · Hva skjer her?',img:'img/tela1-skjer.jpg',
+    target:null,researchGoal:'global_comprehension_baseline',taskType:'comprehension_probe',
+    question:'Hva skjer her? Fortell med dine egne ord.'},
+  {id:'tela2',kind:'support_probe',title:'Del 2 · Hva betyr «overvinn»?',img:'img/tela2-overvinn.jpg',
+    target:'overvinne',researchGoal:'baseline_vocabulary_retrieval',taskType:'vocabulary_retrieval_probe',
+    question:'Tirill sier: «Overvinn meg!» Hva tror du overvinn betyr?',hints:OVERVINNE_HINTS},
+  {id:'tela3',kind:'retest',title:'Del 3 · Ny situasjon',img:'img/tela3-handball.jpg',
+    structureTrialId:'tela2',researchGoal:'retrieval_after_support_withdrawal_new_context',
+    question:'Edel spiller håndball. Det andre laget er veldig godt, men Edels lag klarer å vinne. Hva kan vi si at laget klarte å gjøre?'},
+  {id:'tela4',kind:'probe',title:'Del 4 · Hva betyr «skjebne»?',img:'img/tela4-skjebne.jpg',
+    target:'skjebne',researchGoal:'contextual_meaning_without_word_demand',taskType:'inferential_meaning_probe',
+    question:'«Overvinn meg eller møt din skjebne!» Hva tror du Tirill mener med «møt din skjebne» i denne leken?'},
+  {id:'tela5',kind:'probe',title:'Del 5 · Hva betyr «truende»?',img:'img/tela5-truende.jpg',
+    target:'truende',researchGoal:'semantic_knowledge_baseline',taskType:'vocabulary_semantic_probe',
+    question:'Tirill viftet med sverdet på den mest truende måten hun klarte. Hvordan tror du Tirill prøvde å se ut?'},
+  {id:'tela6a',kind:'probe',title:'Del 6 · Lag en setning (muntlig)',img:'img/tela6-setning.jpg',
+    target:'tirill_beskrivelse',researchGoal:'formulation_oral_first',taskType:'sentence_formulation_oral',
+    question:'Se på bildet. Si først én hel setning om Tirill.'},
+  {id:'tela6b',kind:'probe',title:'Del 6 · Lag en setning (skriftlig)',img:'img/tela6-setning.jpg',
+    target:'tirill_beskrivelse',researchGoal:'formulation_written_after_oral',taskType:'sentence_formulation_written',
+    question:'Skriv nå setningen du nettopp sa.',recapFrom:'tela6a'},
+  {id:'tela7',kind:'probe',title:'Del 7 · Hvordan har Krekling det?',img:'img/tela7-krekling.jpg',
+    target:'krekling_mental_state',researchGoal:'inference_theory_of_mind_probe',taskType:'inference_probe',
+    question:'Krekling ligger i skyggen og spiser plommer. Han sier: «Det skjer jo aldri noe viktig her på Platået.» Hvordan tror du Krekling har det? Hvorfor tror du det?'},
+  {id:'tela8',kind:'free_recall',title:'Del 8 · Husk og fortell',img:'img/tela8-husk.jpg',
+    target:null,researchGoal:'independent_final_recall',taskType:'free_recall_definition',
+    question:'I dag møtte du noen nye ord i historien. Fortell meg ett ord du husker, og hva det betyr.'}
+];
+
+let planIdx=0;
+const answers={};       // stepId -> {text, oral}
+const trialIds={};      // stepId -> trialId
+const supportProgress={}; // stepId -> hints given so far
+const supportResponded={}; // stepId -> [bool per hint index]
+const startedTrials=new Set();
+const host=document.getElementById('stepHost');
+
+function ensureTrial(step){
+  if(trialIds[step.id]) return trialIds[step.id];
+  trialIds[step.id]=EdelsData.startTrial(sessionId,{
+    target:step.target,researchGoal:step.researchGoal,taskType:step.taskType,modality:'written',
+    condition:'edelpote_tirill',question:step.question,context:step.id
+  });
+  return trialIds[step.id];
+}
+function markStarted(trialId){
+  if(startedTrials.has(trialId)) return;
+  startedTrials.add(trialId);
+  EdelsData.responseStarted(sessionId,trialId);
+}
+function setProgress(){
+  document.getElementById('count').textContent='Steg '+(planIdx+1)+' av '+PLAN.length;
+  document.getElementById('bar').style.width=Math.round(((planIdx+1)/PLAN.length)*100)+'%';
+}
+function speak(t){speechSynthesis.cancel();const u=new SpeechSynthesisUtterance(t);u.lang='nb-NO';speechSynthesis.speak(u)}
+
+function render(){
+  setProgress();
+  const step=PLAN[planIdx];
+  if(!step){ host.innerHTML=''; return; }
+  if(step.kind==='probe') return renderProbe(step);
+  if(step.kind==='support_probe') return renderSupportProbe(step);
+  if(step.kind==='retest') return renderRetest(step);
+  if(step.kind==='free_recall') return renderFreeRecall(step);
+}
+
+function renderProbe(step){
+  const recap=step.recapFrom&&answers[step.recapFrom]?
+    `<div class="recap"><strong>Hun sa nettopp:</strong> ${answers[step.recapFrom].text}</div>`:'';
+  host.innerHTML=`
+    <section class="card">
+      <div class="step">${step.title}</div>
+      ${step.img?`<img class="hero" src="${step.img}" alt="Illustrasjon">`:''}
+      ${recap}
+      <p class="q">${step.question}</p>
+      <div class="mic">🎤 Si svaret høyt hvis du vil, før du skriver.</div>
+      <textarea id="probeInput" placeholder="Skriv svaret her …"></textarea>
+      <label class="oral"><input type="checkbox" id="probeOral"> Hun sa det høyt før hun skrev</label>
+      <div class="btns">
+        <button onclick="saveProbe()">Lagre svaret</button>
+        <button class="secondary" onclick="speak(${JSON.stringify(step.question)})">🔊 Les opp</button>
+      </div>
+    </section>`;
+  const tid=ensureTrial(step);
+  document.getElementById('probeInput').addEventListener('input',()=>markStarted(tid),{once:true});
+}
+function saveProbe(){
+  const step=PLAN[planIdx];
+  const val=document.getElementById('probeInput').value;
+  if(!val.trim()){alert('Skriv et svar først.');return}
+  const oral=document.getElementById('probeOral').checked;
+  const tid=ensureTrial(step);
+  EdelsData.saveFirstResponse(sessionId,tid,val,{source:'edelpote_ui',oral});
+  answers[step.id]={text:val,oral};
+  planIdx++; render();
+}
+
+function renderSupportProbe(step){
+  const level=supportProgress[step.id]||0;
+  const hasBaseline=!!answers[step.id];
+  if(!hasBaseline){
+    host.innerHTML=`
+      <section class="card">
+        <div class="step">${step.title}</div>
+        <img class="hero" src="${step.img}" alt="Illustrasjon">
+        <p class="q">${step.question}</p>
+        <div class="mic">🎤 Si svaret høyt hvis du vil, før du skriver.</div>
+        <textarea id="probeInput" placeholder="Skriv svaret her …"></textarea>
+        <label class="oral"><input type="checkbox" id="probeOral"> Hun sa det høyt før hun skrev</label>
+        <div class="btns">
+          <button onclick="saveSupportBaseline()">Lagre svaret</button>
+          <button class="secondary" onclick="speak(${JSON.stringify(step.question)})">🔊 Les opp</button>
+        </div>
+      </section>`;
+    const tid=ensureTrial(step);
+    document.getElementById('probeInput').addEventListener('input',()=>markStarted(tid),{once:true});
+    return;
+  }
+  // baseline saved — offer support ladder
+  const hints=step.hints;
+  const hintsShown=hints.slice(0,level).map(h=>`<div class="hint">${h.text}${h.img?`<img class="hero-small" src="${h.img}" alt="Støttebilde">`:''}</div>`).join('');
+  const canGiveMore=level<hints.length;
+  const waitingForResponse=level>0 && !(supportResponded[step.id]&&supportResponded[step.id][level-1]);
+  let controls;
+  if(waitingForResponse){
+    controls=`
+      <textarea id="supportInput" placeholder="Hva sier hun nå?"></textarea>
+      <div class="btns">
+        <button onclick="saveSupportTry()">Lagre forsøket</button>
+        <button class="ghost" onclick="finishSupport()">Gå videre uten å lagre</button>
+      </div>`;
+  } else if(canGiveMore){
+    controls=`
+      <div class="btns">
+        <button class="secondary" onclick="giveHint()">${level===0?'Gi en pekepinn':'Neste pekepinn'}</button>
+        <button class="ghost" onclick="finishSupport()">Trengte ikke mer – gå videre</button>
+      </div>`;
+  } else {
+    controls=`<div class="btns"><button onclick="finishSupport()">Gå videre</button></div>`;
+  }
+  host.innerHTML=`
+    <section class="card">
+      <div class="step">${step.title}</div>
+      <div class="recap"><strong>Hennes første svar:</strong> ${answers[step.id].text}</div>
+      ${hintsShown}
+      ${controls}
+    </section>`;
+}
+function saveSupportBaseline(){
+  const step=PLAN[planIdx];
+  const val=document.getElementById('probeInput').value;
+  if(!val.trim()){alert('Skriv et svar først.');return}
+  const oral=document.getElementById('probeOral').checked;
+  const tid=ensureTrial(step);
+  EdelsData.saveFirstResponse(sessionId,tid,val,{source:'edelpote_ui',oral});
+  answers[step.id]={text:val,oral};
+  render();
+}
+function giveHint(){
+  const step=PLAN[planIdx];
+  const level=supportProgress[step.id]||0;
+  if(level>=step.hints.length) return;
+  const h=step.hints[level];
+  EdelsData.addSupport(sessionId,trialIds[step.id],SCALE_LEVELS[level],'graduated_hint_ladder',h.img?h.text+' ['+h.img+']':h.text);
+  supportProgress[step.id]=level+1;
+  render();
+}
+function saveSupportTry(){
+  const step=PLAN[planIdx];
+  const val=document.getElementById('supportInput').value;
+  if(!val.trim()){alert('Skriv hva hun sa, eller trykk «gå videre uten å lagre».');return}
+  const idx=(supportProgress[step.id]||1)-1;
+  EdelsData.setSupportResponse(sessionId,trialIds[step.id],idx,val);
+  supportResponded[step.id]=supportResponded[step.id]||[];
+  supportResponded[step.id][idx]=true;
+  render();
+}
+function finishSupport(){
+  const step=PLAN[planIdx];
+  const level=supportProgress[step.id]||0;
+  if(level>0){
+    supportResponded[step.id]=supportResponded[step.id]||[];
+    supportResponded[step.id][level-1]=true;
+  }
+  planIdx++; render();
+}
+
+function renderRetest(step){
+  host.innerHTML=`
+    <section class="card">
+      <div class="step">${step.title}</div>
+      <img class="hero" src="${step.img}" alt="Illustrasjon">
+      <p class="q">${step.question}</p>
+      <div class="mic">🎤 Alt som avslørte svaret er borte nå.</div>
+      <textarea id="retestInput" placeholder="Skriv svaret her …"></textarea>
+      <label class="oral"><input type="checkbox" id="retestOral"> Hun sa det høyt før hun skrev</label>
+      <div class="btns">
+        <button onclick="saveRetest()">Lagre svaret</button>
+        <button class="secondary" onclick="speak(${JSON.stringify(step.question)})">🔊 Les opp</button>
+      </div>
+    </section>`;
+}
+function saveRetest(){
+  const step=PLAN[planIdx];
+  const val=document.getElementById('retestInput').value;
+  if(!val.trim()){alert('Skriv et svar først.');return}
+  const refTrial=trialIds[step.structureTrialId];
+  EdelsData.saveGeneralization(sessionId,refTrial,'new_context_after_support_withdrawal',val);
+  answers[step.id]={text:val};
+  planIdx++; render();
+}
+
+function renderFreeRecall(step){
+  // Bildet viser ordene fra historien i tankebobler, så det vises FØRST ETTER hun har svart,
+  // ellers ville det avslørt svaret før den selvstendige gjenkallingen.
+  host.innerHTML=`
+    <section class="card">
+      <div class="step">${step.title}</div>
+      <p class="q">${step.question}</p>
+      <div class="mic">🎤 Ikke vis noen ordliste først.</div>
+      <textarea id="recallInput" placeholder="Skriv ordet og hva det betyr …"></textarea>
+      <div class="btns">
+        <button onclick="saveFreeRecall()">Fullfør økten</button>
+        <button class="secondary" onclick="speak(${JSON.stringify(step.question)})">🔊 Les opp</button>
+      </div>
+      <div id="recallDone" class="hidden">
+        <img class="hero" src="${step.img}" alt="Illustrasjon">
+        <div class="ok">🌟 Ferdig! Bra jobbet.</div>
+      </div>
+    </section>`;
+  const tid=ensureTrial(step);
+  document.getElementById('recallInput').addEventListener('input',()=>markStarted(tid),{once:true});
+}
+function saveFreeRecall(){
+  const step=PLAN[planIdx];
+  const val=document.getElementById('recallInput').value;
+  if(!val.trim()){alert('Skriv et svar først.');return}
+  const tid=ensureTrial(step);
+  EdelsData.saveFirstResponse(sessionId,tid,val,{source:'edelpote_ui'});
+  EdelsData.finishAndSubmit(sessionId);
+  document.getElementById('recallDone').classList.remove('hidden');
+  document.querySelector('#stepHost button[onclick="saveFreeRecall()"]').disabled=true;
+  planIdx++; setProgress();
+}
+
+render();
+</script></body></html>
