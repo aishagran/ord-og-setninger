@@ -1,0 +1,392 @@
+<!doctype html>
+<html lang="nb">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Vi lager grupper – Edels Verden</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{--cream:#F6F1E6;--paper:#FFFEFA;--navy:#1C2C42;--navy-2:#29455F;--ink:#1B2438;--muted:#746F66;--coral:#BE6E56;--coral-soft:#F3DFD6;--rule:#E4DCCB;--green:#E4F0DF;--shadow:0 12px 34px rgba(28,44,66,0.08)}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'Inter',sans-serif;background:radial-gradient(circle at 10% 0%,#FFF9EE 0,transparent 24rem),var(--cream);color:var(--ink);min-height:100vh;-webkit-font-smoothing:antialiased}
+.serif{font-family:'Fraunces',serif}
+main{max-width:680px;margin:auto;padding:1.4rem 1.2rem 6rem}
+.top{display:flex;justify-content:space-between;align-items:center;gap:12px}
+.top strong{font-family:'Fraunces',serif;font-weight:600;font-size:1.2rem}
+.small{font-size:0.82rem;color:var(--muted);margin-top:0.15rem}
+.pill{background:var(--paper);border:1px solid var(--rule);border-radius:999px;padding:0.5rem 0.9rem;font-weight:700;font-size:0.85rem;flex-shrink:0;white-space:nowrap}
+.progress{height:8px;background:var(--rule);border-radius:9px;overflow:hidden;margin-top:0.9rem}
+.bar{height:100%;background:var(--coral);width:8%;transition:width 0.25s ease}
+.card{background:var(--paper);border:1px solid rgba(28,44,66,0.08);border-radius:22px;padding:1.4rem;margin-top:1rem;box-shadow:0 7px 24px rgba(28,44,66,0.045)}
+.step{font-weight:700;font-size:0.7rem;letter-spacing:0.1em;text-transform:uppercase;color:var(--coral)}
+.hero{width:100%;border-radius:16px;margin:0.9rem 0;display:block}
+.q{font-family:'Fraunces',serif;font-size:1.22rem;font-weight:500;line-height:1.34;margin-top:0.6rem;white-space:pre-line}
+.mic{font-size:0.82rem;color:var(--muted);margin-top:0.4rem}
+textarea,input[type=text]{width:100%;font:inherit;font-family:'Inter',sans-serif;border:2px solid var(--rule);border-radius:14px;padding:0.85rem;background:var(--paper);min-height:52px;margin-top:0.9rem;color:var(--ink)}
+textarea{min-height:90px}
+textarea:focus,input:focus{outline:2px solid var(--coral);outline-offset:1px;border-color:var(--coral)}
+.oral{display:flex;align-items:center;gap:0.5rem;margin-top:0.7rem;font-size:0.85rem;color:var(--muted)}
+.oral input{width:auto;margin:0}
+.btns{display:flex;gap:0.6rem;flex-wrap:wrap;margin-top:0.9rem}
+button{border:0;border-radius:999px;padding:0.7rem 1.1rem;font:inherit;font-weight:700;font-size:0.88rem;background:var(--navy);color:#EDE6D6;cursor:pointer}
+button.secondary{background:var(--coral-soft);color:#7A4530}
+button.ghost{background:transparent;color:var(--muted);border:1px solid var(--rule)}
+button:disabled{opacity:0.45;cursor:default}
+.hidden{display:none}
+.recap{background:var(--cream);border:1px dashed var(--rule);border-radius:14px;padding:0.8rem 1rem;font-size:0.88rem;color:var(--muted);line-height:1.5;margin-top:0.6rem}
+.hint{margin-top:0.8rem;padding:0.8rem 1rem;border-radius:14px;background:var(--coral-soft);color:#5B3220;font-size:0.92rem;line-height:1.4;white-space:pre-line}
+.ok{background:var(--green);color:#3E6C4A;padding:0.8rem 1rem;border-radius:14px;margin-top:0.9rem;font-weight:600}
+.adultcard{background:var(--navy);color:#EDE6D6;border-radius:22px;padding:1.4rem;margin-top:1rem;box-shadow:0 12px 34px rgba(28,44,66,0.18)}
+.adultcard .step{color:#E8B79A}
+.adultcard .q{color:#fff}
+.adultcard .lede{color:#C7D3DE;font-size:0.85rem;margin-top:0.5rem;line-height:1.5}
+.adultcard button.secondary{background:rgba(255,255,255,0.14);color:#fff}
+.send-bar{position:fixed;left:0;right:0;bottom:0;padding:0.8rem 1rem calc(0.8rem + env(safe-area-inset-bottom));background:rgba(28,44,66,0.96);backdrop-filter:blur(10px);display:flex;justify-content:center;z-index:50}
+.send-bar button{background:var(--coral);color:#fff;width:100%;max-width:420px}
+.send-note{font-size:0.72rem;color:#C7D3DE;text-align:center;margin-top:0.4rem;max-width:420px}
+@media(max-width:600px){main{padding:1rem 0.9rem 6.5rem}.card,.adultcard{padding:1.05rem}.q{font-size:1.1rem}}
+</style></head>
+<body><main>
+<div class="top"><div><strong>🧩 Vi lager grupper</strong><div class="small">En vanlig økt</div></div><div class="pill" id="count">Steg 1</div></div>
+<div class="progress"><div class="bar" id="bar"></div></div>
+
+<div id="stepHost"></div>
+
+</main>
+
+<div class="send-bar hidden" id="sendBar">
+  <div>
+    <button id="sendBarBtn" onclick="sendPartial()">📤 Send det som er gjort til mamma</button>
+    <div class="send-note">Sender det hun har svart så langt, uansett om hun er ferdig eller ikke.</div>
+  </div>
+</div>
+
+<script src="edels-data.js"></script>
+<script>
+if(typeof EdelsData==='undefined'){
+  console.warn('edels-data.js ble ikke funnet – kjører uten lagring.');
+  window.EdelsData={
+    createSession:()=>'offline-'+Date.now(),
+    getSession:()=>null,
+    startTrial:()=>'t-'+Date.now()+'-'+Math.random(),
+    responseStarted:()=>{},
+    saveFirstResponse:()=>{},
+    addSupport:()=>{},
+    setSupportResponse:()=>{},
+    saveGeneralization:()=>{},
+    finishAndSubmit:()=>{}
+  };
+}
+const SESSION_KEY='edels_vi_lager_grupper_v1_session';
+let sessionId=localStorage.getItem(SESSION_KEY);
+try{
+  if(!sessionId || !EdelsData.getSession(sessionId) || EdelsData.getSession(sessionId).status==='completed'){
+    sessionId=EdelsData.createSession({title:'Vi lager grupper',researchGoal:'danne_danner_and_mangfold_generalization',schoolSubject:'norsk'});
+    localStorage.setItem(SESSION_KEY,sessionId);
+  }
+}catch(e){
+  console.warn('Kunne ikke starte lagret økt, starter en midlertidig en.',e);
+  sessionId=EdelsData.createSession({title:'Vi lager grupper',researchGoal:'danne_danner_and_mangfold_generalization',schoolSubject:'norsk'});
+}
+
+// ---------- Støttestige for DANNER (0-7 skala, kun 3 nivåer i bruk her) ----------
+const SCALE_LEVELS=[1,4,7];
+const DANNER_HINTS=[
+  {text:'Dette skjer nå.\n\nHvordan bruker vi DANNE når det skjer nå?'},
+  {text:'Tenk på verb som:\nlage → lager\nspille → spiller\n\nHva skjer med DANNE?'},
+  {text:'danne → danner\n\nElevene danner en gruppe.', explicit:true}
+];
+
+// ---------- Plan ----------
+const PLAN=[
+  {id:'tela1',kind:'probe',title:'Del 1 · Hva skjer?',img:'img/tela1-grupper.jpg',
+    target:null,researchGoal:'spontaneous_verb_choice_baseline',taskType:'comprehension_probe',
+    question:'Se på bildet.\n\nHva skjer? Fortell med en hel setning.'},
+  {id:'tela2',kind:'probe',title:'Del 2 · Ordet DANNE',img:'img/tela2-danne.jpg',wordGiven:'danne',
+    target:'danne',researchGoal:'lexeme_provided_sentence_formulation',taskType:'sentence_formulation_with_lexeme',
+    question:'Tre elever skal lage én gruppe.\n\nBruk ordet DANNE og lag en hel setning.'},
+  {id:'tela3',kind:'probe',title:'Del 3 · Ny sammenheng',img:'img/tela3-band.jpg',wordGiven:'danne',
+    target:'danne',researchGoal:'lexeme_transfer_new_context',taskType:'sentence_formulation_with_lexeme',
+    question:'Fire ungdommer vil lage et band.\n\nBruk ordet danne. Lag en hel setning.'},
+  {id:'sjekk',kind:'adult_check',title:'For mamma · Rask sjekk',
+    question:'Klarte hun å si «danner» (nåtidsform) riktig i de to siste svarene?',
+    yesLabel:'Ja, det gikk fint',noLabel:'Nei / usikker – gi støtte',
+    yesGoto:'tela5',noGoto:'tela4'},
+  {id:'tela4',kind:'support_probe',title:'Del 4 · Akkurat nå',img:'img/tela4-danner-na.jpg',
+    target:'danner',researchGoal:'graduated_support_present_tense_form',taskType:'morphology_retrieval_probe',
+    question:'Se på bildet.\n\nHva skjer med gruppen akkurat nå? Lag en hel setning.',hints:DANNER_HINTS},
+  {id:'tela5',kind:'probe',title:'Del 5 · Helt alene',img:'img/tela5-fotball.jpg',
+    target:'danne_danner_independent',researchGoal:'independent_retrieval_after_support_withdrawal',taskType:'sentence_formulation_independent',
+    question:'Se på bildet.\n\nHva skjer?\n\nLag en hel setning.'},
+  {id:'tela6a',kind:'probe',title:'Del 6 · Først: si det',img:'img/tela6-organisere.jpg',
+    target:'gruppedannelse_beskrivelse',researchGoal:'formulation_oral_first',taskType:'sentence_formulation_oral',
+    question:'7A og 7B skal bli tre grupper.\n\nFortell hva som skjer med en hel setning.'},
+  {id:'tela6b',kind:'probe',title:'Del 6 · Nå: skriv det',img:'img/tela6-organisere.jpg',
+    target:'gruppedannelse_beskrivelse',researchGoal:'formulation_written_after_oral',taskType:'sentence_formulation_written',
+    question:'Tenk på setningen du nettopp sa.\n\nSkriv hele setningen.',recapFrom:'tela6a',noRecapText:true},
+  {id:'tela7a',kind:'probe',title:'Del 7 · Mange forskjellige bøker',img:'img/tela7-boker.jpg',
+    target:null,researchGoal:'noticing_diversity_nonbiological_baseline',taskType:'comprehension_probe',
+    question:'Se på alle bøkene.\n\nHva legger du merke til?'},
+  {id:'tela7b',kind:'probe',title:'Del 7 · Et ord som passer',
+    target:'mangfold',researchGoal:'generalization_retention_probe_nonbiological_context',taskType:'vocabulary_retrieval_probe',
+    question:'Kjenner du et ord som passer når det finnes mange forskjellige typer?'},
+  {id:'tela8',kind:'free_recall',title:'Del 8 · Ferdig for i dag',img:'img/tela8-ferdig.jpg',
+    target:null,researchGoal:'independent_final_recall',taskType:'free_recall_definition',
+    question:'Ferdig for i dag 🌟\n\nFortell én ting du husker fra i dag.\n\nDu velger selv hva du vil fortelle.'}
+];
+
+let planIdx=0;
+const answers={};
+const trialIds={};
+const supportProgress={};
+const supportResponded={};
+const startedTrials=new Set();
+const host=document.getElementById('stepHost');
+let questionShownAt=Date.now();
+
+function idxOf(id){ return PLAN.findIndex(s=>s.id===id); }
+function ensureTrial(step){
+  if(trialIds[step.id]) return trialIds[step.id];
+  trialIds[step.id]=EdelsData.startTrial(sessionId,{
+    target:step.target,researchGoal:step.researchGoal,taskType:step.taskType,modality:'written',
+    condition:'vi_lager_grupper',question:step.question,context:step.id
+  });
+  return trialIds[step.id];
+}
+function markStarted(trialId){
+  if(startedTrials.has(trialId)) return;
+  startedTrials.add(trialId);
+  EdelsData.responseStarted(sessionId,trialId);
+}
+function setProgress(){
+  document.getElementById('count').textContent='Steg '+(planIdx+1)+' av '+PLAN.length;
+  document.getElementById('bar').style.width=Math.round(((planIdx+1)/PLAN.length)*100)+'%';
+}
+function speak(t){speechSynthesis.cancel();const u=new SpeechSynthesisUtterance(t.replace(/\n/g,' '));u.lang='nb-NO';speechSynthesis.speak(u)}
+function escAttr(s){return String(s).replace(/&/g,'&amp;').replace(/"/g,'&quot;').replace(/</g,'&lt;').replace(/>/g,'&gt;');}
+
+function updateSendBar(){
+  const bar=document.getElementById('sendBar');
+  if(!bar) return;
+  bar.classList.toggle('hidden', Object.keys(answers).length===0);
+}
+async function sendPartial(){
+  const btn=document.getElementById('sendBarBtn');
+  const original=btn.textContent;
+  btn.disabled=true; btn.textContent='Sender …';
+  const summary=PLAN.filter(s=>answers[s.id]).map(s=>`${s.title}\n${s.question||''}\n→ ${answers[s.id].text}`).join('\n\n');
+  try{
+    const r=await fetch('https://formspree.io/f/mqeolldg',{
+      method:'POST',
+      headers:{'Content-Type':'application/json','Accept':'application/json'},
+      body:JSON.stringify({
+        _subject:'Vi lager grupper – fremgang underveis',
+        oppgave:'Vi lager grupper',
+        session_id:sessionId,
+        Tekst_hun_skrev:summary,
+        antall_besvart:Object.keys(answers).length+' av '+PLAN.filter(s=>s.kind!=='adult_check').length,
+        dato:new Date().toLocaleString('no-NO')
+      })
+    });
+    if(!r.ok) throw new Error('HTTP '+r.status);
+    btn.textContent='✓ Sendt!';
+    setTimeout(()=>{btn.textContent=original;btn.disabled=false;},1800);
+  }catch(e){
+    btn.textContent='Kunne ikke sende – prøv igjen';
+    btn.disabled=false;
+  }
+}
+
+function render(){
+  setProgress();
+  const step=PLAN[planIdx];
+  if(!step){ host.innerHTML=''; return; }
+  questionShownAt=Date.now();
+  if(step.kind==='probe') return renderProbe(step);
+  if(step.kind==='support_probe') return renderSupportProbe(step);
+  if(step.kind==='adult_check') return renderAdultCheck(step);
+  if(step.kind==='free_recall') return renderFreeRecall(step);
+}
+
+function renderProbe(step){
+  const recap=(step.recapFrom&&answers[step.recapFrom]&&!step.noRecapText)?
+    `<div class="recap"><strong>Hun sa nettopp:</strong> ${answers[step.recapFrom].text}</div>`:'';
+  const wordBadge=step.wordGiven?`<div class="hint">Ordet er: <strong>${step.wordGiven.toUpperCase()}</strong></div>`:'';
+  host.innerHTML=`
+    <section class="card">
+      <div class="step">${step.title}</div>
+      ${step.img?`<img class="hero" src="${step.img}" alt="Illustrasjon">`:''}
+      ${wordBadge}
+      ${recap}
+      <p class="q">${step.question}</p>
+      <div class="mic">🎤 Si svaret høyt hvis du vil, før du skriver.</div>
+      <textarea id="probeInput" placeholder="Skriv svaret her …"></textarea>
+      <label class="oral"><input type="checkbox" id="probeOral"> Hun sa det høyt før hun skrev</label>
+      <div class="btns">
+        <button onclick="saveProbe()">Lagre svaret</button>
+        <button class="secondary" onclick="speak(${escAttr(JSON.stringify(step.question))})">🔊 Les opp</button>
+      </div>
+    </section>`;
+  const tid=ensureTrial(step);
+  document.getElementById('probeInput').addEventListener('input',()=>markStarted(tid),{once:true});
+}
+function saveProbe(){
+  const step=PLAN[planIdx];
+  const val=document.getElementById('probeInput').value;
+  if(!val.trim()){alert('Skriv et svar først.');return}
+  const oral=document.getElementById('probeOral').checked;
+  const tid=ensureTrial(step);
+  EdelsData.saveFirstResponse(sessionId,tid,val,{source:'gruppe_ui',oral,latencyMs:Date.now()-questionShownAt});
+  answers[step.id]={text:val,oral};
+  updateSendBar();
+  planIdx++; render();
+}
+
+function renderAdultCheck(step){
+  host.innerHTML=`
+    <section class="adultcard">
+      <div class="step">${step.title}</div>
+      <p class="q">${step.question}</p>
+      <div class="lede">Dette vises ikke til Edel. Svaret styrer om Del 4 (ekstra støtte for «danner») skal komme, eller om vi hopper rett videre.</div>
+      <div class="btns">
+        <button onclick="adultCheckAnswer(true)">${step.yesLabel}</button>
+        <button class="secondary" onclick="adultCheckAnswer(false)">${step.noLabel}</button>
+      </div>
+    </section>`;
+}
+function adultCheckAnswer(yes){
+  const step=PLAN[planIdx];
+  const goto=yes?step.yesGoto:step.noGoto;
+  EdelsData.interpret?.(sessionId,null,{notes:'adult_check:'+step.id+' -> '+(yes?'ja':'nei_usikker')});
+  planIdx=idxOf(goto);
+  render();
+}
+
+function renderSupportProbe(step){
+  const level=supportProgress[step.id]||0;
+  const hasBaseline=!!answers[step.id];
+  if(!hasBaseline){
+    host.innerHTML=`
+      <section class="card">
+        <div class="step">${step.title}</div>
+        <img class="hero" src="${step.img}" alt="Illustrasjon">
+        <p class="q">${step.question}</p>
+        <div class="mic">🎤 Si svaret høyt hvis du vil, før du skriver.</div>
+        <textarea id="probeInput" placeholder="Skriv svaret her …"></textarea>
+        <label class="oral"><input type="checkbox" id="probeOral"> Hun sa det høyt før hun skrev</label>
+        <div class="btns">
+          <button onclick="saveSupportBaseline()">Lagre svaret</button>
+          <button class="secondary" onclick="speak(${escAttr(JSON.stringify(step.question))})">🔊 Les opp</button>
+        </div>
+      </section>`;
+    const tid=ensureTrial(step);
+    document.getElementById('probeInput').addEventListener('input',()=>markStarted(tid),{once:true});
+    return;
+  }
+  const hints=step.hints;
+  const hintsShown=hints.slice(0,level).map(h=>`<div class="hint">${h.text}</div>`).join('');
+  const lastGivenExplicit=level>0 && hints[level-1].explicit;
+  const canGiveMore=level<hints.length;
+  const waitingForResponse=level>0 && !lastGivenExplicit && !(supportResponded[step.id]&&supportResponded[step.id][level-1]);
+  let controls;
+  if(waitingForResponse){
+    controls=`
+      <textarea id="supportInput" placeholder="Hva sier hun nå?"></textarea>
+      <div class="btns">
+        <button onclick="saveSupportTry()">Lagre forsøket</button>
+        <button class="ghost" onclick="finishSupport()">Gå videre uten å lagre</button>
+      </div>`;
+  } else if(canGiveMore){
+    controls=`
+      <div class="btns">
+        <button class="secondary" onclick="giveHint()">${level===0?'Gi en pekepinn':'Neste pekepinn'}</button>
+        <button class="secondary" onclick="speak(${escAttr(JSON.stringify(hints[level].text))})">🔊 Les opp</button>
+        <button class="ghost" onclick="finishSupport()">Trengte ikke mer – gå videre</button>
+      </div>`;
+  } else {
+    controls=`<div class="btns"><button onclick="finishSupport()">Gå videre</button></div>`;
+  }
+  host.innerHTML=`
+    <section class="card">
+      <div class="step">${step.title}</div>
+      <div class="recap"><strong>Hennes første svar:</strong> ${answers[step.id].text}</div>
+      ${hintsShown}
+      ${controls}
+    </section>`;
+}
+function saveSupportBaseline(){
+  const step=PLAN[planIdx];
+  const val=document.getElementById('probeInput').value;
+  if(!val.trim()){alert('Skriv et svar først.');return}
+  const oral=document.getElementById('probeOral').checked;
+  const tid=ensureTrial(step);
+  EdelsData.saveFirstResponse(sessionId,tid,val,{source:'gruppe_ui',oral,latencyMs:Date.now()-questionShownAt});
+  answers[step.id]={text:val,oral};
+  updateSendBar();
+  render();
+}
+function giveHint(){
+  const step=PLAN[planIdx];
+  const level=supportProgress[step.id]||0;
+  if(level>=step.hints.length) return;
+  const h=step.hints[level];
+  EdelsData.addSupport(sessionId,trialIds[step.id],SCALE_LEVELS[level],h.explicit?'explicit_model':'graduated_hint_ladder',h.text);
+  supportProgress[step.id]=level+1;
+  render();
+}
+function saveSupportTry(){
+  const step=PLAN[planIdx];
+  const val=document.getElementById('supportInput').value;
+  if(!val.trim()){alert('Skriv hva hun sa, eller trykk «gå videre uten å lagre».');return}
+  const idx=(supportProgress[step.id]||1)-1;
+  EdelsData.setSupportResponse(sessionId,trialIds[step.id],idx,val);
+  supportResponded[step.id]=supportResponded[step.id]||[];
+  supportResponded[step.id][idx]=true;
+  render();
+}
+function finishSupport(){
+  const step=PLAN[planIdx];
+  const level=supportProgress[step.id]||0;
+  if(level>0 && !step.hints[level-1].explicit){
+    supportResponded[step.id]=supportResponded[step.id]||[];
+    supportResponded[step.id][level-1]=true;
+  }
+  planIdx++; render();
+}
+
+function renderFreeRecall(step){
+  host.innerHTML=`
+    <section class="card">
+      <div class="step">${step.title}</div>
+      <img class="hero" src="${step.img}" alt="Illustrasjon">
+      <p class="q">${step.question}</p>
+      <textarea id="recallInput" placeholder="Skriv her …"></textarea>
+      <div class="btns">
+        <button onclick="saveFreeRecall()">Fullfør økten</button>
+        <button class="secondary" onclick="speak(${escAttr(JSON.stringify(step.question))})">🔊 Les opp</button>
+      </div>
+      <div id="recallDone" class="hidden">
+        <div class="ok">🌟 Ferdig! Bra jobbet.</div>
+      </div>
+    </section>`;
+  const tid=ensureTrial(step);
+  document.getElementById('recallInput').addEventListener('input',()=>markStarted(tid),{once:true});
+}
+function saveFreeRecall(){
+  const step=PLAN[planIdx];
+  const val=document.getElementById('recallInput').value;
+  if(!val.trim()){alert('Skriv et svar først.');return}
+  const tid=ensureTrial(step);
+  EdelsData.saveFirstResponse(sessionId,tid,val,{source:'gruppe_ui',latencyMs:Date.now()-questionShownAt});
+  EdelsData.finishAndSubmit(sessionId);
+  answers[step.id]={text:val};
+  document.getElementById('recallDone').classList.remove('hidden');
+  document.querySelector('#stepHost button[onclick="saveFreeRecall()"]').disabled=true;
+  updateSendBar();
+  const bar=document.getElementById('sendBar');
+  if(bar) bar.classList.add('hidden');
+  planIdx++; setProgress();
+}
+
+render();
+</script></body></html>
