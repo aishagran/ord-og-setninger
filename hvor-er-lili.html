@@ -176,7 +176,8 @@ async function sendPartial(){
         Tekst_hun_skrev:summary,
         antall_besvart:Object.keys(answers).length+' av '+PLAN.length,
         dato:new Date().toLocaleString('no-NO')
-      })
+      }),
+      keepalive:true
     });
     if(!r.ok) throw new Error('HTTP '+r.status);
     btn.textContent='✓ Sendt!';
@@ -184,6 +185,40 @@ async function sendPartial(){
   }catch(e){
     btn.textContent='Kunne ikke sende – prøv igjen';
     btn.disabled=false;
+  }
+}
+
+// Direkte innsending av hele økten, samme enkle metode som sendPartial()
+// (ikke via EdelsData sin kø/flushQueue-motor) — dette er metoden som er
+// bevist å fungere pålitelig, så den fullstendige sesjonen sendes på
+// nøyaktig samme måte som delvis-sendingen, bare med alt besvart.
+async function sendFinal(){
+  const summary=PLAN.filter(s=>answers[s.id]).map(s=>`${s.title}\n${s.question||''}\n→ ${answers[s.id].text}`).join('\n\n');
+  const statusEl=document.getElementById('sendStatus');
+  if(statusEl) statusEl.textContent='Sender til mamma …';
+  try{
+    const r=await fetch('https://formspree.io/f/mqeolldg',{
+      method:'POST',
+      headers:{'Content-Type':'application/json','Accept':'application/json'},
+      body:JSON.stringify({
+        _subject:'Hvor er Lili? – fullført økt',
+        oppgave:'Hvor er Lili?',
+        session_id:sessionId,
+        Tekst_hun_skrev:summary,
+        antall_besvart:Object.keys(answers).length+' av '+PLAN.length,
+        status:'fullført',
+        dato:new Date().toLocaleString('no-NO')
+      }),
+      keepalive:true
+    });
+    if(!r.ok) throw new Error('HTTP '+r.status);
+    if(statusEl) statusEl.textContent='✓ Sendt til mamma';
+  }catch(e){
+    if(statusEl){
+      statusEl.textContent='Kunne ikke sende – trykk her for å prøve igjen';
+      statusEl.style.cursor='pointer';
+      statusEl.onclick=()=>sendFinal();
+    }
   }
 }
 
@@ -216,6 +251,7 @@ function renderProbe(step){
       </div>
       <div id="doneBox" class="hidden">
         <div class="ok">🌟 Ferdig! Dere fant Lili sammen. Bra jobbet.</div>
+        <div id="sendStatus" class="small" style="margin-top:0.5rem;color:var(--muted)"></div>
       </div>
     </section>`;
   const tid=ensureTrial(step);
@@ -232,7 +268,8 @@ function saveProbe(){
   updateSendBar();
   const isLast=planIdx===PLAN.length-1;
   if(isLast){
-    EdelsData.finishAndSubmit(sessionId);
+    EdelsData.completeSession(sessionId); // lagres lokalt, for historikk
+    sendFinal(); // selve sendingen: direkte, samme pålitelige metode som "send delvis"
     document.getElementById('doneBox').classList.remove('hidden');
     document.querySelector('#stepHost button[onclick="saveProbe()"]').disabled=true;
     const bar=document.getElementById('sendBar');
