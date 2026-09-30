@@ -1,0 +1,247 @@
+<!doctype html>
+<html lang="nb">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Hvor er Lili? – Edels Verden</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{--cream:#F6F1E6;--paper:#FFFEFA;--navy:#1C2C42;--navy-2:#29455F;--ink:#1B2438;--muted:#746F66;--coral:#BE6E56;--coral-soft:#F3DFD6;--rule:#E4DCCB;--green:#E4F0DF;--shadow:0 12px 34px rgba(28,44,66,0.08)}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'Inter',sans-serif;background:radial-gradient(circle at 10% 0%,#FFF9EE 0,transparent 24rem),var(--cream);color:var(--ink);min-height:100vh;-webkit-font-smoothing:antialiased}
+.serif{font-family:'Fraunces',serif}
+main{max-width:680px;margin:auto;padding:1.4rem 1.2rem 6rem}
+.top{display:flex;justify-content:space-between;align-items:center;gap:12px}
+.top strong{font-family:'Fraunces',serif;font-weight:600;font-size:1.2rem}
+.small{font-size:0.82rem;color:var(--muted);margin-top:0.15rem}
+.pill{background:var(--paper);border:1px solid var(--rule);border-radius:999px;padding:0.5rem 0.9rem;font-weight:700;font-size:0.85rem;flex-shrink:0;white-space:nowrap}
+.progress{height:8px;background:var(--rule);border-radius:9px;overflow:hidden;margin-top:0.9rem}
+.bar{height:100%;background:var(--coral);width:8%;transition:width 0.25s ease}
+.card{background:var(--paper);border:1px solid rgba(28,44,66,0.08);border-radius:22px;padding:1.4rem;margin-top:1rem;box-shadow:0 7px 24px rgba(28,44,66,0.045)}
+.step{font-weight:700;font-size:0.7rem;letter-spacing:0.1em;text-transform:uppercase;color:var(--coral)}
+.hero{width:100%;border-radius:16px;margin:0.9rem 0;display:block}
+.story{background:var(--cream);border:1px dashed var(--rule);border-radius:14px;padding:0.85rem 1rem;font-size:0.9rem;color:var(--ink);line-height:1.55;margin-top:0.6rem}
+.q{font-family:'Fraunces',serif;font-size:1.22rem;font-weight:500;line-height:1.34;margin-top:0.6rem;white-space:pre-line}
+.mic{font-size:0.82rem;color:var(--muted);margin-top:0.4rem}
+textarea,input[type=text]{width:100%;font:inherit;font-family:'Inter',sans-serif;border:2px solid var(--rule);border-radius:14px;padding:0.85rem;background:var(--paper);min-height:52px;margin-top:0.9rem;color:var(--ink)}
+textarea{min-height:90px}
+textarea:focus,input:focus{outline:2px solid var(--coral);outline-offset:1px;border-color:var(--coral)}
+.oral{display:flex;align-items:center;gap:0.5rem;margin-top:0.7rem;font-size:0.85rem;color:var(--muted)}
+.oral input{width:auto;margin:0}
+.btns{display:flex;gap:0.6rem;flex-wrap:wrap;margin-top:0.9rem}
+button{border:0;border-radius:999px;padding:0.7rem 1.1rem;font:inherit;font-weight:700;font-size:0.88rem;background:var(--navy);color:#EDE6D6;cursor:pointer}
+button.secondary{background:var(--coral-soft);color:#7A4530}
+button.ghost{background:transparent;color:var(--muted);border:1px solid var(--rule)}
+button:disabled{opacity:0.45;cursor:default}
+.hidden{display:none}
+.recap{background:var(--cream);border:1px dashed var(--rule);border-radius:14px;padding:0.8rem 1rem;font-size:0.88rem;color:var(--muted);line-height:1.5;margin-top:0.6rem}
+.ok{background:var(--green);color:#3E6C4A;padding:0.8rem 1rem;border-radius:14px;margin-top:0.9rem;font-weight:600}
+.send-bar{position:fixed;left:0;right:0;bottom:0;padding:0.8rem 1rem calc(0.8rem + env(safe-area-inset-bottom));background:rgba(28,44,66,0.96);backdrop-filter:blur(10px);display:flex;justify-content:center;z-index:50}
+.send-bar button{background:var(--coral);color:#fff;width:100%;max-width:420px}
+.send-note{font-size:0.72rem;color:#C7D3DE;text-align:center;margin-top:0.4rem;max-width:420px}
+@media(max-width:600px){main{padding:1rem 0.9rem 6.5rem}.card{padding:1.05rem}.q{font-size:1.1rem}}
+</style></head>
+<body><main>
+<div class="top"><div><strong>🐾 Hvor er Lili?</strong><div class="small">En vanlig økt</div></div><div class="pill" id="count">Steg 1</div></div>
+<div class="progress"><div class="bar" id="bar"></div></div>
+
+<div id="stepHost"></div>
+
+</main>
+
+<div class="send-bar hidden" id="sendBar">
+  <div>
+    <button id="sendBarBtn" onclick="sendPartial()">📤 Send det som er gjort til mamma</button>
+    <div class="send-note">Sender det hun har svart så langt, uansett om hun er ferdig eller ikke.</div>
+  </div>
+</div>
+
+<script src="edels-data.js"></script>
+<script>
+if(typeof EdelsData==='undefined'){
+  console.warn('edels-data.js ble ikke funnet – kjører uten lagring.');
+  window.EdelsData={
+    createSession:()=>'offline-'+Date.now(),
+    getSession:()=>null,
+    startTrial:()=>'t-'+Date.now()+'-'+Math.random(),
+    responseStarted:()=>{},
+    saveFirstResponse:()=>{},
+    addSupport:()=>{},
+    setSupportResponse:()=>{},
+    saveGeneralization:()=>{},
+    finishAndSubmit:()=>{}
+  };
+}
+const SESSION_KEY='edels_hvor_er_lili_v1_session';
+let sessionId=localStorage.getItem(SESSION_KEY);
+try{
+  if(!sessionId || !EdelsData.getSession(sessionId) || EdelsData.getSession(sessionId).status==='completed'){
+    sessionId=EdelsData.createSession({title:'Hvor er Lili?',researchGoal:'mixed_review_hypotese_storkne_bergart_gener_mangfold',schoolSubject:'tverrfaglig'});
+    localStorage.setItem(SESSION_KEY,sessionId);
+  }
+}catch(e){
+  console.warn('Kunne ikke starte lagret økt, starter en midlertidig en.',e);
+  sessionId=EdelsData.createSession({title:'Hvor er Lili?',researchGoal:'mixed_review_hypotese_storkne_bergart_gener_mangfold',schoolSubject:'tverrfaglig'});
+}
+
+// ---------- Plan ----------
+// NB: "Danne" og "Mangfold" (generisk) ble testet i går i "Vi lager grupper" —
+// tatt ut herfra med vilje for å ikke gjenta samme spørsmål dagen etter.
+const PLAN=[
+  {id:'tela1a',kind:'probe',title:'Del 1 · Poteavtrykk',img:'img/tela1-hypotese.jpg',
+    target:null,researchGoal:'narrative_hypothesis_open',taskType:'comprehension_probe',
+    story:'Marina finner våte poteavtrykk på gulvet, men hun ser ikke Lili.',
+    question:'Hva tror du har skjedd?'},
+  {id:'tela1b',kind:'probe',title:'Del 1 · Ordet for en god gjetning',img:null,
+    target:'hypotese',researchGoal:'vocabulary_retrieval_review',taskType:'vocabulary_retrieval_probe',
+    question:'Hva kaller vi en forklaring vi tror kan være riktig, men som vi ikke vet sikkert ennå?'},
+  {id:'tela2a',kind:'probe',title:'Del 2 · Sjokoladen',img:'img/tela2-storkne.jpg',
+    target:null,researchGoal:'narrative_observation',taskType:'comprehension_probe',
+    story:'Først er sjokoladen flytende og varm. Etter en stund blir den kald og hard.',
+    question:'Hva skjer med sjokoladen?'},
+  {id:'tela2b',kind:'probe',title:'Del 2 · Ordet for det',img:null,
+    target:'storkne',researchGoal:'vocabulary_retrieval_review',taskType:'vocabulary_retrieval_probe',
+    question:'Hva kaller vi det når noe flytende blir hardt?'},
+  {id:'tela3a',kind:'probe',title:'Del 3 · Magma og lava',img:'img/tela3-bergart.jpg',
+    target:null,researchGoal:'narrative_observation',taskType:'comprehension_probe',
+    story:'Varmt magma kommer opp gjennom en vulkan. Når det kommer ut på overflaten, kaller vi det lava. Etter lang tid blir lavaen kald og hard.',
+    question:'Hva skjer med lavaen til slutt?'},
+  {id:'tela3b',kind:'probe',title:'Del 3 · Den harde steinen',img:null,
+    target:'bergart',researchGoal:'vocabulary_retrieval_review',taskType:'vocabulary_retrieval_probe',
+    question:'Hva kaller vi den harde steinen som lava blir til?'},
+  {id:'tela4a',kind:'probe',title:'Del 4 · Marina og Lili',img:'img/tela4-gener.jpg',
+    target:null,researchGoal:'narrative_observation',taskType:'comprehension_probe',
+    story:'Marina og Lili har noen egenskaper som ligner på hverandre.',
+    question:'Hvordan kan egenskaper bli like hos forskjellige individer?'},
+  {id:'tela4b',kind:'probe',title:'Del 4 · Ordet for det vi arver',img:null,
+    target:'gener',researchGoal:'vocabulary_retrieval_review',taskType:'vocabulary_retrieval_probe',
+    question:'Hvilket ord bruker vi om det som gjør at vi kan arve egenskaper fra foreldrene våre?'},
+  {id:'tela5',kind:'probe',title:'Del 5 · Mange forskjellige dyr',img:'img/tela5-mangfold-organisme.jpg',
+    target:'biologisk_mangfold',researchGoal:'generalization_retention_biological_context',taskType:'inferential_probe',
+    story:'Her er mange forskjellige organismer: planter, sopp, insekter og andre dyr.',
+    question:'Hvorfor kan det være viktig at det finnes mange forskjellige organismer i naturen?'},
+  {id:'tela6a',kind:'probe',title:'Del 6 · Først: si det',img:'img/tela6-fortell.jpg',
+    target:'lili_funnet_beskrivelse',researchGoal:'formulation_oral_first',taskType:'sentence_formulation_oral',
+    question:'Hva har skjedd med Lili? Fortell hele historien med en hel setning.'},
+  {id:'tela6b',kind:'probe',title:'Del 6 · Nå: skriv det',img:'img/tela6-fortell.jpg',
+    target:'lili_funnet_beskrivelse',researchGoal:'formulation_written_after_oral',taskType:'sentence_formulation_written',
+    question:'Tenk på setningen du nettopp sa.\n\nSkriv hele setningen.',recapFrom:'tela6a',noRecapText:true}
+];
+
+let planIdx=0;
+const answers={};
+const trialIds={};
+const startedTrials=new Set();
+const host=document.getElementById('stepHost');
+let questionShownAt=Date.now();
+
+function ensureTrial(step){
+  if(trialIds[step.id]) return trialIds[step.id];
+  trialIds[step.id]=EdelsData.startTrial(sessionId,{
+    target:step.target,researchGoal:step.researchGoal,taskType:step.taskType,modality:'written',
+    condition:'hvor_er_lili',question:step.question,context:step.id
+  });
+  return trialIds[step.id];
+}
+function markStarted(trialId){
+  if(startedTrials.has(trialId)) return;
+  startedTrials.add(trialId);
+  EdelsData.responseStarted(sessionId,trialId);
+}
+function setProgress(){
+  document.getElementById('count').textContent='Steg '+(planIdx+1)+' av '+PLAN.length;
+  document.getElementById('bar').style.width=Math.round(((planIdx+1)/PLAN.length)*100)+'%';
+}
+function speak(t){speechSynthesis.cancel();const u=new SpeechSynthesisUtterance(t.replace(/\n/g,' '));u.lang='nb-NO';speechSynthesis.speak(u)}
+function escAttr(s){return String(s).replace(/&/g,'&amp;').replace(/"/g,'&quot;').replace(/</g,'&lt;').replace(/>/g,'&gt;');}
+
+function updateSendBar(){
+  const bar=document.getElementById('sendBar');
+  if(!bar) return;
+  bar.classList.toggle('hidden', Object.keys(answers).length===0);
+}
+async function sendPartial(){
+  const btn=document.getElementById('sendBarBtn');
+  const original=btn.textContent;
+  btn.disabled=true; btn.textContent='Sender …';
+  const summary=PLAN.filter(s=>answers[s.id]).map(s=>`${s.title}\n${s.question||''}\n→ ${answers[s.id].text}`).join('\n\n');
+  try{
+    const r=await fetch('https://formspree.io/f/mqeolldg',{
+      method:'POST',
+      headers:{'Content-Type':'application/json','Accept':'application/json'},
+      body:JSON.stringify({
+        _subject:'Hvor er Lili? – fremgang underveis',
+        oppgave:'Hvor er Lili?',
+        session_id:sessionId,
+        Tekst_hun_skrev:summary,
+        antall_besvart:Object.keys(answers).length+' av '+PLAN.length,
+        dato:new Date().toLocaleString('no-NO')
+      })
+    });
+    if(!r.ok) throw new Error('HTTP '+r.status);
+    btn.textContent='✓ Sendt!';
+    setTimeout(()=>{btn.textContent=original;btn.disabled=false;},1800);
+  }catch(e){
+    btn.textContent='Kunne ikke sende – prøv igjen';
+    btn.disabled=false;
+  }
+}
+
+function render(){
+  setProgress();
+  const step=PLAN[planIdx];
+  if(!step){ host.innerHTML=''; return; }
+  questionShownAt=Date.now();
+  renderProbe(step);
+}
+
+function renderProbe(step){
+  const recap=(step.recapFrom&&answers[step.recapFrom]&&!step.noRecapText)?
+    `<div class="recap"><strong>Hun sa nettopp:</strong> ${answers[step.recapFrom].text}</div>`:'';
+  const story=step.story?`<div class="story">${step.story}</div>`:'';
+  const isLast=planIdx===PLAN.length-1;
+  host.innerHTML=`
+    <section class="card">
+      <div class="step">${step.title}</div>
+      ${step.img?`<img class="hero" src="${step.img}" alt="Illustrasjon">`:''}
+      ${story}
+      ${recap}
+      <p class="q">${step.question}</p>
+      <div class="mic">🎤 Si svaret høyt hvis du vil, før du skriver.</div>
+      <textarea id="probeInput" placeholder="Skriv svaret her …"></textarea>
+      <label class="oral"><input type="checkbox" id="probeOral"> Hun sa det høyt før hun skrev</label>
+      <div class="btns">
+        <button onclick="saveProbe()">${isLast?'Fullfør økten':'Lagre svaret'}</button>
+        <button class="secondary" onclick="speak(${escAttr(JSON.stringify((step.story?step.story+' ':'')+step.question))})">🔊 Les opp</button>
+      </div>
+      <div id="doneBox" class="hidden">
+        <div class="ok">🌟 Ferdig! Dere fant Lili sammen. Bra jobbet.</div>
+      </div>
+    </section>`;
+  const tid=ensureTrial(step);
+  document.getElementById('probeInput').addEventListener('input',()=>markStarted(tid),{once:true});
+}
+function saveProbe(){
+  const step=PLAN[planIdx];
+  const val=document.getElementById('probeInput').value;
+  if(!val.trim()){alert('Skriv et svar først.');return}
+  const oral=document.getElementById('probeOral').checked;
+  const tid=ensureTrial(step);
+  EdelsData.saveFirstResponse(sessionId,tid,val,{source:'lili_ui',oral,latencyMs:Date.now()-questionShownAt});
+  answers[step.id]={text:val,oral};
+  updateSendBar();
+  const isLast=planIdx===PLAN.length-1;
+  if(isLast){
+    EdelsData.finishAndSubmit(sessionId);
+    document.getElementById('doneBox').classList.remove('hidden');
+    document.querySelector('#stepHost button[onclick="saveProbe()"]').disabled=true;
+    const bar=document.getElementById('sendBar');
+    if(bar) bar.classList.add('hidden');
+    planIdx++; setProgress();
+    return;
+  }
+  planIdx++; render();
+}
+
+render();
+</script></body></html>
