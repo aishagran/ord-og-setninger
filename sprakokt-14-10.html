@@ -1,0 +1,501 @@
+<!doctype html>
+<html lang="nb">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Dagens språkøkt – Edels Verden</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{--cream:#F6F1E6;--paper:#FFFEFA;--navy:#1C2C42;--navy-2:#29455F;--ink:#1B2438;--muted:#746F66;--coral:#BE6E56;--coral-soft:#F3DFD6;--rule:#E4DCCB;--green:#E4F0DF;--shadow:0 12px 34px rgba(28,44,66,0.08)}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'Inter',sans-serif;background:radial-gradient(circle at 10% 0%,#FFF9EE 0,transparent 24rem),var(--cream);color:var(--ink);min-height:100vh;-webkit-font-smoothing:antialiased}
+.serif{font-family:'Fraunces',serif}
+main{max-width:680px;margin:auto;padding:1.4rem 1.2rem 6rem}
+.top{display:flex;justify-content:space-between;align-items:center;gap:12px}
+.top strong{font-family:'Fraunces',serif;font-weight:600;font-size:1.2rem}
+.small{font-size:0.82rem;color:var(--muted);margin-top:0.15rem}
+.pill{background:var(--paper);border:1px solid var(--rule);border-radius:999px;padding:0.5rem 0.9rem;font-weight:700;font-size:0.85rem;flex-shrink:0;white-space:nowrap}
+.progress{height:8px;background:var(--rule);border-radius:9px;overflow:hidden;margin-top:0.9rem}
+.bar{height:100%;background:var(--coral);width:6%;transition:width 0.25s ease}
+.card{background:var(--paper);border:1px solid rgba(28,44,66,0.08);border-radius:22px;padding:1.4rem;margin-top:1rem;box-shadow:0 7px 24px rgba(28,44,66,0.045)}
+.step{font-weight:700;font-size:0.7rem;letter-spacing:0.1em;text-transform:uppercase;color:var(--coral)}
+.hero{width:100%;max-height:420px;object-fit:contain;border-radius:16px;margin:0.9rem 0;display:block;background:var(--cream)}
+.story{background:var(--cream);border:1px dashed var(--rule);border-radius:14px;padding:0.85rem 1rem;font-size:0.9rem;color:var(--ink);line-height:1.55;margin-top:0.6rem;white-space:pre-line}
+.laer{background:var(--green);border:1px solid #CFE4CA;border-radius:14px;padding:0.9rem 1rem;font-size:0.92rem;color:#2F5137;line-height:1.6;margin-top:0.6rem;white-space:pre-line}
+.q{font-family:'Fraunces',serif;font-size:1.22rem;font-weight:500;line-height:1.34;margin-top:0.9rem;white-space:pre-line}
+.mic{font-size:0.82rem;color:var(--muted);margin-top:0.4rem}
+textarea,input[type=text]{width:100%;font:inherit;font-family:'Inter',sans-serif;border:2px solid var(--rule);border-radius:14px;padding:0.85rem;background:var(--paper);min-height:52px;margin-top:0.9rem;color:var(--ink)}
+textarea{min-height:90px}
+textarea:focus,input:focus{outline:2px solid var(--coral);outline-offset:1px;border-color:var(--coral)}
+.oral{display:flex;align-items:center;gap:0.5rem;margin-top:0.7rem;font-size:0.85rem;color:var(--muted)}
+.oral input{width:auto;margin:0}
+.btns{display:flex;gap:0.6rem;flex-wrap:wrap;margin-top:0.9rem}
+button{border:0;border-radius:999px;padding:0.7rem 1.1rem;font:inherit;font-weight:700;font-size:0.88rem;background:var(--navy);color:#EDE6D6;cursor:pointer}
+button.secondary{background:var(--coral-soft);color:#7A4530}
+button.ghost{background:transparent;color:var(--muted);border:1px solid var(--rule)}
+button:disabled{opacity:0.45;cursor:default}
+.hidden{display:none}
+.voksen{background:#F1F4F8;border:1px solid #D5DEE8;border-radius:12px;padding:0.6rem 0.85rem;font-size:0.78rem;color:#4A5A6E;line-height:1.5;margin-top:0.7rem}
+.voksen summary{cursor:pointer;font-size:0.62rem;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;color:#5E6F84}
+.voksen[open] summary{margin-bottom:0.3rem}
+.vpanel{background:var(--paper);border:1px solid var(--rule);border-radius:16px;padding:1rem;margin-top:1rem}
+.vpanel h3{font-family:'Fraunces',serif;font-size:1.05rem;font-weight:600;margin-bottom:0.5rem}
+.vpanel label{display:flex;align-items:flex-start;gap:0.55rem;font-size:0.88rem;line-height:1.4;margin-top:0.45rem}
+.vpanel label input{margin-top:0.2rem}
+.recap{background:var(--cream);border:1px dashed var(--rule);border-radius:14px;padding:0.8rem 1rem;font-size:0.88rem;color:var(--muted);line-height:1.5;margin-top:0.6rem}
+.hint{background:#FBF3EC;border:1px solid var(--coral-soft);border-radius:14px;padding:0.8rem 1rem;font-size:0.9rem;color:#7A4530;line-height:1.5;margin-top:0.9rem}
+.ok{background:var(--green);color:#3E6C4A;padding:0.8rem 1rem;border-radius:14px;margin-top:0.9rem;font-weight:600}
+.send-bar{position:fixed;left:0;right:0;bottom:0;padding:0.8rem 1rem calc(0.8rem + env(safe-area-inset-bottom));background:rgba(28,44,66,0.96);backdrop-filter:blur(10px);display:flex;justify-content:center;z-index:50}
+.send-bar button{background:var(--coral);color:#fff;width:100%;max-width:420px}
+.send-note{font-size:0.72rem;color:#C7D3DE;text-align:center;margin-top:0.4rem;max-width:420px}
+@media(max-width:600px){main{padding:1rem 0.9rem 6.5rem}.card{padding:1.05rem}.q{font-size:1.1rem}}
+</style></head>
+<body><main>
+<div class="top"><div><strong>🌿 Dagens språkøkt 14.10.2026</strong><div class="small">Naturfag og hverdagsliv · 15–20 min</div></div><div class="pill" id="count">Steg 1</div></div>
+<div class="progress"><div class="bar" id="bar"></div></div>
+
+<div class="small" id="modeBar" style="margin:0.6rem 0;display:flex;gap:0.5rem;align-items:center;flex-wrap:wrap">Utvalg: <button class="secondary" id="mAnb" onclick="setMode('kjerne')">Kjerne (6)</button><button class="secondary" id="mUtv" onclick="setMode('utvidet')">Kjerne + 4, 10, 11 (9)</button><button class="secondary" id="mAlle" onclick="setMode('alle')">Alle (12)</button></div>
+<div id="stepHost"></div>
+
+</main>
+
+<div class="send-bar hidden" id="sendBar">
+  <div>
+    <button id="sendBarBtn" onclick="sendPartial()">📤 Send det som er gjort til mamma</button>
+    <div class="send-note">Sender det hun har svart så langt, uansett om hun er ferdig eller ikke.</div>
+  </div>
+</div>
+
+<script src="edels-data.js"></script>
+<script>
+if(typeof EdelsData==='undefined'){
+  console.warn('edels-data.js ble ikke funnet – kjører uten lagring.');
+  window.EdelsData={
+    createSession:()=>'offline-'+Date.now(),
+    getSession:()=>null,
+    startTrial:()=>'t-'+Date.now()+'-'+Math.random(),
+    responseStarted:()=>{},
+    saveFirstResponse:()=>{},
+    addSupport:()=>{},
+    setSupportResponse:()=>{},
+    saveGeneralization:()=>{},
+    finishAndSubmit:()=>{},
+    completeSession:()=>{}
+  };
+}
+const SESSION_KEY='edels_natur_hverdag_2026_10_14_v1_session';
+let sessionId=localStorage.getItem(SESSION_KEY);
+try{
+  if(!sessionId || !EdelsData.getSession(sessionId) || EdelsData.getSession(sessionId).status==='completed'){
+    sessionId=EdelsData.createSession({title:'Dagens språkøkt 14.10.2026',researchGoal:'transfer_nature_to_everyday_causal_language',schoolSubject:'naturfag'});
+    localStorage.setItem(SESSION_KEY,sessionId);
+  }
+}catch(e){
+  console.warn('Kunne ikke starte lagret økt, starter en midlertidig en.',e);
+  sessionId=EdelsData.createSession({title:'Dagens språkøkt 14.10.2026',researchGoal:'transfer_nature_to_everyday_causal_language',schoolSubject:'naturfag'});
+}
+
+// ---------- Plan ----------
+// 14. oktober: 12 oppgaver. Kjerne: 1–3 og 7–9. Utvidet: + 4, 10, 11. Alle: 1–12.
+// Første svar lagres alltid før hjelp. Én gradert pekepinn om gangen, deretter nytt forsøk uten pekepinn.
+const H=(level,text,explicit)=>({level,text,explicit:!!explicit});
+function item(n,del,title,o){
+  const base={kind:'support_probe',num:n,story:o.story,taskType:o.type||'inferential_probe',prefix:o.prefix};
+  const out=[Object.assign({},base,{id:'q'+n,title:'Del '+del+' · '+n+'. '+title,target:o.target,researchGoal:o.goal,question:o.q,hints:o.h,adultNote:o.note})];
+  if(o.fq) out.push(Object.assign({},base,{id:'q'+n+'b',title:'Del '+del+' · '+n+'. '+title+' – oppfølging',target:o.target+'_oppfolging',researchGoal:o.goal+'_followup',question:o.fq,hints:o.fh,adultNote:o.fnote}));
+  return out;
+}
+const ALL=[].concat(
+ item(1,1,'Naturen',{target:'bevare_forklaring',goal:'retention_bevare_explanation',type:'concept_explanation_probe',q:'Hva betyr det å bevare naturen? Forklar med dine egne ord.',h:[H(2,'Tenk på hva vi gjør med naturen slik at den ikke blir ødelagt.'),H(3,'Det handler om å passe på naturen. Hva gjør vi da?')],note:'Godta en riktig forklaring uten ordet «bevare». Registrer begrepsforståelse og formulering hver for seg.'}),
+ item(2,1,'Finn ordet',{target:'utdodd_utryddet',goal:'retention_utdodd_retrieval',type:'vocabulary_retrieval_probe',q:'Hva kaller vi det når en dyreart ikke finnes lenger noe sted i verden?',h:[H(2,'Tenk på dodoen eller andre dyr som er borte for alltid.'),H(6,'Ordet begynner med «ut-» …'),H(7,'Ordet er: utdødd.',1)],note:'Godta utdødd eller utryddet. Ikke si ordet før første svar.'}),
+ item(3,1,'Forskeren',{target:'hypotese',goal:'retention_hypotese_new_context',type:'vocabulary_retrieval_probe',story:'En forsker tror at planter vokser raskere i sollys enn i mørket.',q:'Hva kaller vi en slik idé som forskeren kan undersøke?',h:[H(2,'Tenk på noe forskeren tror, men ennå ikke har sjekket.'),H(5,'Er det «bevis», «konklusjon» eller «hypotese»?'),H(6,'Ordet begynner med «hypo-» …'),H(7,'Ordet er: hypotese.',1)],note:'Ikke si ordet før første svar.'}),
+ item(4,2,'Bier og blomster',{target:'konsekvens_faa_bier_hage',goal:'retention_species_relation_new_context',story:'En hage har mange blomster, men nesten ingen bier.',q:'Hva kan skje med plantene? Forklar hvorfor.',h:[H(2,'Tenk på hva bien gjør når den besøker blomstene.'),H(3,'Tenk på pollen og frø.'),H(6,'Plantene kan … fordi …')],note:'Ikke gi «fordi» før første svar.'}),
+ item(5,2,'Dyrene i skogen',{target:'konsekvens_hogst_dyr',goal:'transfer_habitat_loss_and_alternatives',story:'Noen mennesker vil hogge ned mange trær for å bygge nye hus.',q:'Hva kan skje med dyrene som bor der?',h:[H(2,'Tenk på hvor dyrene bor og hvor de finner mat.'),H(6,'Dyrene kan … fordi …')],fq:'Hva kunne menneskene gjort for å ta hensyn til dyrene?',fh:[H(2,'Tenk på hva menneskene kan gjøre for å skade dyrene mindre.'),H(5,'Kan de hogge færre trær, bygge et annet sted eller la en del av skogen stå?')],fnote:'Registrer om hun foreslår en løsning, og om forslaget henger sammen med dyrenes behov.'}),
+ item(6,2,'Mangfold i naturen',{target:'biologisk_mangfold_funksjon',goal:'retention_biodiversity_function',story:'I en innsjø finnes det fisk, frosker, insekter og forskjellige planter.',q:'Hvorfor er det viktig at det finnes mange forskjellige arter?',h:[H(2,'Tenk på hvordan fisk, frosker, insekter og planter kan trenge hverandre.'),H(6,'Det er viktig fordi …')]}),
+ item(7,3,'Middag hjemme',{target:'problemlosning_pannekaker',goal:'everyday_problem_solving_with_justification',type:'problem_solving_probe',story:'Du skal lage pannekaker. Du følger oppskriften, men røren blir altfor tykk.',q:'Hva kan du gjøre? Forklar hvorfor du velger den løsningen.',h:[H(2,'Tenk på hva som gjør røren tykk, og hva du kan gjøre med det.'),H(3,'Hva kan du ha oppi for at røren skal bli tynnere?'),H(6,'Jeg kan … fordi …')]}),
+ item(8,3,'Temperatur',{target:'planlegging_klaer_temperatur',goal:'everyday_planning_with_explanation',type:'problem_solving_probe',story:'Du skal gå til skolen. Om morgenen er det 3 grader, men om ettermiddagen blir det 15 grader.',q:'Hvordan kan du planlegge hvilke klær du skal ha på deg? Forklar.',h:[H(2,'Tenk på hvordan det er ute om morgenen og om ettermiddagen.'),H(3,'Tenk på klær du kan ta av eller ha på i flere lag.'),H(6,'Jeg kan … fordi …')]}),
+ item(9,3,'En vanskelig situasjon',{target:'problemlosning_glemt_mobil',goal:'everyday_problem_solving_social',type:'problem_solving_probe',story:'Du har avtalt å møte en venn etter skolen, men du oppdager at du har glemt mobilen hjemme.',q:'Hva kan du gjøre for å løse problemet?',h:[H(2,'Tenk på hvordan du kan finne eller nå vennen din uten mobilen.'),H(3,'Hvem eller hva kan hjelpe deg?')]}),
+ item(10,4,'Fordi',{target:'arsaksetning_passe_pa_naturen',goal:'causal_sentence_completion_locked_prefix',type:'sentence_formulation',q:'Skriv resten av setningen.',prefix:'Vi må passe på naturen fordi',h:[H(2,'Tenk på hva dyr og mennesker får fra naturen.'),H(3,'Hva skjer med dyrene og plantene hvis vi ødelegger naturen?')],note:'Begynnelsen av setningen er låst. Hun skriver bare resten, slik at hun ikke skriver begynnelsen på nytt.'}),
+ item(11,4,'Først – etterpå – til slutt',{target:'sekvens_frokost',goal:'sequence_retell_with_connectors',type:'sequence_formulation',q:'Fortell hvordan du lager deg frokost. Bruk ordene «først», «etterpå» og «til slutt».',h:[H(6,'Begynn slik: Først …')]}),
+ item(12,4,'Tenk selv',{target:'handling_med_begrunnelse_soppel',goal:'transfer_action_with_causal_justification',type:'problem_solving_probe',story:'Edel ser at noen har kastet søppel ved en innsjø. Hun vil gjøre noe med problemet.',q:'Hva bør Edel gjøre? Hvorfor?',h:[H(2,'Tenk på hva Edel kan gjøre med søpla, og hvem hun kan si fra til.'),H(6,'Edel bør … fordi …')]})
+);
+const MODES={kjerne:[1,2,3,7,8,9],utvidet:[1,2,3,4,7,8,9,10,11],alle:[1,2,3,4,5,6,7,8,9,10,11,12]};
+let planMode='kjerne';
+let PLAN=ALL.filter(s=>MODES.kjerne.includes(s.num));
+function setMode(m){
+  if(Object.keys(answers).length) return;
+  planMode=m; planIdx=0;
+  PLAN=ALL.filter(s=>MODES[m].includes(s.num));
+  render();
+}
+function withPrefix(step,v){ return step.prefix?(step.prefix+' '+v.trim()):v; }
+function prefixHtml(step){ return step.prefix?`<div class="story"><strong>${step.prefix} …</strong></div>`:''; }
+
+
+let planIdx=0;
+const answers={};
+const trialIds={};
+const startedTrials=new Set();
+const hintState={}; // per support_probe step: {hintIdx, baselineSaved}
+const host=document.getElementById('stepHost');
+let questionShownAt=Date.now();
+
+function ensureTrial(step){
+  if(trialIds[step.id]) return trialIds[step.id];
+  trialIds[step.id]=EdelsData.startTrial(sessionId,{
+    target:step.target,researchGoal:step.researchGoal,taskType:step.taskType,modality:'written',
+    condition:'natur_hverdag_2026_10_14',question:step.question,context:step.id
+  });
+  return trialIds[step.id];
+}
+function markStarted(trialId){
+  if(startedTrials.has(trialId)) return;
+  startedTrials.add(trialId);
+  EdelsData.responseStarted(sessionId,trialId);
+}
+function setProgress(){
+  const mb=document.getElementById('modeBar'); if(mb){mb.style.display=Object.keys(answers).length?'none':'flex';}
+  const mm={kjerne:'mAnb',utvidet:'mUtv',alle:'mAlle'};for(const k in mm){const e=document.getElementById(mm[k]);if(e)e.style.fontWeight=planMode===k?'700':'400';}
+  document.getElementById('count').textContent='Steg '+(planIdx+1)+' av '+PLAN.length;
+  document.getElementById('bar').style.width=Math.round(((planIdx+1)/PLAN.length)*100)+'%';
+}
+function speak(t){speechSynthesis.cancel();const u=new SpeechSynthesisUtterance(t.replace(/\n/g,' '));u.lang='nb-NO';speechSynthesis.speak(u)}
+function escAttr(s){return String(s).replace(/&/g,'&amp;').replace(/"/g,'&quot;').replace(/</g,'&lt;').replace(/>/g,'&gt;');}
+
+function updateSendBar(){
+  const bar=document.getElementById('sendBar');
+  if(!bar) return;
+  bar.classList.toggle('hidden', Object.keys(answers).length===0);
+}
+function summaryText(){
+  return PLAN.filter(s=>answers[s.id]||skipped[s.id]).map(s=>{
+    if(skipped[s.id]) return `${s.title}\n→ ${s.skipNote||'undervisning hoppet over (hun forklarte det selv)'}`;
+    const base=answers[s.id+'__baseline'];
+    if(base){
+      const hs=hintState[s.id];
+      let t=`${s.title}\n${s.question||''}\n→ Første svar: ${base.text}`;
+      if(hs&&hs.hintIdx>=0){
+        const h=s.hints[hs.hintIdx];
+        t+=`\n→ Pekepinn (nivå ${h.level||hs.hintIdx+1}): ${h.text}`;
+        if(answers[s.id]&&answers[s.id].text!==base.text) t+=`\n→ Etter pekepinn: ${answers[s.id].text}`;
+        if(answers[s.id+'__retest']) t+=`\n→ Uten pekepinn (nytt forsøk): ${answers[s.id+'__retest'].text}`;
+      }
+      return t;
+    }
+    return `${s.title}\n${s.question||''}\n→ ${answers[s.id].text}`;
+  }).join('\n\n');
+}
+async function sendPartial(){
+  const btn=document.getElementById('sendBarBtn');
+  const original=btn.textContent;
+  btn.disabled=true; btn.textContent='Sender …';
+  try{
+    const r=await fetch('https://formspree.io/f/mqeolldg',{
+      method:'POST',
+      headers:{'Content-Type':'application/json','Accept':'application/json'},
+      body:JSON.stringify({
+        _subject:'Dagens språkøkt 14.10.2026 – fremgang underveis',
+        oppgave:'Dagens språkøkt 14.10.2026',
+        session_id:sessionId,
+        Tekst_hun_skrev:summaryText(),
+        antall_besvart:PLAN.filter(s=>answers[s.id]).length+' av '+PLAN.filter(s=>s.kind!=='display').length,
+        dato:new Date().toLocaleString('no-NO')
+      }),
+      keepalive:true
+    });
+    if(!r.ok) throw new Error('HTTP '+r.status);
+    btn.textContent='✓ Sendt!';
+    setTimeout(()=>{btn.textContent=original;btn.disabled=false;},1800);
+  }catch(e){
+    btn.textContent='Kunne ikke sende – prøv igjen';
+    btn.disabled=false;
+  }
+}
+// Samme pålitelige, direkte metode som sendPartial() – ikke via EdelsData sin kø.
+async function sendFinal(){
+  const statusEl=document.getElementById('sendStatus');
+  if(statusEl) statusEl.textContent='Sender til mamma …';
+  try{
+    const r=await fetch('https://formspree.io/f/mqeolldg',{
+      method:'POST',
+      headers:{'Content-Type':'application/json','Accept':'application/json'},
+      body:JSON.stringify({
+        _subject:'Dagens språkøkt 14.10.2026 – fullført økt',
+        oppgave:'Dagens språkøkt 14.10.2026',
+        session_id:sessionId,
+        Tekst_hun_skrev:summaryText(),
+        antall_besvart:PLAN.filter(s=>answers[s.id]).length+' av '+PLAN.filter(s=>s.kind!=='display').length,
+        status:'fullført',
+        dato:new Date().toLocaleString('no-NO')
+      }),
+      keepalive:true
+    });
+    if(!r.ok) throw new Error('HTTP '+r.status);
+    if(statusEl) statusEl.textContent='✓ Sendt til mamma';
+  }catch(e){
+    if(statusEl){
+      statusEl.textContent='Kunne ikke sende – trykk her for å prøve igjen';
+      statusEl.style.cursor='pointer';
+      statusEl.onclick=()=>sendFinal();
+    }
+  }
+}
+
+function render(){
+  setProgress();
+  const step=PLAN[planIdx];
+  if(!step){ host.innerHTML=''; return; }
+  questionShownAt=Date.now();
+  if(step.kind==='display') renderDisplay(step);
+  else if(step.kind==='support_probe') renderSupportProbe(step);
+  else renderProbe(step);
+}
+
+// ---------- Display (undervisning, ingen registrering) ----------
+function renderDisplay(step){
+  host.innerHTML=`
+    <section class="card">
+      <div class="step">${step.title}</div>
+      ${step.img?`<img class="hero" src="${step.img}" alt="Illustrasjon">`:''}
+      <div class="laer">${step.story}</div>
+      <div class="btns">
+        <button onclick="advanceDisplay()">Neste</button>
+        <button class="secondary" onclick="speak(${escAttr(JSON.stringify(step.story))})">🔊 Les opp</button>
+        ${step.skippable?`<button class="ghost" onclick="skipDisplay()">${step.skipLabel||'Hun forklarte det selv – hopp over'}</button>`:''}
+      </div>
+    </section>`;
+}
+function advanceDisplay(){ planIdx++; render(); }
+// Støtte som ble hoppet over registreres i oppsummeringen (viktig for voksenpanelet).
+const skipped={};
+function skipDisplay(){ skipped[PLAN[planIdx].id]=true; planIdx++; render(); }
+
+// ---------- Vanlig probe (åpent spørsmål) ----------
+function renderProbe(step){
+  const recap=(step.recapFrom&&answers[step.recapFrom]&&!step.noRecapText)?
+    `<div class="recap"><strong>Hun sa nettopp:</strong> ${answers[step.recapFrom].text}</div>`:'';
+  const story=step.story?`<div class="story">${step.story}</div>`:'';
+  const isLast=planIdx===PLAN.length-1;
+  host.innerHTML=`
+    <section class="card">
+      <div class="step">${step.title}</div>
+      ${step.img?`<img class="hero" src="${step.img}" alt="Illustrasjon">`:''}
+      ${story}
+      ${recap}
+      <p class="q">${step.question}</p>
+      ${step.adultNote?`<details class="voksen"><summary>Til voksen</summary>${step.adultNote}</details>`:''}
+      <div class="mic">🎤 Hun kan svare muntlig også – skriv det hun sier.</div>
+      <textarea id="probeInput" placeholder="Skriv svaret her …"></textarea>
+      <label class="oral"><input type="checkbox" id="probeOral"> Hun sa det høyt før hun skrev</label>
+      <div class="btns">
+        <button onclick="saveProbe()">${isLast?'Fullfør økten':'Lagre svaret'}</button>
+        ${step.story?`<button class="secondary" onclick="speak(${escAttr(JSON.stringify(step.story+' '+step.question))})">🔊 Les opp</button>`:''}
+      </div>
+      <div id="doneBox" class="hidden">
+        <div class="ok">🌟 Ferdig! Bra jobbet i dag.</div>
+        <div id="sendStatus" class="small" style="margin-top:0.5rem;color:var(--muted)"></div>
+        ${isLast?ADULT_PANEL_HTML:''}
+      </div>
+    </section>`;
+  const tid=ensureTrial(step);
+  document.getElementById('probeInput').addEventListener('input',()=>markStarted(tid),{once:true});
+}
+function saveProbe(){
+  const step=PLAN[planIdx];
+  const val=document.getElementById('probeInput').value;
+  if(!val.trim()){alert('Skriv et svar først.');return}
+  const oral=document.getElementById('probeOral').checked;
+  const tid=ensureTrial(step);
+  EdelsData.saveFirstResponse(sessionId,tid,val,{source:'natur_hverdag_ui',oral,latencyMs:Date.now()-questionShownAt});
+  answers[step.id]={text:val,oral};
+  updateSendBar();
+  const isLast=planIdx===PLAN.length-1;
+  if(isLast){
+    EdelsData.completeSession(sessionId);
+    sendFinal();
+    document.getElementById('doneBox').classList.remove('hidden');
+    document.querySelector('#stepHost button[onclick="saveProbe()"]').disabled=true;
+    const bar=document.getElementById('sendBar');
+    if(bar) bar.classList.add('hidden');
+    planIdx++; setProgress();
+    return;
+  }
+  planIdx++; render();
+}
+
+// ---------- Support probe (gradert hjelp, bare hvis nødvendig) ----------
+function startRetest(){ const st=hintState[PLAN[planIdx].id]; st.retest='asking'; renderSupportProbe(PLAN[planIdx]); }
+function saveRetest(){
+  const step=PLAN[planIdx]; const raw=document.getElementById('retestInput').value;
+  if(!raw.trim()){alert('Skriv et svar først.');return}
+  const val=withPrefix(step,raw);
+  EdelsData.saveSupportRemoved(sessionId,ensureTrial(step),val);
+  answers[step.id+'__retest']={text:val};
+  hintState[step.id].retest='done';
+  updateSendBar();
+  advanceSupportProbe();
+}
+function renderSupportProbe(step){
+  const st=hintState[step.id] || (hintState[step.id]={baselineSaved:false,hintIdx:-1});
+  if(st.retest==='asking'){
+    host.innerHTML=`<section class="card"><div class="step">${step.title} · nytt forsøk uten pekepinn</div>
+      ${step.story?`<div class="story">${step.story}</div>`:''}
+      <p class="q">${step.question}</p>
+      <div class="mic">Pekepinnen er fjernet. Hun forklarer på nytt med egne ord.</div>
+      ${prefixHtml(step)}<textarea id="retestInput" placeholder="${step.prefix?'Skriv resten her …':'Skriv svaret her …'}"></textarea>
+      <div class="btns"><button onclick="saveRetest()">Lagre svar uten pekepinn</button><button class="secondary" onclick="advanceSupportProbe()">Hopp over</button></div></section>`;
+    return;
+  }
+  const story=step.story?`<div class="story">${step.story}</div>`:'';
+  let hintBlock='';
+  if(st.hintIdx>=0){
+    const h=step.hints[st.hintIdx];
+    hintBlock=`<div class="hint"><strong>${h.explicit?'Modell (nivå 7 – ikke en test):':'Pekepinn '+(st.hintIdx+1)+':'}</strong> ${h.text}</div>`;
+    if(!h.explicit){
+      hintBlock+=`<textarea id="hintInput" placeholder="Nytt svar, hvis hun vil prøve igjen …"></textarea>`;
+    }
+  }
+  const baselineShown = st.baselineSaved ? `<div class="recap"><strong>Hun svarte først:</strong> ${answers[step.id+'__baseline']?.text||''}</div>` : '';
+
+  let actionButtons='';
+  if(!st.baselineSaved){
+    actionButtons=`<div class="btns">
+      <button onclick="saveSupportBaseline()">Lagre svaret</button>
+      <button class="secondary" onclick="speak(${escAttr(JSON.stringify((step.story||'')+' '+step.question))})">🔊 Les opp</button>
+    </div>`;
+  } else if(st.hintIdx===-1){
+    actionButtons=`<div class="btns">
+      <button onclick="advanceSupportProbe()">Hun klarte det – gå videre</button>
+      <button class="secondary" onclick="giveNextHint()">Hun trenger en pekepinn</button>
+    </div>`;
+  } else {
+    const h=step.hints[st.hintIdx];
+    if(h.explicit){
+      actionButtons=`<div class="btns"><button onclick="startRetest()">Prøv igjen uten pekepinn</button><button class="secondary" onclick="advanceSupportProbe()">Gå videre</button></div>`;
+    } else {
+      const hasNext=st.hintIdx+1<step.hints.length;
+      actionButtons=`<div class="btns">
+        <button onclick="saveSupportResponse()">Lagre nytt svar</button>
+        <button class="secondary" onclick="startRetest()">Prøv igjen uten pekepinn</button>
+        ${hasNext?`<button class="secondary" onclick="giveNextHint()">Enda en pekepinn</button>`
+                 :`<button class="secondary" onclick="advanceSupportProbe()">Gå videre</button>`}
+      </div>`;
+    }
+  }
+
+  host.innerHTML=`
+    <section class="card">
+      <div class="step">${step.title}</div>
+      ${(step.img&&(!step.imgAfterBaseline||st.baselineSaved))?`<img class="hero" src="${step.img}" alt="Illustrasjon">`:''}
+      ${story}
+      <p class="q">${step.question}</p>
+      ${step.adultNote?`<details class="voksen"><summary>Til voksen</summary>${step.adultNote}</details>`:''}
+      ${!st.baselineSaved?`
+        <div class="mic">🎤 Hun kan svare muntlig også – skriv det hun sier.</div>
+        ${prefixHtml(step)}<textarea id="probeInput" placeholder="${step.prefix?'Skriv resten her …':'Skriv svaret her …'}"></textarea>
+        <label class="oral"><input type="checkbox" id="probeOral"> Hun sa det høyt før hun skrev</label>
+      `:baselineShown+hintBlock}
+      ${actionButtons}
+    </section>`;
+  const tid=ensureTrial(step);
+  const inputEl=document.getElementById('probeInput');
+  if(inputEl) inputEl.addEventListener('input',()=>markStarted(tid),{once:true});
+}
+function saveSupportBaseline(){
+  const step=PLAN[planIdx];
+  const raw=document.getElementById('probeInput').value;
+  if(!raw.trim()){alert('Skriv et svar først.');return}
+  const val=withPrefix(step,raw);
+  const oral=document.getElementById('probeOral').checked;
+  const tid=ensureTrial(step);
+  EdelsData.saveFirstResponse(sessionId,tid,val,{source:'natur_hverdag_ui',oral,latencyMs:Date.now()-questionShownAt});
+  answers[step.id+'__baseline']={text:val,oral};
+  answers[step.id]={text:val,oral}; // beste svar så langt, for delvis-sending
+  updateSendBar();
+  hintState[step.id].baselineSaved=true;
+  renderSupportProbe(step);
+}
+function giveNextHint(){
+  const step=PLAN[planIdx];
+  const st=hintState[step.id];
+  const nextIdx=st.hintIdx+1;
+  if(nextIdx>=step.hints.length) return;
+  const h=step.hints[nextIdx];
+  EdelsData.addSupport(sessionId,ensureTrial(step),h.level||nextIdx+1,h.explicit?'explicit_model':'hint',h.text);
+  st.hintIdx=nextIdx;
+  renderSupportProbe(step);
+}
+function saveSupportResponse(){
+  const step=PLAN[planIdx];
+  const st=hintState[step.id];
+  const rawH=document.getElementById('hintInput').value;
+  if(!rawH.trim()){alert('Skriv et svar først.');return}
+  const val=withPrefix(step,rawH);
+  EdelsData.setSupportResponse(sessionId,ensureTrial(step),st.hintIdx,val);
+  answers[step.id]={text:val,oral:false};
+  updateSendBar();
+  renderSupportProbe(step);
+}
+function advanceSupportProbe(){
+  if(planIdx===PLAN.length-1){
+    EdelsData.completeSession(sessionId);
+    host.innerHTML=`<section class="card"><div class="step">Ferdig</div>
+      <div class="ok">🌟 Ferdig! Bra jobbet i dag.</div>
+      <div id="sendStatus" class="small" style="margin-top:0.5rem;color:var(--muted)"></div>
+      ${ADULT_PANEL_HTML}</section>`;
+    sendFinal();
+    const bar=document.getElementById('sendBar'); if(bar) bar.classList.add('hidden');
+    planIdx++; setProgress();
+    return;
+  }
+  planIdx++; render();
+}
+
+// ---------- Registro adulto (fredag) ----------
+const ADULT_ITEMS=[
+  'Recuperou bevare/utdødd/hypotese sem pista (1–3)',
+  'Explicou causa e consequência na natureza (4, 5, 6)',
+  'Propôs solução plausível a problema cotidiano (7, 8, 9)',
+  'Justificou a escolha com fordi/porque (7, 8, 12)',
+  'Completou fordi e sequência (10, 11)',
+  'Compreensão preservada apesar de frase imperfeita',
+];
+const ADULT_PANEL_HTML=`
+  <div class="vpanel">
+    <h3>Registro adulto — dagens økt</h3>
+    ${ADULT_ITEMS.map((t,i)=>`<label><input type="checkbox" class="adultChk" data-i="${i}"> ${t}</label>`).join('')}
+    <textarea id="adultNotes" placeholder="Observações …"></textarea>
+    <div class="btns"><button onclick="copyAdult()">Kopier svar og observasjoner</button></div>
+    <div id="copyStatus" class="small" style="margin-top:0.4rem"></div>
+  </div>`;
+const REC={};
+function ukeText(){
+  return PLAN.map(st=>{
+    const hs=hintState[st.id];
+    const first=answers[st.id+'__baseline']?answers[st.id+'__baseline'].text:(answers[st.id]?answers[st.id].text:null);
+    let pista, after;
+    if(st.kind==='support_probe'){
+      pista=(hs&&hs.hintIdx>=0)?('nível '+st.hints[hs.hintIdx].level+' – '+st.hints[hs.hintIdx].text):'sem pista';
+      after=(hs&&hs.hintIdx>=0&&answers[st.id]&&answers[st.id].text!==first)?('etter pista: '+answers[st.id].text):'[sem retirada]';
+      if(answers[st.id+'__retest']) after=(after==='[sem retirada]'?'':after+' | ')+'retirada: '+answers[st.id+'__retest'].text;
+    } else { pista='sem pista'; after='—'; }
+    return (REC[st.id]||st.title)+'\nPrimeira resposta: '+(first||'[não registrada]')+'\nPista mínima: '+pista+'\nApós pista/retirada: '+after;
+  }).join('\n\n');
+}
+function buildAdultText(){
+  const checks=[...document.querySelectorAll('.adultChk')].map(c=>`[${c.checked?'x':' '}] ${ADULT_ITEMS[+c.dataset.i]}`).join('\n');
+  const notes=(document.getElementById('adultNotes')||{value:''}).value;
+  return 'EDELS VERDEN — DAGENS SPRÅKØKT 14.10.2026\n\n'+ukeText()+'\n\nREGISTRO ADULTO\n'+checks+'\n\nObservações:\n'+notes;
+}
+async function copyAdult(){
+  const text=buildAdultText(), st=document.getElementById('copyStatus');
+  try{ await navigator.clipboard.writeText(text); st.textContent='✓ Kopiert'; }
+  catch(e){
+    const ta=document.createElement('textarea'); ta.value=text; document.body.appendChild(ta); ta.select();
+    try{ document.execCommand('copy'); st.textContent='✓ Kopiert'; }catch(e2){ st.textContent='Kunne ikke kopiere – merk teksten selv'; }
+    ta.remove();
+  }
+}
+
+render();
+</script></body></html>

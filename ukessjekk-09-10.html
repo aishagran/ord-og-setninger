@@ -95,6 +95,8 @@ try{
 }
 
 // ---------- Pekepinn (Ukessjekk: bare ÉN minimal pekepinn per oppgave) ----------
+function withPrefix(step,v){ return step.prefix?(step.prefix+' '+v.trim()):v; }
+function prefixHtml(step){ return step.prefix?`<div class="story"><strong>${step.prefix} …</strong></div>`:''; }
 const H=(level,text,explicit)=>({level,text,explicit:!!explicit});
 const PLAN=[
   {id:'u1a',kind:'support_probe',title:'1A · Hypotese',
@@ -186,6 +188,18 @@ function updateSendBar(){
 function summaryText(){
   return PLAN.filter(s=>answers[s.id]||skipped[s.id]).map(s=>{
     if(skipped[s.id]) return `${s.title}\n→ ${s.skipNote||'undervisning hoppet over (hun forklarte det selv)'}`;
+    const base=answers[s.id+'__baseline'];
+    if(base){
+      const hs=hintState[s.id];
+      let t=`${s.title}\n${s.question||''}\n→ Første svar: ${base.text}`;
+      if(hs&&hs.hintIdx>=0){
+        const h=s.hints[hs.hintIdx];
+        t+=`\n→ Pekepinn (nivå ${h.level||hs.hintIdx+1}): ${h.text}`;
+        if(answers[s.id]&&answers[s.id].text!==base.text) t+=`\n→ Etter pekepinn: ${answers[s.id].text}`;
+        if(answers[s.id+'__retest']) t+=`\n→ Uten pekepinn (nytt forsøk): ${answers[s.id+'__retest'].text}`;
+      }
+      return t;
+    }
     return `${s.title}\n${s.question||''}\n→ ${answers[s.id].text}`;
   }).join('\n\n');
 }
@@ -328,8 +342,28 @@ function saveProbe(){
 }
 
 // ---------- Support probe (gradert hjelp, bare hvis nødvendig) ----------
+function startRetest(){ const st=hintState[PLAN[planIdx].id]; st.retest='asking'; renderSupportProbe(PLAN[planIdx]); }
+function saveRetest(){
+  const step=PLAN[planIdx]; const raw=document.getElementById('retestInput').value;
+  if(!raw.trim()){alert('Skriv et svar først.');return}
+  const val=withPrefix(step,raw);
+  EdelsData.saveSupportRemoved(sessionId,ensureTrial(step),val);
+  answers[step.id+'__retest']={text:val};
+  hintState[step.id].retest='done';
+  updateSendBar();
+  advanceSupportProbe();
+}
 function renderSupportProbe(step){
   const st=hintState[step.id] || (hintState[step.id]={baselineSaved:false,hintIdx:-1});
+  if(st.retest==='asking'){
+    host.innerHTML=`<section class="card"><div class="step">${step.title} · nytt forsøk uten pekepinn</div>
+      ${step.story?`<div class="story">${step.story}</div>`:''}
+      <p class="q">${step.question}</p>
+      <div class="mic">Pekepinnen er fjernet. Hun forklarer på nytt med egne ord.</div>
+      <textarea id="retestInput" placeholder="Skriv svaret her …"></textarea>
+      <div class="btns"><button onclick="saveRetest()">Lagre svar uten pekepinn</button><button class="secondary" onclick="advanceSupportProbe()">Hopp over</button></div></section>`;
+    return;
+  }
   const story=step.story?`<div class="story">${step.story}</div>`:'';
   let hintBlock='';
   if(st.hintIdx>=0){
@@ -355,11 +389,12 @@ function renderSupportProbe(step){
   } else {
     const h=step.hints[st.hintIdx];
     if(h.explicit){
-      actionButtons=`<div class="btns"><button onclick="advanceSupportProbe()">Gå videre</button></div>`;
+      actionButtons=`<div class="btns"><button onclick="startRetest()">Prøv igjen uten pekepinn</button><button class="secondary" onclick="advanceSupportProbe()">Gå videre</button></div>`;
     } else {
       const hasNext=st.hintIdx+1<step.hints.length;
       actionButtons=`<div class="btns">
         <button onclick="saveSupportResponse()">Lagre nytt svar</button>
+        <button class="secondary" onclick="startRetest()">Prøv igjen uten pekepinn</button>
         ${hasNext?`<button class="secondary" onclick="giveNextHint()">Enda en pekepinn</button>`
                  :`<button class="secondary" onclick="advanceSupportProbe()">Gå videre</button>`}
       </div>`;
@@ -417,7 +452,20 @@ function saveSupportResponse(){
   updateSendBar();
   renderSupportProbe(step);
 }
-function advanceSupportProbe(){ planIdx++; render(); }
+function advanceSupportProbe(){
+  if(planIdx===PLAN.length-1){
+    EdelsData.completeSession(sessionId);
+    host.innerHTML=`<section class="card"><div class="step">Ferdig</div>
+      <div class="ok">🌟 Ferdig! Bra jobbet i dag.</div>
+      <div id="sendStatus" class="small" style="margin-top:0.5rem;color:var(--muted)"></div>
+      ${ADULT_PANEL_HTML}</section>`;
+    sendFinal();
+    const bar=document.getElementById('sendBar'); if(bar) bar.classList.add('hidden');
+    planIdx++; setProgress();
+    return;
+  }
+  planIdx++; render();
+}
 
 // ---------- Registro adulto (fredag) ----------
 const ADULT_ITEMS=[
@@ -444,7 +492,8 @@ function ukeText(){
     let pista, after;
     if(st.kind==='support_probe'){
       pista=(hs&&hs.hintIdx>=0)?('nível '+st.hints[hs.hintIdx].level+' – '+st.hints[hs.hintIdx].text):'sem pista';
-      after=(hs&&hs.hintIdx>=0&&answers[st.id])?answers[st.id].text:'[sem retirada]';
+      after=(hs&&hs.hintIdx>=0&&answers[st.id]&&answers[st.id].text!==first)?('etter pista: '+answers[st.id].text):'[sem retirada]';
+      if(answers[st.id+'__retest']) after=(after==='[sem retirada]'?'':after+' | ')+'retirada: '+answers[st.id+'__retest'].text;
     } else { pista='sem pista'; after='—'; }
     return (REC[st.id]||st.title)+'\nPrimeira resposta: '+(first||'[não registrada]')+'\nPista mínima: '+pista+'\nApós pista/retirada: '+after;
   }).join('\n\n');
