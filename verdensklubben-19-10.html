@@ -211,7 +211,7 @@ function finishIfLast(){
   sendFinal();
   document.getElementById('doneBox').classList.remove('hidden');
   const b=document.querySelector('#stepHost .btns button'); if(b) b.disabled=true;
-  document.querySelectorAll('#stepHost textarea,#stepHost input[type=text]').forEach(e=>e.readOnly=true);
+  document.querySelectorAll('#probeInput,#stepHost input[type=text]').forEach(e=>e.readOnly=true);
   const bar=document.getElementById('sendBar'); if(bar) bar.classList.add('hidden');
   planIdx++; setProgress();
   return true;

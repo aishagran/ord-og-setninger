@@ -1,0 +1,236 @@
+<!doctype html>
+<html lang="nb">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Kan jeg få låne? – Edels Verden</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{--cream:#F6F1E6;--paper:#FFFEFA;--navy:#1C2C42;--navy-2:#29455F;--ink:#1B2438;--muted:#746F66;--coral:#BE6E56;--coral-soft:#F3DFD6;--rule:#E4DCCB;--green:#E4F0DF;--shadow:0 12px 34px rgba(28,44,66,0.08)}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'Inter',sans-serif;background:radial-gradient(circle at 10% 0%,#FFF9EE 0,transparent 24rem),var(--cream);color:var(--ink);min-height:100vh;-webkit-font-smoothing:antialiased}
+main{max-width:680px;margin:auto;padding:1.4rem 1.2rem 6rem}
+.top{display:flex;justify-content:space-between;align-items:center;gap:12px}
+.top strong{font-family:'Fraunces',serif;font-weight:600;font-size:1.2rem}
+.top a{color:inherit;text-decoration:none}
+.small{font-size:0.82rem;color:var(--muted);margin-top:0.15rem}
+.pill{background:var(--paper);border:1px solid var(--rule);border-radius:999px;padding:0.5rem 0.9rem;font-weight:700;font-size:0.85rem;flex-shrink:0;white-space:nowrap}
+.progress{height:8px;background:var(--rule);border-radius:9px;overflow:hidden;margin-top:0.9rem}
+.bar{height:100%;background:var(--coral);width:6%;transition:width 0.25s ease}
+.card{background:var(--paper);border:1px solid rgba(28,44,66,0.08);border-radius:22px;padding:1.4rem;margin-top:1rem;box-shadow:0 7px 24px rgba(28,44,66,0.045)}
+.step{font-weight:700;font-size:0.7rem;letter-spacing:0.1em;text-transform:uppercase;color:var(--coral)}
+.hero{width:100%;max-height:420px;object-fit:contain;border-radius:16px;margin:0.9rem 0;display:block;background:var(--cream)}
+.story{background:var(--cream);border:1px dashed var(--rule);border-radius:14px;padding:0.85rem 1rem;font-size:0.95rem;color:var(--ink);line-height:1.6;margin-top:0.6rem;white-space:pre-line}
+.laer{background:var(--green);border:1px solid #CFE4CA;border-radius:14px;padding:0.9rem 1rem;font-size:0.95rem;color:#2F5137;line-height:1.65;margin-top:0.6rem;white-space:pre-line}
+.q{font-family:'Fraunces',serif;font-size:1.22rem;font-weight:500;line-height:1.34;margin-top:0.9rem;white-space:pre-line}
+.mic{font-size:0.82rem;color:var(--muted);margin-top:0.4rem}
+textarea,input[type=text]{width:100%;font:inherit;font-family:'Inter',sans-serif;border:2px solid var(--rule);border-radius:14px;padding:0.85rem;background:var(--paper);min-height:52px;margin-top:0.6rem;color:var(--ink)}
+textarea{min-height:90px;margin-top:0.9rem}
+textarea:focus,input:focus{outline:2px solid var(--coral);outline-offset:1px;border-color:var(--coral)}
+.flex-row{display:flex;align-items:center;gap:0.7rem;margin-top:0.5rem}
+.flex-row label{min-width:6.2rem;font-weight:600}
+.flex-row input{margin-top:0}
+.btns{display:flex;gap:0.6rem;flex-wrap:wrap;margin-top:0.9rem}
+button{border:0;border-radius:999px;padding:0.7rem 1.1rem;font:inherit;font-weight:700;font-size:0.88rem;background:var(--navy);color:#EDE6D6;cursor:pointer}
+button.secondary{background:var(--coral-soft);color:#7A4530}
+button:disabled{opacity:0.45;cursor:default}
+.hidden{display:none}
+.voksen{background:#F1F4F8;border:1px solid #D5DEE8;border-radius:12px;padding:0.6rem 0.85rem;font-size:0.78rem;color:#4A5A6E;line-height:1.5;margin-top:0.7rem}
+.voksen summary{cursor:pointer;font-size:0.62rem;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;color:#5E6F84}
+.voksen[open] summary{margin-bottom:0.3rem}
+.vpanel{background:var(--paper);border:1px solid var(--rule);border-radius:16px;padding:1rem;margin-top:1rem}
+.vpanel h3{font-family:'Fraunces',serif;font-size:1.05rem;font-weight:600;margin-bottom:0.5rem}
+.vpanel label{display:flex;align-items:flex-start;gap:0.55rem;font-size:0.88rem;line-height:1.4;margin-top:0.45rem}
+.vpanel label input{margin-top:0.2rem;width:auto}
+.ok{background:var(--green);color:#3E6C4A;padding:0.8rem 1rem;border-radius:14px;margin-top:0.9rem;font-weight:600}
+.send-bar{position:fixed;left:0;right:0;bottom:0;padding:0.8rem 1rem calc(0.8rem + env(safe-area-inset-bottom));background:rgba(28,44,66,0.96);backdrop-filter:blur(10px);display:flex;justify-content:center;z-index:50}
+.send-bar button{background:var(--coral);color:#fff;width:100%;max-width:420px}
+.send-note{font-size:0.72rem;color:#C7D3DE;text-align:center;margin-top:0.4rem;max-width:420px}
+@media(max-width:600px){main{padding:1rem 0.9rem 6.5rem}.card{padding:1.05rem}.q{font-size:1.1rem}}
+</style></head>
+<body><main>
+<div class="top"><div><strong><a href="index.html">🤝 Kan jeg få låne?</a></strong><div class="small">Norsk · Sosiale situasjoner · ca. 10 min</div></div><div class="pill" id="count">Steg 1</div></div>
+<div class="progress"><div class="bar" id="bar"></div></div>
+
+<div id="stepHost"></div>
+
+</main>
+
+<div class="send-bar hidden" id="sendBar">
+  <div>
+    <button id="sendBarBtn" onclick="sendPartial()">📤 Send det som er gjort til mamma</button>
+    <div class="send-note">Sender det hun har svart så langt, uansett om hun er ferdig eller ikke.</div>
+  </div>
+</div>
+
+<script src="edels-data.js"></script>
+<script>
+if(typeof EdelsData==='undefined'){
+  console.warn('edels-data.js ble ikke funnet – kjører uten lagring.');
+  window.EdelsData={createSession:()=>'offline-'+Date.now(),getSession:()=>null,startTrial:()=>'t-'+Date.now()+'-'+Math.random(),responseStarted:()=>{},saveFirstResponse:()=>{},completeSession:()=>{}};
+}
+const TITLE='Kan jeg få låne? 21.10.2026';
+const SESSION_KEY='edels_kan_jeg_fa_lane_2026_10_21_v1_session';
+let sessionId=null;
+try{ sessionId=localStorage.getItem(SESSION_KEY); }catch(e){}
+try{
+  if(!sessionId || !EdelsData.getSession(sessionId) || EdelsData.getSession(sessionId).status==='completed'){
+    sessionId=EdelsData.createSession({title:TITLE,researchGoal:'social_language_asking_permission_borrowing',schoolSubject:'norsk_sosialt'});
+    try{ localStorage.setItem(SESSION_KEY,sessionId); }catch(e){}
+  }
+}catch(e){
+  sessionId=EdelsData.createSession({title:TITLE,researchGoal:'social_language_asking_permission_borrowing',schoolSubject:'norsk_sosialt'});
+}
+
+// ---------- Plan ----------
+// Del 1-2: undervisning + tekst synlig. Del 3-4: tekst og eksempler skjult, første svar lagres ordrett.
+const STORY='Sara og Mille\n\nMille har fine hodetelefoner på pulten. Sara har lyst til å høre på musikk med dem.\n\nSara spør: «Kan jeg få låne hodetelefonene dine?»\n\nMille sier: «Ja, det går bra.»\n\nSara bruker hodetelefonene i friminuttet. Etterpå leverer hun dem tilbake.\n\nMille sier: «Takk for at du spurte!»';
+function P(id,title,question,o){return Object.assign({id,kind:'probe',title,question,target:id,researchGoal:'social_language_permission_borrowing',taskType:'comprehension_or_production'},o||{});}
+const PLAN=[
+  {id:'intro',kind:'display',title:'Kan jeg få låne?',
+    story:'Hei, Edel!\n\nI dag skal vi snakke om hva vi kan si og gjøre når vi vil bruke noe som tilhører en annen.\n\nDu skal lære tre ord, lese en kort historie og svare på noen spørsmål. Du kan skrive med dine egne ord. Du trenger ikke skrive perfekt.'},
+  {id:'ord',kind:'display',title:'Tre ord å lære',
+    story:'Spørre om lov\nJeg spør før jeg bruker noe som tilhører en annen.\n«Kan jeg få låne ladekabelen din?»\n\nLåne\nJeg får bruke noe en stund, når den andre sier ja.\n«Jeg låner en bok av læreren.»\n\nLevere tilbake\nJeg gir tingen tilbake til den som eier den.\n«Jeg leverer boken tilbake i morgen.»'},
+  P('q1','Del 2 · Les og forstå · Spørsmål 1','Hva ville Sara låne?',{story:STORY,target:'lese_hva'}),
+  P('q2','Del 2 · Les og forstå · Spørsmål 2','Hva gjorde Sara før hun brukte hodetelefonene?',{story:STORY,target:'lese_for'}),
+  P('q3','Del 2 · Les og forstå · Spørsmål 3','Hva gjorde Sara etterpå?',{story:STORY,target:'lese_etter'}),
+  P('s1','Del 3 · Hva ville du gjort? · Situasjon 1','Du ser en venns fine pennal på pulten hennes. Du trenger en penn. Hva kan du si?',{target:'sporre_om_lov'}),
+  P('s2','Del 3 · Hva ville du gjort? · Situasjon 2','Du har lånt en ball av en venn. Nå er du ferdig med å leke. Hva gjør du?',{target:'levere_tilbake'}),
+  P('s3','Del 3 · Hva ville du gjort? · Situasjon 3','Du spør en venn: «Kan jeg få låne ladekabelen din?» Vennen sier: «Nei, jeg trenger den selv.» Hva gjør du da?',{target:'ta_imot_nei'}),
+  P('s4','Del 3 · Hva ville du gjort? · Situasjon 4','Du trenger en saks. Saksen ligger på pulten til en klassekamerat, men hun er ikke i klasserommet akkurat nå. Hva kan du gjøre?',{target:'eier_ikke_tilstede'}),
+  P('f1','Del 4 · Lag din egen setning · 1','Fullfør setningen med dine egne ord.',{prefix:'Når jeg vil låne noe, kan jeg',target:'setning_sporre'}),
+  P('f2','Del 4 · Lag din egen setning · 2','Fullfør setningen med dine egne ord.',{prefix:'Når jeg er ferdig, skal jeg',target:'setning_levere'})
+];
+
+let planIdx=0;
+const answers={};
+const trialIds={};
+const startedTrials=new Set();
+const host=document.getElementById('stepHost');
+let questionShownAt=Date.now();
+
+function ensureTrial(step){
+  if(trialIds[step.id]) return trialIds[step.id];
+  trialIds[step.id]=EdelsData.startTrial(sessionId,{target:step.target,researchGoal:step.researchGoal,taskType:step.taskType,modality:'written',condition:'kan_jeg_fa_lane_2026_10_21',question:step.question,context:step.id});
+  return trialIds[step.id];
+}
+function markStarted(trialId){ if(startedTrials.has(trialId)) return; startedTrials.add(trialId); EdelsData.responseStarted(sessionId,trialId); }
+function setProgress(){
+  document.getElementById('count').textContent='Steg '+Math.min(planIdx+1,PLAN.length)+' av '+PLAN.length;
+  document.getElementById('bar').style.width=Math.round((Math.min(planIdx+1,PLAN.length)/PLAN.length)*100)+'%';
+}
+function speak(t){speechSynthesis.cancel();const u=new SpeechSynthesisUtterance(t.replace(/\n/g,' '));u.lang='nb-NO';speechSynthesis.speak(u)}
+function escAttr(s){return String(s).replace(/&/g,'&amp;').replace(/"/g,'&quot;').replace(/</g,'&lt;').replace(/>/g,'&gt;');}
+function updateSendBar(){ const bar=document.getElementById('sendBar'); if(bar) bar.classList.toggle('hidden',Object.keys(answers).length===0); }
+
+function summaryText(){
+  return PLAN.filter(s=>s.kind==='probe'&&answers[s.id]).map(s=>`${s.title}\n${s.question||''}\n→ ${answers[s.id].text}`).join('\n\n');
+}
+const nAnswered=()=>PLAN.filter(s=>answers[s.id]).length+' av '+PLAN.filter(s=>s.kind==='probe').length;
+async function post(subject,extra){
+  const r=await fetch('https://formspree.io/f/mqeolldg',{method:'POST',headers:{'Content-Type':'application/json','Accept':'application/json'},keepalive:true,
+    body:JSON.stringify(Object.assign({_subject:subject,oppgave:TITLE,session_id:sessionId,Tekst_hun_skrev:summaryText(),antall_besvart:nAnswered(),dato:new Date().toLocaleString('no-NO')},extra))});
+  if(!r.ok) throw new Error('HTTP '+r.status);
+}
+async function sendPartial(){
+  const btn=document.getElementById('sendBarBtn'),original=btn.textContent;
+  btn.disabled=true;btn.textContent='Sender …';
+  try{ await post(TITLE+' – fremgang underveis',{}); btn.textContent='✓ Sendt!'; setTimeout(()=>{btn.textContent=original;btn.disabled=false},1800); }
+  catch(e){ btn.textContent='Kunne ikke sende – prøv igjen'; btn.disabled=false; }
+}
+async function sendFinal(){
+  const el=document.getElementById('sendStatus'); if(el) el.textContent='Sender til mamma …';
+  try{ await post(TITLE+' – fullført økt',{status:'fullført'}); if(el) el.textContent='✓ Sendt til mamma'; }
+  catch(e){ if(el){ el.textContent='Kunne ikke sende – trykk her for å prøve igjen'; el.style.cursor='pointer'; el.onclick=sendFinal; } }
+}
+
+function render(){
+  setProgress();
+  const step=PLAN[planIdx];
+  if(!step){ host.innerHTML=''; return; }
+  questionShownAt=Date.now();
+  if(step.kind==='display') renderDisplay(step);
+  else renderProbe(step);
+}
+function renderDisplay(step){
+  host.innerHTML=`<section class="card"><div class="step">${step.title}</div>
+    <div class="laer">${step.story}</div>
+    <div class="btns"><button onclick="planIdx++;render()">Start oppdragene →</button><button class="secondary" onclick="speak(${escAttr(JSON.stringify(step.story))})">🔊 Les opp</button></div></section>`;
+}
+function doneHtml(){
+  return `<div id="doneBox" class="hidden"><div class="ok">Bra jobbet, Edel! Nå kan du tre nye ord: spørre om lov, låne og levere tilbake.</div>
+    <div id="sendStatus" class="small" style="margin-top:0.5rem;color:var(--muted)"></div>
+    <details class="voksen"><summary>Til voksen</summary>${ADULT_PANEL_HTML}</details></div>`;
+}
+function renderProbe(step){
+  const isLast=planIdx===PLAN.length-1;
+  host.innerHTML=`<section class="card"><div class="step">${step.title}</div>
+    ${step.img?`<img class="hero" src="${step.img}" alt="Illustrasjon">`:''}
+    ${step.story?`<div class="story">${step.story}</div>`:''}
+    <p class="q">${step.question}</p>
+    ${step.adultNote?`<details class="voksen"><summary>Til voksen</summary>${step.adultNote}</details>`:''}
+    <div class="mic">Skriv svaret ditt her. Du kan skrive «jeg vet ikke».</div>
+    ${step.prefix?`<div class="story" style="margin-top:.7rem"><strong>${step.prefix} …</strong></div>`:''}
+    <textarea id="probeInput" placeholder="${step.prefix?'Skriv det som kommer etterpå …':'Skriv svaret her …'}"></textarea>
+    <div class="btns"><button onclick="saveProbe()">${isLast?'Fullfør økten':'Lagre svaret'}</button>
+      <button class="secondary" onclick="speak(${escAttr(JSON.stringify((step.story||'')+' '+step.question))})">🔊 Les opp</button></div>
+    ${isLast?doneHtml():''}</section>`;
+  const tid=ensureTrial(step);
+  document.getElementById('probeInput').addEventListener('input',()=>markStarted(tid),{once:true});
+}
+function finishIfLast(){
+  if(planIdx!==PLAN.length-1) return false;
+  EdelsData.completeSession(sessionId);
+  sendFinal();
+  document.getElementById('doneBox').classList.remove('hidden');
+  const b=document.querySelector('#stepHost .btns button'); if(b) b.disabled=true;
+  document.querySelectorAll('#probeInput,#stepHost input[type=text]').forEach(e=>e.readOnly=true);
+  const bar=document.getElementById('sendBar'); if(bar) bar.classList.add('hidden');
+  planIdx++; setProgress();
+  return true;
+}
+function saveProbe(){
+  const step=PLAN[planIdx]; const raw=document.getElementById('probeInput').value; const val=step.prefix?(raw.trim()?step.prefix+' '+raw.trim():''):raw;
+  if(!val.trim()){alert('Skriv et svar først.');return}
+  EdelsData.saveFirstResponse(sessionId,ensureTrial(step),val,{source:'lane_ui',latencyMs:Date.now()-questionShownAt});
+  answers[step.id]={text:val}; updateSendBar();
+  if(finishIfLast()) return;
+  planIdx++; render();
+}
+// ---------- Registro adulto ----------
+const SUPPORT=['0 Sem ajuda','1 Repetição/reformulação','2 Pista contextual','3 Pista semântica','4 Imagem','5 Alternativas','6 Início da frase','7 Modelo explícito'];
+const ADULT_ITEMS=[
+  ['q1','Leitura 1 · Recuperou o objeto emprestado'],
+  ['q2','Leitura 2 · Disse que Sara pediu licença'],
+  ['q3','Leitura 3 · Disse que Sara devolveu'],
+  ['s1','Sit. 1 · Formulou um pedido sozinha (ex.: «Kan jeg få låne …?»)'],
+  ['s2','Sit. 2 · Disse que devolve ao dono'],
+  ['s3','Sit. 3 · Aceita o nei (ex.: «Greit», pergunta a outra pessoa)'],
+  ['s4','Sit. 4 · Dono ausente: espera, procura o dono ou o professor'],
+  ['f1','Frase 1 · Completou sobre pedir licença'],
+  ['f2','Frase 2 · Completou sobre devolver']
+];
+const ADULT_PANEL_HTML=`
+  <div class="vpanel"><h3>Registro adulto</h3>
+    <p class="small" style="margin-bottom:.4rem">Mostrar os exemplos abaixo só depois da tentativa dela. Esta atividade observa o que Edel <em>sabe dizer</em>; não prevê o que ela fará numa situação real. Não ligue a atividade a nenhum episódio fora da sessão.</p>
+    ${ADULT_ITEMS.map(([id,t],i)=>`<label style="display:block"><input type="checkbox" class="adultChk" data-i="${i}"> ${t}<br><span class="small">Menor ajuda necessária: <select class="adultSup" data-i="${i}"><option value="">—</option>${SUPPORT.map(x=>`<option>${x}</option>`).join('')}</select></span></label>`).join('')}
+    <details class="voksen"><summary>Exemplos (só depois da tentativa)</summary>
+      «Kan jeg få låne den?» · «Jeg skal levere den tilbake.» · Nei: «Greit, takk» eller spør noen andre. · Eier ikke til stede: vente, spørre læreren eller spørre senere.</details>
+    <textarea id="adultNotes" placeholder="Observações: resposta exata / conceito certo com outras palavras / dificuldade de formulação / erro gramatical …"></textarea>
+    <div class="btns"><button onclick="copyAdult()">Kopier svar og observasjoner</button></div>
+    <div id="copyStatus" class="small" style="margin-top:0.4rem"></div></div>`;
+function buildAdultText(){
+  const checks=ADULT_ITEMS.map(([id,t],i)=>{const c=document.querySelector('.adultChk[data-i="'+i+'"]'),sel=document.querySelector('.adultSup[data-i="'+i+'"]');return `[${c&&c.checked?'x':' '}] ${t}${sel&&sel.value?' — ajuda: '+sel.value:''}`;}).join('\n');
+  const notes=(document.getElementById('adultNotes')||{value:''}).value;
+  const body=PLAN.filter(s=>s.kind==='probe').map(s=>s.title+'\n'+s.question+(s.prefix?'\n(Start travado: '+s.prefix+')':'')+'\nSvar (ordrett): '+(answers[s.id]?answers[s.id].text:'[ikke besvart]')).join('\n\n');
+  return 'EDELS VERDEN — '+TITLE.toUpperCase()+'\n(Etter undervisning; situasjonsspørsmål uten bilder eller eksempler)\n\n'+body+'\n\nREGISTRO ADULTO\n'+checks+'\n\nObservações:\n'+notes;
+}
+async function copyAdult(){
+  const text=buildAdultText(), st=document.getElementById('copyStatus');
+  try{ await navigator.clipboard.writeText(text); st.textContent='✓ Kopiert'; }
+  catch(e){ const ta=document.createElement('textarea'); ta.value=text; document.body.appendChild(ta); ta.select();
+    try{ document.execCommand('copy'); st.textContent='✓ Kopiert'; }catch(e2){ st.textContent='Kunne ikke kopiere – merk teksten selv'; } ta.remove(); }
+}
+
+render();
+</script></body></html>
