@@ -1,0 +1,252 @@
+<!doctype html>
+<html lang="nb">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Kontrollsett – Edels Verden</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{--cream:#F6F1E6;--paper:#FFFEFA;--navy:#1C2C42;--navy-2:#29455F;--ink:#1B2438;--muted:#746F66;--coral:#BE6E56;--coral-soft:#F3DFD6;--rule:#E4DCCB;--green:#E4F0DF;--shadow:0 12px 34px rgba(28,44,66,0.08)}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'Inter',sans-serif;background:radial-gradient(circle at 10% 0%,#FFF9EE 0,transparent 24rem),var(--cream);color:var(--ink);min-height:100vh;-webkit-font-smoothing:antialiased}
+main{max-width:680px;margin:auto;padding:1.4rem 1.2rem 6rem}
+.top{display:flex;justify-content:space-between;align-items:center;gap:12px}
+.top strong{font-family:'Fraunces',serif;font-weight:600;font-size:1.2rem}
+.top a{color:inherit;text-decoration:none}
+.small{font-size:0.82rem;color:var(--muted);margin-top:0.15rem}
+.pill{background:var(--paper);border:1px solid var(--rule);border-radius:999px;padding:0.5rem 0.9rem;font-weight:700;font-size:0.85rem;flex-shrink:0;white-space:nowrap}
+.progress{height:8px;background:var(--rule);border-radius:9px;overflow:hidden;margin-top:0.9rem}
+.bar{height:100%;background:var(--coral);width:6%;transition:width 0.25s ease}
+.card{background:var(--paper);border:1px solid rgba(28,44,66,0.08);border-radius:22px;padding:1.4rem;margin-top:1rem;box-shadow:0 7px 24px rgba(28,44,66,0.045)}
+.step{font-weight:700;font-size:0.7rem;letter-spacing:0.1em;text-transform:uppercase;color:var(--coral)}
+.hero{width:100%;max-height:420px;object-fit:contain;border-radius:16px;margin:0.9rem 0;display:block;background:var(--cream)}
+.story{background:var(--cream);border:1px dashed var(--rule);border-radius:14px;padding:0.85rem 1rem;font-size:0.95rem;color:var(--ink);line-height:1.6;margin-top:0.6rem;white-space:pre-line}
+.laer{background:var(--green);border:1px solid #CFE4CA;border-radius:14px;padding:0.9rem 1rem;font-size:0.95rem;color:#2F5137;line-height:1.65;margin-top:0.6rem;white-space:pre-line}
+.q{font-family:'Fraunces',serif;font-size:1.22rem;font-weight:500;line-height:1.34;margin-top:0.9rem;white-space:pre-line}
+.mic{font-size:0.82rem;color:var(--muted);margin-top:0.4rem}
+textarea,input[type=text]{width:100%;font:inherit;font-family:'Inter',sans-serif;border:2px solid var(--rule);border-radius:14px;padding:0.85rem;background:var(--paper);min-height:52px;margin-top:0.6rem;color:var(--ink)}
+textarea{min-height:90px;margin-top:0.9rem}
+textarea:focus,input:focus{outline:2px solid var(--coral);outline-offset:1px;border-color:var(--coral)}
+.flex-row{display:flex;align-items:center;gap:0.7rem;margin-top:0.5rem}
+.flex-row label{min-width:6.2rem;font-weight:600}
+.flex-row input{margin-top:0}
+.btns{display:flex;gap:0.6rem;flex-wrap:wrap;margin-top:0.9rem}
+button{border:0;border-radius:999px;padding:0.7rem 1.1rem;font:inherit;font-weight:700;font-size:0.88rem;background:var(--navy);color:#EDE6D6;cursor:pointer}
+button.secondary{background:var(--coral-soft);color:#7A4530}
+button:disabled{opacity:0.45;cursor:default}
+.hidden{display:none}
+.voksen{background:#F1F4F8;border:1px solid #D5DEE8;border-radius:12px;padding:0.6rem 0.85rem;font-size:0.78rem;color:#4A5A6E;line-height:1.5;margin-top:0.7rem}
+.voksen summary{cursor:pointer;font-size:0.62rem;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;color:#5E6F84}
+.voksen[open] summary{margin-bottom:0.3rem}
+.vpanel{background:var(--paper);border:1px solid var(--rule);border-radius:16px;padding:1rem;margin-top:1rem}
+.vpanel h3{font-family:'Fraunces',serif;font-size:1.05rem;font-weight:600;margin-bottom:0.5rem}
+.vpanel label{display:flex;align-items:flex-start;gap:0.55rem;font-size:0.88rem;line-height:1.4;margin-top:0.45rem}
+.vpanel label input{margin-top:0.2rem;width:auto}
+.ok{background:var(--green);color:#3E6C4A;padding:0.8rem 1rem;border-radius:14px;margin-top:0.9rem;font-weight:600}
+.send-bar{position:fixed;left:0;right:0;bottom:0;padding:0.8rem 1rem calc(0.8rem + env(safe-area-inset-bottom));background:rgba(28,44,66,0.96);backdrop-filter:blur(10px);display:flex;justify-content:center;z-index:50}
+.send-bar button{background:var(--coral);color:#fff;width:100%;max-width:420px}
+.send-note{font-size:0.72rem;color:#C7D3DE;text-align:center;margin-top:0.4rem;max-width:420px}
+@media(max-width:600px){main{padding:1rem 0.9rem 6.5rem}.card{padding:1.05rem}.q{font-size:1.1rem}}
+</style></head>
+<body><main>
+<div class="top"><div><strong><a href="index.html">📏 Kontrollsett</a></strong><div class="small">Seks korte spørsmål · svar alene · ca. 8 min</div></div><div class="pill" id="count">Start</div></div>
+<div class="progress"><div class="bar" id="bar"></div></div>
+<div id="stepHost"></div>
+</main>
+
+<script src="edels-data.js"></script>
+<script>
+if(typeof EdelsData==='undefined'){
+  console.warn('edels-data.js ble ikke funnet – kjører uten lagring.');
+  const mem={};
+  window.EdelsData={createSession:()=>{const id='offline-'+Date.now();mem[id]={trials:[],status:'in_progress',submission:{}};return id},getSession:id=>mem[id]||null,
+    startTrial:(s)=>{const t={trialId:'t'+Math.random(),supports:[]};mem[s].trials.push(t);return t.trialId},responseStarted(){},saveFirstResponse(){},completeSession(){},finishAndSubmit(){}};
+}
+
+/* =====================================================================
+   KONTROLLSETT – fast, gjentatt måling (ikke undervisning).
+   Samme seks ferdigheter hver gang, i fire parallelle former (A–D) for å unngå at hun
+   bare husker svaret. Ingen hjelp, ingen forklaring, ingen retting under oppgavene.
+   To årsaksspørsmål: ett muntlig (voksen skriver ordrett) og ett skriftlig; rekkefølgen byttes mellom formene.
+   ===================================================================== */
+const HIST_KEY='edels_kontroll_history_v1';
+const FORM_ORDER=['A','B','C','D'];
+const SKILLS={ord:'Ordhenting (fra beskrivelse)',les:'Leseforståelse (hvem/hva/hvor/når)',fordi:'Setning med «fordi»',rekke:'Rekkefølge (først/etterpå/til slutt)',arsak_m:'Årsak – muntlig',arsak_s:'Årsak – skriftlig'};
+const V={ // variant per ferdighet, per form
+  ord:{A:{q:'Det er noe vi holder over hodet for å bli tørre når det regner. Hva heter det?',ref:'paraply'},
+       B:{q:'Det er noe du holder i hånden for å se i mørket. Det lyser. Hva heter det?',ref:'lommelykt'},
+       C:{q:'Det er noe du bruker for å låse opp en dør. Hva heter det?',ref:'nøkkel'},
+       D:{q:'Det er noe du bruker for å klippe papir. Det har to blad. Hva heter det?',ref:'saks'}},
+  les:{A:{text:'Liv går til butikken. Hun kjøper melk og brød. Så går hun hjem.',q:'Hva kjøper Liv?',ref:'melk og brød'},
+       B:{text:'Jonas bor i Bergen. Han tar bussen til skolen hver dag.',q:'Hvordan kommer Jonas seg til skolen?',ref:'med bussen'},
+       C:{text:'Nora og Ali spiller fotball i skolegården etter lunsj.',q:'Når spiller Nora og Ali fotball?',ref:'etter lunsj'},
+       D:{text:'Ida har en hund som heter Bella. Hver morgen går de tur i parken.',q:'Hvor går Ida og Bella tur?',ref:'i parken'}},
+  fordi:{A:{q:'Lag en setning med ordet fordi. Skriv om noe du liker å spise.'},
+         B:{q:'Lag en setning med ordet fordi. Skriv om et dyr du liker.'},
+         C:{q:'Lag en setning med ordet fordi. Skriv om noe du gjør i fritiden.'},
+         D:{q:'Lag en setning med ordet fordi. Skriv om noe du ikke liker.'}},
+  rekke:{A:{q:'Fortell hva du gjør om morgenen før skolen. Bruk først, etterpå og til slutt.'},
+         B:{q:'Fortell hvordan du lager en brødskive. Bruk først, etterpå og til slutt.'},
+         C:{q:'Fortell hva du gjør når du kommer hjem fra skolen. Bruk først, etterpå og til slutt.'},
+         D:{q:'Fortell hvordan du pusser tennene. Bruk først, etterpå og til slutt.'}}
+};
+const PAIRS={ // to årsaksspørsmål per par; modalitet byttes mellom form A/B og C/D
+  1:['Hvorfor tar vi på lue om vinteren?','Hvorfor vasker vi hendene før vi spiser?'],
+  2:['Hvorfor setter vi mat i kjøleskapet?','Hvorfor bruker vi refleks når det er mørkt?']
+};
+const FORMCFG={A:{pair:1,swap:false},B:{pair:1,swap:true},C:{pair:2,swap:false},D:{pair:2,swap:true}};
+const MARKS=['—','✓ innhold riktig','½ delvis','✗ ikke riktig','ikke besvart'];
+const CLASSES=['—','exata','conceitualmente correta com outras palavras','aproximação semântica','substituição semântica','circunlocução','conhecimento parcial','erro de formulação','erro gramatical','erro de sequência/causalidade','não recuperou','não respondeu / tarefa difícil','autocorreção'];
+// Forslag (bare støtte til voksen, vises aldri for barnet)
+const SUG={ord:f=>new RegExp(V.ord[f].ref,'i'),les:null,rekke:[/først/i,/etterpå/i,/til slutt/i],fordi:/\bfordi\s+\S+(\s+\S+)+/i};
+function buildItems(form){
+  const cfg=FORMCFG[form], pr=PAIRS[cfg.pair];
+  const modes=cfg.swap?['written','oral']:['oral','written'];
+  return [
+    Object.assign({skill:'ord',mode:'written'},V.ord[form]),
+    Object.assign({skill:'les',mode:'written'},V.les[form]),
+    Object.assign({skill:'fordi',mode:'written'},V.fordi[form]),
+    Object.assign({skill:'rekke',mode:'written'},V.rekke[form]),
+    {skill:modes[0]==='oral'?'arsak_m':'arsak_s',mode:modes[0],q:pr[0]},
+    {skill:modes[1]==='oral'?'arsak_m':'arsak_s',mode:modes[1],q:pr[1]}
+  ];
+}
+
+const host=document.getElementById('stepHost');
+let S=null,shownAt=Date.now(),started=false;
+const jget=(k,f)=>{try{return JSON.parse(localStorage.getItem(k))??f}catch(e){return f}};
+const jset=(k,v)=>{try{localStorage.setItem(k,JSON.stringify(v))}catch(e){}};
+const esc=s=>String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+function speak(t){try{speechSynthesis.cancel();const u=new SpeechSynthesisUtterance(String(t).replace(/\n/g,' '));u.lang='nb-NO';u.rate=0.9;speechSynthesis.speak(u);}catch(e){}}
+function setProgress(){
+  const n=S?Math.min(S.i+1,S.items.length):0;
+  document.getElementById('count').textContent=S?(S.i>=S.items.length?'Ferdig':'Spørsmål '+n+' av '+S.items.length):'Start';
+  document.getElementById('bar').style.width=(S?Math.round(n/S.items.length*100):6)+'%';
+}
+
+/* ---------- 0: voksen, før start ---------- */
+function renderStart(){
+  const hist=jget(HIST_KEY,[]); const suggested=FORM_ORDER[hist.length%FORM_ORDER.length];
+  host.innerHTML=`<section class="card"><div class="step">Før start · bare for voksne</div>
+    <div class="vpanel" style="margin-top:.6rem"><h3>Kontekst (noteres sammen med svarene)</h3>
+      <p class="small">Dette er en måling, ikke en øvelse. Gi ingen hjelp, ikke si om svaret er riktig eller galt, og ikke gjenta spørsmålet med andre ord. Hvis Edel står fast, si bare at hun kan skrive «jeg vet ikke».</p>
+      <label class="small">Form (parallell versjon) <select id="f_form">${FORM_ORDER.map(f=>`<option ${f===suggested?'selected':''}>${f}</option>`).join('')}</select></label><br>
+      <label class="small">Energi akkurat nå (1 = veldig sliten, 5 = full av energi) <select id="f_energi"><option>—</option><option>1</option><option>2</option><option>3</option><option>4</option><option>5</option></select></label><br>
+      <label class="small">Hvem er til stede <select id="f_hvem"><option>mamma</option><option>pappa</option><option>annen voksen</option><option>alene</option></select></label><br>
+      <label class="small">Tidspunkt <select id="f_tid"><option>morgen</option><option>etter skolen</option><option>kveld</option><option>helg</option></select></label>
+      <textarea id="f_notat" placeholder="Annet som kan ha betydning (dårlig natt, travel dag, god stemning …)"></textarea></div>
+    <div class="btns"><button onclick="startSession()">Start kontrollsettet</button></div></section>`;
+  setProgress();
+}
+function startSession(){
+  const g=id=>document.getElementById(id).value;
+  const ctx={form:g('f_form'),energi:g('f_energi'),hvem:g('f_hvem'),tid:g('f_tid'),notat:g('f_notat').trim()};
+  const sessionId=EdelsData.createSession({title:'Kontrollsett – form '+ctx.form,researchGoal:'fixed_probe_trend_oral_vs_written',schoolSubject:'kontroll'});
+  S={sessionId,ctx,items:buildItems(ctx.form),i:0,trials:{},answers:[],startedAt:Date.now()};
+  renderIntro();
+}
+function renderIntro(){
+  host.innerHTML=`<section class="card"><div class="step">Hei, Edel!</div>
+    <div class="laer">Nå kommer seks korte spørsmål.\n\nDu skal svare helt alene. Vi sier ikke om svaret er riktig eller galt akkurat nå.\n\nDu kan skrive «jeg vet ikke». Du trenger ikke skrive perfekt.</div>
+    <div class="btns"><button onclick="S.i=0;render()">Begynn</button>
+    <button class="secondary" onclick="speak('Nå kommer seks korte spørsmål. Du skal svare helt alene. Vi sier ikke om svaret er riktig eller galt akkurat nå. Du kan skrive jeg vet ikke. Du trenger ikke skrive perfekt.')">🔊 Les opp</button></div></section>`;
+}
+
+/* ---------- spørsmål ---------- */
+function trialFor(k){
+  if(S.trials[k])return S.trials[k];
+  const it=S.items[k], c=S.ctx;
+  S.trials[k]=EdelsData.startTrial(S.sessionId,{target:it.skill,researchGoal:'fixed_probe_trend',taskType:'probe_'+it.skill,
+    modality:it.mode==='oral'?'oral_transcribed_by_adult':'written',
+    condition:'kontroll_form_'+c.form+'|energi='+c.energi+'|hvem='+c.hvem+'|tid='+c.tid+(c.notat?'|notat='+c.notat:''),
+    question:it.q,context:'item'+(k+1)});
+  return S.trials[k];
+}
+function render(){
+  setProgress();
+  if(S.i>=S.items.length)return renderDone();
+  const it=S.items[S.i], oral=it.mode==='oral'; shownAt=Date.now(); started=false;
+  host.innerHTML=`<section class="card"><div class="step">${oral?'Svar høyt':'Skriv svaret'}</div>
+    ${it.text?`<div class="story">${esc(it.text)}</div>`:''}
+    <p class="q">${esc(it.q)}</p>
+    ${oral?`<div class="laer" style="margin-top:.7rem">Svar høyt til den voksne. Du skal ikke skrive selv.</div>
+      <div class="vpanel"><p class="small"><strong>Voksen:</strong> skriv ordrett det Edel sier (også «eh», pauser og feil). Ikke rett og ikke fyll inn.</p>
+      <textarea id="ans" placeholder="Edels svar, ordrett …"></textarea></div>`
+      :`<textarea id="ans" placeholder="Skriv svaret her …"></textarea>`}
+    <div class="btns"><button onclick="saveAnswer()">${oral?'Lagre muntlig svar':'Lagre svaret'}</button>
+    ${oral?`<button class="secondary" onclick="saveAnswer('[ingen svar]')">Ikke noe svar</button>`:`<button class="secondary" onclick="saveAnswer('jeg vet ikke')">Jeg vet ikke</button>`}
+    <button class="secondary" onclick="speak(${esc(JSON.stringify((it.text?it.text+' ':'')+it.q))})">🔊 Les opp</button></div></section>`;
+  const tid=trialFor(S.i);
+  document.getElementById('ans').addEventListener('input',()=>{ if(!started){started=true;EdelsData.responseStarted(S.sessionId,tid);} });
+}
+function saveAnswer(forced){
+  const el=document.getElementById('ans'); const raw=el.value.trim();
+  const val=forced&&!raw?forced:raw;
+  if(!val){ alert(S.items[S.i].mode==='oral'?'Skriv det Edel sa, eller trykk «Ikke noe svar».':'Skriv et svar, eller trykk «Jeg vet ikke».'); return; }
+  const it=S.items[S.i];
+  EdelsData.saveFirstResponse(S.sessionId,trialFor(S.i),val,{source:'kontroll_ui',latencyMs:Date.now()-shownAt,mode:it.mode,placeholder:!!(forced&&!raw)});
+  S.answers[S.i]=val; S.i++; render();
+}
+
+/* ---------- ferdig + voksenpanel ---------- */
+function suggestFor(it,val){
+  const s=SUG[it.skill]; if(!s)return 'forslag ikke tilgjengelig';
+  const spec=typeof s==='function'?s(S.ctx.form):s;
+  return (Array.isArray(spec)?spec.every(r=>r.test(val)):spec.test(val))?'inneholder det som forventes':'inneholder ikke det som forventes';
+}
+function renderDone(){
+  EdelsData.finishAndSubmit(S.sessionId);
+  S.finishedAt=Date.now();
+  host.innerHTML=`<section class="card"><div class="step">Ferdig</div>
+    <div class="ok">Bra jobbet, Edel! Takk for at du svarte på alle spørsmålene.</div>
+    <div id="sendStatus" class="small" style="margin-top:.6rem">Sender til mamma …</div>
+    <details class="voksen"><summary>Til voksen</summary>${adultHtml()}</details></section>`;
+  setProgress();
+  setTimeout(()=>{ const s=EdelsData.getSession(S.sessionId),el=document.getElementById('sendStatus');
+    if(el)el.textContent=(s&&s.submission&&s.submission.status==='sent')?'✓ Sendt til mamma':'Lagret på denne enheten. Sendes når nettet er tilgjengelig.'; },2500);
+}
+function adultHtml(){
+  const rows=S.items.map((it,k)=>`<div class="vpanel" data-k="${k}"><h3>${k+1}. ${esc(SKILLS[it.skill])}</h3>
+    <p class="small">${esc(it.q)}${it.ref?' · <em>forventet: '+esc(it.ref)+'</em>':''}</p>
+    <p><strong>Svar (ordrett${it.mode==='oral'?', muntlig':''}):</strong> ${esc(S.answers[k]||'—')}</p>
+    <p class="small">Automatisk forslag (bare støtte, ikke vurdering): ${esc(suggestFor(it,S.answers[k]||''))}</p>
+    <label class="small">Din vurdering <select class="mk">${MARKS.map(m=>`<option>${m}</option>`).join('')}</select></label><br>
+    <label class="small">Klassifisering <select class="cl">${CLASSES.map(m=>`<option>${m}</option>`).join('')}</select></label></div>`).join('');
+  return `<p class="small">Form ${esc(S.ctx.form)} · energi ${esc(S.ctx.energi)} · ${esc(S.ctx.hvem)} · ${esc(S.ctx.tid)}${S.ctx.notat?' · '+esc(S.ctx.notat):''}.<br>
+    Én måling sier lite. Verdien kommer når samme sett er tatt flere ganger, i ulike former. Lett å over-tolke: les mønstre over flere økter.</p>
+    ${rows}
+    <textarea id="adultNotes" placeholder="Observasjoner (pauser, selvkorrigering, hva hun sa i tillegg …)"></textarea>
+    <div class="btns"><button onclick="saveMarks()">Lagre vurderinger</button><button onclick="copyAdult()">Kopier registrering</button></div>
+    <div id="copyStatus" class="small" style="margin-top:.4rem"></div>
+    <div class="vpanel"><h3>Utvikling mellom målinger</h3><div id="trend">${trendHtml()}</div>
+      <p class="small">Muntlig mot skriftlig: sammenlign «Årsak – muntlig» og «Årsak – skriftlig» først når du har flere målinger der rekkefølgen er byttet (form A mot B, C mot D).</p></div>`;
+}
+function readMarks(){ return [...document.querySelectorAll('.vpanel[data-k]')].map(el=>({k:+el.dataset.k,mk:el.querySelector('.mk').value,cl:el.querySelector('.cl').value})); }
+function saveMarks(){
+  const marks=readMarks(); const h=jget(HIST_KEY,[]);
+  const rec={at:S.startedAt,sessionId:S.sessionId,form:S.ctx.form,energi:S.ctx.energi,hvem:S.ctx.hvem,tid:S.ctx.tid,marks:{},answers:{}};
+  marks.forEach(m=>{ const sk=S.items[m.k].skill; rec.marks[sk]=m.mk; rec.answers[sk]=S.answers[m.k]; });
+  const idx=h.findIndex(x=>x.sessionId===S.sessionId); if(idx>=0)h[idx]=rec; else h.push(rec);
+  jset(HIST_KEY,h);
+  marks.forEach(m=>{ if(m.mk==='—'&&m.cl==='—')return;
+    EdelsData.interpret&&EdelsData.interpret(S.sessionId,S.trials[m.k],{responseClassification:m.cl==='—'?null:m.cl,conceptDemonstrated:m.mk==='—'?null:m.mk,notes:(document.getElementById('adultNotes')||{}).value||null}); });
+  document.getElementById('copyStatus').textContent='✓ Lagret på denne enheten';
+  document.getElementById('trend').innerHTML=trendHtml();
+}
+function trendHtml(){
+  const h=jget(HIST_KEY,[]); if(!h.length)return '<p class="small">Ingen lagrede vurderinger ennå.</p>';
+  const cols=Object.keys(SKILLS);
+  return '<div style="overflow-x:auto"><table style="border-collapse:collapse;font-size:.75rem"><tr><th style="text-align:left;padding:.2rem .4rem">Dato</th><th>Form</th><th>Energi</th>'+cols.map(c=>`<th style="padding:.2rem .4rem">${esc(SKILLS[c].split(' (')[0])}</th>`).join('')+'</tr>'+
+   h.map(r=>`<tr><td style="padding:.2rem .4rem">${new Date(r.at).toLocaleDateString('no-NO')}</td><td>${r.form}</td><td>${esc(r.energi||'—')}</td>`+cols.map(c=>`<td style="padding:.2rem .4rem;text-align:center">${esc((r.marks[c]||'—').split(' ')[0])}</td>`).join('')+'</tr>').join('')+'</table></div>';
+}
+async function copyAdult(){
+  const marks=readMarks();
+  const body=S.items.map((it,k)=>{const m=marks.find(x=>x.k===k)||{};
+    return (k+1)+'. '+SKILLS[it.skill]+' ['+(it.mode==='oral'?'muntlig':'skriftlig')+']\nSpørsmål: '+it.q+(it.text?'\n(Tekst: '+it.text+')':'')+'\nSvar (ordrett): '+(S.answers[k]||'—')+'\nForslag (støtte): '+suggestFor(it,S.answers[k]||'')+'\nVurdering: '+(m.mk||'—')+' | Klassifisering: '+(m.cl||'—');}).join('\n\n');
+  const text='EDELS VERDEN — KONTROLLSETT (form '+S.ctx.form+')\n'+new Date(S.startedAt).toLocaleString('no-NO')+'\nEnergi: '+S.ctx.energi+' | Til stede: '+S.ctx.hvem+' | Tid: '+S.ctx.tid+(S.ctx.notat?' | Notat: '+S.ctx.notat:'')+'\n\n'+body+'\n\nObservasjoner:\n'+((document.getElementById('adultNotes')||{}).value||'');
+  const st=document.getElementById('copyStatus');
+  try{ await navigator.clipboard.writeText(text); st.textContent='✓ Kopiert'; }
+  catch(e){ const ta=document.createElement('textarea'); ta.value=text; document.body.appendChild(ta); ta.select(); try{document.execCommand('copy');st.textContent='✓ Kopiert';}catch(e2){st.textContent='Kunne ikke kopiere';} ta.remove(); }
+}
+renderStart();
+</script></body></html>
