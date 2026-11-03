@@ -1,0 +1,239 @@
+<!doctype html>
+<html lang="nb">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Ord og betydning – Edels Verden</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{--cream:#F6F1E6;--paper:#FFFEFA;--navy:#1C2C42;--navy-2:#29455F;--ink:#1B2438;--muted:#746F66;--coral:#BE6E56;--coral-soft:#F3DFD6;--rule:#E4DCCB;--green:#E4F0DF;--shadow:0 12px 34px rgba(28,44,66,0.08)}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'Inter',sans-serif;background:radial-gradient(circle at 10% 0%,#FFF9EE 0,transparent 24rem),var(--cream);color:var(--ink);min-height:100vh;-webkit-font-smoothing:antialiased}
+main{max-width:680px;margin:auto;padding:1.4rem 1.2rem 6rem}
+.top{display:flex;justify-content:space-between;align-items:center;gap:12px}
+.top strong{font-family:'Fraunces',serif;font-weight:600;font-size:1.2rem}
+.top a{color:inherit;text-decoration:none}
+.small{font-size:0.82rem;color:var(--muted);margin-top:0.15rem}
+.pill{background:var(--paper);border:1px solid var(--rule);border-radius:999px;padding:0.5rem 0.9rem;font-weight:700;font-size:0.85rem;flex-shrink:0;white-space:nowrap}
+.progress{height:8px;background:var(--rule);border-radius:9px;overflow:hidden;margin-top:0.9rem}
+.bar{height:100%;background:var(--coral);width:6%;transition:width 0.25s ease}
+.card{background:var(--paper);border:1px solid rgba(28,44,66,0.08);border-radius:22px;padding:1.4rem;margin-top:1rem;box-shadow:0 7px 24px rgba(28,44,66,0.045)}
+.step{font-weight:700;font-size:0.7rem;letter-spacing:0.1em;text-transform:uppercase;color:var(--coral)}
+.hero{width:100%;max-height:420px;object-fit:contain;border-radius:16px;margin:0.9rem 0;display:block;background:var(--cream)}
+.story{background:var(--cream);border:1px dashed var(--rule);border-radius:14px;padding:0.85rem 1rem;font-size:0.95rem;color:var(--ink);line-height:1.6;margin-top:0.6rem;white-space:pre-line}
+.laer{background:var(--green);border:1px solid #CFE4CA;border-radius:14px;padding:0.9rem 1rem;font-size:0.95rem;color:#2F5137;line-height:1.65;margin-top:0.6rem;white-space:pre-line}
+.q{font-family:'Fraunces',serif;font-size:1.22rem;font-weight:500;line-height:1.34;margin-top:0.9rem;white-space:pre-line}
+.mic{font-size:0.82rem;color:var(--muted);margin-top:0.4rem}
+textarea,input[type=text]{width:100%;font:inherit;font-family:'Inter',sans-serif;border:2px solid var(--rule);border-radius:14px;padding:0.85rem;background:var(--paper);min-height:52px;margin-top:0.6rem;color:var(--ink)}
+textarea{min-height:90px;margin-top:0.9rem}
+textarea:focus,input:focus{outline:2px solid var(--coral);outline-offset:1px;border-color:var(--coral)}
+.flex-row{display:flex;align-items:center;gap:0.7rem;margin-top:0.5rem}
+.flex-row label{min-width:6.2rem;font-weight:600}
+.flex-row input{margin-top:0}
+.btns{display:flex;gap:0.6rem;flex-wrap:wrap;margin-top:0.9rem}
+button{border:0;border-radius:999px;padding:0.7rem 1.1rem;font:inherit;font-weight:700;font-size:0.88rem;background:var(--navy);color:#EDE6D6;cursor:pointer}
+button.secondary{background:var(--coral-soft);color:#7A4530}
+button:disabled{opacity:0.45;cursor:default}
+.hidden{display:none}
+.voksen{background:#F1F4F8;border:1px solid #D5DEE8;border-radius:12px;padding:0.6rem 0.85rem;font-size:0.78rem;color:#4A5A6E;line-height:1.5;margin-top:0.7rem}
+.voksen summary{cursor:pointer;font-size:0.62rem;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;color:#5E6F84}
+.voksen[open] summary{margin-bottom:0.3rem}
+.vpanel{background:var(--paper);border:1px solid var(--rule);border-radius:16px;padding:1rem;margin-top:1rem}
+.vpanel h3{font-family:'Fraunces',serif;font-size:1.05rem;font-weight:600;margin-bottom:0.5rem}
+.vpanel label{display:flex;align-items:flex-start;gap:0.55rem;font-size:0.88rem;line-height:1.4;margin-top:0.45rem}
+.vpanel label input{margin-top:0.2rem;width:auto}
+.ok{background:var(--green);color:#3E6C4A;padding:0.8rem 1rem;border-radius:14px;margin-top:0.9rem;font-weight:600}
+.send-bar{position:fixed;left:0;right:0;bottom:0;padding:0.8rem 1rem calc(0.8rem + env(safe-area-inset-bottom));background:rgba(28,44,66,0.96);backdrop-filter:blur(10px);display:flex;justify-content:center;z-index:50}
+.send-bar.hidden{display:none}
+.send-bar button{background:var(--coral);color:#fff;width:100%;max-width:420px}
+.send-note{font-size:0.72rem;color:#C7D3DE;text-align:center;margin-top:0.4rem;max-width:420px}
+.opts{display:flex;gap:.6rem;flex-wrap:wrap;margin-top:.9rem}.opts button{background:var(--paper);color:var(--navy);border:2px solid var(--rule);font-size:1rem;padding:.8rem 1.3rem}.opts button.picked{background:var(--navy);color:#EDE6D6;border-color:var(--navy)}.opts button:disabled{opacity:.7}.ordbig{font-family:"Fraunces",serif;font-size:1.7rem;font-weight:600;color:var(--navy)}.ikke{background:var(--coral-soft);border:1px solid #E8C9BA;border-radius:14px;padding:.8rem 1rem;font-size:.95rem;color:#7A4530;line-height:1.6;margin-top:.6rem;white-space:pre-line}
+@media(max-width:600px){main{padding:1rem 0.9rem 6.5rem}.card{padding:1.05rem}.q{font-size:1.1rem}}
+</style></head>
+<body><main>
+<div class="top"><div><strong><a href="index.html">🔎 Ord og betydning</a></strong><div class="small">Norsk · Naturfag · Ord · ca. 12 min</div></div><div class="pill" id="count">Steg 1</div></div>
+<div class="progress"><div class="bar" id="bar"></div></div>
+
+<div id="stepHost"></div>
+
+</main>
+
+<div class="send-bar hidden" id="sendBar">
+  <div>
+    <button id="sendBarBtn" onclick="sendPartial()">📤 Send det som er gjort til mamma</button>
+    <div class="send-note">Sender det hun har svart så langt, uansett om hun er ferdig eller ikke.</div>
+  </div>
+</div>
+
+<script src="edels-data.js"></script>
+<script>
+if(typeof EdelsData==='undefined'){
+  console.warn('edels-data.js ble ikke funnet – kjører uten lagring.');
+  window.EdelsData={createSession:()=>'offline-'+Date.now(),getSession:()=>null,startTrial:()=>'t-'+Date.now()+'-'+Math.random(),responseStarted:()=>{},saveFirstResponse:()=>{},completeSession:()=>{},finishAndSubmit:()=>{},interpret:()=>{},addSupport:()=>{}};
+}
+const TITLE='Ord og betydning 03.11.2026';
+const SESSION_KEY='edels_ord_og_betydning_2026_11_03_v1_session';
+const GOAL='word_meaning_example_nonexample_justification';
+let sessionId=null;
+try{ sessionId=localStorage.getItem(SESSION_KEY); }catch(e){}
+try{
+  if(!sessionId || !EdelsData.getSession(sessionId) || EdelsData.getSession(sessionId).status==='completed'){
+    sessionId=EdelsData.createSession({title:TITLE,researchGoal:GOAL,schoolSubject:'naturfag_norsk'});
+    try{ localStorage.setItem(SESSION_KEY,sessionId); }catch(e){}
+  }
+}catch(e){ sessionId=EdelsData.createSession({title:TITLE,researchGoal:GOAL,schoolSubject:'naturfag_norsk'}); }
+
+// ---------- Innhold ----------
+const WORDS={
+ utdodd:{ord:'utdødd',laer:'Når en art ikke finnes lenger, er den utdødd.\nIngen levende dyr av den arten er igjen.\n\nEksempel: Dodoen er utdødd. Ingen dodoer lever i dag.',ikke:'Ikke utdødd: Noen få tigre lever fortsatt i naturen. Det er få igjen, men de finnes. Da er de ikke utdødd.'},
+ mangfold:{ord:'mangfold',laer:'Mangfold betyr at det finnes mange forskjellige slags ting på ett sted.\nBiologisk mangfold betyr mange slags dyr, planter og andre levende ting.\n\nEksempel: I en skog bor det elg, ugler, maur, sopp og mange slags trær. Det er mye mangfold.',ikke:'Ikke mangfold: En plen med bare én slags gress og nesten ingen dyr har lite mangfold.'},
+ danne:{ord:'danne',laer:'Å danne noe betyr å lage eller skape noe, ofte sammen med andre.\n«Danner» brukes når noe blir til.\n\nEksempel: Fire elever danner en gruppe.',ikke:'Ikke danne: Når en elev sitter helt alene, danner hun ikke en gruppe. Det må være flere sammen.'},
+ hypotese:{ord:'hypotese',laer:'En hypotese er en forklaring vi tror kan være riktig, men som vi ikke har undersøkt ennå.\n\nEksempel: «Jeg tror planten vokser fortere i sola.» Det er en hypotese, før vi har testet det.',ikke:'Ikke hypotese: «Planten vokste 5 cm.» Det er noe vi har målt. Da vet vi det, og det er ikke en hypotese lenger.'}
+};
+const ITEMS=[
+ {w:'utdodd',n:1,sc:'Dodoen finnes ikke lenger. Ingen dodoer lever i dag.\n\nEr dodoen utdødd?',opts:['Ja','Nei'],ok:'Ja',fasit:'Ja – arten finnes ikke lenger.'},
+ {w:'utdodd',n:2,sc:'Det er noen få elefanter igjen i en skog. De lever fortsatt.\n\nEr elefantene utdødde?',opts:['Ja','Nei'],ok:'Nei',fasit:'Nei – noen finnes, selv om det er få.'},
+ {w:'mangfold',n:1,sc:'I en åker vokser det bare én slags plante. Nesten ingen dyr bor der.\n\nEr det mye mangfold på åkeren?',opts:['Ja','Nei'],ok:'Nei',fasit:'Nei – bare én slags liv.'},
+ {w:'mangfold',n:2,sc:'I en skog bor det elg, ugle, maur, sopp og mange slags trær.\n\nEr det mangfold i skogen?',opts:['Ja','Nei'],ok:'Ja',fasit:'Ja – mange forskjellige slags liv.'},
+ {w:'danne',n:1,sc:'Fem elever stiller seg sammen og lager en gruppe.\n\nDanner de en gruppe?',opts:['Ja','Nei'],ok:'Ja',fasit:'Ja – de lager gruppen sammen.'},
+ {w:'danne',n:2,sc:'En elev sitter alene og tegner.\n\nDanner eleven en gruppe?',opts:['Ja','Nei'],ok:'Nei',fasit:'Nei – en gruppe må ha flere.'},
+ {w:'hypotese',n:1,sc:'Mia tror at planten vokser fortere i sola. Hun har ikke prøvd ennå.\n\nEr det en hypotese?',opts:['Ja','Nei'],ok:'Ja',fasit:'Ja – en forklaring hun tror på, men ikke har undersøkt.'},
+ {w:'hypotese',n:2,sc:'Mia har målt planten i to uker. Den vokste 5 cm.\n\nEr det en hypotese?',opts:['Ja','Nei'],ok:'Nei',fasit:'Nei – det er et resultat hun har målt.'},
+ {w:'diff',n:1,sc:'Dinosaurene finnes ikke lenger.\n\nHvilket ord passer best?',opts:['danne','hypotese','utdødd','mangfold'],ok:'utdødd',fasit:'utdødd'},
+ {w:'diff',n:2,sc:'I havet lever det tusenvis av ulike arter.\n\nHvilket ord passer best?',opts:['mangfold','utdødd','hypotese','danne'],ok:'mangfold',fasit:'mangfold'},
+ {w:'diff',n:3,sc:'Jeg tror kanskje at isen smelter fortere i varmen, men jeg har ikke testet det.\n\nHvilket ord passer best?',opts:['utdødd','danne','mangfold','hypotese'],ok:'hypotese',fasit:'hypotese'},
+ {w:'diff',n:4,sc:'Tre venner lager et lag sammen. De … et lag.\n\nHvilket ord passer best?',opts:['hypotese','danner','utdødd','mangfold'],ok:'danner',fasit:'danner'}
+];
+const PLAN=[{kind:'display',id:'intro',title:'Ord og betydning',story:'Hei, Edel!\n\nI dag ser vi på fire ord: utdødd, mangfold, danne og hypotese.\n\nFørst lærer du hva et ord betyr. Så får du noen spørsmål. Du velger svar, og så skriver du hvorfor.\n\nDu kan skrive «jeg vet ikke». Det går fint.'}];
+['utdodd','mangfold','danne','hypotese'].forEach(w=>{
+  PLAN.push({kind:'learn',id:'l_'+w,w});
+  ITEMS.filter(i=>i.w===w).forEach(i=>PLAN.push(Object.assign({kind:'item',id:w+'_'+i.n},i)));
+});
+PLAN.push({kind:'display',id:'diffintro',title:'Nå blander vi ordene',story:'Nå kommer det fire spørsmål der du velger hvilket av de fire ordene som passer best.\n\nHusk å skrive hvorfor.'});
+ITEMS.filter(i=>i.w==='diff').forEach(i=>PLAN.push(Object.assign({kind:'item',id:'diff_'+i.n},i)));
+const NITEMS=PLAN.filter(s=>s.kind==='item').length;
+
+let planIdx=0;
+const answers={};            // id -> {choice,correct,why}
+const trialIds={};           // key -> trialId
+const started=new Set();
+const host=document.getElementById('stepHost');
+let shownAt=Date.now();
+
+function ensureTrial(key,meta){
+  if(trialIds[key]) return trialIds[key];
+  trialIds[key]=EdelsData.startTrial(sessionId,Object.assign({researchGoal:GOAL,condition:'ord_og_betydning_2026_11_03',retentionIntervalDays:0},meta));
+  return trialIds[key];
+}
+function markStarted(t){ if(started.has(t)) return; started.add(t); EdelsData.responseStarted(sessionId,t); }
+function setProgress(){
+  const done=PLAN.slice(0,planIdx).filter(s=>s.kind==='item').length;
+  document.getElementById('count').textContent=planIdx>=PLAN.length?'Ferdig':done+' av '+NITEMS;
+  document.getElementById('bar').style.width=Math.round(Math.min(planIdx,PLAN.length)/PLAN.length*100)+'%';
+}
+function speak(t){speechSynthesis.cancel();const u=new SpeechSynthesisUtterance(t.replace(/\n/g,' '));u.lang='nb-NO';u.rate=0.9;speechSynthesis.speak(u)}
+function escAttr(s){return String(s).replace(/&/g,'&amp;').replace(/"/g,'&quot;').replace(/</g,'&lt;').replace(/>/g,'&gt;');}
+function updateSendBar(){ const b=document.getElementById('sendBar'); if(b) b.classList.toggle('hidden',Object.keys(answers).length===0); }
+function summaryText(){
+  return PLAN.filter(s=>s.kind==='item'&&answers[s.id]).map(s=>{const a=answers[s.id];return `${s.id}: ${s.sc.replace(/\n+/g,' ')}\n→ Valg: ${a.choice} (${a.correct?'riktig':'feil'})${a.why!=null?' | Hvorfor: '+a.why:''}`;}).join('\n\n');
+}
+async function post(subject,extra){
+  const r=await fetch('https://formspree.io/f/mqeolldg',{method:'POST',headers:{'Content-Type':'application/json','Accept':'application/json'},keepalive:true,
+    body:JSON.stringify(Object.assign({_subject:subject,oppgave:TITLE,session_id:sessionId,Tekst_hun_skrev:summaryText(),antall_besvart:Object.keys(answers).length+' av '+NITEMS,dato:new Date().toLocaleString('no-NO')},extra))});
+  if(!r.ok) throw new Error('HTTP '+r.status);
+}
+async function sendPartial(){
+  const btn=document.getElementById('sendBarBtn'),o=btn.textContent; btn.disabled=true;btn.textContent='Sender …';
+  try{ await post(TITLE+' – fremgang underveis',{}); btn.textContent='✓ Sendt!'; setTimeout(()=>{btn.textContent=o;btn.disabled=false},1800); }
+  catch(e){ btn.textContent='Kunne ikke sende – prøv igjen'; btn.disabled=false; }
+}
+
+function render(){
+  setProgress();
+  const s=PLAN[planIdx];
+  if(!s){ renderEnd(); return; }
+  shownAt=Date.now();
+  if(s.kind==='display') host.innerHTML=`<section class="card"><div class="step">${s.title}</div><div class="laer">${s.story}</div>
+    <div class="btns"><button onclick="planIdx++;render()">Fortsett →</button><button class="secondary" onclick="speak(${escAttr(JSON.stringify(s.story))})">🔊 Les opp</button></div></section>`;
+  else if(s.kind==='learn'){ const W=WORDS[s.w];
+    host.innerHTML=`<section class="card"><div class="step">Lær et ord</div><div class="ordbig">${W.ord}</div>
+      <div class="laer">${W.laer}</div><div class="ikke">${W.ikke}</div>
+      <div class="btns"><button onclick="planIdx++;render()">Jeg er klar →</button><button class="secondary" onclick="speak(${escAttr(JSON.stringify(W.ord+'. '+W.laer+' '+W.ikke))})">🔊 Les opp</button></div></section>`; }
+  else renderItem(s);
+}
+function renderItem(s){
+  const label=s.w==='diff'?'Hvilket ord passer?':'Ja eller nei?';
+  host.innerHTML=`<section class="card"><div class="step">${label}</div>
+    <p class="q">${s.sc}</p>
+    <div class="opts" id="opts">${s.opts.map(o=>`<button data-o="${escAttr(o)}">${o}</button>`).join('')}</div>
+    <div class="btns"><button class="secondary" onclick="speak(${escAttr(JSON.stringify(s.sc))})">🔊 Les opp</button></div>
+    <div id="whyBox" class="hidden"><p class="q" style="margin-top:1.1rem">Hvorfor?</p>
+      <div class="mic">Skriv med dine egne ord. Du kan skrive «jeg vet ikke».</div>
+      <textarea id="whyInput" placeholder="Skriv hvorfor …"></textarea>
+      <div class="btns"><button id="whyBtn" onclick="saveWhy()">${planIdx===PLAN.length-1?'Fullfør økten':'Lagre og gå videre'}</button></div></div></section>`;
+  document.querySelectorAll('#opts button').forEach(b=>b.addEventListener('click',()=>pick(b.dataset.o,b)));
+}
+function pick(val,btn){
+  const s=PLAN[planIdx]; if(answers[s.id]) return;
+  const tid=ensureTrial(s.id+'_valg',{target:s.w+'_'+s.n+'_valg',taskType:s.w==='diff'?'word_discrimination':'example_nonexample',modality:'choice',question:s.sc.replace(/\n+/g,' '),context:s.id});
+  EdelsData.responseStarted(sessionId,tid);
+  EdelsData.saveFirstResponse(sessionId,tid,val,{source:'ord_betydning_ui',correctAnswer:s.ok,correct:val===s.ok,latencyMs:Date.now()-shownAt});
+  answers[s.id]={choice:val,correct:val===s.ok,why:null};
+  document.querySelectorAll('#opts button').forEach(b=>{b.disabled=true; if(b===btn) b.classList.add('picked');});
+  document.getElementById('whyBox').classList.remove('hidden');
+  document.getElementById('whyInput').focus();
+  const wt=ensureTrial(s.id+'_hvorfor',{target:s.w+'_'+s.n+'_hvorfor',taskType:'justification',modality:'written',question:'Hvorfor? ('+s.sc.replace(/\n+/g,' ')+')',context:s.id});
+  document.getElementById('whyInput').addEventListener('input',()=>markStarted(wt),{once:true});
+  updateSendBar(); whyShownAt=Date.now();
+}
+let whyShownAt=Date.now();
+function saveWhy(){
+  const s=PLAN[planIdx], inp=document.getElementById('whyInput'), val=inp.value;
+  if(!val.trim()){alert('Skriv et svar først. Du kan skrive «jeg vet ikke».');return}
+  EdelsData.saveFirstResponse(sessionId,ensureTrial(s.id+'_hvorfor'),val,{source:'ord_betydning_ui',latencyMs:Date.now()-whyShownAt,choiceBefore:answers[s.id].choice});
+  answers[s.id].why=val; updateSendBar();
+  planIdx++; render();
+}
+// ---------- Slutt + voksenpanel ----------
+const KLASS=[['','—'],['yes','Begrunnelse riktig'],['partial','Delvis riktig / upresis'],['not_demonstrated','Ikke relatert til ordet'],['indeterminate','Vet ikke / ikke vurderbar']];
+const SUPPORT=['0 Sem ajuda','1 Repetição/reformulação','2 Pista contextual','3 Pista semântica','4 Imagem','5 Alternativas','6 Início da frase','7 Modelo explícito'];
+function renderEnd(){
+  EdelsData.finishAndSubmit(sessionId);
+  document.getElementById('sendBar').classList.add('hidden');
+  const rows=PLAN.filter(s=>s.kind==='item').map((s,i)=>`<div style="border-top:1px solid var(--rule);padding:.6rem 0">
+    <div class="small"><strong>${s.id}</strong> · ${s.sc.replace(/\n+/g,' ')}</div>
+    <div class="small">Valg: <strong>${answers[s.id]?answers[s.id].choice:'—'}</strong> ${answers[s.id]?(answers[s.id].correct?'✓':'✗ (riktig: '+s.ok+')'):''}</div>
+    <div class="small">Hvorfor (ordrett): <em>${answers[s.id]&&answers[s.id].why?answers[s.id].why.replace(/</g,'&lt;'):'—'}</em></div>
+    <div class="small">Vurdering: <select class="vk" data-id="${s.id}">${KLASS.map(([v,t])=>`<option value="${v}">${t}</option>`).join('')}</select>
+      Hjelp gitt: <select class="vs" data-id="${s.id}"><option value="">—</option>${SUPPORT.map((x,k)=>`<option value="${k}">${x}</option>`).join('')}</select></div></div>`).join('');
+  host.innerHTML=`<section class="card"><div class="ok">Bra jobbet, Edel! 🌸 Nå kan du fire ord: utdødd, mangfold, danne og hypotese.</div>
+    <div class="small" style="margin-top:.5rem">Økten er sendt til mamma.</div>
+    <details class="voksen" open><summary>Til voksen</summary>
+    <div class="vpanel"><h3>Registro adulto</h3>
+      <p class="small">A interpretação é do adulto. O valg mede reconhecimento; o «Hvorfor?» mede explicação. Isto é uso imediato após ensino — <strong>não é retenção</strong>. Refaça em 1 dia pelo Revisjon. Respostas certas por eliminação (2 opções) não provam conhecimento. Avalie o «hvorfor» separadamente do valg, e não corrija durante a sessão. Depois, revisem juntas as respostas e o fasit abaixo.</p>
+      ${rows}
+      <details class="voksen"><summary>Fasit (depois da tentativa)</summary>${PLAN.filter(s=>s.kind==='item').map(s=>`<div class="small"><strong>${s.id}</strong>: ${s.fasit}</div>`).join('')}</details>
+      <textarea id="adultNotes" placeholder="Observações: conceito certo com outras palavras? dificuldade de formulação? padrão sim/não?"></textarea>
+      <div class="btns"><button onclick="saveVurd()">Lagre vurderinger</button><button class="secondary" onclick="copyAdult()">Kopier alt</button></div>
+      <div id="adultStatus" class="small" style="margin-top:.4rem"></div></div></details></section>`;
+}
+function saveVurd(){
+  let n=0;
+  document.querySelectorAll('.vk').forEach(sel=>{
+    const id=sel.dataset.id, k=sel.value, sup=document.querySelector('.vs[data-id="'+id+'"]').value;
+    const tid=trialIds[id+'_hvorfor'];
+    if(tid&&k){ EdelsData.interpret(sessionId,tid,{conceptDemonstrated:k,responseClassification:'adult_rated_justification',notes:(document.getElementById('adultNotes')||{value:''}).value||null}); n++; }
+    if(tid&&sup!==''&&Number(sup)>0){ EdelsData.addSupport(sessionId,tid,Number(sup),'adult_reported',SUPPORT[Number(sup)],null); }
+  });
+  document.getElementById('adultStatus').textContent='✓ Lagret '+n+' vurderinger (lokalt i nettleseren).';
+}
+async function copyAdult(){
+  const lines=PLAN.filter(s=>s.kind==='item').map(s=>{const a=answers[s.id]||{};const k=document.querySelector('.vk[data-id="'+s.id+'"]'),u=document.querySelector('.vs[data-id="'+s.id+'"]');
+    return `${s.id} | ${s.sc.replace(/\n+/g,' ')}\n  Valg: ${a.choice||'—'} ${a.correct?'(riktig)':'(feil, riktig: '+s.ok+')'}\n  Hvorfor (ordrett): ${a.why||'—'}\n  Vurdering: ${k&&k.selectedOptions[0]?k.selectedOptions[0].text:'—'}${u&&u.value!==''?' | Hjelp: '+SUPPORT[u.value]:''}`;}).join('\n\n');
+  const text='EDELS VERDEN — '+TITLE.toUpperCase()+'\n(Umiddelbar bruk etter undervisning – ikke retensjon)\n\n'+lines+'\n\nObservações:\n'+((document.getElementById('adultNotes')||{value:''}).value);
+  const st=document.getElementById('adultStatus');
+  try{ await navigator.clipboard.writeText(text); st.textContent='✓ Kopiert'; }
+  catch(e){ const ta=document.createElement('textarea'); ta.value=text; document.body.appendChild(ta); ta.select(); try{document.execCommand('copy'); st.textContent='✓ Kopiert';}catch(e2){st.textContent='Kunne ikke kopiere';} ta.remove(); }
+}
+render();
+</script></body></html>
