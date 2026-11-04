@@ -243,7 +243,6 @@ function renderEnd(){
     <div class="small">Vurdering: <select class="vk" data-id="${s.id}">${KL.map(([v,t])=>`<option value="${v}">${t}</option>`).join('')}</select></div></div>`).join('');
   const other=PLAN.filter(s=>s.type!=='open'&&s.type!=='intro').map(s=>`<div class="small" style="margin-top:.35rem"><strong>${s.title}</strong><br>${answers[s.id]?esc(answers[s.id].text):'—'}${answers[s.id]&&answers[s.id].meta&&answers[s.id].meta.correct!==undefined?' <span>('+(Array.isArray(answers[s.id].meta.correct)?answers[s.id].meta.correct.filter(Boolean).length+'/'+answers[s.id].meta.correct.length+' som forventet':(answers[s.id].meta.correct?'som forventet':'ikke som forventet'))+')</span>':''}</div>`).join('');
   host.innerHTML=`<section class="card"><div class="ok">Bra jobbet, Edel! 🌸 Du har lest fire historier og sagt hva du tror, og hvorfor.</div>
-   <div class="small" style="margin-top:.5rem">Økten er sendt til mamma.</div>
    <details class="voksen" open><summary>Til voksen</summary><div class="vpanel"><h3>Registro adulto</h3>
    <p class="small">A interpretação é do adulto. As perguntas abertas vieram <strong>primeiro e sem apoio</strong>; os passos seguintes (vet/tror, spor, ordforklaring) são apoio e devem ser lidos como tal. O passo «ord» traz uma explicação das palavras, então não mede recuperação de vocabulário. Historie 2 é o controle (inferência sem emoção). Em Historie 3, compare a primeira e a segunda resposta: ela revisou a interpretação? Uma sessão e poucos itens não estabelecem padrão; refazer com histórias novas em outro dia.</p>
    ${rows}
@@ -271,4 +270,20 @@ async function copyAdult(){
   catch(e){ const ta=document.createElement('textarea'); ta.value=text; document.body.appendChild(ta); ta.select(); try{document.execCommand('copy'); st.textContent='✓ Kopiert';}catch(e2){st.textContent='Kunne ikke kopiere';} ta.remove(); }
 }
 render();
+
+// ---- Garantir levering (fungerer også uten edels-data.js) ----
+const _origRenderEnd=renderEnd;
+renderEnd=function(){ _origRenderEnd.apply(this,arguments); ensureDelivered(); };
+function ensureDelivered(){
+  const card=document.querySelector('#stepHost .card'); if(!card) return;
+  let el=document.getElementById('sendStatus');
+  if(!el){ el=document.createElement('div'); el.id='sendStatus'; el.className='small'; el.style.marginTop='.5rem';
+    const ok=card.querySelector('.ok'); if(ok) ok.insertAdjacentElement('afterend',el); else card.insertBefore(el,card.firstChild); }
+  el.textContent='Sender til mamma …';
+  const sentOK=()=>{ try{ const s=EdelsData.getSession(sessionId); return !!(s&&s.submission&&s.submission.status==='sent'); }catch(e){ return false; } };
+  const manual=async()=>{ el.textContent='Sender …';
+    try{ await post((typeof TITLE!=='undefined'?TITLE:'Edels Verden')+' – fullført økt',{status:'fullført'}); el.textContent='✓ Sendt til mamma'; el.onclick=null; el.style.cursor=''; }
+    catch(e){ el.textContent='Kunne ikke sende – trykk her for å prøve igjen'; el.style.cursor='pointer'; el.onclick=manual; } };
+  setTimeout(()=>{ if(sentOK()) el.textContent='✓ Sendt til mamma'; else manual(); },6000);
+}
 </script></body></html>

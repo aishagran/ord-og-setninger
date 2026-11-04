@@ -1,0 +1,266 @@
+<!doctype html>
+<html lang="nb">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Kan jeg få låne? 2 – Edels Verden</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{--cream:#F6F1E6;--paper:#FFFEFA;--navy:#1C2C42;--navy-2:#29455F;--ink:#1B2438;--muted:#746F66;--coral:#BE6E56;--coral-soft:#F3DFD6;--rule:#E4DCCB;--green:#E4F0DF;--shadow:0 12px 34px rgba(28,44,66,0.08)}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'Inter',sans-serif;background:radial-gradient(circle at 10% 0%,#FFF9EE 0,transparent 24rem),var(--cream);color:var(--ink);min-height:100vh;-webkit-font-smoothing:antialiased}
+main{max-width:680px;margin:auto;padding:1.4rem 1.2rem 6rem}
+.top{display:flex;justify-content:space-between;align-items:center;gap:12px}
+.top strong{font-family:'Fraunces',serif;font-weight:600;font-size:1.2rem}
+.top a{color:inherit;text-decoration:none}
+.small{font-size:0.82rem;color:var(--muted);margin-top:0.15rem}
+.pill{background:var(--paper);border:1px solid var(--rule);border-radius:999px;padding:0.5rem 0.9rem;font-weight:700;font-size:0.85rem;flex-shrink:0;white-space:nowrap}
+.progress{height:8px;background:var(--rule);border-radius:9px;overflow:hidden;margin-top:0.9rem}
+.bar{height:100%;background:var(--coral);width:6%;transition:width 0.25s ease}
+.card{background:var(--paper);border:1px solid rgba(28,44,66,0.08);border-radius:22px;padding:1.4rem;margin-top:1rem;box-shadow:0 7px 24px rgba(28,44,66,0.045)}
+.step{font-weight:700;font-size:0.7rem;letter-spacing:0.1em;text-transform:uppercase;color:var(--coral)}
+.hero{width:100%;max-height:420px;object-fit:contain;border-radius:16px;margin:0.9rem 0;display:block;background:var(--cream)}
+.story{background:var(--cream);border:1px dashed var(--rule);border-radius:14px;padding:0.85rem 1rem;font-size:0.95rem;color:var(--ink);line-height:1.6;margin-top:0.6rem;white-space:pre-line}
+.laer{background:var(--green);border:1px solid #CFE4CA;border-radius:14px;padding:0.9rem 1rem;font-size:0.95rem;color:#2F5137;line-height:1.65;margin-top:0.6rem;white-space:pre-line}
+.q{font-family:'Fraunces',serif;font-size:1.22rem;font-weight:500;line-height:1.34;margin-top:0.9rem;white-space:pre-line}
+.mic{font-size:0.82rem;color:var(--muted);margin-top:0.4rem}
+textarea,input[type=text]{width:100%;font:inherit;font-family:'Inter',sans-serif;border:2px solid var(--rule);border-radius:14px;padding:0.85rem;background:var(--paper);min-height:52px;margin-top:0.6rem;color:var(--ink)}
+textarea{min-height:90px;margin-top:0.9rem}
+textarea:focus,input:focus{outline:2px solid var(--coral);outline-offset:1px;border-color:var(--coral)}
+.flex-row{display:flex;align-items:center;gap:0.7rem;margin-top:0.5rem}
+.flex-row label{min-width:6.2rem;font-weight:600}
+.flex-row input{margin-top:0}
+.btns{display:flex;gap:0.6rem;flex-wrap:wrap;margin-top:0.9rem}
+button{border:0;border-radius:999px;padding:0.7rem 1.1rem;font:inherit;font-weight:700;font-size:0.88rem;background:var(--navy);color:#EDE6D6;cursor:pointer}
+button.secondary{background:var(--coral-soft);color:#7A4530}
+button:disabled{opacity:0.45;cursor:default}
+.hidden{display:none}
+.voksen{background:#F1F4F8;border:1px solid #D5DEE8;border-radius:12px;padding:0.6rem 0.85rem;font-size:0.78rem;color:#4A5A6E;line-height:1.5;margin-top:0.7rem}
+.voksen summary{cursor:pointer;font-size:0.62rem;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;color:#5E6F84}
+.voksen[open] summary{margin-bottom:0.3rem}
+.vpanel{background:var(--paper);border:1px solid var(--rule);border-radius:16px;padding:1rem;margin-top:1rem}
+.vpanel h3{font-family:'Fraunces',serif;font-size:1.05rem;font-weight:600;margin-bottom:0.5rem}
+.vpanel label{display:flex;align-items:flex-start;gap:0.55rem;font-size:0.88rem;line-height:1.4;margin-top:0.45rem}
+.vpanel label input{margin-top:0.2rem;width:auto}
+.ok{background:var(--green);color:#3E6C4A;padding:0.8rem 1rem;border-radius:14px;margin-top:0.9rem;font-weight:600}
+.send-bar{position:fixed;left:0;right:0;bottom:0;padding:0.8rem 1rem calc(0.8rem + env(safe-area-inset-bottom));background:rgba(28,44,66,0.96);backdrop-filter:blur(10px);display:flex;justify-content:center;z-index:50}
+.send-bar.hidden{display:none}
+.send-bar button{background:var(--coral);color:#fff;width:100%;max-width:420px}
+.send-note{font-size:0.72rem;color:#C7D3DE;text-align:center;margin-top:0.4rem;max-width:420px}
+.opts{display:flex;gap:.6rem;flex-wrap:wrap;margin-top:.9rem}.opts button{background:var(--paper);color:var(--navy);border:2px solid var(--rule);font-size:1rem;padding:.8rem 1.3rem}.opts button.picked{background:var(--navy);color:#EDE6D6;border-color:var(--navy)}.opts button:disabled{opacity:.7}.ordbig{font-family:"Fraunces",serif;font-size:1.7rem;font-weight:600;color:var(--navy)}.chips{display:flex;flex-direction:column;gap:.5rem;margin-top:.8rem}.chip{background:var(--paper);color:var(--ink);border:2px solid var(--rule);border-radius:14px;text-align:left;font-weight:500;font-size:.95rem;padding:.7rem .9rem}.chip.sel{background:var(--green);border-color:#9CC79A}.stm{border-top:1px solid var(--rule);padding:.7rem 0}.stm p{font-size:.98rem;line-height:1.45}.stm .opts{margin-top:.4rem}.stm .opts button{font-size:.9rem;padding:.55rem 1rem}.gloss{background:var(--cream);border:1px dashed var(--rule);border-radius:12px;padding:.6rem .8rem;font-size:.85rem;color:var(--muted);line-height:1.5;margin-top:.6rem;white-space:pre-line}.inl{display:flex;flex-wrap:wrap;align-items:center;gap:.4rem;border:2px solid var(--rule);border-radius:14px;padding:.55rem .7rem;margin-top:.9rem;background:var(--paper)}.inl .pf{font-weight:600;color:var(--navy)}.inl input{flex:1;min-width:8rem;border:0;margin:0;padding:.3rem;min-height:36px;background:transparent}.inl input:focus{outline:none}.inl:focus-within{border-color:var(--coral)}.ikke{background:var(--coral-soft);border:1px solid #E8C9BA;border-radius:14px;padding:.8rem 1rem;font-size:.95rem;color:#7A4530;line-height:1.6;margin-top:.6rem;white-space:pre-line}
+@media(max-width:600px){main{padding:1rem 0.9rem 6.5rem}.card{padding:1.05rem}.q{font-size:1.1rem}}
+</style></head>
+<body><main>
+<div class="top"><div><strong><a href="index.html">🤝 Kan jeg få låne? 2</a></strong><div class="small">Norsk · Sosiale situasjoner · ca. 12 min</div></div><div class="pill" id="count">Steg 1</div></div>
+<div class="progress"><div class="bar" id="bar"></div></div>
+
+<div id="stepHost"></div>
+
+</main>
+
+<div class="send-bar hidden" id="sendBar">
+  <div>
+    <button id="sendBarBtn" onclick="sendPartial()">📤 Send det som er gjort til mamma</button>
+    <div class="send-note">Sender det hun har svart så langt, uansett om hun er ferdig eller ikke.</div>
+  </div>
+</div>
+
+<script src="edels-data.js"></script>
+<script>
+if(typeof EdelsData==='undefined'){
+  console.warn('edels-data.js ble ikke funnet – kjører uten lagring.');
+  window.EdelsData={createSession:()=>'offline-'+Date.now(),getSession:()=>null,startTrial:()=>'t-'+Date.now()+'-'+Math.random(),responseStarted:()=>{},saveFirstResponse:()=>{},completeSession:()=>{},finishAndSubmit:()=>{},interpret:()=>{},addSupport:()=>{},setSupportResponse:()=>{}};
+}
+const DAG2=/[?&]dag2\b/.test(location.search);
+const TITLE=DAG2?'Kan jeg få låne? 2 – ny situasjon (dag 2)':'Kan jeg få låne? 2 – ja, nei og ikke til stede 04.11.2026';
+const SESSION_KEY='edels_kan_jeg_fa_lane_2_'+(DAG2?'dag2':'dag1')+'_v1_session';
+const GOAL=DAG2?'generalization_refusal_absent_new_situation':'adapt_rule_accept_refuse_absent_and_formulation_formats';
+let sessionId=null;
+try{ sessionId=localStorage.getItem(SESSION_KEY); }catch(e){}
+try{
+  if(!sessionId || !EdelsData.getSession(sessionId) || EdelsData.getSession(sessionId).status==='completed'){
+    sessionId=EdelsData.createSession({title:TITLE,researchGoal:GOAL,schoolSubject:'norsk_sosialt'});
+    try{ localStorage.setItem(SESSION_KEY,sessionId); }catch(e){}
+  }
+}catch(e){ sessionId=EdelsData.createSession({title:TITLE,researchGoal:GOAL,schoolSubject:'norsk_sosialt'}); }
+
+const KEEP='Jeg beholder svaret mitt';
+// kind: intro | teach | sit (åpent svar først, så forslag som støtte) | form (formuleringsformat)
+const SITS={
+ A:{id:'sit_ja',h:'Situasjon 1 · Ja',story:'Du spør Ali: «Kan jeg få låne viskelæret ditt?»\nAli sier: «Ja, vær så god.»',q:'Hva sier eller gjør du nå?',target:'aksepterer_ja',
+   opts:['Jeg sier takk og bruker det.','Jeg sier takk, og så leverer jeg det tilbake når jeg er ferdig.','Jeg går bort uten å si noe.'],good:[1],fasit:'Takk og levere tilbake når ferdig.'},
+ C:{id:'sit_borte',h:'Situasjon 2 · Eieren er ikke her',story:'Du trenger en linjal. Linjalen ligger på pulten til Mats. Mats er ikke i klasserommet akkurat nå.',q:'Hva kan du gjøre?',target:'eier_ikke_tilstede',
+   opts:['Jeg venter til Mats kommer tilbake, og så spør jeg ham.','Jeg spør læreren om jeg kan låne en linjal.','Jeg spør en annen elev om hun har en linjal.'],good:[0,1,2],fasit:'Vente og spørre eieren, spørre læreren eller spørre en annen. Alle tre er gode.'},
+ B:{id:'sit_nei',h:'Situasjon 3 · Nei',story:'Du spør Tuva: «Kan jeg få låne saksen din?»\nTuva sier: «Nei, jeg bruker den selv.»',q:'Hva gjør du da?',target:'respekterer_nei',
+   opts:['Jeg sier «Greit» og spør noen andre.','Jeg lover å levere den tilbake.','Jeg spør igjen og igjen til hun sier ja.'],good:[0],fasit:'«Greit» og spørre noen andre. Nei er et svar vi godtar.'}
+};
+const NEW={
+ N1:{id:'ny_nei',h:'Ny situasjon · Nei',story:'Du spør Sofie: «Kan jeg få låne sparkesykkelen din?»\nSofie sier: «Nei, jeg skal bruke den selv.»',q:'Hva gjør du da?',target:'respekterer_nei_ny',
+   opts:['Jeg sier «Greit» og finner noe annet å gjøre.','Jeg lover å passe godt på den.','Jeg spør igjen og igjen til hun sier ja.'],good:[0],fasit:'«Greit» og gjøre noe annet eller spørre noen andre.'},
+ N2:{id:'ny_borte',h:'Ny situasjon · Eieren er ikke her',story:'Du vil låne en bok. Boken ligger på bordet til Ida. Ida er ikke her akkurat nå.',q:'Hva kan du gjøre?',target:'eier_ikke_tilstede_ny',
+   opts:['Jeg venter til Ida kommer og spør henne.','Jeg spør læreren.','Jeg spør en annen om en bok.'],good:[0,1,2],fasit:'Vente og spørre eieren, spørre læreren eller spørre en annen.'}
+};
+const FORMS=[
+ {id:'form_apen',type:'form',mode:'open',h:'Formulering · Spørsmål',q:'Hva gjør du når du er ferdig med noe du har lånt?',target:'form_apen_levere'},
+ {id:'form_fullfor',type:'form',mode:'prefix',h:'Formulering · Fullfør setningen',q:'Fullfør setningen med dine egne ord.',prefix:'Når jeg vil låne noe, kan jeg',target:'form_fullfor_sporre'},
+ {id:'form_inline',type:'form',mode:'inline',h:'Formulering · Skriv videre',q:'Skriv videre på setningen. Begynnelsen står allerede i feltet.',prefix:'Når noen sier nei, kan jeg',target:'form_inline_nei'}
+];
+let PLAN;
+if(DAG2){
+  PLAN=[{id:'intro',type:'intro',h:'Ny dag',text:'Hei igjen, Edel!\n\nI dag er det to nye situasjoner. Du har sett lignende ting før.\n\nSkriv med dine egne ord. Du kan skrive «jeg vet ikke».'},
+    Object.assign({type:'sit'},NEW.N1),Object.assign({type:'sit'},NEW.N2)];
+}else{
+  PLAN=[{id:'intro',type:'intro',h:'Kan jeg få låne? 2',text:'Hei, Edel!\n\nNoen ganger sier den andre ja. Noen ganger sier den andre nei. Noen ganger er den andre ikke der.\n\nI dag ser vi på hva vi kan gjøre i hver situasjon.\n\nDu kan skrive med dine egne ord. Du kan skrive «jeg vet ikke».'},
+    {id:'teach',type:'teach',h:'Når noen sier nei',text:'Noen ganger sier den andre nei.\nDa kan vi si «Greit» og spørre noen andre, eller finne noe annet å gjøre.\n\nEksempel: Jonas spør Lisa: «Kan jeg få låne viskelæret ditt?» Lisa sier: «Nei, jeg bruker det selv.» Jonas sier: «Greit.» Så spør han Ali.\n\nNår den andre ikke er der, kan vi vente og spørre senere, eller spørre læreren.'},
+    Object.assign({type:'sit'},SITS.A),Object.assign({type:'sit'},SITS.C),Object.assign({type:'sit'},SITS.B)].concat(FORMS);
+}
+const NSTEP=PLAN.length-1;
+let planIdx=0, phase='open';
+const answers={}, trialIds={}, started=new Set();
+const host=document.getElementById('stepHost');
+let shownAt=Date.now();
+const esc=s=>String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+function speak(t){speechSynthesis.cancel();const u=new SpeechSynthesisUtterance(String(t).replace(/\n/g,' '));u.lang='nb-NO';u.rate=0.9;speechSynthesis.speak(u)}
+function ensureTrial(s){
+  if(trialIds[s.id]) return trialIds[s.id];
+  const mod=s.type==='form'?(s.mode==='open'?'apent_sporsmal':s.mode==='prefix'?'fullfor_prefiks_over_felt':'prefiks_inne_i_felt'):'apent_svar_forst';
+  trialIds[s.id]=EdelsData.startTrial(sessionId,{target:s.target,researchGoal:GOAL,taskType:s.type==='form'?'formulation_format_comparison':'social_rule_adaptation',modality:'written',
+    condition:'kan_jeg_fa_lane_2|'+(DAG2?'dag2':'dag1')+'|'+mod,question:(s.story?s.story.replace(/\n+/g,' ')+' ':'')+s.q,context:s.id,retentionIntervalDays:DAG2?1:0});
+  return trialIds[s.id];
+}
+function markStarted(t){ if(started.has(t)) return; started.add(t); EdelsData.responseStarted(sessionId,t); }
+function setProgress(){
+  const n=Math.max(0,Math.min(planIdx,NSTEP));
+  document.getElementById('count').textContent=planIdx>=PLAN.length?'Ferdig':'Steg '+n+' av '+NSTEP;
+  document.getElementById('bar').style.width=Math.round(Math.min(planIdx,PLAN.length)/PLAN.length*100)+'%';
+}
+function updateSendBar(){ const b=document.getElementById('sendBar'); if(b) b.classList.toggle('hidden',Object.keys(answers).length===0||planIdx>=PLAN.length); }
+function summaryText(){
+  return PLAN.filter(s=>answers[s.id]).map(s=>{const a=answers[s.id];return `${s.h}\n${(s.story||'').replace(/\n+/g,' ')} ${s.q}\n→ Svar: ${a.text}${a.opt?'\n→ Etter forslag: '+a.opt:''}`;}).join('\n\n');
+}
+async function post(subject,extra){
+  const r=await fetch('https://formspree.io/f/mqeolldg',{method:'POST',headers:{'Content-Type':'application/json','Accept':'application/json'},keepalive:true,
+    body:JSON.stringify(Object.assign({_subject:subject,oppgave:TITLE,session_id:sessionId,Tekst_hun_skrev:summaryText(),antall_besvart:Object.keys(answers).length+' av '+PLAN.filter(s=>s.type==='sit'||s.type==='form').length,dato:new Date().toLocaleString('no-NO')},extra))});
+  if(!r.ok) throw new Error('HTTP '+r.status);
+}
+async function sendPartial(){
+  const btn=document.getElementById('sendBarBtn'),o=btn.textContent; btn.disabled=true;btn.textContent='Sender …';
+  try{ await post(TITLE+' – fremgang underveis',{}); btn.textContent='✓ Sendt!'; setTimeout(()=>{btn.textContent=o;btn.disabled=false},1800); }
+  catch(e){ btn.textContent='Kunne ikke sende – prøv igjen'; btn.disabled=false; }
+}
+function render(){
+  setProgress(); updateSendBar();
+  const s=PLAN[planIdx]; if(!s) return renderEnd();
+  shownAt=Date.now();
+  if(s.type==='intro'||s.type==='teach'){
+    host.innerHTML=`<section class="card"><div class="step">${s.h}</div><div class="${s.type==='teach'?'laer':'laer'}">${esc(s.text)}</div>
+     <div class="btns"><button onclick="planIdx++;render()">${s.type==='teach'?'Jeg er klar →':'Start →'}</button><button class="secondary" onclick="speak(${esc(JSON.stringify(s.text))})">🔊 Les opp</button></div></section>`;
+  } else if(s.type==='sit'){ phase==='open'?renderSitOpen(s):renderSitOpts(s); }
+  else renderForm(s);
+}
+function storyBox(s){ return s.story?`<div class="story">${esc(s.story)}</div>`:''; }
+function renderSitOpen(s){
+  host.innerHTML=`<section class="card"><div class="step">${s.h}</div>${storyBox(s)}<p class="q">${esc(s.q)}</p>
+   <div class="mic">Skriv med dine egne ord. Du kan skrive «jeg vet ikke».</div><textarea id="ans" placeholder="Skriv svaret her …"></textarea>
+   <div class="btns"><button onclick="saveSit()">Lagre svaret</button><button class="secondary" onclick="speak(${esc(JSON.stringify((s.story||'')+' '+s.q))})">🔊 Les opp</button></div></section>`;
+  const tid=ensureTrial(s); document.getElementById('ans').addEventListener('input',()=>markStarted(tid),{once:true});
+}
+function saveSit(){
+  const s=PLAN[planIdx], v=document.getElementById('ans').value;
+  if(!v.trim()){alert('Skriv et svar først. Du kan skrive «jeg vet ikke».');return}
+  EdelsData.saveFirstResponse(sessionId,ensureTrial(s),v,{source:'lane2_ui',latencyMs:Date.now()-shownAt});
+  answers[s.id]={text:v,opt:null}; phase='opts'; render();
+}
+function renderSitOpts(s){
+  const a=answers[s.id];
+  host.innerHTML=`<section class="card"><div class="step">${s.h} · Forslag</div>${storyBox(s)}<p class="q">${esc(s.q)}</p>
+   <div class="story" style="margin-top:.7rem"><strong>Du skrev:</strong> ${esc(a.text)}</div>
+   <p class="mic" style="margin-top:.8rem">Her er noen forslag. Velg det som passer best. Du kan også beholde svaret ditt.</p>
+   <div class="chips" id="chips">${s.opts.concat([KEEP]).map((o,i)=>`<button class="chip" data-i="${i}">${esc(o)}</button>`).join('')}</div></section>`;
+  const all=s.opts.concat([KEEP]);
+  document.querySelectorAll('.chip').forEach(b=>b.addEventListener('click',()=>{
+    if(a.opt) return; const c=all[b.dataset.i]; a.opt=c; b.classList.add('sel');
+    document.querySelectorAll('.chip').forEach(x=>x.disabled=true);
+    const tid=ensureTrial(s);
+    EdelsData.addSupport(sessionId,tid,5,'alternatives',s.opts.join(' | '),c);
+    setTimeout(()=>{ phase='open'; planIdx++; render(); },500);
+  }));
+}
+function renderForm(s){
+  const pre=s.prefix||'';
+  let field;
+  if(s.mode==='open') field='<textarea id="ans" placeholder="Skriv svaret her …"></textarea>';
+  else if(s.mode==='prefix') field=`<div class="story" style="margin-top:.7rem"><strong>${esc(pre)} …</strong></div><textarea id="ans" placeholder="Skriv det som kommer etterpå …"></textarea>`;
+  else field=`<div class="inl"><span class="pf">${esc(pre)}</span><input type="text" id="ans" autocomplete="off" placeholder="… skriv videre her"></div>`;
+  host.innerHTML=`<section class="card"><div class="step">${s.h}</div><p class="q">${esc(s.q)}</p><div class="mic">Du kan skrive «jeg vet ikke».</div>${field}
+   <div class="btns"><button onclick="saveForm()">Lagre og gå videre</button><button class="secondary" onclick="speak(${esc(JSON.stringify(s.q+' '+pre))})">🔊 Les opp</button></div></section>`;
+  const tid=ensureTrial(s); document.getElementById('ans').addEventListener('input',()=>markStarted(tid),{once:true});
+}
+function saveForm(){
+  const s=PLAN[planIdx], raw=document.getElementById('ans').value.trim();
+  if(!raw){alert('Skriv et svar først. Du kan skrive «jeg vet ikke».');return}
+  const full=s.prefix?s.prefix+' '+raw:raw;
+  const first3=s.prefix?s.prefix.toLowerCase().split(/\s+/).slice(0,3).join(' '):null;
+  const repeated=first3?raw.toLowerCase().includes(first3):false;
+  EdelsData.saveFirstResponse(sessionId,ensureTrial(s),full,{source:'lane2_ui',rawTypedAfterPrefix:raw,prefixShown:s.prefix||null,repeatedPrefixAuto:repeated,latencyMs:Date.now()-shownAt});
+  answers[s.id]={text:full,raw,repeated}; planIdx++; render();
+}
+// ---------- Slutt og voksenpanel ----------
+const KL=[['','—'],['passer','Passer til situasjonen'],['delvis','Delvis / upresis'],['annen_regel','Regel fra en annen situasjon (ikke tilpasset)'],['vetikke','Vet ikke / ikke vurderbar']];
+const FORM_KL=[['','—'],['ok','Kontinuerlig frase, uten gjentakelse'],['gjenta','Gjentar begynnelsen'],['kort','Svært kort / ufullstendig'],['annet','Annet']];
+const SUPPORT=['0 Sem ajuda','1 Repetição','2 Pista contextual','3 Pista semântica','4 Imagem','5 Alternativas','6 Início da frase','7 Modelo explícito'];
+function renderEnd(){
+  EdelsData.finishAndSubmit(sessionId);
+  const sits=PLAN.filter(s=>s.type==='sit'), forms=PLAN.filter(s=>s.type==='form');
+  const sitRows=sits.map(s=>`<div style="border-top:1px solid var(--rule);padding:.6rem 0"><div class="small"><strong>${s.h}</strong> · ${esc((s.story||'').replace(/\n+/g,' '))} ${esc(s.q)}</div>
+   <div class="small">Åpent svar (ordrett, først): <em>${answers[s.id]?esc(answers[s.id].text):'—'}</em></div>
+   <div class="small">Valg etter forslag: <em>${answers[s.id]&&answers[s.id].opt?esc(answers[s.id].opt):'—'}</em></div>
+   <div class="small">Vurdering av åpent svar: <select class="vk" data-id="${s.id}">${KL.map(([v,t])=>`<option value="${v}">${t}</option>`).join('')}</select></div></div>`).join('');
+  const formRows=forms.map(s=>{const a=answers[s.id]||{};return `<div style="border-top:1px solid var(--rule);padding:.6rem 0"><div class="small"><strong>${s.h}</strong> · ${s.mode==='open'?'åpent spørsmål':s.mode==='prefix'?'begynnelsen står over feltet':'begynnelsen står inne i feltet'}</div>
+   <div class="small">Ordrett: <em>${a.text?esc(a.text):'—'}</em></div>
+   <div class="small">Automatisk merke (bare forslag): ${a.repeated?'begynnelsen ser ut til å være gjentatt':'ingen gjentakelse funnet'}</div>
+   <div class="small">Vurdering: <select class="vk" data-id="${s.id}">${FORM_KL.map(([v,t])=>`<option value="${v}">${t}</option>`).join('')}</select></div></div>`;}).join('');
+  host.innerHTML=`<section class="card"><div class="ok">Bra jobbet, Edel! 🌸 Nå har du sett hva vi kan gjøre når noen sier ja, nei eller ikke er der.</div>
+   <details class="voksen" open><summary>Til voksen</summary><div class="vpanel"><h3>Registro adulto</h3>
+   <p class="small">A interpretação é do adulto. Cada situação tem <strong>pergunta aberta primeiro, sem opções</strong>; as opções vieram depois e contam como apoio (nível 5). Compare a resposta aberta com a escolhida. ${DAG2?'Esta é a sessão do <strong>dia 2</strong>: situações novas, sem ensino, para ver se ela adapta a regra. ':'O nei foi <strong>ensinado antes</strong> nesta sessão; para saber se ficou, faça a sessão do dia seguinte (abrir a página com <code>?dag2</code> no endereço). '}Evite ligar a atividade a episódios fora da sessão. Uma sessão não estabelece padrão.</p>
+   ${sitRows}
+   ${forms.length?`<h3 style="margin-top:1rem">Comparação de formatos de formulação</h3><p class="small">Três formatos, três conteúdos diferentes e ordem fixa (aberto → prefixo acima → prefixo dentro). A ordem e o conteúdo podem influenciar; use como observação, não como prova.</p>${formRows}`:''}
+   <details class="voksen"><summary>Fasit e leitura esperada (depois da tentativa)</summary>${sits.map(s=>`<div class="small"><strong>${s.h}</strong>: ${s.fasit}</div>`).join('')}</details>
+   <label class="small" style="display:block;margin-top:.6rem">Ajuda dada fora da página (nível): <select id="helpLvl"><option value="">—</option>${SUPPORT.map((x,i)=>`<option value="${i}">${x}</option>`).join('')}</select></label>
+   <textarea id="adultNotes" placeholder="Observações: oral vs escrito, o que ela disse em voz alta sobre a tesoura/nei, cansaço …"></textarea>
+   <div class="btns"><button onclick="saveVurd()">Lagre vurderinger</button><button class="secondary" onclick="copyAdult()">Kopier alt</button></div>
+   <div id="adultStatus" class="small" style="margin-top:.4rem"></div></div></details></section>`;
+}
+function saveVurd(){
+  let n=0; const notes=document.getElementById('adultNotes').value||null, lvl=document.getElementById('helpLvl').value;
+  document.querySelectorAll('.vk').forEach(sel=>{ if(!sel.value)return; const tid=trialIds[sel.dataset.id]; if(!tid)return;
+    EdelsData.interpret(sessionId,tid,{responseClassification:'lane2_'+sel.value,notes}); n++;
+    if(lvl!==''&&Number(lvl)>0) EdelsData.addSupport(sessionId,tid,Number(lvl),'adult_reported',SUPPORT[Number(lvl)],null); });
+  document.getElementById('adultStatus').textContent='✓ Lagret '+n+' vurderinger (lokalt i nettleseren).';
+}
+async function copyAdult(){
+  const lines=PLAN.filter(s=>s.type==='sit'||s.type==='form').map(s=>{const a=answers[s.id]||{};const k=document.querySelector('.vk[data-id="'+s.id+'"]');
+    return `${s.h}\n  ${(s.story||'').replace(/\n+/g,' ')} ${s.q}\n  Åpent svar (ordrett): ${a.text||'—'}${a.opt?'\n  Etter forslag: '+a.opt:''}${a.repeated?'\n  (begynnelsen gjentatt – automatisk merke)':''}${k&&k.value?'\n  Vurdering: '+k.selectedOptions[0].text:''}`;}).join('\n\n');
+  const text='EDELS VERDEN — '+TITLE.toUpperCase()+'\n(Åpent svar først, forslag som støtte)\n\n'+lines+'\n\nObservações:\n'+document.getElementById('adultNotes').value;
+  const st=document.getElementById('adultStatus');
+  try{ await navigator.clipboard.writeText(text); st.textContent='✓ Kopiert'; }
+  catch(e){ const ta=document.createElement('textarea'); ta.value=text; document.body.appendChild(ta); ta.select(); try{document.execCommand('copy'); st.textContent='✓ Kopiert';}catch(e2){st.textContent='Kunne ikke kopiere';} ta.remove(); }
+}
+render();
+
+// ---- Garantir levering (fungerer også uten edels-data.js) ----
+const _origRenderEnd=renderEnd;
+renderEnd=function(){ _origRenderEnd.apply(this,arguments); ensureDelivered(); };
+function ensureDelivered(){
+  const card=document.querySelector('#stepHost .card'); if(!card) return;
+  let el=document.getElementById('sendStatus');
+  if(!el){ el=document.createElement('div'); el.id='sendStatus'; el.className='small'; el.style.marginTop='.5rem';
+    const ok=card.querySelector('.ok'); if(ok) ok.insertAdjacentElement('afterend',el); else card.insertBefore(el,card.firstChild); }
+  el.textContent='Sender til mamma …';
+  const sentOK=()=>{ try{ const s=EdelsData.getSession(sessionId); return !!(s&&s.submission&&s.submission.status==='sent'); }catch(e){ return false; } };
+  const manual=async()=>{ el.textContent='Sender …';
+    try{ await post((typeof TITLE!=='undefined'?TITLE:'Edels Verden')+' – fullført økt',{status:'fullført'}); el.textContent='✓ Sendt til mamma'; el.onclick=null; el.style.cursor=''; }
+    catch(e){ el.textContent='Kunne ikke sende – trykk her for å prøve igjen'; el.style.cursor='pointer'; el.onclick=manual; } };
+  setTimeout(()=>{ if(sentOK()) el.textContent='✓ Sendt til mamma'; else manual(); },6000);
+}
+</script></body></html>

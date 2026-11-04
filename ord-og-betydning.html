@@ -207,7 +207,6 @@ function renderEnd(){
     <div class="small">Vurdering: <select class="vk" data-id="${s.id}">${KLASS.map(([v,t])=>`<option value="${v}">${t}</option>`).join('')}</select>
       Hjelp gitt: <select class="vs" data-id="${s.id}"><option value="">—</option>${SUPPORT.map((x,k)=>`<option value="${k}">${x}</option>`).join('')}</select></div></div>`).join('');
   host.innerHTML=`<section class="card"><div class="ok">Bra jobbet, Edel! 🌸 Nå kan du fire ord: utdødd, mangfold, danne og hypotese.</div>
-    <div class="small" style="margin-top:.5rem">Økten er sendt til mamma.</div>
     <details class="voksen" open><summary>Til voksen</summary>
     <div class="vpanel"><h3>Registro adulto</h3>
       <p class="small">A interpretação é do adulto. O valg mede reconhecimento; o «Hvorfor?» mede explicação. Isto é uso imediato após ensino — <strong>não é retenção</strong>. Refaça em 1 dia pelo Revisjon. Respostas certas por eliminação (2 opções) não provam conhecimento. Avalie o «hvorfor» separadamente do valg, e não corrija durante a sessão. Depois, revisem juntas as respostas e o fasit abaixo.</p>
@@ -236,4 +235,20 @@ async function copyAdult(){
   catch(e){ const ta=document.createElement('textarea'); ta.value=text; document.body.appendChild(ta); ta.select(); try{document.execCommand('copy'); st.textContent='✓ Kopiert';}catch(e2){st.textContent='Kunne ikke kopiere';} ta.remove(); }
 }
 render();
+
+// ---- Garantir levering (fungerer også uten edels-data.js) ----
+const _origRenderEnd=renderEnd;
+renderEnd=function(){ _origRenderEnd.apply(this,arguments); ensureDelivered(); };
+function ensureDelivered(){
+  const card=document.querySelector('#stepHost .card'); if(!card) return;
+  let el=document.getElementById('sendStatus');
+  if(!el){ el=document.createElement('div'); el.id='sendStatus'; el.className='small'; el.style.marginTop='.5rem';
+    const ok=card.querySelector('.ok'); if(ok) ok.insertAdjacentElement('afterend',el); else card.insertBefore(el,card.firstChild); }
+  el.textContent='Sender til mamma …';
+  const sentOK=()=>{ try{ const s=EdelsData.getSession(sessionId); return !!(s&&s.submission&&s.submission.status==='sent'); }catch(e){ return false; } };
+  const manual=async()=>{ el.textContent='Sender …';
+    try{ await post((typeof TITLE!=='undefined'?TITLE:'Edels Verden')+' – fullført økt',{status:'fullført'}); el.textContent='✓ Sendt til mamma'; el.onclick=null; el.style.cursor=''; }
+    catch(e){ el.textContent='Kunne ikke sende – trykk her for å prøve igjen'; el.style.cursor='pointer'; el.onclick=manual; } };
+  setTimeout(()=>{ if(sentOK()) el.textContent='✓ Sendt til mamma'; else manual(); },6000);
+}
 </script></body></html>

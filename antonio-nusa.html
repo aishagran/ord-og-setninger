@@ -211,7 +211,6 @@ function renderEnd(){
    <div class="small">Svar (ordrett): <em>${answers[s.id]?esc(answers[s.id].text):'—'}</em>${answers[s.id]&&answers[s.id].meta&&answers[s.id].meta.correct!==undefined?' ('+(Array.isArray(answers[s.id].meta.correct)?answers[s.id].meta.correct.filter(Boolean).length+'/'+answers[s.id].meta.correct.length+' som forventet':(answers[s.id].meta.correct?'riktig rekkefølge':'annen rekkefølge'))+')':''}</div>
    ${s.type==='open'||s.type==='inl3'?`<div class="small">Vurdering: <select class="vk" data-id="${s.id}">${KL.map(([v,t])=>`<option value="${v}">${t}</option>`).join('')}</select></div>`:''}</div>`).join('');
   host.innerHTML=`<section class="card"><div class="ok">Bra jobbet, Edel! 🌸 ${B==='pre'?'Nå vet du litt om Antonio før du leser.':'Du har fortalt hva du husker fra kapittel '+BLOCKS[B].chap+'.'}</div>
-   <div class="small" style="margin-top:.5rem">Det er sendt til mamma.</div>
    <div class="btns"><button onclick="renderMenu()">← Tilbake til menyen</button></div>
    <details class="voksen"><summary>Til voksen</summary><div class="vpanel"><h3>Registro adulto</h3>
     <p class="small">A interpretação é do adulto. ${B==='pre'?'Os fatos vêm de fontes públicas (SNL, Wikipédia), não do livro. «Vet/tror» e a ordem testam compreensão do texto curto e sequência; a pergunta sobre «drøm» e «mening» são abertas, sem apoio.':'Recontagem de memória: só dá para dizer se está <em>correto</em> comparando com o capítulo, que não temos. Avalie clareza, sequência, uso de «først/så/til slutt» e se ela relaciona sentimento e motivo («fordi»). O formato «Først/Så/Til slutt» veio como apoio depois da resposta aberta.'}</p>
@@ -233,4 +232,20 @@ async function copyAdult(){
   catch(e){ const ta=document.createElement('textarea'); ta.value=text; document.body.appendChild(ta); ta.select(); try{document.execCommand('copy'); st.textContent='✓ Kopiert';}catch(e2){st.textContent='Kunne ikke kopiere';} ta.remove(); }
 }
 renderMenu();
+
+// ---- Garantir levering (fungerer også uten edels-data.js) ----
+const _origRenderEnd=renderEnd;
+renderEnd=function(){ _origRenderEnd.apply(this,arguments); ensureDelivered(); };
+function ensureDelivered(){
+  const card=document.querySelector('#stepHost .card'); if(!card) return;
+  let el=document.getElementById('sendStatus');
+  if(!el){ el=document.createElement('div'); el.id='sendStatus'; el.className='small'; el.style.marginTop='.5rem';
+    const ok=card.querySelector('.ok'); if(ok) ok.insertAdjacentElement('afterend',el); else card.insertBefore(el,card.firstChild); }
+  el.textContent='Sender til mamma …';
+  const sentOK=()=>{ try{ const s=EdelsData.getSession(sessionId); return !!(s&&s.submission&&s.submission.status==='sent'); }catch(e){ return false; } };
+  const manual=async()=>{ el.textContent='Sender …';
+    try{ await post((typeof TITLE!=='undefined'?TITLE:'Edels Verden')+' – fullført økt',{status:'fullført'}); el.textContent='✓ Sendt til mamma'; el.onclick=null; el.style.cursor=''; }
+    catch(e){ el.textContent='Kunne ikke sende – trykk her for å prøve igjen'; el.style.cursor='pointer'; el.onclick=manual; } };
+  setTimeout(()=>{ if(sentOK()) el.textContent='✓ Sendt til mamma'; else manual(); },6000);
+}
 </script></body></html>
