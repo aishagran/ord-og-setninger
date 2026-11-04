@@ -1,0 +1,236 @@
+<!doctype html>
+<html lang="nb">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Antonio Nusa – leksehjelp – Edels Verden</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{--cream:#F6F1E6;--paper:#FFFEFA;--navy:#1C2C42;--navy-2:#29455F;--ink:#1B2438;--muted:#746F66;--coral:#BE6E56;--coral-soft:#F3DFD6;--rule:#E4DCCB;--green:#E4F0DF;--shadow:0 12px 34px rgba(28,44,66,0.08)}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'Inter',sans-serif;background:radial-gradient(circle at 10% 0%,#FFF9EE 0,transparent 24rem),var(--cream);color:var(--ink);min-height:100vh;-webkit-font-smoothing:antialiased}
+main{max-width:680px;margin:auto;padding:1.4rem 1.2rem 6rem}
+.top{display:flex;justify-content:space-between;align-items:center;gap:12px}
+.top strong{font-family:'Fraunces',serif;font-weight:600;font-size:1.2rem}
+.top a{color:inherit;text-decoration:none}
+.small{font-size:0.82rem;color:var(--muted);margin-top:0.15rem}
+.pill{background:var(--paper);border:1px solid var(--rule);border-radius:999px;padding:0.5rem 0.9rem;font-weight:700;font-size:0.85rem;flex-shrink:0;white-space:nowrap}
+.progress{height:8px;background:var(--rule);border-radius:9px;overflow:hidden;margin-top:0.9rem}
+.bar{height:100%;background:var(--coral);width:6%;transition:width 0.25s ease}
+.card{background:var(--paper);border:1px solid rgba(28,44,66,0.08);border-radius:22px;padding:1.4rem;margin-top:1rem;box-shadow:0 7px 24px rgba(28,44,66,0.045)}
+.step{font-weight:700;font-size:0.7rem;letter-spacing:0.1em;text-transform:uppercase;color:var(--coral)}
+.hero{width:100%;max-height:420px;object-fit:contain;border-radius:16px;margin:0.9rem 0;display:block;background:var(--cream)}
+.story{background:var(--cream);border:1px dashed var(--rule);border-radius:14px;padding:0.85rem 1rem;font-size:0.95rem;color:var(--ink);line-height:1.6;margin-top:0.6rem;white-space:pre-line}
+.laer{background:var(--green);border:1px solid #CFE4CA;border-radius:14px;padding:0.9rem 1rem;font-size:0.95rem;color:#2F5137;line-height:1.65;margin-top:0.6rem;white-space:pre-line}
+.q{font-family:'Fraunces',serif;font-size:1.22rem;font-weight:500;line-height:1.34;margin-top:0.9rem;white-space:pre-line}
+.mic{font-size:0.82rem;color:var(--muted);margin-top:0.4rem}
+textarea,input[type=text]{width:100%;font:inherit;font-family:'Inter',sans-serif;border:2px solid var(--rule);border-radius:14px;padding:0.85rem;background:var(--paper);min-height:52px;margin-top:0.6rem;color:var(--ink)}
+textarea{min-height:90px;margin-top:0.9rem}
+textarea:focus,input:focus{outline:2px solid var(--coral);outline-offset:1px;border-color:var(--coral)}
+.flex-row{display:flex;align-items:center;gap:0.7rem;margin-top:0.5rem}
+.flex-row label{min-width:6.2rem;font-weight:600}
+.flex-row input{margin-top:0}
+.btns{display:flex;gap:0.6rem;flex-wrap:wrap;margin-top:0.9rem}
+button{border:0;border-radius:999px;padding:0.7rem 1.1rem;font:inherit;font-weight:700;font-size:0.88rem;background:var(--navy);color:#EDE6D6;cursor:pointer}
+button.secondary{background:var(--coral-soft);color:#7A4530}
+button:disabled{opacity:0.45;cursor:default}
+.hidden{display:none}
+.voksen{background:#F1F4F8;border:1px solid #D5DEE8;border-radius:12px;padding:0.6rem 0.85rem;font-size:0.78rem;color:#4A5A6E;line-height:1.5;margin-top:0.7rem}
+.voksen summary{cursor:pointer;font-size:0.62rem;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;color:#5E6F84}
+.voksen[open] summary{margin-bottom:0.3rem}
+.vpanel{background:var(--paper);border:1px solid var(--rule);border-radius:16px;padding:1rem;margin-top:1rem}
+.vpanel h3{font-family:'Fraunces',serif;font-size:1.05rem;font-weight:600;margin-bottom:0.5rem}
+.vpanel label{display:flex;align-items:flex-start;gap:0.55rem;font-size:0.88rem;line-height:1.4;margin-top:0.45rem}
+.vpanel label input{margin-top:0.2rem;width:auto}
+.ok{background:var(--green);color:#3E6C4A;padding:0.8rem 1rem;border-radius:14px;margin-top:0.9rem;font-weight:600}
+.send-bar{position:fixed;left:0;right:0;bottom:0;padding:0.8rem 1rem calc(0.8rem + env(safe-area-inset-bottom));background:rgba(28,44,66,0.96);backdrop-filter:blur(10px);display:flex;justify-content:center;z-index:50}
+.send-bar.hidden{display:none}
+.send-bar button{background:var(--coral);color:#fff;width:100%;max-width:420px}
+.send-note{font-size:0.72rem;color:#C7D3DE;text-align:center;margin-top:0.4rem;max-width:420px}
+.opts{display:flex;gap:.6rem;flex-wrap:wrap;margin-top:.9rem}.opts button{background:var(--paper);color:var(--navy);border:2px solid var(--rule);font-size:1rem;padding:.8rem 1.3rem}.opts button.picked{background:var(--navy);color:#EDE6D6;border-color:var(--navy)}.opts button:disabled{opacity:.7}.ordbig{font-family:"Fraunces",serif;font-size:1.7rem;font-weight:600;color:var(--navy)}.chips{display:flex;flex-direction:column;gap:.5rem;margin-top:.8rem}.chip{background:var(--paper);color:var(--ink);border:2px solid var(--rule);border-radius:14px;text-align:left;font-weight:500;font-size:.95rem;padding:.7rem .9rem}.chip.sel{background:var(--green);border-color:#9CC79A}.stm{border-top:1px solid var(--rule);padding:.7rem 0}.stm p{font-size:.98rem;line-height:1.45}.stm .opts{margin-top:.4rem}.stm .opts button{font-size:.9rem;padding:.55rem 1rem}.gloss{background:var(--cream);border:1px dashed var(--rule);border-radius:12px;padding:.6rem .8rem;font-size:.85rem;color:var(--muted);line-height:1.5;margin-top:.6rem;white-space:pre-line}.inl{display:flex;flex-wrap:wrap;align-items:center;gap:.4rem;border:2px solid var(--rule);border-radius:14px;padding:.55rem .7rem;margin-top:.9rem;background:var(--paper)}.inl .pf{font-weight:600;color:var(--navy)}.inl input{flex:1;min-width:8rem;border:0;margin:0;padding:.3rem;min-height:36px;background:transparent}.inl input:focus{outline:none}.inl:focus-within{border-color:var(--coral)}.menu{display:flex;flex-direction:column;gap:.6rem;margin-top:.8rem}.menu button{text-align:left;background:var(--paper);color:var(--ink);border:2px solid var(--rule);border-radius:16px;padding:.9rem 1rem;font-weight:600;font-size:.95rem}.menu button.done{background:var(--green);border-color:#9CC79A}.ord6{margin-top:.6rem;font-size:.9rem;line-height:1.6}.ord6 b{color:var(--navy)}.ikke{background:var(--coral-soft);border:1px solid #E8C9BA;border-radius:14px;padding:.8rem 1rem;font-size:.95rem;color:#7A4530;line-height:1.6;margin-top:.6rem;white-space:pre-line}
+@media(max-width:600px){main{padding:1rem 0.9rem 6.5rem}.card{padding:1.05rem}.q{font-size:1.1rem}}
+</style></head>
+<body><main>
+<div class="top"><div><strong><a href="index.html">⚽ Antonio Nusa</a></strong><div class="small">Norsk · Lekse uke 44 · lesehjelp</div></div><div class="pill" id="count">Steg 1</div></div>
+<div class="progress"><div class="bar" id="bar"></div></div>
+
+<div id="stepHost"></div>
+
+</main>
+
+<div class="send-bar hidden" id="sendBar">
+  <div>
+    <button id="sendBarBtn" onclick="sendPartial()">📤 Send det som er gjort til mamma</button>
+    <div class="send-note">Sender det hun har svart så langt, uansett om hun er ferdig eller ikke.</div>
+  </div>
+</div>
+
+<script src="edels-data.js"></script>
+<script>
+if(typeof EdelsData==='undefined'){
+  console.warn('edels-data.js ble ikke funnet – kjører uten lagring.');
+  window.EdelsData={createSession:()=>'offline-'+Date.now(),getSession:()=>null,startTrial:()=>'t-'+Date.now()+'-'+Math.random(),responseStarted:()=>{},saveFirstResponse:()=>{},completeSession:()=>{},finishAndSubmit:()=>{},interpret:()=>{},addSupport:()=>{}};
+}
+const STATUS_KEY='edels_antonio_nusa_status_v1';
+const jget=(k,f)=>{try{return JSON.parse(localStorage.getItem(k))??f}catch(e){return f}};
+const jset=(k,v)=>{try{localStorage.setItem(k,JSON.stringify(v))}catch(e){}};
+const esc=s=>String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+function speak(t){speechSynthesis.cancel();const u=new SpeechSynthesisUtterance(String(t).replace(/\n/g,' '));u.lang='nb-NO';u.rate=0.9;speechSynthesis.speak(u)}
+
+const FAKTA='Antonio Nusa er en fotballspiller fra Norge.\nHan ble født i 2005.\nHan vokste opp på Langhus. Det er nær Oslo.\n\nSom barn spilte han i en liten klubb. Klubben heter Langhus.\nSå begynte han i Stabæk.\nDa han var 15 år, ble han proff. Det betyr at han fikk betalt for å spille fotball.\n\nI 2021 flyttet han til Belgia. Han spilte for Club Brugge.\nHan måtte bo i et nytt land.\nI 2024 flyttet han til Tyskland. Der spiller han for RB Leipzig.\n\nHan har også spilt for Norge. Landslaget er laget som spiller for hele Norge.\nI 2026 var han med i VM. VM er en stor fotballturnering med landslag fra mange land.';
+const ORD='<b>drøm</b>: noe du har lyst til å få eller bli\n<b>proff</b>: du får betalt for å gjøre det\n<b>landslaget</b>: laget som spiller for hele landet\n<b>VM</b>: verdensmesterskap, en stor turnering';
+const ORDER=['Han spilte i den lille klubben Langhus.','Han begynte i Stabæk.','Han flyttet til Club Brugge i Belgia.','Han flyttet til RB Leipzig i Tyskland.'];
+const BLOCKS={
+ pre:{label:'1 · Før du leser: hvem er Antonio Nusa?',steps:[
+  {type:'read',title:'Les om Antonio',story:FAKTA,extra:ORD},
+  {id:'p_dream',type:'open',title:'Tittelen på boka',q:'Boka heter «alt startet med en drøm». Hva tror du det betyr?',target:'tolke_tittel',story:null},
+  {id:'p_vt',type:'vt',title:'Hva vet vi? Hva tror vi?',story:FAKTA,q:'Trykk «Vet» hvis det står i teksten. Trykk «Tror» hvis vi må tenke oss til det.',target:'vet_tror_antonio',
+    stm:[['Antonio vokste opp på Langhus.','Vet'],['Han spilte i Stabæk før han flyttet til Belgia.','Vet'],['Antonio trente mye som barn.','Tror'],['Det var vanskelig å bo i et nytt land.','Tror']]},
+  {id:'p_order',type:'order',title:'Hva skjedde først?',q:'Trykk på setningene i den rekkefølgen det skjedde. Begynn med det som skjedde først.',target:'rekkefolge_antonio'},
+  {id:'p_viktig',type:'open',title:'Din mening',q:'Hva er viktig hvis du har en drøm?',target:'mening_drom',story:null},
+  {id:'p_why',type:'open',title:'Din mening',q:'Hvorfor tror du det?',target:'mening_drom_hvorfor',story:null,prevId:'p_viktig'}
+ ]},
+ k3:{label:'2 · Etter kapittel 3',chap:3},
+ k4:{label:'3 · Etter kapittel 4',chap:4},
+ k5:{label:'4 · Etter kapittel 5',chap:5}
+};
+['k3','k4','k5'].forEach(k=>{
+  const n=BLOCKS[k].chap, id=k;
+  BLOCKS[k].steps=[
+   {id:id+'_hva',type:'open',title:'Kapittel '+n+' · Hva skjedde?',q:'Hva skjedde i kapittel '+n+'? Skriv 1–2 setninger.',target:'gjenfortelle_kap'+n,story:null,hint:'Du kan skrive «jeg husker ikke».'},
+   {id:id+'_folt',type:'open',title:'Kapittel '+n+' · Hva tror du?',q:'Hvordan tror du Antonio hadde det i dette kapittelet?',target:'inferens_folelse_kap'+n,story:null},
+   {id:id+'_why',type:'open',title:'Kapittel '+n+' · Hvorfor?',q:'Hvorfor tror du det?',target:'inferens_hvorfor_kap'+n,story:null,prevId:id+'_folt'},
+   {id:id+'_tre',type:'inl3',title:'Kapittel '+n+' · Tre setninger',q:'Skriv tre setninger om kapittelet. Begynnelsen står i feltene.',target:'tre_setninger_kap'+n,pre:['Først','Så','Til slutt']},
+   {id:id+'_ord',type:'open',title:'Kapittel '+n+' · Et ord',q:'Var det et ord du ikke kjente? Skriv ordet. Hvis ikke, skriv «ingen».',target:'ukjent_ord_kap'+n,story:null}
+  ];
+});
+
+let B=null, sessionId=null, steps=null, planIdx=0;
+const answers={}, trialIds={}, started=new Set();
+const host=document.getElementById('stepHost');
+let shownAt=Date.now(), orderSel=[];
+const status=()=>jget(STATUS_KEY,{});
+
+function setTop(){
+  document.getElementById('count').textContent=B?(planIdx>=steps.length?'Ferdig':'Steg '+(planIdx+1)+' av '+steps.length):'Meny';
+  document.getElementById('bar').style.width=B?Math.round(Math.min(planIdx,steps.length)/steps.length*100)+'%':'6%';
+  const sb=document.getElementById('sendBar'); if(sb) sb.classList.toggle('hidden',!B||planIdx>=steps.length||Object.keys(answers).length===0);
+}
+function renderMenu(){
+  B=null; setTop(); const st=status();
+  host.innerHTML=`<section class="card"><div class="step">Lekse · Norsk</div>
+   <div class="laer">Hei, Edel!\n\nI norsk skal du lese eller lytte til kapittel 3, 4 og 5 i boka om Antonio Nusa. Her kan du øve før og etter.\n\nVelg en del. Du kan ta en del om gangen.</div>
+   <div class="menu">${Object.keys(BLOCKS).map(k=>`<button class="${st[k]?'done':''}" data-k="${k}">${st[k]?'✓ ':''}${BLOCKS[k].label}</button>`).join('')}</div>
+   <details class="voksen"><summary>Til voksen</summary><p class="small">Esta página <strong>não substitui a oppgave da página 96 nem o caderno de escrita</strong>. Não tem o texto do livro (não temos acesso); o resumo da parte 1 usa fatos públicos (SNL e Wikipédia, consultados em 4 nov 2026) e não é um resumo do livro. As partes 2–4 são de <strong>recontagem</strong>: ela escreve com as próprias palavras o que lembra do capítulo; ninguém avalia contra o livro sem ter lido o capítulo. Pergunta aberta primeiro; a estrutura «Først / Så / Til slutt» vem depois, como apoio.</p></details></section>`;
+  document.querySelectorAll('.menu button').forEach(b=>b.addEventListener('click',()=>startBlock(b.dataset.k)));
+}
+function startBlock(k){
+  B=k; steps=BLOCKS[k].steps; planIdx=0; Object.keys(answers).forEach(x=>delete answers[x]); Object.keys(trialIds).forEach(x=>delete trialIds[x]);
+  sessionId=EdelsData.createSession({title:'Antonio Nusa – '+BLOCKS[k].label,researchGoal:k==='pre'?'text_comprehension_fact_vs_inference_sequence':'retelling_inference_after_reading',schoolSubject:'norsk_lekse'});
+  render();
+}
+function ensureTrial(s){
+  if(trialIds[s.id]) return trialIds[s.id];
+  trialIds[s.id]=EdelsData.startTrial(sessionId,{target:s.target,researchGoal:B==='pre'?'text_comprehension':'retelling_after_reading',taskType:s.type==='open'?'open_written':s.type,modality:'written',
+    condition:'antonio_nusa|'+B+'|'+(s.type==='inl3'?'etter_apent_svar_med_struktur':'apent_forst'),question:s.q,context:s.id});
+  return trialIds[s.id];
+}
+function markStarted(t){ if(started.has(t)) return; started.add(t); EdelsData.responseStarted(sessionId,t); }
+function storyBox(s){ return s.story?`<div class="story">${esc(s.story)}</div><div class="btns" style="margin-top:.4rem"><button class="secondary" onclick="speak(${esc(JSON.stringify(s.story))})">🔊 Les opp</button></div>`:''; }
+function render(){
+  setTop(); const s=steps[planIdx]; if(!s) return renderEnd(); shownAt=Date.now(); orderSel=[];
+  const menuBtn='<div class="btns"><button class="secondary" onclick="renderMenu()">← Meny</button></div>';
+  if(s.type==='read'){
+    host.innerHTML=`<section class="card"><div class="step">${s.title}</div>${storyBox(s)}<div class="gloss ord6">${s.extra.replace(/\n/g,'<br>')}</div><div class="gloss" style="text-align:center;line-height:2.1;font-size:.95rem"><strong>Veien til nå</strong><br>🏠 Langhus (barn)<br>⬇️<br>⚽ Stabæk<br>⬇️<br>🇧🇪 Club Brugge, Belgia (2021)<br>⬇️<br>🇩🇪 RB Leipzig, Tyskland (2024)</div>
+     <div class="btns"><button onclick="planIdx++;render()">Jeg har lest →</button></div>${menuBtn}</section>`;
+  } else if(s.type==='open'){
+    const sv=(s.prevId&&answers[s.prevId])?{story:'Du skrev: '+answers[s.prevId].text}:s;
+    host.innerHTML=`<section class="card"><div class="step">${s.title}</div>${storyBox(sv)}<p class="q">${esc(s.q)}</p>
+     <div class="mic">${s.hint||'Skriv med dine egne ord. Du kan skrive «jeg vet ikke».'}</div><textarea id="ans" placeholder="Skriv svaret her …"></textarea>
+     <div class="btns"><button onclick="saveOpen()">Lagre og gå videre</button><button class="secondary" onclick="speak(${esc(JSON.stringify(s.q))})">🔊 Les spørsmålet</button></div>${menuBtn}</section>`;
+    const tid=ensureTrial(s); document.getElementById('ans').addEventListener('input',()=>markStarted(tid),{once:true});
+  } else if(s.type==='vt'){
+    host.innerHTML=`<section class="card"><div class="step">${s.title}</div>${storyBox(s)}<p class="q">${esc(s.q)}</p>
+     ${s.stm.map(m=>`<div class="stm"><p>${esc(m[0])}</p><div class="opts"><button data-v="Vet">Vet</button><button data-v="Tror">Tror</button></div></div>`).join('')}
+     <div class="btns"><button id="vtBtn" disabled onclick="saveVT()">Lagre og gå videre</button></div></section>`;
+    document.querySelectorAll('.stm .opts button').forEach(b=>b.addEventListener('click',()=>{
+      b.parentElement.querySelectorAll('button').forEach(x=>x.classList.remove('picked')); b.classList.add('picked'); markStarted(ensureTrial(s));
+      document.getElementById('vtBtn').disabled=document.querySelectorAll('.stm .opts button.picked').length<s.stm.length; }));
+  } else if(s.type==='order'){
+    const idx=[2,0,3,1];
+    host.innerHTML=`<section class="card"><div class="step">${s.title}</div><p class="q">${esc(s.q)}</p>
+     <div class="chips" id="chips">${idx.map(i=>`<button class="chip" data-i="${i}">${esc(ORDER[i])} <span class="nr"></span></button>`).join('')}</div>
+     <div class="btns"><button class="secondary" onclick="resetOrder()">Prøv på nytt</button><button id="orBtn" disabled onclick="saveOrder()">Lagre og gå videre</button></div></section>`;
+    document.querySelectorAll('.chip').forEach(b=>b.addEventListener('click',()=>{
+      if(orderSel.includes(b.dataset.i)) return; orderSel.push(b.dataset.i); b.classList.add('sel'); b.querySelector('.nr').textContent='('+orderSel.length+')'; markStarted(ensureTrial(s));
+      document.getElementById('orBtn').disabled=orderSel.length<ORDER.length; }));
+  } else if(s.type==='inl3'){
+    host.innerHTML=`<section class="card"><div class="step">${s.title}</div><p class="q">${esc(s.q)}</p>
+     ${s.pre.map((p,i)=>`<div class="inl"><span class="pf">${esc(p)}</span><input type="text" class="i3" data-i="${i}" autocomplete="off" placeholder="… skriv videre"></div>`).join('')}
+     <div class="btns"><button onclick="saveInl3()">Lagre og gå videre</button></div></section>`;
+    const tid=ensureTrial(s); document.querySelectorAll('.i3').forEach(el=>el.addEventListener('input',()=>markStarted(tid),{once:true}));
+  }
+}
+function next(s,text,meta){ answers[s.id]={text,meta:meta||{}}; planIdx++; render(); }
+function saveOpen(){
+  const s=steps[planIdx], v=document.getElementById('ans').value;
+  if(!v.trim()){alert('Skriv et svar først. Du kan skrive «jeg vet ikke».');return}
+  EdelsData.saveFirstResponse(sessionId,ensureTrial(s),v,{source:'antonio_ui',latencyMs:Date.now()-shownAt}); next(s,v);
+}
+function saveVT(){
+  const s=steps[planIdx]; const picks=[...document.querySelectorAll('.stm')].map(el=>el.querySelector('button.picked').dataset.v);
+  const txt=s.stm.map((m,i)=>m[0]+' → '+picks[i]).join(' | '); const correct=picks.map((p,i)=>p===s.stm[i][1]);
+  EdelsData.saveFirstResponse(sessionId,ensureTrial(s),txt,{source:'antonio_ui',expected:s.stm.map(m=>m[1]),correct}); next(s,txt,{correct});
+}
+function resetOrder(){ orderSel=[]; document.querySelectorAll('.chip').forEach(b=>{b.classList.remove('sel');b.querySelector('.nr').textContent='';}); document.getElementById('orBtn').disabled=true; }
+function saveOrder(){
+  const s=steps[planIdx]; const txt=orderSel.map(i=>ORDER[i]).join(' → '); const correct=orderSel.every((v,k)=>Number(v)===k);
+  EdelsData.saveFirstResponse(sessionId,ensureTrial(s),txt,{source:'antonio_ui',correct,order:orderSel}); next(s,txt,{correct});
+}
+function saveInl3(){
+  const s=steps[planIdx]; const vals=[...document.querySelectorAll('.i3')].map(e=>e.value.trim());
+  if(vals.every(v=>!v)){alert('Skriv minst én setning.');return}
+  const txt=s.pre.map((p,i)=>p+' '+(vals[i]||'…')).join(' | ');
+  EdelsData.saveFirstResponse(sessionId,ensureTrial(s),txt,{source:'antonio_ui',parts:vals}); next(s,txt);
+}
+function summaryText(){ return steps.filter(s=>answers[s.id]).map(s=>`${s.title}\n${s.q}\n→ ${answers[s.id].text}`).join('\n\n'); }
+async function post(subject,extra){
+  const r=await fetch('https://formspree.io/f/mqeolldg',{method:'POST',headers:{'Content-Type':'application/json','Accept':'application/json'},keepalive:true,
+    body:JSON.stringify(Object.assign({_subject:subject,oppgave:'Antonio Nusa – '+BLOCKS[B].label,session_id:sessionId,Tekst_hun_skrev:summaryText(),antall_besvart:Object.keys(answers).length+' av '+steps.filter(s=>s.type!=='read').length,dato:new Date().toLocaleString('no-NO')},extra))});
+  if(!r.ok) throw new Error('HTTP '+r.status);
+}
+async function sendPartial(){
+  const btn=document.getElementById('sendBarBtn'),o=btn.textContent; btn.disabled=true;btn.textContent='Sender …';
+  try{ await post('Antonio Nusa – fremgang underveis',{}); btn.textContent='✓ Sendt!'; setTimeout(()=>{btn.textContent=o;btn.disabled=false},1800); }
+  catch(e){ btn.textContent='Kunne ikke sende – prøv igjen'; btn.disabled=false; }
+}
+const KL=[['','—'],['bra','Innhold tydelig og relevant'],['delvis','Delvis / upresis'],['uklar','Uklar (jeg trenger å vite hva som står i boka)'],['vetikke','Vet ikke / ikke vurderbar']];
+function renderEnd(){
+  EdelsData.finishAndSubmit(sessionId); const st=status(); st[B]=true; jset(STATUS_KEY,st); setTop();
+  const rows=steps.filter(s=>s.type!=='read').map(s=>`<div style="border-top:1px solid var(--rule);padding:.6rem 0"><div class="small"><strong>${s.title}</strong> · ${esc(s.q)}</div>
+   <div class="small">Svar (ordrett): <em>${answers[s.id]?esc(answers[s.id].text):'—'}</em>${answers[s.id]&&answers[s.id].meta&&answers[s.id].meta.correct!==undefined?' ('+(Array.isArray(answers[s.id].meta.correct)?answers[s.id].meta.correct.filter(Boolean).length+'/'+answers[s.id].meta.correct.length+' som forventet':(answers[s.id].meta.correct?'riktig rekkefølge':'annen rekkefølge'))+')':''}</div>
+   ${s.type==='open'||s.type==='inl3'?`<div class="small">Vurdering: <select class="vk" data-id="${s.id}">${KL.map(([v,t])=>`<option value="${v}">${t}</option>`).join('')}</select></div>`:''}</div>`).join('');
+  host.innerHTML=`<section class="card"><div class="ok">Bra jobbet, Edel! 🌸 ${B==='pre'?'Nå vet du litt om Antonio før du leser.':'Du har fortalt hva du husker fra kapittel '+BLOCKS[B].chap+'.'}</div>
+   <div class="small" style="margin-top:.5rem">Det er sendt til mamma.</div>
+   <div class="btns"><button onclick="renderMenu()">← Tilbake til menyen</button></div>
+   <details class="voksen"><summary>Til voksen</summary><div class="vpanel"><h3>Registro adulto</h3>
+    <p class="small">A interpretação é do adulto. ${B==='pre'?'Os fatos vêm de fontes públicas (SNL, Wikipédia), não do livro. «Vet/tror» e a ordem testam compreensão do texto curto e sequência; a pergunta sobre «drøm» e «mening» são abertas, sem apoio.':'Recontagem de memória: só dá para dizer se está <em>correto</em> comparando com o capítulo, que não temos. Avalie clareza, sequência, uso de «først/så/til slutt» e se ela relaciona sentimento e motivo («fordi»). O formato «Først/Så/Til slutt» veio como apoio depois da resposta aberta.'}</p>
+    ${rows}
+    <textarea id="adultNotes" placeholder="Observações: leu ou ouviu? quanto tempo? precisou de ajuda?"></textarea>
+    <div class="btns"><button onclick="saveVurd()">Lagre vurderinger</button><button class="secondary" onclick="copyAdult()">Kopier alt</button></div>
+    <div id="adultStatus" class="small" style="margin-top:.4rem"></div></div></details></section>`;
+}
+function saveVurd(){
+  let n=0; const notes=document.getElementById('adultNotes').value||null;
+  document.querySelectorAll('.vk').forEach(sel=>{ if(!sel.value)return; const tid=trialIds[sel.dataset.id]; if(!tid)return; EdelsData.interpret(sessionId,tid,{responseClassification:'antonio_'+sel.value,notes}); n++; });
+  document.getElementById('adultStatus').textContent='✓ Lagret '+n+' vurderinger (lokalt i nettleseren).';
+}
+async function copyAdult(){
+  const lines=steps.filter(s=>s.type!=='read').map(s=>{const a=answers[s.id]||{};const k=document.querySelector('.vk[data-id="'+s.id+'"]');return `${s.title}\n  ${s.q}\n  Svar (ordrett): ${a.text||'—'}${k&&k.value?'\n  Vurdering: '+k.selectedOptions[0].text:''}`;}).join('\n\n');
+  const text='EDELS VERDEN — ANTONIO NUSA — '+BLOCKS[B].label.toUpperCase()+'\n\n'+lines+'\n\nObservações:\n'+document.getElementById('adultNotes').value;
+  const st=document.getElementById('adultStatus');
+  try{ await navigator.clipboard.writeText(text); st.textContent='✓ Kopiert'; }
+  catch(e){ const ta=document.createElement('textarea'); ta.value=text; document.body.appendChild(ta); ta.select(); try{document.execCommand('copy'); st.textContent='✓ Kopiert';}catch(e2){st.textContent='Kunne ikke kopiere';} ta.remove(); }
+}
+renderMenu();
+</script></body></html>
