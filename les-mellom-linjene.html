@@ -1,0 +1,274 @@
+<!doctype html>
+<html lang="nb">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Les mellom linjene – Edels Verden</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{--cream:#F6F1E6;--paper:#FFFEFA;--navy:#1C2C42;--navy-2:#29455F;--ink:#1B2438;--muted:#746F66;--coral:#BE6E56;--coral-soft:#F3DFD6;--rule:#E4DCCB;--green:#E4F0DF;--shadow:0 12px 34px rgba(28,44,66,0.08)}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'Inter',sans-serif;background:radial-gradient(circle at 10% 0%,#FFF9EE 0,transparent 24rem),var(--cream);color:var(--ink);min-height:100vh;-webkit-font-smoothing:antialiased}
+main{max-width:680px;margin:auto;padding:1.4rem 1.2rem 6rem}
+.top{display:flex;justify-content:space-between;align-items:center;gap:12px}
+.top strong{font-family:'Fraunces',serif;font-weight:600;font-size:1.2rem}
+.top a{color:inherit;text-decoration:none}
+.small{font-size:0.82rem;color:var(--muted);margin-top:0.15rem}
+.pill{background:var(--paper);border:1px solid var(--rule);border-radius:999px;padding:0.5rem 0.9rem;font-weight:700;font-size:0.85rem;flex-shrink:0;white-space:nowrap}
+.progress{height:8px;background:var(--rule);border-radius:9px;overflow:hidden;margin-top:0.9rem}
+.bar{height:100%;background:var(--coral);width:6%;transition:width 0.25s ease}
+.card{background:var(--paper);border:1px solid rgba(28,44,66,0.08);border-radius:22px;padding:1.4rem;margin-top:1rem;box-shadow:0 7px 24px rgba(28,44,66,0.045)}
+.step{font-weight:700;font-size:0.7rem;letter-spacing:0.1em;text-transform:uppercase;color:var(--coral)}
+.hero{width:100%;max-height:420px;object-fit:contain;border-radius:16px;margin:0.9rem 0;display:block;background:var(--cream)}
+.story{background:var(--cream);border:1px dashed var(--rule);border-radius:14px;padding:0.85rem 1rem;font-size:0.95rem;color:var(--ink);line-height:1.6;margin-top:0.6rem;white-space:pre-line}
+.laer{background:var(--green);border:1px solid #CFE4CA;border-radius:14px;padding:0.9rem 1rem;font-size:0.95rem;color:#2F5137;line-height:1.65;margin-top:0.6rem;white-space:pre-line}
+.q{font-family:'Fraunces',serif;font-size:1.22rem;font-weight:500;line-height:1.34;margin-top:0.9rem;white-space:pre-line}
+.mic{font-size:0.82rem;color:var(--muted);margin-top:0.4rem}
+textarea,input[type=text]{width:100%;font:inherit;font-family:'Inter',sans-serif;border:2px solid var(--rule);border-radius:14px;padding:0.85rem;background:var(--paper);min-height:52px;margin-top:0.6rem;color:var(--ink)}
+textarea{min-height:90px;margin-top:0.9rem}
+textarea:focus,input:focus{outline:2px solid var(--coral);outline-offset:1px;border-color:var(--coral)}
+.flex-row{display:flex;align-items:center;gap:0.7rem;margin-top:0.5rem}
+.flex-row label{min-width:6.2rem;font-weight:600}
+.flex-row input{margin-top:0}
+.btns{display:flex;gap:0.6rem;flex-wrap:wrap;margin-top:0.9rem}
+button{border:0;border-radius:999px;padding:0.7rem 1.1rem;font:inherit;font-weight:700;font-size:0.88rem;background:var(--navy);color:#EDE6D6;cursor:pointer}
+button.secondary{background:var(--coral-soft);color:#7A4530}
+button:disabled{opacity:0.45;cursor:default}
+.hidden{display:none}
+.voksen{background:#F1F4F8;border:1px solid #D5DEE8;border-radius:12px;padding:0.6rem 0.85rem;font-size:0.78rem;color:#4A5A6E;line-height:1.5;margin-top:0.7rem}
+.voksen summary{cursor:pointer;font-size:0.62rem;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;color:#5E6F84}
+.voksen[open] summary{margin-bottom:0.3rem}
+.vpanel{background:var(--paper);border:1px solid var(--rule);border-radius:16px;padding:1rem;margin-top:1rem}
+.vpanel h3{font-family:'Fraunces',serif;font-size:1.05rem;font-weight:600;margin-bottom:0.5rem}
+.vpanel label{display:flex;align-items:flex-start;gap:0.55rem;font-size:0.88rem;line-height:1.4;margin-top:0.45rem}
+.vpanel label input{margin-top:0.2rem;width:auto}
+.ok{background:var(--green);color:#3E6C4A;padding:0.8rem 1rem;border-radius:14px;margin-top:0.9rem;font-weight:600}
+.send-bar{position:fixed;left:0;right:0;bottom:0;padding:0.8rem 1rem calc(0.8rem + env(safe-area-inset-bottom));background:rgba(28,44,66,0.96);backdrop-filter:blur(10px);display:flex;justify-content:center;z-index:50}
+.send-bar.hidden{display:none}
+.send-bar button{background:var(--coral);color:#fff;width:100%;max-width:420px}
+.send-note{font-size:0.72rem;color:#C7D3DE;text-align:center;margin-top:0.4rem;max-width:420px}
+.opts{display:flex;gap:.6rem;flex-wrap:wrap;margin-top:.9rem}.opts button{background:var(--paper);color:var(--navy);border:2px solid var(--rule);font-size:1rem;padding:.8rem 1.3rem}.opts button.picked{background:var(--navy);color:#EDE6D6;border-color:var(--navy)}.opts button:disabled{opacity:.7}.ordbig{font-family:"Fraunces",serif;font-size:1.7rem;font-weight:600;color:var(--navy)}.chips{display:flex;flex-direction:column;gap:.5rem;margin-top:.8rem}.chip{background:var(--paper);color:var(--ink);border:2px solid var(--rule);border-radius:14px;text-align:left;font-weight:500;font-size:.95rem;padding:.7rem .9rem}.chip.sel{background:var(--green);border-color:#9CC79A}.stm{border-top:1px solid var(--rule);padding:.7rem 0}.stm p{font-size:.98rem;line-height:1.45}.stm .opts{margin-top:.4rem}.stm .opts button{font-size:.9rem;padding:.55rem 1rem}.gloss{background:var(--cream);border:1px dashed var(--rule);border-radius:12px;padding:.6rem .8rem;font-size:.85rem;color:var(--muted);line-height:1.5;margin-top:.6rem;white-space:pre-line}.ikke{background:var(--coral-soft);border:1px solid #E8C9BA;border-radius:14px;padding:.8rem 1rem;font-size:.95rem;color:#7A4530;line-height:1.6;margin-top:.6rem;white-space:pre-line}
+@media(max-width:600px){main{padding:1rem 0.9rem 6.5rem}.card{padding:1.05rem}.q{font-size:1.1rem}}
+</style></head>
+<body><main>
+<div class="top"><div><strong><a href="index.html">🕵️ Les mellom linjene</a></strong><div class="small">Norsk · Lese og forstå · fire korte historier</div></div><div class="pill" id="count">Steg 1</div></div>
+<div class="progress"><div class="bar" id="bar"></div></div>
+
+<div id="stepHost"></div>
+
+</main>
+
+<div class="send-bar hidden" id="sendBar">
+  <div>
+    <button id="sendBarBtn" onclick="sendPartial()">📤 Send det som er gjort til mamma</button>
+    <div class="send-note">Sender det hun har svart så langt, uansett om hun er ferdig eller ikke.</div>
+  </div>
+</div>
+
+<script src="edels-data.js"></script>
+<script>
+if(typeof EdelsData==='undefined'){
+  console.warn('edels-data.js ble ikke funnet – kjører uten lagring.');
+  window.EdelsData={createSession:()=>'offline-'+Date.now(),getSession:()=>null,startTrial:()=>'t-'+Date.now()+'-'+Math.random(),responseStarted:()=>{},saveFirstResponse:()=>{},completeSession:()=>{},finishAndSubmit:()=>{},interpret:()=>{},addSupport:()=>{}};
+}
+const TITLE='Les mellom linjene 03.11.2026';
+const SESSION_KEY='edels_les_mellom_linjene_2026_11_03_v1_session';
+const GOAL='inference_evidence_revision_emotion_words';
+let sessionId=null;
+try{ sessionId=localStorage.getItem(SESSION_KEY); }catch(e){}
+try{
+  if(!sessionId || !EdelsData.getSession(sessionId) || EdelsData.getSession(sessionId).status==='completed'){
+    sessionId=EdelsData.createSession({title:TITLE,researchGoal:GOAL,schoolSubject:'norsk'});
+    try{ localStorage.setItem(SESSION_KEY,sessionId); }catch(e){}
+  }
+}catch(e){ sessionId=EdelsData.createSession({title:TITLE,researchGoal:GOAL,schoolSubject:'norsk'}); }
+
+const GLOSS='bekymret: urolig for noe som kan skje senere\nskuffet: lei seg fordi noe ikke ble som du hadde håpet\nlettelse: følelsen når en bekymring blir borte';
+const S1='Mia står ved bussholdeplassen. Bussen er ikke kommet ennå. Hun ser på klokka igjen og igjen. Hun har prøve i første time.\n\nSå kommer bussen. Mia puster ut og setter seg ned.';
+const S2='Bjørn kommer inn døren. Paraplyen hans er våt. Jakka drypper på gulvet. Han setter støvlene ved døren.';
+const S3a='Emil kommer hjem fra skolen. Bokhyllen på rommet hans er tom. Alle bøkene er borte.';
+const S3b='\n\nPappa kommer inn med en malingsbøtte. «I morgen skal vi male rommet ditt,» sier han. «Jeg har flyttet bøkene til stua.»';
+const S4='Kari har gledet seg til svømmeturen hele uka. Så sier læreren at turen er avlyst fordi det er storm. Kari legger seg på sofaen og sier ingenting.';
+const NOK='Det står ikke nok i teksten';
+
+// type: open | vt (vet/tror) | spor | ord ; story = tekst som vises hele tiden
+const PLAN=[
+ {id:'intro',type:'intro',title:'Les mellom linjene',text:'Hei, Edel!\n\nI dag leser du fire korte historier. Noe står rett i teksten. Noe må vi tenke oss til.\n\nDu skal si hva du tror, og hvorfor du tror det.\n\nDu kan skrive «jeg vet ikke». Det går fint. Noen ganger står det ikke nok i teksten.'},
+ // Historie 1: følelse (bekymret / lettelse)
+ {id:'h1_open',h:'1',type:'open',title:'Historie 1 · Mia og bussen',story:S1,q:'Hvordan tror du Mia har det mens hun venter? Hvorfor tror du det?',target:'inferens_folelse_apen'},
+ {id:'h1_vt',h:'1',type:'vt',title:'Historie 1 · Hva vet vi? Hva tror vi?',story:S1,q:'Trykk «Vet» hvis det står i teksten. Trykk «Tror» hvis vi må tenke oss til det.',target:'vet_tror',
+  stm:[['Mia står ved bussholdeplassen.','Vet'],['Hun har prøve i første time.','Vet'],['Mia er redd for å komme for sent.','Tror'],['Mia liker ikke prøver.','Tror']]},
+ {id:'h1_spor',h:'1',type:'spor',title:'Historie 1 · Hvilke spor finner du?',story:S1,q:'Hvilke setninger i historien viser at Mia kanskje er urolig? Velg så mange du vil.',target:'spor_tekst',
+  clues:['Hun ser på klokka igjen og igjen.','Bussen er ikke kommet ennå.','Hun har prøve i første time.','Mia står ved bussholdeplassen.',NOK],good:['Hun ser på klokka igjen og igjen.','Bussen er ikke kommet ennå.','Hun har prøve i første time.']},
+ {id:'h1_ord1',h:'1',type:'ord',title:'Historie 1 · Velg ordet',story:S1,q:'Hvordan har Mia det mens hun venter på bussen?',opts:['skuffet','bekymret','lettelse'],ok:'bekymret',target:'ord_bekymret'},
+ {id:'h1_ord2',h:'1',type:'ord',title:'Historie 1 · Velg ordet',story:S1,q:'Hvordan har Mia det når bussen kommer?',opts:['lettelse','skuffet','bekymret'],ok:'lettelse',target:'ord_lettelse'},
+ {id:'h1_ann',h:'1',type:'open',title:'Historie 1 · Kan det være noe annet?',story:S1,q:'Kan det være noe annet som gjør at Mia ser på klokka igjen og igjen? Skriv en annen mulig forklaring.',target:'alternativ_forklaring'},
+ // Historie 2: ikke-følelse (kontroll)
+ {id:'h2_open',h:'2',type:'open',title:'Historie 2 · Bjørn kommer hjem',story:S2,q:'Hva tror du har skjedd ute? Hvorfor tror du det?',target:'inferens_situasjon_apen'},
+ {id:'h2_vt',h:'2',type:'vt',title:'Historie 2 · Hva vet vi? Hva tror vi?',story:S2,q:'Trykk «Vet» hvis det står i teksten. Trykk «Tror» hvis vi må tenke oss til det.',target:'vet_tror_situasjon',
+  stm:[['Paraplyen til Bjørn er våt.','Vet'],['Jakka drypper på gulvet.','Vet'],['Det regnet ute.','Tror'],['Bjørn har vært i svømmehallen.','Tror']]},
+ {id:'h2_spor',h:'2',type:'spor',title:'Historie 2 · Hvilke spor finner du?',story:S2,q:'Hvilke setninger viser hva som har skjedd ute? Velg så mange du vil.',target:'spor_tekst_situasjon',
+  clues:['Paraplyen hans er våt.','Jakka drypper på gulvet.','Han setter støvlene ved døren.',NOK],good:['Paraplyen hans er våt.','Jakka drypper på gulvet.']},
+ // Historie 3: revisjon
+ {id:'h3_open1',h:'3',type:'open',title:'Historie 3 · Emil og bokhyllen',story:S3a,q:'Hva tror du har skjedd? Hvorfor tror du det?',target:'revisjon_forste_tolkning'},
+ {id:'h3_open2',h:'3',type:'open',title:'Historie 3 · Nå kommer resten',story:S3a+S3b,q:'Hva tror du nå? Tenker du det samme som før, eller noe annet? Skriv hva som er likt eller annerledes.',target:'revisjon_ny_tolkning'},
+ {id:'h3_spor',h:'3',type:'spor',title:'Historie 3 · Hva fikk deg til å tenke annerledes?',story:S3a+S3b,q:'Hvilken setning ga deg ny informasjon? Velg én eller flere. Eller velg at du ikke har endret mening.',target:'revisjon_spor',
+  clues:['Pappa kommer inn med en malingsbøtte.','«I morgen skal vi male rommet ditt.»','«Jeg har flyttet bøkene til stua.»','Jeg har ikke endret mening.'],good:['«Jeg har flyttet bøkene til stua.»','«I morgen skal vi male rommet ditt.»']},
+ // Historie 4: skuffet
+ {id:'h4_open',h:'4',type:'open',title:'Historie 4 · Kari og svømmeturen',story:S4,q:'Hvordan tror du Kari har det? Hvorfor tror du det?',target:'inferens_folelse_apen_2'},
+ {id:'h4_ord',h:'4',type:'ord',title:'Historie 4 · Velg ordet',story:S4,q:'Hvilket ord passer best for hvordan Kari har det?',opts:['bekymret','lettelse','skuffet'],ok:'skuffet',target:'ord_skuffet'}
+];
+const NSTEP=PLAN.length-1;
+let planIdx=0;
+const answers={}, trialIds={}, started=new Set();
+const host=document.getElementById('stepHost');
+let shownAt=Date.now();
+
+function ensureTrial(s){
+  if(trialIds[s.id]) return trialIds[s.id];
+  const scaffold=s.type!=='open'||s.id==='h1_ann'||s.id==='h3_open2';
+  trialIds[s.id]=EdelsData.startTrial(sessionId,{target:s.target,researchGoal:GOAL,taskType:s.type==='open'?'inference_open_written':s.type==='vt'?'fact_vs_inference':s.type==='spor'?'text_evidence':'emotion_word_choice',
+    modality:s.type==='open'?'written':'choice',condition:'les_mellom_linjene_2026_11_03|historie_'+s.h+'|'+(scaffold?'etter_apen_svar_med_stotte':'forste_apne_svar')+(s.type==='ord'?'|med_ordforklaring':''),
+    question:s.q,context:s.id,retentionIntervalDays:0});
+  return trialIds[s.id];
+}
+function markStarted(t){ if(started.has(t)) return; started.add(t); EdelsData.responseStarted(sessionId,t); }
+function setProgress(){
+  const n=Math.max(0,Math.min(planIdx,NSTEP));
+  document.getElementById('count').textContent=planIdx>=PLAN.length?'Ferdig':'Steg '+n+' av '+NSTEP;
+  document.getElementById('bar').style.width=Math.round(Math.min(planIdx,PLAN.length)/PLAN.length*100)+'%';
+}
+function speak(t){speechSynthesis.cancel();const u=new SpeechSynthesisUtterance(String(t).replace(/\n/g,' '));u.lang='nb-NO';u.rate=0.9;speechSynthesis.speak(u)}
+const esc=s=>String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+function updateSendBar(){ const b=document.getElementById('sendBar'); if(b) b.classList.toggle('hidden',Object.keys(answers).length===0||planIdx>=PLAN.length); }
+function summaryText(){
+  return PLAN.filter(s=>answers[s.id]!=null).map(s=>`${s.title}\n${s.q}\n→ ${answers[s.id].text}`).join('\n\n');
+}
+async function post(subject,extra){
+  const r=await fetch('https://formspree.io/f/mqeolldg',{method:'POST',headers:{'Content-Type':'application/json','Accept':'application/json'},keepalive:true,
+    body:JSON.stringify(Object.assign({_subject:subject,oppgave:TITLE,session_id:sessionId,Tekst_hun_skrev:summaryText(),antall_besvart:Object.keys(answers).length+' av '+NSTEP,dato:new Date().toLocaleString('no-NO')},extra))});
+  if(!r.ok) throw new Error('HTTP '+r.status);
+}
+async function sendPartial(){
+  const btn=document.getElementById('sendBarBtn'),o=btn.textContent; btn.disabled=true;btn.textContent='Sender …';
+  try{ await post(TITLE+' – fremgang underveis',{}); btn.textContent='✓ Sendt!'; setTimeout(()=>{btn.textContent=o;btn.disabled=false},1800); }
+  catch(e){ btn.textContent='Kunne ikke sende – prøv igjen'; btn.disabled=false; }
+}
+function storyBox(s){ return s.story?`<div class="story">${esc(s.story)}</div><div class="btns" style="margin-top:.4rem"><button class="secondary" onclick="speak(${esc(JSON.stringify(s.story))})">🔊 Les historien</button></div>`:''; }
+function render(){
+  setProgress(); updateSendBar();
+  const s=PLAN[planIdx]; if(!s){ return renderEnd(); }
+  shownAt=Date.now();
+  if(s.type==='intro') host.innerHTML=`<section class="card"><div class="step">${s.title}</div><div class="laer">${esc(s.text)}</div><div class="btns"><button onclick="planIdx++;render()">Start →</button><button class="secondary" onclick="speak(${esc(JSON.stringify(s.text))})">🔊 Les opp</button></div></section>`;
+  else if(s.type==='open') renderOpen(s);
+  else if(s.type==='vt') renderVT(s);
+  else if(s.type==='spor') renderSpor(s);
+  else renderOrd(s);
+}
+function next(s,text,meta){
+  answers[s.id]={text,meta};
+  planIdx++; render();
+}
+function renderOpen(s){
+  const last=planIdx===PLAN.length-1;
+  host.innerHTML=`<section class="card"><div class="step">${s.title}</div>${storyBox(s)}<p class="q">${esc(s.q)}</p>
+   <div class="mic">Skriv med dine egne ord. Du kan skrive «jeg vet ikke».</div><textarea id="ans" placeholder="Skriv svaret her …"></textarea>
+   <div class="btns"><button onclick="saveOpen()">Lagre og gå videre</button><button class="secondary" onclick="speak(${esc(JSON.stringify(s.q))})">🔊 Les spørsmålet</button></div></section>`;
+  const tid=ensureTrial(s); document.getElementById('ans').addEventListener('input',()=>markStarted(tid),{once:true});
+}
+function saveOpen(){
+  const s=PLAN[planIdx], v=document.getElementById('ans').value;
+  if(!v.trim()){alert('Skriv et svar først. Du kan skrive «jeg vet ikke».');return}
+  EdelsData.saveFirstResponse(sessionId,ensureTrial(s),v,{source:'les_mellom_linjene_ui',latencyMs:Date.now()-shownAt});
+  next(s,v,{});
+}
+function renderVT(s){
+  host.innerHTML=`<section class="card"><div class="step">${s.title}</div>${storyBox(s)}<p class="q">${esc(s.q)}</p>
+   ${s.stm.map((m,i)=>`<div class="stm" data-i="${i}"><p>${esc(m[0])}</p><div class="opts"><button data-v="Vet">Vet</button><button data-v="Tror">Tror</button></div></div>`).join('')}
+   <div class="btns"><button id="vtBtn" disabled onclick="saveVT()">Lagre og gå videre</button></div></section>`;
+  document.querySelectorAll('.stm .opts button').forEach(b=>b.addEventListener('click',()=>{
+    b.parentElement.querySelectorAll('button').forEach(x=>x.classList.remove('picked')); b.classList.add('picked');
+    markStarted(ensureTrial(s));
+    document.getElementById('vtBtn').disabled=document.querySelectorAll('.stm .opts button.picked').length<s.stm.length;
+  }));
+}
+function saveVT(){
+  const s=PLAN[planIdx];
+  const picks=[...document.querySelectorAll('.stm')].map(el=>el.querySelector('button.picked').dataset.v);
+  const txt=s.stm.map((m,i)=>m[0]+' → '+picks[i]).join(' | ');
+  const correct=picks.map((p,i)=>p===s.stm[i][1]);
+  EdelsData.saveFirstResponse(sessionId,ensureTrial(s),txt,{source:'les_mellom_linjene_ui',expected:s.stm.map(m=>m[1]),correct,latencyMs:Date.now()-shownAt});
+  next(s,txt,{correct});
+}
+function renderSpor(s){
+  host.innerHTML=`<section class="card"><div class="step">${s.title}</div>${storyBox(s)}<p class="q">${esc(s.q)}</p>
+   <div class="chips" id="chips">${s.clues.map((c,i)=>`<button class="chip" data-i="${i}">${esc(c)}</button>`).join('')}</div>
+   <div class="btns"><button id="spBtn" disabled onclick="saveSpor()">Lagre og gå videre</button></div></section>`;
+  document.querySelectorAll('.chip').forEach(b=>b.addEventListener('click',()=>{
+    const isNone=s.clues[b.dataset.i]===NOK||s.clues[b.dataset.i]==='Jeg har ikke endret mening.';
+    if(isNone){ document.querySelectorAll('.chip').forEach(x=>x.classList.remove('sel')); b.classList.add('sel'); }
+    else{ document.querySelectorAll('.chip').forEach(x=>{const n=s.clues[x.dataset.i]===NOK||s.clues[x.dataset.i]==='Jeg har ikke endret mening.'; if(n)x.classList.remove('sel');}); b.classList.toggle('sel'); }
+    markStarted(ensureTrial(s));
+    document.getElementById('spBtn').disabled=!document.querySelector('.chip.sel');
+  }));
+}
+function saveSpor(){
+  const s=PLAN[planIdx];
+  const sel=[...document.querySelectorAll('.chip.sel')].map(b=>s.clues[b.dataset.i]);
+  const txt=sel.join(' | ');
+  EdelsData.saveFirstResponse(sessionId,ensureTrial(s),txt,{source:'les_mellom_linjene_ui',goodClues:s.good,selectedGood:sel.filter(x=>s.good.includes(x)).length,latencyMs:Date.now()-shownAt});
+  next(s,txt,{});
+}
+function renderOrd(s){
+  host.innerHTML=`<section class="card"><div class="step">${s.title}</div>${storyBox(s)}<p class="q">${esc(s.q)}</p>
+   <div class="gloss">${esc(GLOSS)}</div>
+   <div class="opts" id="opts">${s.opts.map(o=>`<button data-o="${o}">${o}</button>`).join('')}</div></section>`;
+  document.querySelectorAll('#opts button').forEach(b=>b.addEventListener('click',()=>{
+    if(answers[s.id])return;
+    const tid=ensureTrial(s); markStarted(tid);
+    EdelsData.saveFirstResponse(sessionId,tid,b.dataset.o,{source:'les_mellom_linjene_ui',correctAnswer:s.ok,correct:b.dataset.o===s.ok,latencyMs:Date.now()-shownAt});
+    answers[s.id]={text:b.dataset.o,meta:{correct:b.dataset.o===s.ok}};
+    document.querySelectorAll('#opts button').forEach(x=>{x.disabled=true; if(x===b)x.classList.add('picked');});
+    setTimeout(()=>{planIdx++;render();},500);
+  }));
+}
+// ---------- Slutt og voksenpanel ----------
+const KL=[['','—'],['grunnet','Begrunnet i teksten'],['plausibel','Plausibel, men uten spor i teksten'],['utenfor','Bruker informasjon som ikke står i teksten'],['handling','Beskriver bare handlingen'],['vetikke','Vet ikke / ikke vurderbar']];
+const SUPPORT=['0 Sem ajuda','1 Repetição','2 Pista contextual','3 Pista semântica','4 Imagem','5 Alternativas','6 Início da frase','7 Modelo explícito'];
+function renderEnd(){
+  EdelsData.finishAndSubmit(sessionId);
+  const opens=PLAN.filter(s=>s.type==='open');
+  const rows=opens.map(s=>`<div style="border-top:1px solid var(--rule);padding:.6rem 0"><div class="small"><strong>${s.title}</strong> · ${esc(s.q)}</div>
+    <div class="small">Svar (ordrett): <em>${answers[s.id]?esc(answers[s.id].text):'—'}</em></div>
+    <div class="small">Vurdering: <select class="vk" data-id="${s.id}">${KL.map(([v,t])=>`<option value="${v}">${t}</option>`).join('')}</select></div></div>`).join('');
+  const other=PLAN.filter(s=>s.type!=='open'&&s.type!=='intro').map(s=>`<div class="small" style="margin-top:.35rem"><strong>${s.title}</strong><br>${answers[s.id]?esc(answers[s.id].text):'—'}${answers[s.id]&&answers[s.id].meta&&answers[s.id].meta.correct!==undefined?' <span>('+(Array.isArray(answers[s.id].meta.correct)?answers[s.id].meta.correct.filter(Boolean).length+'/'+answers[s.id].meta.correct.length+' som forventet':(answers[s.id].meta.correct?'som forventet':'ikke som forventet'))+')</span>':''}</div>`).join('');
+  host.innerHTML=`<section class="card"><div class="ok">Bra jobbet, Edel! 🌸 Du har lest fire historier og sagt hva du tror, og hvorfor.</div>
+   <div class="small" style="margin-top:.5rem">Økten er sendt til mamma.</div>
+   <details class="voksen" open><summary>Til voksen</summary><div class="vpanel"><h3>Registro adulto</h3>
+   <p class="small">A interpretação é do adulto. As perguntas abertas vieram <strong>primeiro e sem apoio</strong>; os passos seguintes (vet/tror, spor, ordforklaring) são apoio e devem ser lidos como tal. O passo «ord» traz uma explicação das palavras, então não mede recuperação de vocabulário. Historie 2 é o controle (inferência sem emoção). Em Historie 3, compare a primeira e a segunda resposta: ela revisou a interpretação? Uma sessão e poucos itens não estabelecem padrão; refazer com histórias novas em outro dia.</p>
+   ${rows}
+   <details class="voksen"><summary>Respostas das outras etapas</summary>${other}</details>
+   <details class="voksen"><summary>Fasit e leitura esperada (depois da tentativa)</summary>
+    <div class="small">H1: bekymret enquanto espera (pistas: klokka, bussen, prøve); lettelse quando o ônibus chega. H2: choveu (paraply våt, jakke dryppende). H3: tolkning 1 pode variar (tatt/stjålet, ryddet, flyttet); tolkning 2: bøkene foi flyttet por causa da pintura. H4: skuffet (avlyst turen). Aceitar respostas plausíveis com justificativa coerente, mesmo diferentes.</div></details>
+   <label class="small" style="display:block;margin-top:.6rem">Ajuda dada fora da página (nível): <select id="helpLvl"><option value="">—</option>${SUPPORT.map((x,i)=>`<option value="${i}">${x}</option>`).join('')}</select></label>
+   <textarea id="adultNotes" placeholder="Observações: oral vs escrito, cansaço, o que ela disse em voz alta, uso de «tror/vet» espontâneo …"></textarea>
+   <div class="btns"><button onclick="saveVurd()">Lagre vurderinger</button><button class="secondary" onclick="copyAdult()">Kopier alt</button></div>
+   <div id="adultStatus" class="small" style="margin-top:.4rem"></div></div></details></section>`;
+}
+function saveVurd(){
+  let n=0; const notes=document.getElementById('adultNotes').value||null, lvl=document.getElementById('helpLvl').value;
+  document.querySelectorAll('.vk').forEach(sel=>{ if(!sel.value)return; const tid=trialIds[sel.dataset.id]; if(!tid)return;
+    EdelsData.interpret(sessionId,tid,{responseClassification:'inferens_'+sel.value,causality:sel.value,notes}); n++;
+    if(lvl!==''&&Number(lvl)>0) EdelsData.addSupport(sessionId,tid,Number(lvl),'adult_reported',SUPPORT[Number(lvl)],null); });
+  document.getElementById('adultStatus').textContent='✓ Lagret '+n+' vurderinger (lokalt i nettleseren).';
+}
+async function copyAdult(){
+  const lines=PLAN.filter(s=>s.type!=='intro').map(s=>{const a=answers[s.id]||{};const k=document.querySelector('.vk[data-id="'+s.id+'"]');
+    return `${s.title}\n  ${s.q}\n  Svar (ordrett): ${a.text||'—'}${k&&k.value?'\n  Vurdering: '+k.selectedOptions[0].text:''}`;}).join('\n\n');
+  const text='EDELS VERDEN — '+TITLE.toUpperCase()+'\n(Åpne spørsmål først, uten støtte; vet/tror, spor og ordvalg er støtte)\n\n'+lines+'\n\nObservações:\n'+document.getElementById('adultNotes').value;
+  const st=document.getElementById('adultStatus');
+  try{ await navigator.clipboard.writeText(text); st.textContent='✓ Kopiert'; }
+  catch(e){ const ta=document.createElement('textarea'); ta.value=text; document.body.appendChild(ta); ta.select(); try{document.execCommand('copy'); st.textContent='✓ Kopiert';}catch(e2){st.textContent='Kunne ikke kopiere';} ta.remove(); }
+}
+render();
+</script></body></html>

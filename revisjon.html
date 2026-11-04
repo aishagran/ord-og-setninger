@@ -1,0 +1,596 @@
+<!doctype html>
+<html lang="nb">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Revisjon – Edels Verden</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{--cream:#F6F1E6;--paper:#FFFEFA;--navy:#1C2C42;--navy-2:#29455F;--ink:#1B2438;--muted:#746F66;--coral:#BE6E56;--coral-soft:#F3DFD6;--rule:#E4DCCB;--green:#E4F0DF;--shadow:0 12px 34px rgba(28,44,66,0.08)}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'Inter',sans-serif;background:radial-gradient(circle at 10% 0%,#FFF9EE 0,transparent 24rem),var(--cream);color:var(--ink);min-height:100vh;-webkit-font-smoothing:antialiased}
+main{max-width:680px;margin:auto;padding:1.4rem 1.2rem 6rem}
+.top{display:flex;justify-content:space-between;align-items:center;gap:12px}
+.top strong{font-family:'Fraunces',serif;font-weight:600;font-size:1.2rem}
+.top a{color:inherit;text-decoration:none}
+.small{font-size:0.82rem;color:var(--muted);margin-top:0.15rem}
+.pill{background:var(--paper);border:1px solid var(--rule);border-radius:999px;padding:0.5rem 0.9rem;font-weight:700;font-size:0.85rem;flex-shrink:0;white-space:nowrap}
+.progress{height:8px;background:var(--rule);border-radius:9px;overflow:hidden;margin-top:0.9rem}
+.bar{height:100%;background:var(--coral);width:6%;transition:width 0.25s ease}
+.card{background:var(--paper);border:1px solid rgba(28,44,66,0.08);border-radius:22px;padding:1.4rem;margin-top:1rem;box-shadow:0 7px 24px rgba(28,44,66,0.045)}
+.step{font-weight:700;font-size:0.7rem;letter-spacing:0.1em;text-transform:uppercase;color:var(--coral)}
+.hero{width:100%;max-height:420px;object-fit:contain;border-radius:16px;margin:0.9rem 0;display:block;background:var(--cream)}
+.story{background:var(--cream);border:1px dashed var(--rule);border-radius:14px;padding:0.85rem 1rem;font-size:0.95rem;color:var(--ink);line-height:1.6;margin-top:0.6rem;white-space:pre-line}
+.laer{background:var(--green);border:1px solid #CFE4CA;border-radius:14px;padding:0.9rem 1rem;font-size:0.95rem;color:#2F5137;line-height:1.65;margin-top:0.6rem;white-space:pre-line}
+.q{font-family:'Fraunces',serif;font-size:1.22rem;font-weight:500;line-height:1.34;margin-top:0.9rem;white-space:pre-line}
+.mic{font-size:0.82rem;color:var(--muted);margin-top:0.4rem}
+textarea,input[type=text]{width:100%;font:inherit;font-family:'Inter',sans-serif;border:2px solid var(--rule);border-radius:14px;padding:0.85rem;background:var(--paper);min-height:52px;margin-top:0.6rem;color:var(--ink)}
+textarea{min-height:90px;margin-top:0.9rem}
+textarea:focus,input:focus{outline:2px solid var(--coral);outline-offset:1px;border-color:var(--coral)}
+.flex-row{display:flex;align-items:center;gap:0.7rem;margin-top:0.5rem}
+.flex-row label{min-width:6.2rem;font-weight:600}
+.flex-row input{margin-top:0}
+.btns{display:flex;gap:0.6rem;flex-wrap:wrap;margin-top:0.9rem}
+button{border:0;border-radius:999px;padding:0.7rem 1.1rem;font:inherit;font-weight:700;font-size:0.88rem;background:var(--navy);color:#EDE6D6;cursor:pointer}
+button.secondary{background:var(--coral-soft);color:#7A4530}
+button:disabled{opacity:0.45;cursor:default}
+.hidden{display:none}
+.voksen{background:#F1F4F8;border:1px solid #D5DEE8;border-radius:12px;padding:0.6rem 0.85rem;font-size:0.78rem;color:#4A5A6E;line-height:1.5;margin-top:0.7rem}
+.voksen summary{cursor:pointer;font-size:0.62rem;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;color:#5E6F84}
+.voksen[open] summary{margin-bottom:0.3rem}
+.vpanel{background:var(--paper);border:1px solid var(--rule);border-radius:16px;padding:1rem;margin-top:1rem}
+.vpanel h3{font-family:'Fraunces',serif;font-size:1.05rem;font-weight:600;margin-bottom:0.5rem}
+.vpanel label{display:flex;align-items:flex-start;gap:0.55rem;font-size:0.88rem;line-height:1.4;margin-top:0.45rem}
+.vpanel label input{margin-top:0.2rem;width:auto}
+.ok{background:var(--green);color:#3E6C4A;padding:0.8rem 1rem;border-radius:14px;margin-top:0.9rem;font-weight:600}
+.send-bar{position:fixed;left:0;right:0;bottom:0;padding:0.8rem 1rem calc(0.8rem + env(safe-area-inset-bottom));background:rgba(28,44,66,0.96);backdrop-filter:blur(10px);display:flex;justify-content:center;z-index:50}
+.send-bar button{background:var(--coral);color:#fff;width:100%;max-width:420px}
+.send-note{font-size:0.72rem;color:#C7D3DE;text-align:center;margin-top:0.4rem;max-width:420px}
+@media(max-width:600px){main{padding:1rem 0.9rem 6.5rem}.card{padding:1.05rem}.q{font-size:1.1rem}}
+</style></head>
+<body><main>
+<div class="top"><div><strong><a href="index.html">🔁 Revisjon</a></strong><div class="small">Vi ser på ting du har lært før · 7 oppgaver · ca. 12 min</div></div><div class="pill" id="count">Start</div></div>
+<div class="progress"><div class="bar" id="bar"></div></div>
+<div id="stepHost"></div>
+</main>
+
+<script src="edels-data.js"></script>
+<script>
+if(typeof EdelsData==='undefined'){
+  console.warn('edels-data.js ble ikke funnet – kjører uten lagring.');
+  const mem={};
+  window.EdelsData={createSession:()=>{const id='offline-'+Date.now();mem[id]={trials:[],status:'in_progress',submission:{}};return id},getSession:id=>mem[id]||null,
+    startTrial:(s)=>{const t={trialId:'t'+Math.random(),supports:[]};mem[s].trials.push(t);return t.trialId},responseStarted(){},saveFirstResponse(){},addSupport(s,t){const x=mem[s].trials.find(y=>y.trialId===t);if(x)x.supports.push({})},
+    setSupportResponse(){},saveSupportRemoved(){},saveGeneralization(){},interpret(){},completeSession(){},finishAndSubmit(){}};
+}
+
+/* =====================================================================
+   REGLER (konfigurerbare) – intervaller i dager
+   ===================================================================== */
+const RULES={
+  independentIntervals:[1,3,7,14,30],  // etter 1., 2., 3. … selvstendige gjenhenting
+  withHelpDue:1,                        // med hjelp: ta opp igjen tidlig
+  notRetrievedDue:0,                    // ikke hentet fram: undervis først, prøv igjen i neste økt
+  untestedScore:50
+};
+const OUT_KEY='edels_revisjon_outcomes_v1', ST_KEY='edels_revisjon_state_v1';
+const MODULE_TITLE='Revisjon';
+const DAY=86400000;
+
+/* =====================================================================
+   BEGREPER – bare det som faktisk er undervist i prosjektet
+   (kilde = side/økt i Edels Verden). Ingen historikk er funnet opp.
+   ===================================================================== */
+const CONCEPTS={
+  utdodd:{n:'utdødd / art',src:'Dodoen · Ukessjekk 9. oktober'},
+  mangfold:{n:'biologisk mangfold',src:'Naturen trenger mange arter · Mangfold · Dodoen'},
+  hypotese:{n:'hypotese',src:'Hypotese · Ukessjekk 9. oktober'},
+  bergart:{n:'bergart',src:'Bergart (seks dager)'},
+  storkne:{n:'størkne',src:'Bergart · Størknet'},
+  fordi:{n:'fordi / bindeord',src:'Fordi, derfor, dermed · Leirskole'},
+  derfor:{n:'derfor + verb først (V2)',src:'Fordi, derfor, dermed'},
+  danne:{n:'danne / danner',src:'Vi lager grupper'},
+  fn:{n:'FN og samarbeid',src:'Edel og verdensklubben (19. oktober)'},
+  skole:{n:'rett til skole',src:'Edel og verdensklubben (19. oktober)'},
+  dodo:{n:'Dodoen (årsak og rekkefølge)',src:'Dodoen'},
+  lane:{n:'spørre om lov / låne / levere tilbake',src:'Kan jeg få låne? (21. oktober)'},
+  rekkefolge:{n:'først – etterpå – til slutt',src:'Dodoen · Leirskole · Beskriv dagen'},
+  bekymret:{n:'bekymret',src:'Logoped Charlotte (3. november 2026)',t:2},
+  skuffet:{n:'skuffet',src:'Logoped Charlotte (3. november 2026)',t:2},
+  lettelse:{n:'lettelse',src:'Logoped Charlotte (3. november 2026)',t:2}
+};
+// t = ordnivå (2 = nyttig i mange sammenhenger, 3 = fagord). Bare for ordforråd; brukes til å velge og vise ord.
+[['utdodd',2],['mangfold',2],['hypotese',2],['danne',2],['bergart',3],['storkne',3]].forEach(([c,t])=>{CONCEPTS[c].t=t;});
+['utdodd','mangfold','hypotese','danne'].forEach(c=>{CONCEPTS[c].src+=' · Ord og betydning (3. november)';});
+const AREAS={V:'Vocabulário e conceitos',E:'Exemplo e não exemplo',K:'Compreensão',S:'Construção de frases',C:'Causa e consequência',N:'Sequência e narrativa',G:'Generalização'};
+const AREA_ORDER=['V','E','K','S','C','N','G'];
+
+/* =====================================================================
+   OPPGAVEBANK – hver oppgave: spørsmål (q), kriterier (acc), hjelpetrapp (rep/ctx/sem/alt/start/model),
+   kort undervisning (teach), likeverdig spørsmål uten hjelp (rq), ny situasjon (gq).
+   acc/racc/gacc: RegExp eller liste av RegExp (alle må treffe). Dette er bare et FORSLAG til voksenpanelet.
+   ===================================================================== */
+const ITEMS=[
+ {id:'v-utdodd',c:'utdodd',a:'V',goal:'lexical_retrieval',
+  q:'Hva kaller vi det når en art ikke finnes lenger?',acc:/utd(ø|o)dd|utrydd/i,
+  ctx:'Tenk på dodoen. Det finnes ingen levende dodo i dag.',sem:'Ordet betyr at alle dyr av en art er borte for alltid.',
+  alt:'Hvilket ord passer best: utdødd, sjelden eller liten?',start:'Ordet begynner med «utd…».',model:'Vi sier at arten er utdødd. Si det: utdødd.',
+  teach:'Når en art ikke finnes lenger, sier vi at arten er utdødd. Dodoen er utdødd.',
+  rq:'En fugleart levde for lenge siden. Nå finnes det ingen igjen. Hva kan vi si om arten?',
+  gq:'Mammuten levde for tusenvis av år siden. Hva kan vi si om mammuten?',praise:['utdødd']},
+ {id:'v-mangfold',c:'mangfold',a:'V',goal:'lexical_retrieval',
+  q:'Hva kaller vi det når det finnes mange forskjellige arter på ett sted?',acc:/mangfold/i,
+  ctx:'Tenk på en skog med mange slags dyr og planter.',sem:'Ordet slutter på «-fold». Det betyr at det finnes mange slags.',
+  alt:'Hvilket ord passer: mangfold, søppel eller utdødd?',start:'Ordet begynner med «mang…».',model:'Vi sier at det er biologisk mangfold. Si det: mangfold.',
+  teach:'Når det finnes mange forskjellige arter på ett sted, sier vi at det er mangfold. Biologisk mangfold betyr mange slags liv i naturen.',
+  rq:'Et korallrev har mange slags fisk og koraller. Hva kaller vi det?',
+  gq:'Hva betyr mangfold i en K-pop-gruppe eller i et band?',gacc:/forskjellig|ulik|mange|slags|hver sin/i,praise:['mangfold']},
+ {id:'v-hypotese',c:'hypotese',a:'V',goal:'lexical_retrieval',
+  q:'Når vi har en forklaring som vi tror kan være riktig, men som vi ikke har undersøkt ennå, hva kaller vi den?',acc:/hypotes/i,
+  ctx:'Tenk på en forsker som har en idé, men ikke har testet den ennå.',sem:'Ordet begynner med «hy» og betyr en idé om hvorfor noe skjer.',
+  alt:'Hvilket ord passer: hypotese, fasit eller utdødd?',start:'Ordet begynner med «hypo…».',model:'Det kalles en hypotese. Si det: hypotese.',
+  teach:'En hypotese er en forklaring vi tror kan være riktig, men som vi ikke har undersøkt ennå.',
+  rq:'Du tror at planten vokser bedre med mer lys. Du har ikke testet det ennå. Hva kaller vi det du tror?',
+  gq:'Katten din sover mye. Hva kan din hypotese være? Begynn med: Jeg tror at …',gacc:/tror|fordi|kanskje/i,praise:['hypotese']},
+ {id:'v-bergart',c:'bergart',a:'V',goal:'semantic_knowledge',
+  q:'Hva er en bergart?',acc:/stein|fjell|mineral/i,
+  ctx:'Tenk på fjellet. Hva består det av?',sem:'En bergart er noe som finnes i fjell og i bakken.',
+  alt:'Hva passer: en slags stein, en slags dyr eller en slags frukt?',start:'En bergart er en slags …',model:'En bergart er en slags stein. Granitt er en bergart.',
+  teach:'En bergart er en slags stein. Fjell består av bergarter. Granitt er en bergart.',
+  rq:'Granitt og marmor er eksempler på hva?',racc:/bergart/i,
+  gq:'Nevn en bergart du kjenner.',gacc:/granitt|basalt|marmor|kalkstein|sandstein|skifer|gneis|flint/i},
+
+ {id:'v-bekymret',c:'bekymret',a:'V',goal:'lexical_retrieval',
+  q:'Hva kaller vi det når du er urolig for noe som kan skje senere, for eksempel før en prøve?',acc:/bekymr/i,
+  ctx:'Tenk på noen som tenker mye på en prøve som kommer i morgen.',sem:'Ordet handler om å tenke på noe som kan gå galt.',
+  alt:'Hvilket ord passer: bekymret, glad eller sulten?',start:'Ordet begynner med «bekym…».',model:'Vi sier at hun er bekymret. Si det: bekymret.',
+  teach:'Bekymret betyr at vi er urolige for noe som kan skje. Eksempel: Hun er bekymret før prøven.',
+  rq:'Ola tenker mye på at det kan regne på turen i morgen. Hvordan har Ola det?',racc:/bekymr/i,
+  gq:'Hva kan en person være bekymret for?',gacc:/prøve|eksamen|syk|presentasjon|fremføring|test|skole|alene|regn|ulykke|mørk|dyr|penger|venn|familie|karakter/i},
+ {id:'v-skuffet',c:'skuffet',a:'V',goal:'lexical_retrieval',
+  q:'Hva kaller vi det når noe ikke ble slik du hadde håpet, og du blir lei deg?',acc:/skuffet/i,
+  ctx:'Tenk på at du håpet på en gave, men fikk noe annet.',sem:'Du blir lei deg fordi noe ikke ble som du hadde håpet.',
+  alt:'Hvilket ord passer: skuffet, sliten eller redd?',start:'Ordet begynner med «sku…».',model:'Vi sier at hun er skuffet. Si det: skuffet.',
+  teach:'Skuffet betyr at vi blir lei oss fordi noe ikke ble som vi hadde håpet. Eksempel: Han ble skuffet da turen ble avlyst.',
+  rq:'Kari håpet å vinne kampen, men laget tapte. Hvordan har Kari det?',racc:/skuffet/i,
+  gq:'Når kan en person bli skuffet?',gacc:/ikke|tap|avlys|håp|lovet|mistet|vant/i},
+ {id:'v-lettelse',c:'lettelse',a:'V',goal:'lexical_retrieval',
+  q:'Hva kaller vi følelsen når en bekymring plutselig blir borte?',acc:/lettelse|lettet/i,
+  ctx:'Tenk på at du var redd for en prøve, og så gikk den bra.',sem:'Det er som å puste ut når noe er over.',
+  alt:'Hvilket ord passer: lettelse, sinne eller sult?',start:'Ordet begynner med «lette…».',model:'Vi sier at det er en lettelse. Si det: lettelse.',
+  teach:'Lettelse er følelsen når en bekymring blir borte. Eksempel: Det var en lettelse da prøven gikk bra.',
+  rq:'Du var redd for å komme for sent, men bussen kom akkurat da. Hva følte du?',racc:/lett/i,
+  gq:'Når kan man føle lettelse?',gacc:/bekymr|redd|prøve|ferdig|gikk bra|over|nervøs/i},
+
+ {id:'e-utdodd',c:'utdodd',a:'E',goal:'example_nonexample',
+  q:'Det er noen få elefanter igjen i en skog. De lever fortsatt. Er elefantene utdødde? Svar ja eller nei, og skriv hvorfor.',acc:[/^\W*nei/i,/lever|finnes|igjen|fortsatt/i],
+  ctx:'Tenk på om det finnes noen elefanter nå.',sem:'Utdødd betyr at ingen er igjen.',
+  alt:'Passer det best: «Ja, de er borte» eller «Nei, noen finnes»?',start:'Nei, fordi …',model:'Nei, de er ikke utdødde, fordi det finnes noen igjen.',
+  teach:'Utdødd betyr at ingen i arten er igjen. Hvis noen lever, er arten ikke utdødd.',
+  rq:'Ingen mammuter lever lenger. Er mammuten utdødd? Svar ja eller nei, og skriv hvorfor.',racc:[/^\W*ja/i,/ingen|borte|finnes ikke|lever ikke|lenger/i]},
+ {id:'e-mangfold',c:'mangfold',a:'E',goal:'example_nonexample',
+  q:'På en åker vokser det bare én slags plante, og nesten ingen dyr bor der. Er det mye mangfold? Svar ja eller nei, og skriv hvorfor.',acc:[/^\W*nei/i,/én|en slags|bare|ingen|få|lite|nesten/i],
+  ctx:'Tenk på hvor mange slags liv det er på åkeren.',sem:'Mangfold betyr mange forskjellige slags.',
+  alt:'Er det mange slags, eller bare én slags?',start:'Nei, fordi …',model:'Nei, det er lite mangfold fordi det bare finnes én slags plante.',
+  teach:'Mangfold betyr mange forskjellige slags liv på ett sted.',
+  rq:'I en regnskog bor det tusenvis av slags dyr og planter. Er det mye mangfold? Svar ja eller nei, og skriv hvorfor.',racc:[/^\W*ja/i,/mange|slags|forskjellig|tusen|ulik/i]},
+ {id:'e-danne',c:'danne',a:'E',goal:'example_nonexample',
+  q:'En elev sitter alene og tegner. Danner eleven en gruppe? Svar ja eller nei, og skriv hvorfor.',acc:[/^\W*nei/i,/alene|flere|én|en elev|ikke noen|sammen/i],
+  ctx:'Tenk på hvor mange som må være med for å lage en gruppe.',sem:'En gruppe har flere som er sammen.',
+  alt:'Er eleven alene, eller sammen med flere?',start:'Nei, fordi …',model:'Nei, eleven danner ikke en gruppe fordi hun er alene.',
+  teach:'Å danne en gruppe betyr at flere lager den sammen.',
+  rq:'Fem elever stiller seg sammen og lager et lag. Danner de et lag? Svar ja eller nei, og skriv hvorfor.',racc:[/^\W*ja/i,/sammen|flere|fem|lager|lag/i]},
+ {id:'e-hypotese',c:'hypotese',a:'E',goal:'example_nonexample',
+  q:'Mia har målt planten i to uker. Den vokste 5 cm. Er det en hypotese? Svar ja eller nei, og skriv hvorfor.',acc:[/^\W*nei/i,/målt|vet|resultat|undersøkt|fant ut|vokste|testet/i],
+  ctx:'Tenk på om Mia bare tror noe, eller om hun vet det.',sem:'En hypotese er noe vi tror før vi har undersøkt.',
+  alt:'Er det noe hun tror, eller noe hun har målt?',start:'Nei, fordi …',model:'Nei, det er ikke en hypotese fordi hun har målt og vet det.',
+  teach:'En hypotese er noe vi tror før vi har undersøkt. Når vi har målt, har vi et resultat.',
+  rq:'Jonas tror at isen smelter raskere i sola, men har ikke testet det. Er det en hypotese? Svar ja eller nei, og skriv hvorfor.',racc:[/^\W*ja/i,/tror|ikke testet|ikke undersøkt|ikke prøvd|ennå/i]},
+ {id:'e-bekymret',c:'bekymret',a:'E',goal:'semantic_contrast',
+  q:'Sara tenker mye på prøven i morgen. Hun er redd for at det skal gå dårlig. Er hun bekymret eller skuffet? Skriv hvorfor.',acc:[/bekymr/i,/morgen|ennå|før|kan gå|redd|skal|ikke skjedd|senere/i],
+  ctx:'Har prøven vært, eller kommer den senere?',sem:'Bekymret handler om noe som kan skje. Skuffet handler om noe som allerede har skjedd.',
+  alt:'Passer bekymret eller skuffet best når prøven ikke har vært ennå?',start:'Hun er bekymret fordi …',model:'Hun er bekymret fordi prøven ikke har vært ennå, og hun er redd det går dårlig.',
+  teach:'Bekymret: vi tenker på noe som kan skje. Skuffet: noe har allerede skjedd og ble ikke som vi håpet.',
+  rq:'Nils fikk resultatet på prøven. Det var dårligere enn han håpet. Er han bekymret eller skuffet? Skriv hvorfor.',racc:[/skuffet/i,/fikk|allerede|dårligere|håpet|resultat|skjedd|var/i]},
+ {id:'e-lettelse',c:'lettelse',a:'E',goal:'semantic_contrast',
+  q:'Ida var redd for å bli syk før turen, men så var hun frisk. Er det lettelse eller skuffelse? Skriv hvorfor.',acc:[/lettelse|lettet/i,/frisk|borte|ikke syk|bekymring|redd/i],
+  ctx:'Ble bekymringen hennes borte, eller ble noe ikke som hun håpet?',sem:'Lettelse kommer når en bekymring blir borte.',
+  alt:'Passer lettelse eller skuffelse best når hun ble frisk?',start:'Det er lettelse fordi …',model:'Det er lettelse fordi bekymringen hennes ble borte.',
+  teach:'Lettelse er følelsen når en bekymring blir borte.',
+  rq:'Emil håpet på sol på turen, men det regnet. Er det lettelse eller skuffelse? Skriv hvorfor.',racc:[/skuffelse|skuffet/i,/regn|håpet|sol|ikke/i]},
+
+ {id:'k-fn',c:'fn',a:'K',goal:'reading_comprehension',
+  text:'Mange land er med i FN. I FN møtes landene for å snakke om store problemer. De prøver å finne løsninger sammen.',
+  q:'Hva gjør landene i FN?',acc:/snakke|møtes|løsning|samarbeid|hjelp|prate/i,
+  ctx:'Se på setningen: «landene møtes for å …».',sem:'Hva gjør man når man har et problem sammen med andre?',
+  start:'Landene i FN …',model:'De snakker sammen og prøver å finne løsninger.',
+  teach:'I FN møtes landene. De snakker om store problemer og prøver å finne løsninger sammen.',
+  rtext:'To land deler en elv. Elven blir skitten. Landene bestemmer seg for å snakke sammen.',rq:'Hva gjør landene?'},
+ {id:'k-dodo',c:'dodo',a:'K',goal:'reading_comprehension',
+  text:'Dodoen levde på øya Mauritius. Den kunne ikke fly. Så kom skip med mennesker til øya. Menneskene jaktet på dodoen. Til slutt var det ingen dodo igjen.',
+  q:'Hvem jaktet på dodoen?',acc:/mennesk|folk|sjøfolk/i,
+  ctx:'Se på setningen «Så kom skip …».',sem:'Hvem kom med skipene?',
+  alt:'Var det menneskene, fiskene eller trærne?',start:'Det var …',model:'Menneskene jaktet på dodoen.',
+  teach:'Menneskene som kom med skipene jaktet på dodoen.',
+  rtext:'Pia bor på en øy. Hun fisker hver dag. Så kom en storm. Stormen ødela båten hennes.',rq:'Hva ødela båten?',racc:/storm/i},
+ {id:'k-lane',c:'lane',a:'K',goal:'reading_comprehension',
+  text:'Sara vil høre på Milles hodetelefoner. Sara spør: «Kan jeg få låne dem?» Mille sier ja. Etterpå leverer Sara dem tilbake.',
+  q:'Hva gjorde Sara før hun brukte hodetelefonene?',acc:/sp(ø|o|u)r|lov|låne/i,
+  ctx:'Se på hva Sara sier til Mille.',sem:'Hun sa noe til Mille først.',
+  alt:'Spurte hun om lov, eller sa hun ingenting?',start:'Hun …',model:'Sara spurte om lov.',
+  teach:'Før Sara brukte hodetelefonene, spurte hun om lov. Etterpå leverte hun dem tilbake.',
+  rtext:'Jonas vil bruke Idas sykkel. Han spør: «Kan jeg få låne den?» Ida sier ja. Etterpå setter Jonas sykkelen tilbake.',rq:'Hva gjorde Jonas før han brukte sykkelen?'},
+
+ {id:'s-fordi',c:'fordi',a:'S',goal:'sentence_formulation',
+  q:'Lag en setning med ordet fordi.',acc:/\bfordi\s+\S+(\s+\S+)+/i,
+  ctx:'Tenk på noe du liker eller gjør. Hvorfor gjør du det?',sem:'«Fordi» forklarer hvorfor: «Jeg … fordi …».',
+  start:'Jeg liker … fordi',model:'Jeg tar på jakke fordi det er kaldt.',
+  teach:'Med «fordi» forteller vi hvorfor noe skjer. Jeg tar paraply fordi det regner.',
+  rq:'Hvorfor tar vi på jakke om vinteren? Svar med fordi.',
+  gq:'Hvorfor er det viktig å spørre om lov før du låner noe? Bruk fordi.'},
+ {id:'s-danne',c:'danne',a:'S',goal:'word_in_sentence',
+  q:'Fullfør setningen: Tre elever … en gruppe.',acc:/danner|danne/i,
+  ctx:'Det handler om å lage en gruppe sammen.',sem:'Ordet begynner med «d» og betyr å lage eller skape.',
+  alt:'Hva passer: danner, spiser eller hopper?',start:'Ordet begynner med «dan…».',model:'Tre elever danner en gruppe.',
+  teach:'Danne betyr å lage eller skape noe sammen. Tre elever danner en gruppe.',
+  rq:'Fullfør setningen: Fem barn … et lag.',
+  gq:'Fullfør setningen: Blackpink ble … i Seoul.',gacc:/dannet|danna/i},
+ {id:'s-derfor',c:'derfor',a:'S',goal:'v2_word_order',
+  pre:{first:'Det regner. Derfor',retest:'Det er kaldt. Derfor',gen:'Dodoen ble jaktet på. Derfor'},
+  q:'Fullfør setningen. Skriv det som kommer etter «Derfor».',
+  acc:/^\s*(?!jeg\b|vi\b|hun\b|han\b|de\b|man\b|du\b|den\b|det\b|dodoen\b|alle\b)\S+\s+(jeg|vi|hun|han|de|man|du|den|det|dodoen|alle|folk|menneskene)\b/i,
+  ctx:'Tenk på hva du gjør når det regner.',sem:'Etter «derfor» kommer det du gjør på grunn av regnet.',
+  start:'Derfor tar …',model:'Derfor tar jeg paraply.',
+  teach:'Etter «derfor» kommer verbet først: Derfor tar jeg paraply. Ikke: Derfor jeg tar paraply.',
+  rq:'Fullfør setningen. Skriv det som kommer etter «Derfor».',gq:'Fullfør setningen. Skriv det som kommer etter «Derfor».'},
+
+ {id:'c-fn',c:'fn',a:'C',goal:'causal_reasoning',
+  q:'Hvorfor tror du landene i FN snakker sammen?',acc:/hjelp|løs|problem|sammen|fred|samarbeid/i,
+  ctx:'Tenk på hva landene vil få til sammen.',sem:'Noen problemer er for store for ett land alene.',
+  start:'Landene snakker sammen fordi …',model:'Landene snakker sammen fordi store problemer er lettere å løse sammen.',
+  teach:'Noen problemer er for store for ett land. Derfor snakker landene sammen i FN og prøver å finne løsninger.',
+  rq:'Tre land deler en elv, og elven er blitt skitten. Hvorfor bør landene snakke sammen?',racc:/sammen|alle|hjelp|løs|rens|samarbeid|ren/i,
+  gq:'To klasser vil bruke gymsalen samtidig. Hvorfor er det lurt å snakke sammen?',gacc:/sammen|løs|enig|avtale|bytte|dele|tur/i},
+ {id:'c-skole',c:'skole',a:'C',goal:'causal_reasoning',
+  q:'Hvorfor er det viktig at barn får gå på skole?',acc:/lær|kunnskap|jobb|framtid|fremtid|utdanning|lese|regne/i,
+  ctx:'Tenk på hva barn gjør på skolen.',sem:'Skolen hjelper barn med noe de trenger senere i livet.',
+  start:'Barn trenger å …',model:'Barn trenger å lære, så de kan klare seg som voksne.',
+  teach:'Barn har rett til å gå på skole. På skolen lærer de å lese, skrive og regne, og det trenger de i livet.',
+  rq:'Hvorfor trenger vi å lære å lese?',racc:/forst|lær|jobb|bok|beskjed|skilt|skole|regning|informasjon|handle/i,
+  gq:'Hvorfor er det viktig at alle barn får utdanning, uansett hvor de bor?'},
+ {id:'c-dodo',c:'dodo',a:'C',goal:'causal_reasoning',
+  q:'Hvorfor forsvant dodoen?',acc:/jakt|drept|mennesk|skip|jaga|flere barn|ikke fikk/i,
+  ctx:'Tenk på hvem som kom til øya.',sem:'Noe skjedde med dodoen da menneskene kom.',
+  start:'Dodoen forsvant fordi …',model:'Dodoen forsvant fordi menneskene jaktet på den.',
+  teach:'Dodoen forsvant fordi menneskene jaktet på den, og fordi nye dyr kom til øya. Til slutt fantes ingen igjen.',
+  rq:'Hvorfor kan det bli færre dyr på en øy når mennesker kommer?',racc:/jakt|mat|bygg|ødelegg|drept|tok|plass|hus|skog/i,
+  gq:'Hvorfor er det viktig å passe på dyr som nesten er utdødde?',gacc:/forsvinne|borte|mangfold|natur|trenger|aldri|alle/i},
+ {id:'c-storkne',c:'storkne',a:'C',goal:'causal_reasoning',
+  q:'Hva skjer med varm sjokolade når den blir kald?',acc:/st(ø|o)rkne|fast|hard|stivne/i,
+  ctx:'Tenk på sjokolade du setter i kjøleskapet.',sem:'Den går fra flytende til noe annet.',
+  alt:'Blir den fast, eller blir den enda mer flytende?',start:'Den blir …',model:'Sjokoladen blir fast. Vi sier at den størkner.',
+  teach:'Når noe flytende blir fast, sier vi at det størkner. Varm sjokolade størkner i kjøleskapet. Magma størkner og blir til bergart.',
+  rq:'Magma kommer opp fra jorden og blir kaldt. Hva skjer med det?',
+  gq:'Hva kan størkne på kjøkkenet ditt, i tillegg til sjokolade?',gacc:/smør|voks|stearin|honning|saus|gelé|jelly|suppe|ost|lys|fett|olje|pudding|is\b/i,praise:['størkner','størkne']},
+
+ {id:'n-dodo',c:'rekkefolge',a:'N',goal:'narrative_sequence',
+  q:'Fortell hva som skjedde med dodoen. Bruk først, etterpå og til slutt.',acc:[/først/i,/etterpå/i,/til slutt/i],
+  ctx:'Hva skjedde først på øya?',sem:'Hva skjedde etter at skipene kom?',
+  start:'Først …',model:'Først levde dodoen fredelig. Etterpå kom skip med mennesker. Til slutt var det ingen dodo igjen.',
+  teach:'En fortelling har rekkefølge: først, etterpå, til slutt. Først levde dodoen fredelig. Etterpå kom menneskene. Til slutt var dodoen borte.',
+  rq:'Fortell hva du gjør om morgenen. Bruk først, etterpå og til slutt.',
+  gq:'Fortell om en dag på skolen. Bruk først, etterpå og til slutt.'},
+ {id:'n-leir',c:'rekkefolge',a:'N',goal:'narrative_sequence',
+  q:'Fortell om en ting du gjorde på leirskolen. Bruk først og etterpå.',acc:[/først/i,/etterpå/i],
+  ctx:'Hva var det første du gjorde den dagen?',sem:'Hva gjorde du etter det?',
+  start:'Først …',model:'Først klatret vi. Etterpå spiste vi middag.',
+  teach:'Vi bruker «først» for det som skjer først, og «etterpå» for det som kommer etter.',
+  rq:'Fortell hva du gjorde i går etter skolen. Bruk først og etterpå.',
+  gq:'Fortell hvordan du lager en brødskive. Bruk først, etterpå og til slutt.',gacc:[/først/i,/etterpå/i,/til slutt/i]},
+ {id:'n-lane',c:'lane',a:'N',goal:'narrative_sequence',
+  q:'Fortell hvordan man kan låne noe av en venn. Bruk først, etterpå og til slutt.',acc:[/først/i,/etterpå/i,/til slutt/i],
+  ctx:'Hva gjør du først, før du bruker tingen?',sem:'Hva gjør du når du er ferdig?',
+  start:'Først …',model:'Først spør jeg om lov. Etterpå bruker jeg tingen. Til slutt leverer jeg den tilbake.',
+  teach:'Først spør vi om lov. Etterpå bruker vi tingen. Til slutt leverer vi den tilbake.',
+  rq:'Fortell hvordan du pusser tennene. Bruk først, etterpå og til slutt.'},
+
+ {id:'g-lane',c:'lane',a:'G',goal:'generalization',
+  q:'Du trenger en saks. Den ligger på pulten til en klassekamerat, men hun er ikke i klasserommet. Hva kan du gjøre?',
+  acc:/vent|sp(ø|o|u)r|lærer|senere|ikke ta|be om/i,
+  ctx:'Tenk på hva du sier før du låner noe.',sem:'Du kan snakke med en annen voksen eller vente.',
+  alt:'Kan du vente til hun kommer tilbake, eller ta saksen uten å si noe?',start:'Jeg kan …',model:'Jeg kan vente til hun kommer tilbake og spørre om lov.',
+  teach:'Hvis eieren ikke er der, kan du vente og spørre senere, eller spørre læreren.',
+  rq:'Du vil låne en bok fra biblioteket, men det er ingen ved skranken. Hva kan du gjøre?',racc:/vent|sp(ø|o|u)r|senere|bibliotekar|voksen|lærer|kom tilbake/i},
+ {id:'g-mangfold',c:'mangfold',a:'G',goal:'generalization',
+  q:'Hva er mangfold i en klasse eller en vennegjeng?',acc:/forskjellig|ulik|mange|slags|hver sin/i,
+  ctx:'Tenk på hvordan elevene i en klasse er.',sem:'Mangfold betyr at det finnes mange slags …',
+  start:'Mangfold i en klasse betyr at …',model:'Mangfold i en klasse betyr at elevene er forskjellige og liker forskjellige ting.',
+  teach:'Mangfold betyr at det finnes mange forskjellige slags. Det kan være dyr i naturen, men også mennesker i en klasse.',
+  rq:'Hva kan mangfold bety i et lag eller en gruppe?'},
+ {id:'g-hypotese',c:'hypotese',a:'G',goal:'generalization',
+  pre:'Jeg tror at',
+  q:'Du lurer på hvorfor brødet ble hardt. Hva kan din hypotese være? Skriv det som kommer etter «Jeg tror at».',acc:/\S+\s+\S+/,
+  ctx:'Tenk på hva som kan ha skjedd med brødet.',sem:'En hypotese er en idé om hvorfor noe skjer.',
+  start:'Jeg tror at brødet …',model:'Jeg tror at brødet ble hardt fordi det lå åpent i flere dager.',
+  teach:'En hypotese begynner ofte med «Jeg tror at …». Etterpå kan vi undersøke om det stemmer.',
+  rq:'Du lurer på hvorfor planten ble brun. Hva er din hypotese? Skriv det som kommer etter «Jeg tror at».'}
+];
+ITEMS.forEach(i=>{
+  i.hints=[{l:1,t:'Her er spørsmålet en gang til. Ta den tiden du trenger.',rep:true}];
+  if(i.ctx)i.hints.push({l:2,t:i.ctx}); if(i.sem)i.hints.push({l:3,t:i.sem});
+  if(i.alt)i.hints.push({l:5,t:i.alt}); if(i.start)i.hints.push({l:6,t:i.start}); if(i.model)i.hints.push({l:7,t:i.model});
+});
+const byId=Object.fromEntries(ITEMS.map(i=>[i.id,i]));
+
+/* ---------- lagring ---------- */
+const jget=(k,f)=>{try{return JSON.parse(localStorage.getItem(k))??f}catch(e){return f}};
+const jset=(k,v)=>{try{localStorage.setItem(k,JSON.stringify(v))}catch(e){}};
+const outcomes=()=>jget(OUT_KEY,[]);
+
+/* ---------- planlegging ---------- */
+function conceptState(c){
+  const outs=outcomes().filter(o=>o.concept===c).sort((a,b)=>a.at-b.at);
+  if(!outs.length)return {kind:'untested'};
+  const last=outs[outs.length-1];
+  let streak=0; for(let k=outs.length-1;k>=0&&outs[k].firstMatched;k--)streak++;
+  if(last.firstMatched){
+    const iv=RULES.independentIntervals[Math.min(streak,RULES.independentIntervals.length)-1];
+    return {kind:'independent',last,streak,due:last.at+iv*DAY,interval:iv};
+  }
+  if(last.minLevel!=null||last.retestMatched)return {kind:'with_help',last,due:last.at+RULES.withHelpDue*DAY};
+  return {kind:'not_retrieved',last,due:last.at+RULES.notRetrievedDue*DAY};
+}
+function itemScore(it,chosen){
+  const st=conceptState(it.c), now=Date.now(); let s=0;
+  if(st.kind==='untested')s=RULES.untestedScore;
+  else if(st.kind==='not_retrieved')s=100;
+  else if(st.kind==='with_help')s=80+Math.max(0,(now-st.due)/DAY);
+  else s=now>=st.due?40+Math.min(30,(now-st.due)/DAY):-20;
+  if(st.last&&st.last.genMatched===false)s+=15;
+  if(st.last&&st.last.itemId===it.id)s-=30; // ikke samme spørsmål to ganger på rad
+  if(chosen.some(x=>x.c===it.c))s-=40;
+  return s+Math.random()*10;
+}
+function makePlan(){
+  const chosen=[];
+  AREA_ORDER.forEach(a=>{
+    const cands=ITEMS.filter(i=>i.a===a).map(i=>({i,s:itemScore(i,chosen)})).sort((x,y)=>y.s-x.s);
+    chosen.push(cands[0].i);
+  });
+  return chosen.map(i=>i.id);
+}
+
+/* ---------- økt ---------- */
+let S=null; // {sessionId, plan, i, stage, hintIdx, supIdx, trials:{}, rec:{}}
+const host=document.getElementById('stepHost');
+const saveState=()=>{ if(S)jset(ST_KEY,S); };
+function newSession(){
+  const sessionId=EdelsData.createSession({title:MODULE_TITLE+' – generell revisjon',researchGoal:'adaptive_review_retention_generalization',schoolSubject:'revisjon'});
+  S={sessionId,plan:makePlan(),i:0,stage:'first',hintIdx:0,supIdx:null,trials:{},rec:{},startedAt:Date.now(),shownAt:Date.now()};
+  S.stage=needsPreTeach(byId[S.plan[0]])?'preteach':'first';
+  saveState(); render();
+}
+function needsPreTeach(it){ return conceptState(it.c).kind==='not_retrieved'; }
+const cur=()=>byId[S.plan[S.i]];
+function prefixFor(it,stage){ const p=it.pre; if(!p)return null; if(typeof p==='string')return p; return p[stage==='help'?'first':stage]||p.first; }
+function specFor(it,stage){ return stage==='retest'?(it.racc||it.acc):stage==='gen'?(it.gacc||it.acc):it.acc; }
+function ok(spec,t){ if(!spec)return false; return Array.isArray(spec)?spec.every(r=>r.test(t)):spec.test(t); }
+function speak(t){ try{speechSynthesis.cancel();const u=new SpeechSynthesisUtterance(String(t).replace(/\n/g,' '));u.lang='nb-NO';u.rate=0.9;speechSynthesis.speak(u);}catch(e){} }
+const esc=s=>String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+
+function trialFor(it){
+  if(!S.trials[it.id]){
+    const st=conceptState(it.c);
+    const days=st.last?Math.round((Date.now()-st.last.at)/DAY):null;
+    S.trials[it.id]=EdelsData.startTrial(S.sessionId,{target:it.c,researchGoal:it.goal,taskType:'area_'+it.a,modality:'written',
+      condition:'revisjon_'+(S.pre===it.id?'etter_ny_undervisning':'revisjon'),question:it.q,context:it.id,retentionIntervalDays:days});
+    saveState();
+  }
+  return S.trials[it.id];
+}
+
+/* ---------- visning ---------- */
+function setProgress(){
+  const n=S?Math.min(S.i+1,S.plan.length):0;
+  document.getElementById('count').textContent=S?('Oppgave '+n+' av '+S.plan.length):'Start';
+  document.getElementById('bar').style.width=(S?Math.round(n/S.plan.length*100):6)+'%';
+}
+function pauseBtn(){ return '<div class="btns"><button class="secondary" onclick="pauseSession()">⏸ Ta en pause</button></div>'; }
+function render(){
+  setProgress();
+  if(!S){ return renderStart(); }
+  if(S.stage==='done')return renderDone();
+  const it=cur(); shownAt=Date.now();
+  if(S.stage==='preteach'||S.stage==='teach')return renderTeach(it);
+  return renderQuestion(it);
+}
+let shownAt=Date.now();
+function renderStart(){
+  const st=jget(ST_KEY,null);
+  let resume='';
+  if(st&&st.stage!=='done'&&EdelsData.getSession(st.sessionId)&&EdelsData.getSession(st.sessionId).status!=='completed'){
+    resume='<div class="btns"><button onclick="resumeSession()">Fortsett der vi slapp</button></div>';
+  }
+  host.innerHTML=`<section class="card"><div class="step">Revisjon</div>
+    <div class="laer">Hei, Edel!\n\nI dag ser vi på ting du har lært før. Det er sju oppgaver.\n\nDu kan skrive med dine egne ord. Du kan skrive «jeg vet ikke». Du kan ta pause når du vil.</div>
+    ${resume}
+    <div class="btns"><button onclick="newSession()">${resume?'Start en ny økt':'Start'}</button>
+    <button class="secondary" onclick="speak('Hei Edel! I dag ser vi på ting du har lært før. Det er sju oppgaver. Du kan skrive med dine egne ord. Du kan skrive jeg vet ikke. Du kan ta pause når du vil.')">🔊 Les opp</button></div></section>`;
+}
+function resumeSession(){ S=jget(ST_KEY,null); if(S)render(); }
+function pauseSession(){
+  saveState();
+  host.innerHTML=`<section class="card"><div class="step">Pause</div>
+    <div class="laer">Fint! Du kan ta en pause nå.\n\nNår du er klar, åpner du siden igjen og trykker «Fortsett der vi slapp».</div>
+    <div class="btns"><button onclick="render()">Fortsett nå</button></div></section>`;
+}
+function renderTeach(it){
+  const pre=S.stage==='preteach';
+  host.innerHTML=`<section class="card"><div class="step">${pre?'Vi øver på et ord først':'La oss se på det sammen'}</div>
+    <div class="laer">${esc(it.teach)}</div>
+    <div class="btns"><button onclick="afterTeach()">Jeg har lest</button>
+    <button class="secondary" onclick="speak(${esc(JSON.stringify(it.teach))})">🔊 Les opp</button></div>${pauseBtn()}</section>`;
+  if(!pre&&!S.teachLogged){ EdelsData.addSupport(S.sessionId,trialFor(it),7,'ensino',it.teach,null); S.teachLogged=true; saveState(); }
+}
+function afterTeach(){
+  if(S.stage==='preteach'){ S.stage='first'; S.pre=cur().id; }
+  else { S.stage='retest'; }
+  saveState(); render();
+}
+function renderQuestion(it){
+  const stage=S.stage;
+  const labels={first:'Spørsmål',help:'En liten hjelp',retest:'Prøv igjen, uten hjelp',gen:'Ny situasjon'};
+  const q=stage==='retest'?it.rq:stage==='gen'?it.gq:it.q;
+  const text=stage==='retest'?it.rtext:stage==='gen'?null:it.text;
+  const pre=prefixFor(it,stage);
+  let hintHtml='';
+  if(stage==='help'){
+    const h=it.hints[S.hintIdx];
+    hintHtml=`<div class="laer" style="margin-top:.7rem">${esc(h.t)}</div>`;
+    if(S.supIdx!==S.hintIdx||S.loggedHint!==S.hintIdx){
+      const tid=trialFor(it);
+      EdelsData.addSupport(S.sessionId,tid,h.l,'hint',h.t,null);
+      S.supIdx=(EdelsData.getSession(S.sessionId)?.trials.find(t=>t.trialId===tid)?.supports.length||1)-1;
+      S.loggedHint=S.hintIdx; saveState();
+      if(h.rep)setTimeout(()=>speak(q),300);
+    }
+  }
+  host.innerHTML=`<section class="card"><div class="step">${labels[stage]}</div>
+    ${text?`<div class="story">${esc(text)}</div>`:''}
+    <p class="q">${esc(q)}</p>${hintHtml}
+    ${pre?`<div class="story" style="margin-top:.7rem"><strong>${esc(pre)} …</strong></div>`:''}
+    <textarea id="ans" placeholder="${pre?'Skriv det som kommer etterpå …':'Skriv svaret her …'}"></textarea>
+    <div class="btns"><button onclick="submitAnswer()">Lagre svaret</button>
+    <button class="secondary" onclick="submitAnswer(true)">Jeg vet ikke</button>
+    <button class="secondary" onclick="speak(${esc(JSON.stringify((text?text+' ':'')+q))})">🔊 Les opp</button></div>${pauseBtn()}</section>`;
+  const el=document.getElementById('ans'); const tid=trialFor(it);
+  if(stage==='first')el.addEventListener('input',()=>EdelsData.responseStarted(S.sessionId,tid),{once:true});
+}
+
+/* ---------- svar ---------- */
+function submitAnswer(dontKnow){
+  const it=cur(), stage=S.stage, tid=trialFor(it), pre=prefixFor(it,stage);
+  const raw=document.getElementById('ans').value.trim();
+  if(!raw&&!dontKnow){ alert('Skriv et svar, eller trykk «Jeg vet ikke».'); return; }
+  const typed=dontKnow&&!raw?'jeg vet ikke':raw;
+  const full=pre?(dontKnow&&!raw?pre+' … (jeg vet ikke)':pre+' '+raw):typed;
+  const matched=dontKnow&&!raw?false:ok(specFor(it,stage),pre?raw:full);
+  const rec=S.rec[it.id]||(S.rec[it.id]={itemId:it.id,concept:it.c,area:it.a,minLevel:null,taught:false});
+  const latency=Date.now()-shownAt;
+  if(stage==='first'){
+    EdelsData.saveFirstResponse(S.sessionId,tid,full,{source:'revisjon_ui',latencyMs:latency,dontKnow:!!(dontKnow&&!raw)});
+    rec.firstText=full; rec.firstMatched=matched;
+    if(it.a==='G'){ EdelsData.saveGeneralization(S.sessionId,tid,it.q,full); rec.genMatched=matched; rec.genText=full; }
+    if(matched){ S.stage=(it.a!=='G'&&it.gq)?'gen':'next'; }
+    else { S.stage='help'; S.hintIdx=0; S.supIdx=null; S.loggedHint=null; }
+  } else if(stage==='help'){
+    EdelsData.setSupportResponse(S.sessionId,tid,S.supIdx,full);
+    (rec.helpAnswers||(rec.helpAnswers=[])).push({level:it.hints[S.hintIdx].l,response:full});
+    if(matched){ rec.minLevel=it.hints[S.hintIdx].l; S.stage='retest'; }
+    else if(S.hintIdx+1<it.hints.length){ S.hintIdx++; }
+    else { rec.taught=true; S.teachLogged=false; S.stage='teach'; }
+  } else if(stage==='retest'){
+    EdelsData.saveSupportRemoved(S.sessionId,tid,full); rec.retestText=full; rec.retestMatched=matched; S.stage='next';
+  } else if(stage==='gen'){
+    EdelsData.saveGeneralization(S.sessionId,tid,it.gq,full); rec.genText=full; rec.genMatched=matched; S.stage='next';
+  }
+  if(S.stage==='next')return finishItem();
+  saveState(); render();
+}
+function finishItem(){
+  const it=cur(), rec=S.rec[it.id]; rec.at=Date.now(); rec.sessionId=S.sessionId; rec.trialId=S.trials[it.id];
+  const o=outcomes(); o.push(rec); jset(OUT_KEY,o);
+  S.i++; S.teachLogged=false;
+  if(S.i>=S.plan.length){ S.stage='done'; EdelsData.finishAndSubmit(S.sessionId); saveState(); return render(); }
+  S.stage=needsPreTeach(cur())?'preteach':'first'; S.hintIdx=0; S.supIdx=null; S.loggedHint=null;
+  saveState(); render();
+}
+
+/* ---------- ferdig ---------- */
+function praiseLines(){
+  const lines=[];
+  S.plan.forEach(id=>{
+    const it=byId[id], r=S.rec[id]; if(!r||!it.praise)return;
+    const w=it.praise.find(p=>new RegExp(p,'i').test((r.firstText||'')));
+    if(w&&r.firstMatched)lines.push('Du brukte ordet «'+w+'» uten hjelp.');
+  });
+  return lines.slice(0,3);
+}
+function renderDone(){
+  const pr=praiseLines();
+  host.innerHTML=`<section class="card"><div class="step">Ferdig</div>
+    <div class="ok">Bra jobbet, Edel! Du svarte på alle de sju oppgavene.${pr.length?'<br>'+pr.join('<br>'):''}</div>
+    <div id="sendStatus" class="small" style="margin-top:.6rem">Sender til mamma …</div>
+    <details class="voksen"><summary>Til voksen</summary>${adultHtml()}</details></section>`;
+  document.getElementById('bar').style.width='100%';
+  document.getElementById('count').textContent='Ferdig';
+  setTimeout(()=>{ const s=EdelsData.getSession(S.sessionId); const el=document.getElementById('sendStatus');
+    if(el)el.textContent=(s&&s.submission&&s.submission.status==='sent')?'✓ Sendt til mamma':'Lagret på denne enheten. Sendes når nettet er tilgjengelig.'; },2500);
+}
+
+/* ---------- voksenpanel ---------- */
+const CLASSES=['—','exata','conceitualmente correta com outras palavras','aproximação semântica','substituição semântica','circunlocução','conhecimento parcial','erro de formulação','erro gramatical','erro de sequência/causalidade','não recuperou','não respondeu / tarefa difícil','autocorreção'];
+const CONCEPT_OPT=['—','sim','parcial','não demonstrado','indeterminado'];
+const WORD_OPT=['—','independentemente','após pista','após modelo','não recuperada'];
+function statusText(r){
+  if(r.firstMatched)return 'Sozinha (primeira resposta contém critério)';
+  if(r.minLevel!=null)return 'Com apoio — nível mínimo '+r.minLevel;
+  if(r.retestMatched)return 'Só após ensino (retirada: critério presente)';
+  return 'Não recuperou nesta sessão';
+}
+function nextReviewText(){
+  return [...new Set(S.plan.map(id=>byId[id].c))].map(c=>{
+    const st=conceptState(c); let when,why;
+    if(st.kind==='independent'){ when='em '+st.interval+' dia(s)'; why='recuperou sozinha; intervalo aumenta (regra configurável)'; }
+    else if(st.kind==='with_help'){ when='em '+RULES.withHelpDue+' dia(s)'; why='precisou de apoio; revisar mais cedo'; }
+    else { when='próxima sessão, com ensino antes'; why='não recuperou; ensinar de novo antes de testar'; }
+    return '• '+CONCEPTS[c].n+': '+when+' — '+why;
+  }).join('\n');
+}
+function adultHtml(){
+  const rows=S.plan.map((id,k)=>{
+    const it=byId[id], r=S.rec[id]||{};
+    const helps=(r.helpAnswers||[]).map(h=>'nível '+h.level+': «'+h.response+'»').join(' · ')||'—';
+    return `<div class="vpanel" data-id="${id}"><h3>${k+1}. ${esc(CONCEPTS[it.c].n)} <span class="small">(${esc(AREAS[it.a])}${CONCEPTS[it.c].t?' · nível '+CONCEPTS[it.c].t:''})</span></h3>
+      <p class="small">${esc(it.q)}</p>
+      <p><strong>Primeira resposta literal:</strong> ${esc(r.firstText||'—')}</p>
+      <p class="small">Forslag automático (apenas sugestão, não avaliação): ${r.firstMatched?'contém critério':'não contém critério'} · ${esc(statusText(r))}</p>
+      <p class="small"><strong>Pistas e respostas depois delas:</strong> ${esc(helps)}</p>
+      ${r.taught?'<p class="small">Ensino apresentado: sim</p>':''}
+      <p class="small"><strong>Após retirada do apoio:</strong> ${esc(r.retestText||'—')}</p>
+      <p class="small"><strong>Generalização:</strong> ${esc(r.genText||'—')}</p>
+      <label class="small">Classificação <select class="cl">${CLASSES.map(c=>`<option>${c}</option>`).join('')}</select></label><br>
+      <label class="small">Conceito demonstrado <select class="cd">${CONCEPT_OPT.map(c=>`<option>${c}</option>`).join('')}</select></label><br>
+      <label class="small">Palavra-alvo <select class="pw">${WORD_OPT.map(c=>`<option>${c}</option>`).join('')}</select></label></div>`;
+  }).join('');
+  return `<p class="small">Resumo desta sessão. As classificações são suas; o site só sugere. Uma única observação não estabelece padrão.</p>
+    ${rows}
+    <div class="vpanel"><h3>Próximas revisões (regras configuráveis)</h3><pre class="small" style="white-space:pre-wrap">${esc(nextReviewText())}</pre>
+    <p class="small">Mikronovelle: planejada para a sessão seguinte, usando estas observações para ajustar a complexidade. Ainda não construída.</p></div>
+    <textarea id="adultNotes" placeholder="Observações da sessão (situação, cansaço, o que ela disse em voz alta …)"></textarea>
+    <div class="btns"><button onclick="saveInterpretations()">Salvar classificações</button><button onclick="copyAdult()">Copiar registro completo</button></div>
+    <div id="copyStatus" class="small" style="margin-top:.4rem"></div>`;
+}
+function readInterp(){
+  return [...document.querySelectorAll('.vpanel[data-id]')].map(el=>({id:el.dataset.id,cl:el.querySelector('.cl').value,cd:el.querySelector('.cd').value,pw:el.querySelector('.pw').value}));
+}
+function saveInterpretations(){
+  readInterp().forEach(x=>{ if(x.cl==='—'&&x.cd==='—'&&x.pw==='—')return;
+    EdelsData.interpret(S.sessionId,S.trials[x.id],{conceptDemonstrated:x.cd==='—'?null:x.cd,targetWordRetrieved:x.pw==='—'?null:x.pw,responseClassification:x.cl==='—'?null:x.cl,notes:(document.getElementById('adultNotes')||{}).value||null}); });
+  document.getElementById('copyStatus').textContent='✓ Salvo neste aparelho';
+}
+async function copyAdult(){
+  const interp=readInterp();
+  const body=S.plan.map((id,k)=>{ const it=byId[id], r=S.rec[id]||{}, x=interp.find(i=>i.id===id)||{};
+    return (k+1)+'. '+CONCEPTS[it.c].n+' ['+AREAS[it.a]+']\nPergunta: '+it.q+'\nPrimeira resposta (literal): '+(r.firstText||'—')+
+      '\nPistas: '+((r.helpAnswers||[]).map(h=>'nível '+h.level+' → «'+h.response+'»').join(' | ')||'—')+(r.taught?'\nEnsino apresentado: sim':'')+
+      '\nApós retirada do apoio: '+(r.retestText||'—')+'\nGeneralização: '+(r.genText||'—')+
+      '\nSugestão automática: '+statusText(r)+'\nClassificação do adulto: '+(x.cl||'—')+' | conceito: '+(x.cd||'—')+' | palavra: '+(x.pw||'—'); }).join('\n\n');
+  const text='EDELS VERDEN — REVISÃO GERAL\n(Sessão '+new Date(S.startedAt).toLocaleString('no-NO')+')\n\n'+body+'\n\nPRÓXIMAS REVISÕES\n'+nextReviewText()+'\n\nObservações:\n'+((document.getElementById('adultNotes')||{}).value||'');
+  const st=document.getElementById('copyStatus');
+  try{ await navigator.clipboard.writeText(text); st.textContent='✓ Copiado'; }
+  catch(e){ const ta=document.createElement('textarea'); ta.value=text; document.body.appendChild(ta); ta.select(); try{document.execCommand('copy');st.textContent='✓ Copiado';}catch(e2){st.textContent='Não foi possível copiar';} ta.remove(); }
+}
+
+render();
+</script></body></html>
