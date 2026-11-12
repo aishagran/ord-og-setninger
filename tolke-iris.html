@@ -1,0 +1,158 @@
+<!doctype html>
+<html lang="nb">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Tolke i boka</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{--cream:#F6F1E6;--paper:#FFFEFA;--navy:#1C2C42;--navy-2:#29455F;--ink:#1B2438;--muted:#746F66;--coral:#BE6E56;--coral-soft:#F3DFD6;--rule:#E4DCCB;--green:#E4F0DF;--shadow:0 12px 34px rgba(28,44,66,0.08)}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'Inter',sans-serif;background:radial-gradient(circle at 10% 0%,#FFF9EE 0,transparent 24rem),var(--cream);color:var(--ink);min-height:100vh;-webkit-font-smoothing:antialiased}
+main{max-width:680px;margin:auto;padding:1.4rem 1.2rem 3rem}
+.top{display:flex;justify-content:space-between;align-items:center;gap:12px}
+.top strong{font-family:'Fraunces',serif;font-weight:600;font-size:1.2rem}
+.top a{color:inherit;text-decoration:none}
+.small{font-size:0.82rem;color:var(--muted);margin-top:0.15rem}
+.pill{background:var(--paper);border:1px solid var(--rule);border-radius:999px;padding:0.5rem 0.9rem;font-weight:700;font-size:0.85rem;flex-shrink:0;white-space:nowrap}
+.progress{height:8px;background:var(--rule);border-radius:9px;overflow:hidden;margin-top:0.9rem}
+.bar{height:100%;background:var(--coral);width:6%;transition:width 0.25s ease}
+.card{background:var(--paper);border:1px solid rgba(28,44,66,0.08);border-radius:22px;padding:1.4rem;margin-top:1rem;box-shadow:0 7px 24px rgba(28,44,66,0.045)}
+.step{font-weight:700;font-size:0.7rem;letter-spacing:0.1em;text-transform:uppercase;color:var(--coral)}
+.hero{width:100%;max-height:420px;object-fit:contain;border-radius:16px;margin:0.9rem 0;display:block;background:var(--cream)}
+.story{background:var(--cream);border:1px dashed var(--rule);border-radius:14px;padding:0.85rem 1rem;font-size:0.95rem;color:var(--ink);line-height:1.6;margin-top:0.6rem;white-space:pre-line}
+.laer{background:var(--green);border:1px solid #CFE4CA;border-radius:14px;padding:0.9rem 1rem;font-size:0.95rem;color:#2F5137;line-height:1.65;margin-top:0.6rem;white-space:pre-line}
+.q{font-family:'Fraunces',serif;font-size:1.22rem;font-weight:500;line-height:1.34;margin-top:0.9rem;white-space:pre-line}
+.mic{font-size:0.82rem;color:var(--muted);margin-top:0.4rem}
+textarea,input[type=text]{width:100%;font:inherit;font-family:'Inter',sans-serif;border:2px solid var(--rule);border-radius:14px;padding:0.85rem;background:var(--paper);min-height:52px;margin-top:0.6rem;color:var(--ink)}
+textarea{min-height:90px;margin-top:0.9rem}
+textarea:focus,input:focus{outline:2px solid var(--coral);outline-offset:1px;border-color:var(--coral)}
+.flex-row{display:flex;align-items:center;gap:0.7rem;margin-top:0.5rem}
+.flex-row label{min-width:6.2rem;font-weight:600}
+.flex-row input{margin-top:0}
+.btns{display:flex;gap:0.6rem;flex-wrap:wrap;margin-top:0.9rem}
+button{border:0;border-radius:999px;padding:0.7rem 1.1rem;font:inherit;font-weight:700;font-size:0.88rem;background:var(--navy);color:#EDE6D6;cursor:pointer}
+button.secondary{background:var(--coral-soft);color:#7A4530}
+button:disabled{opacity:0.45;cursor:default}
+.hidden{display:none}
+.ok{background:var(--green);color:#3E6C4A;padding:0.8rem 1rem;border-radius:14px;margin-top:0.9rem;font-weight:600}
+.later{text-align:center;margin:1.6rem 0 .5rem}.later.hidden{display:none}.linkbtn{background:none;color:var(--muted);font-weight:500;font-size:.8rem;text-decoration:underline;padding:.5rem}.sendbtn{background:var(--coral);color:#fff;margin-top:.7rem}
+.opts{display:flex;gap:.6rem;flex-wrap:wrap;margin-top:.9rem}.opts button{background:var(--paper);color:var(--navy);border:2px solid var(--rule);font-size:1rem;padding:.8rem 1.3rem}.opts button.picked{background:var(--navy);color:#EDE6D6;border-color:var(--navy)}.opts button:disabled{opacity:.7}.ordbig{font-family:"Fraunces",serif;font-size:1.7rem;font-weight:600;color:var(--navy)}.chips{display:flex;flex-direction:column;gap:.5rem;margin-top:.8rem}.chip{background:var(--paper);color:var(--ink);border:2px solid var(--rule);border-radius:14px;text-align:left;font-weight:500;font-size:.95rem;padding:.7rem .9rem}.chip.sel{background:var(--green);border-color:#9CC79A}.stm{border-top:1px solid var(--rule);padding:.7rem 0}.stm p{font-size:.98rem;line-height:1.45}.stm .opts{margin-top:.4rem}.stm .opts button{font-size:.9rem;padding:.55rem 1rem}.gloss{background:var(--cream);border:1px dashed var(--rule);border-radius:12px;padding:.6rem .8rem;font-size:.85rem;color:var(--muted);line-height:1.5;margin-top:.6rem;white-space:pre-line}.inl{display:flex;flex-wrap:wrap;align-items:center;gap:.4rem;border:2px solid var(--rule);border-radius:14px;padding:.55rem .7rem;margin-top:.9rem;background:var(--paper)}.inl .pf{font-weight:600;color:var(--navy)}.inl input{flex:1;min-width:8rem;border:0;margin:0;padding:.3rem;min-height:36px;background:transparent}.inl input:focus{outline:none}.inl:focus-within{border-color:var(--coral)}.ikke{background:var(--coral-soft);border:1px solid #E8C9BA;border-radius:14px;padding:.8rem 1rem;font-size:.95rem;color:#7A4530;line-height:1.6;margin-top:.6rem;white-space:pre-line}
+@media(max-width:600px){main{padding:1rem 0.9rem 3rem}.card{padding:1.05rem}.q{font-size:1.1rem}}
+</style></head>
+<body><main>
+<div class="top"><div><strong><a href="index.html">📖 Tolke i boka</a></strong><div class="small">Norsk · boka om Iris · ca. 10 min</div></div><div class="pill" id="count">Start</div></div>
+<div class="progress"><div class="bar" id="bar"></div></div>
+<div id="stepHost"></div>
+</main>
+<div class="later hidden" id="sendBar"><button class="linkbtn" id="sendBarBtn" onclick="sendPartial()">Må du slutte nå? Send det som er gjort til mamma</button></div>
+<script src="edels-data.js"></script>
+<script>
+if(typeof EdelsData==='undefined'){
+  window.EdelsData={createSession:()=>'offline-'+Date.now(),getSession:()=>null,startTrial:()=>'t-'+Date.now()+'-'+Math.random(),responseStarted:()=>{},saveFirstResponse:()=>{},completeSession:()=>{},finishAndSubmit:()=>{},interpret:()=>{},addSupport:()=>{},setSupportResponse:()=>{}};
+}
+const DAG2=false;
+// ---- Kontroll av gjentakelse: første gang er utgangspunktet ----
+const _RK='edels_done_'+location.pathname.split('/').pop()+location.search.replace(/[?&]igjen\b/,'');
+let _runs=0; try{ _runs=parseInt(localStorage.getItem(_RK)||'0',10)||0; }catch(e){}
+const RUNTAG=_runs>0?' (gjentakelse '+(_runs+1)+')':'';
+let _marked=false;
+function markDone(){ if(_marked) return; _marked=true; try{ localStorage.setItem(_RK,String(_runs+1)); }catch(e){} }
+function lockOrRender(fn){
+  if(_runs>0 && !/[?&]igjen\b/.test(location.search) && !window._unlocked){
+    const h=document.getElementById('stepHost');
+    h.innerHTML='<section class="card"><div class="ok">Denne er ferdig 🌸</div><p class="mic" style="margin-top:.8rem">Du har gjort denne før. Mamma kan åpne den på nytt.</p><div class="btns"><button class="secondary" id="unlockBtn">Mamma: åpne på nytt</button></div></section>';
+    document.getElementById('unlockBtn').onclick=()=>{ window._unlocked=true; fn(); };
+  } else fn();
+}
+const TITLE='Tolke i boka – Iris, side 8–10'+RUNTAG;
+const SESSION_KEY='edels_tolke_iris_v1_session';
+const GOAL='transfer_word_tolke_to_real_book_stated_vs_inferred_with_reason_and_opinion';
+let sessionId=null;
+try{ sessionId=localStorage.getItem(SESSION_KEY); }catch(e){}
+try{
+  if(!sessionId || !EdelsData.getSession(sessionId) || EdelsData.getSession(sessionId).status==='completed'){
+    sessionId=EdelsData.createSession({title:TITLE,researchGoal:GOAL,schoolSubject:'norsk'});
+    try{ localStorage.setItem(SESSION_KEY,sessionId); }catch(e){}
+  }
+}catch(e){ sessionId=EdelsData.createSession({title:TITLE,researchGoal:GOAL,schoolSubject:'norsk'}); }
+
+const TEACH='Les først side 8, 9 og 10 i boka om Iris og dagboka hennes, Pølsa.\n\nKort om det som skjer:\n• Iris skriver dagbok. Hun kaller den Pølsa.\n• Iris synger høyt ut av vinduet. Hun håper at gutten hun er forelska i skal sykle forbi.\n• Det gjør han ikke. Naboen Tor hører henne og ber henne klappe igjen.\n• Iris bor i samme hus som bestevenninnen Sofia.\n• Iris og Sofia leker bryllup for to eldre naboer. De kaller dem Sviskene.\n• De besøker Sviskene nesten hver dag og får godteri.\n\nNå skal du tolke: finne ut hva noe betyr, når det ikke står helt rett ut.\n\nNoen ting står i boka. Andre ting må vi tolke, og da bruker vi det som står i boka som bevis.';
+const STAR='Står i boka', TOLK='Vi tolker';
+const R8='📖 Se side 8';
+const R9='📖 Se side 9';
+const R10='📖 Se side 10';
+const ITEMS_D1=[
+ {id:'y1',type:'yn',t:R8,q:'Står dette i boka, eller må vi tolke?',s:'Iris kaller dagboka si Pølsa.',ans:STAR,target:'tolke_bok_star_polsa'},
+ {id:'y2',type:'yn',t:R9,q:'Står dette i boka, eller må vi tolke?',s:'Iris er kanskje litt skuffet fordi gutten hun liker ikke sykler forbi.',ans:TOLK,target:'tolke_bok_tolker_skuffet'},
+ {id:'y3',type:'yn',t:R10,q:'Står dette i boka, eller må vi tolke?',s:'Iris og Sofia liker nok å besøke Sviskene.',ans:TOLK,target:'tolke_bok_tolker_besoke'},
+ {id:'o1',type:'open',t:R9,q:'Gutten sykler ikke forbi, og Iris synger høyt ut av vinduet likevel. Hva tror du Iris kjenner? Hva i boka får deg til å tro det?',target:'tolke_bok_begrunn_iris',reason:true},
+ {id:'o2',type:'open',q:'Hva betyr «tolke»? Si det med dine egne ord.',target:'tolke_betydning_bok'},
+ {id:'o3',type:'open',t:R10,q:'Hvorfor tror du Iris og Sofia besøker Sviskene nesten hver dag? Hva står i boka, og hva tolker du?',target:'tolke_bok_begrunn_sviskene',reason:true},
+ {id:'o4',type:'open',t:'📖 Side 8–10',q:'Hva synes du om Iris så langt? Skriv en grunn.',target:'mening_om_bok_iris',reason:true}
+];
+const PLAN=[{id:'intro',type:'intro'},{id:'teach',type:'teach'}].concat(ITEMS_D1);
+let planIdx=0; const answers={}, trialIds={}, started=new Set();
+const host=document.getElementById('stepHost'); let shownAt=Date.now();
+const esc=s=>String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+const NITEMS=PLAN.filter(s=>s.type==='yn'||s.type==='open').length;
+function speak(t,s){ speechSynthesis.cancel(); const u=new SpeechSynthesisUtterance(String(t).replace(/\n/g,' ')); u.lang='nb-NO'; u.rate=0.9; speechSynthesis.speak(u);
+  if(s){ try{ EdelsData.addSupport(sessionId,ensureTrial(s),1,'repetition_read_aloud','Les opp trykket',null); }catch(e){} } }
+function ensureTrial(s){ if(trialIds[s.id]) return trialIds[s.id];
+  trialIds[s.id]=EdelsData.startTrial(sessionId,{target:s.target,researchGoal:GOAL,taskType:s.type==='yn'?'stated_vs_inferred_recognition':(s.reason?'inference_with_reason':'word_meaning_and_use'),modality:'written',condition:'tolke_iris|'+(DAG2?'dag2':'dag1')+'|'+s.type,question:(s.t?s.t+' ':'')+(s.s?s.s+' ':'')+s.q,context:s.id,retentionIntervalDays:DAG2?1:0});
+  return trialIds[s.id]; }
+function markStarted(t){ if(started.has(t))return; started.add(t); EdelsData.responseStarted(sessionId,t); }
+function setProgress(){ const n=PLAN.filter(s=>s.type==='yn'||s.type==='open').indexOf(PLAN[planIdx])+1;
+  document.getElementById('count').textContent=planIdx>=PLAN.length?'Ferdig':(n>0?'Oppgave '+n+' av '+NITEMS:(PLAN[planIdx]&&PLAN[planIdx].type==='teach'?'Les':'Start'));
+  document.getElementById('bar').style.width=Math.round(Math.min(planIdx,PLAN.length)/PLAN.length*100)+'%';
+  document.getElementById('sendBar').classList.toggle('hidden',Object.keys(answers).length===0||planIdx>=PLAN.length); }
+function autoFlag(s,v){ const f=[];
+  if(s.reason && !/\b(fordi|siden|derfor|for at)\b/i.test(v) && !/^\s*(jeg vet ikke|vet ikke)/i.test(v)) f.push('ingen begrunnelse med «fordi»');
+  if(s.reason && /\bt(?:e)?xt|står i teksten\b/i.test('')) {}
+  if(s.word && !/\btolk(?:e|er|et|ning)/i.test(v)) f.push('bruker ikke «tolke»');
+  return f.length?f.join(' · '):null; }
+function summaryText(){
+  return PLAN.filter(s=>answers[s.id]).map(s=>{const a=answers[s.id];
+    return `${s.type==='yn'?(s.s):s.q}\n→ Svar: ${a.text}`+(s.type==='yn'?` (fasit: ${s.ans}; ${a.text===s.ans?'riktig':'feil'})`:'')+(a.flag?`\n→ Merke: ${a.flag}`:''); }).join('\n\n'); }
+async function post(subject,extra){
+  const r=await fetch('https://formspree.io/f/mqeolldg',{method:'POST',headers:{'Content-Type':'application/json','Accept':'application/json'},keepalive:true,
+    body:JSON.stringify(Object.assign({_subject:subject,oppgave:TITLE,session_id:sessionId,Tekst_hun_skrev:summaryText(),antall_besvart:Object.keys(answers).length+' av '+NITEMS,dato:new Date().toLocaleString('no-NO')},extra))});
+  if(!r.ok) throw new Error('HTTP '+r.status); }
+async function sendPartial(){ const b=document.getElementById('sendBarBtn'),o=b.textContent; b.disabled=true;b.textContent='Sender …';
+  try{ await post(TITLE+' – fremgang underveis',{}); b.textContent='✓ Sendt!'; setTimeout(()=>{b.textContent=o;b.disabled=false},1800); }
+  catch(e){ b.textContent='Kunne ikke sende – trykk for å prøve igjen'; b.disabled=false; } }
+function render(){
+  setProgress(); const s=PLAN[planIdx]; if(!s) return renderEnd(); shownAt=Date.now(); window.scrollTo(0,0);
+  if(s.type==='intro'){
+    const t='Ta fram boka om Iris. Vi skal bruke side 8, 9 og 10.\nSvar med dine egne ord. Du kan skrive «jeg vet ikke».';
+    host.innerHTML=`<section class="card"><div class="step">Ord</div><p class="q">Boka om Iris</p><div class="laer">${esc(t)}</div><div class="btns"><button onclick="planIdx++;render()">Start →</button></div></section>`;
+  } else if(s.type==='teach'){
+    host.innerHTML=`<section class="card"><div class="step">Les</div><p class="q">Les og tolke</p><div class="laer">${esc(TEACH)}</div><div class="btns"><button onclick="planIdx++;render()">Jeg har lest →</button><button class="secondary" onclick="speak(${esc(JSON.stringify(TEACH))})">🔊 Les opp</button></div></section>`;
+  } else if(s.type==='yn'){
+    host.innerHTML=`<section class="card"><div class="step">Oppgave</div><div class="story">${esc(s.t)}</div><div class="story" style="font-size:1.05rem;background:var(--paper)">${esc(s.s)}</div><p class="q">${esc(s.q)}</p>
+     <div class="opts"><button data-v="${STAR}">${STAR}</button><button data-v="${TOLK}">${TOLK}</button></div><div class="btns"><button class="secondary" onclick="speak(${esc(JSON.stringify(s.t+' '+s.s+' '+s.q))},PLAN[planIdx])">🔊 Les opp</button></div></section>`;
+    const t=ensureTrial(s);
+    document.querySelectorAll('.opts button').forEach(b=>b.addEventListener('click',()=>{ markStarted(t); document.querySelectorAll('.opts button').forEach(x=>x.disabled=true); b.classList.add('picked');
+      EdelsData.saveFirstResponse(sessionId,t,b.dataset.v,{source:'tolke_iris_ui',latencyMs:Date.now()-shownAt,expected:s.ans,correct:b.dataset.v===s.ans});
+      answers[s.id]={text:b.dataset.v}; setTimeout(()=>{planIdx++;render();},400); }));
+  } else {
+    host.innerHTML=`<section class="card"><div class="step">Oppgave</div>${s.t?'<div class="story">'+esc(s.t)+'</div>':''}<p class="q">${esc(s.q)}</p><div class="mic">Skriv med dine egne ord. Du kan skrive «jeg vet ikke».</div><textarea id="ans" placeholder="Skriv her …"></textarea>
+     <div class="btns"><button onclick="saveOpen()">Lagre og gå videre</button><button class="secondary" onclick="speak(${esc(JSON.stringify((s.t?s.t+' ':'')+s.q))},PLAN[planIdx])">🔊 Les opp</button></div></section>`;
+    const t=ensureTrial(s); document.getElementById('ans').addEventListener('input',()=>markStarted(t),{once:true});
+  }
+}
+function saveOpen(){ const s=PLAN[planIdx], v=document.getElementById('ans').value;
+  if(!v.trim()){alert('Skriv et svar først. Du kan skrive «jeg vet ikke».');return}
+  const flag=autoFlag(s,v);
+  EdelsData.saveFirstResponse(sessionId,ensureTrial(s),v,{source:'tolke_iris_ui',latencyMs:Date.now()-shownAt,autoFlag:flag});
+  answers[s.id]={text:v,flag}; planIdx++; render(); }
+function renderEnd(){ markDone();EdelsData.finishAndSubmit(sessionId);
+  host.innerHTML=`<section class="card"><div class="ok">Bra jobbet, Edel! 🌸 Du har lest og tolket boka om Iris.</div><div id="sendStatus" class="small" style="margin-top:.6rem"></div></section>`;
+  const el=document.getElementById('sendStatus'); el.textContent='Sender til mamma …';
+  const sentOK=()=>{ try{ const x=EdelsData.getSession(sessionId); return !!(x&&x.submission&&x.submission.status==='sent'); }catch(e){ return false; } };
+  const manual=async()=>{ el.textContent='Sender …';
+    try{ await post(TITLE+' – fullført økt',{status:'fullført'}); el.textContent='✓ Sendt til mamma'; }
+    catch(e){ el.innerHTML='Det ble ikke sendt. <button class="sendbtn" id="retryBtn">📤 Send til mamma</button>'; document.getElementById('retryBtn').onclick=manual; } };
+  setTimeout(()=>{ if(sentOK()) el.textContent='✓ Sendt til mamma'; else manual(); },4000); setProgress(); }
+lockOrRender(render);
+</script></body></html>
