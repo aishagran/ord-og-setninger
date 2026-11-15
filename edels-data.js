@@ -151,8 +151,19 @@
         q=q.filter(x=>x.sessionId!==item.sessionId); write(QUEUE_KEY,q); continue;
       }
       try{
+        // Leselig sammendrag først (for menneske og filter), full JSON til slutt
+        const lines=(s.trials||[]).map(t=>{
+          const r=(t.firstResponse==null?'—':String(t.firstResponse));
+          const q=String(t.question||'').slice(-110);
+          const sup=(t.supports&&t.supports.length)?' (hjelp: '+t.supports.length+')':'';
+          return q+'\n→ '+r+sup;
+        });
+        const when=(s.completedAt||'').slice(0,10);
         const payload={
-          _subject:'Edels Verden – fullført økt',
+          _subject:'Edel – '+(s.meta.title||'økt')+(when?' – '+when:''),
+          oppgave:s.meta.title,
+          Tekst_hun_skrev:lines.join('\n\n'),
+          antall_svar:String((s.trials||[]).length),
           session_id:s.sessionId,
           title:s.meta.title,
           completed_at:s.completedAt,
