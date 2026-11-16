@@ -1,0 +1,210 @@
+<!doctype html>
+<html lang="nb">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Den hvite varebilen – side 12–17</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{--cream:#F6F1E6;--paper:#FFFEFA;--navy:#1C2C42;--navy-2:#29455F;--ink:#1B2438;--muted:#746F66;--coral:#BE6E56;--coral-soft:#F3DFD6;--rule:#E4DCCB;--green:#E4F0DF;--shadow:0 12px 34px rgba(28,44,66,0.08)}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'Inter',sans-serif;background:radial-gradient(circle at 10% 0%,#FFF9EE 0,transparent 24rem),var(--cream);color:var(--ink);min-height:100vh;-webkit-font-smoothing:antialiased}
+main{max-width:680px;margin:auto;padding:1.4rem 1.2rem 3rem}
+.top{display:flex;justify-content:space-between;align-items:center;gap:12px}
+.top strong{font-family:'Fraunces',serif;font-weight:600;font-size:1.2rem}
+.top a{color:inherit;text-decoration:none}
+.small{font-size:0.82rem;color:var(--muted);margin-top:0.15rem}
+.pill{background:var(--paper);border:1px solid var(--rule);border-radius:999px;padding:0.5rem 0.9rem;font-weight:700;font-size:0.85rem;flex-shrink:0;white-space:nowrap}
+.progress{height:8px;background:var(--rule);border-radius:9px;overflow:hidden;margin-top:0.9rem}
+.bar{height:100%;background:var(--coral);width:6%;transition:width 0.25s ease}
+.card{background:var(--paper);border:1px solid rgba(28,44,66,0.08);border-radius:22px;padding:1.4rem;margin-top:1rem;box-shadow:0 7px 24px rgba(28,44,66,0.045)}
+.step{font-weight:700;font-size:0.7rem;letter-spacing:0.1em;text-transform:uppercase;color:var(--coral)}
+.hero{width:100%;max-height:420px;object-fit:contain;border-radius:16px;margin:0.9rem 0;display:block;background:var(--cream)}
+.story{background:var(--cream);border:1px dashed var(--rule);border-radius:14px;padding:0.85rem 1rem;font-size:0.95rem;color:var(--ink);line-height:1.6;margin-top:0.6rem;white-space:pre-line}
+.laer{background:var(--green);border:1px solid #CFE4CA;border-radius:14px;padding:0.9rem 1rem;font-size:0.95rem;color:#2F5137;line-height:1.65;margin-top:0.6rem;white-space:pre-line}
+.q{font-family:'Fraunces',serif;font-size:1.22rem;font-weight:500;line-height:1.34;margin-top:0.9rem;white-space:pre-line}
+.mic{font-size:0.82rem;color:var(--muted);margin-top:0.4rem}
+textarea,input[type=text]{width:100%;font:inherit;font-family:'Inter',sans-serif;border:2px solid var(--rule);border-radius:14px;padding:0.85rem;background:var(--paper);min-height:52px;margin-top:0.6rem;color:var(--ink)}
+textarea{min-height:90px;margin-top:0.9rem}
+textarea:focus,input:focus{outline:2px solid var(--coral);outline-offset:1px;border-color:var(--coral)}
+.flex-row{display:flex;align-items:center;gap:0.7rem;margin-top:0.5rem}
+.flex-row label{min-width:6.2rem;font-weight:600}
+.flex-row input{margin-top:0}
+.btns{display:flex;gap:0.6rem;flex-wrap:wrap;margin-top:0.9rem}
+button{border:0;border-radius:999px;padding:0.7rem 1.1rem;font:inherit;font-weight:700;font-size:0.88rem;background:var(--navy);color:#EDE6D6;cursor:pointer}
+button.secondary{background:var(--coral-soft);color:#7A4530}
+button:disabled{opacity:0.45;cursor:default}
+.hidden{display:none}
+.ok{background:var(--green);color:#3E6C4A;padding:0.8rem 1rem;border-radius:14px;margin-top:0.9rem;font-weight:600}
+.later{text-align:center;margin:1.6rem 0 .5rem}.later.hidden{display:none}.linkbtn{background:none;color:var(--muted);font-weight:500;font-size:.8rem;text-decoration:underline;padding:.5rem}.sendbtn{background:var(--coral);color:#fff;margin-top:.7rem}
+.opts{display:flex;gap:.6rem;flex-wrap:wrap;margin-top:.9rem}.opts button{background:var(--paper);color:var(--navy);border:2px solid var(--rule);font-size:1rem;padding:.8rem 1.3rem}.opts button.picked{background:var(--navy);color:#EDE6D6;border-color:var(--navy)}.opts button:disabled{opacity:.7}.ordbig{font-family:"Fraunces",serif;font-size:1.7rem;font-weight:600;color:var(--navy)}.chips{display:flex;flex-direction:column;gap:.5rem;margin-top:.8rem}.chip{background:var(--paper);color:var(--ink);border:2px solid var(--rule);border-radius:14px;text-align:left;font-weight:500;font-size:.95rem;padding:.7rem .9rem}.chip.sel{background:var(--green);border-color:#9CC79A}.stm{border-top:1px solid var(--rule);padding:.7rem 0}.stm p{font-size:.98rem;line-height:1.45}.stm .opts{margin-top:.4rem}.stm .opts button{font-size:.9rem;padding:.55rem 1rem}.gloss{background:var(--cream);border:1px dashed var(--rule);border-radius:12px;padding:.6rem .8rem;font-size:.85rem;color:var(--muted);line-height:1.5;margin-top:.6rem;white-space:pre-line}.inl{display:flex;flex-wrap:wrap;align-items:center;gap:.4rem;border:2px solid var(--rule);border-radius:14px;padding:.55rem .7rem;margin-top:.9rem;background:var(--paper)}.inl .pf{font-weight:600;color:var(--navy)}.inl input{flex:1;min-width:8rem;border:0;margin:0;padding:.3rem;min-height:36px;background:transparent}.inl input:focus{outline:none}.inl:focus-within{border-color:var(--coral)}.ikke{background:var(--coral-soft);border:1px solid #E8C9BA;border-radius:14px;padding:.8rem 1rem;font-size:.95rem;color:#7A4530;line-height:1.6;margin-top:.6rem;white-space:pre-line}
+@media(max-width:600px){main{padding:1rem 0.9rem 3rem}.card{padding:1.05rem}.q{font-size:1.1rem}}
+</style></head>
+<body><main>
+<div class="top"><div><strong><a href="index.html">🚐 Den hvite varebilen</a></strong><div class="small">Norsk · side 12–17 · ca. 15–20 min</div></div><div class="pill" id="count">Start</div></div>
+<div class="progress"><div class="bar" id="bar"></div></div>
+<div id="stepHost"></div>
+</main>
+<div class="later hidden" id="sendBar"><button class="linkbtn" id="sendBarBtn" onclick="sendPartial()">Må du slutte nå? Send det som er gjort til mamma</button></div>
+<script src="edels-data.js"></script>
+<script>
+if(typeof EdelsData==='undefined'){
+  window.EdelsData={createSession:()=>'offline-'+Date.now(),getSession:()=>null,startTrial:()=>'t-'+Date.now()+'-'+Math.random(),responseStarted:()=>{},saveFirstResponse:()=>{},saveSupportRemoved:()=>{},saveGeneralization:()=>{},completeSession:()=>{},finishAndSubmit:()=>{},interpret:()=>{},addSupport:()=>{},setSupportResponse:()=>{}};
+}
+const DAG2=/[?&]dag2\b/.test(location.search);
+const DEL=/[?&]del=2\b/.test(location.search)?2:1;
+// ---- Kontroll av gjentakelse: første gang er utgangspunktet ----
+const _RK='edels_done_'+location.pathname.split('/').pop()+location.search.replace(/[?&]igjen\b/,'');
+let _runs=0; try{ _runs=parseInt(localStorage.getItem(_RK)||'0',10)||0; }catch(e){}
+const RUNTAG=_runs>0?' (gjentakelse '+(_runs+1)+')':'';
+let _marked=false;
+function markDone(){ if(_marked) return; _marked=true; try{ localStorage.setItem(_RK,String(_runs+1)); }catch(e){} }
+function lockOrRender(fn){
+  if(_runs>0 && !/[?&]igjen\b/.test(location.search) && !window._unlocked){
+    const h=document.getElementById('stepHost');
+    h.innerHTML='<section class="card"><div class="ok">Denne er ferdig 🌸</div><p class="mic" style="margin-top:.8rem">Du har gjort denne før. Mamma kan åpne den på nytt.</p><div class="btns"><button class="secondary" id="unlockBtn">Mamma: åpne på nytt</button></div></section>';
+    document.getElementById('unlockBtn').onclick=()=>{ window._unlocked=true; fn(); };
+  } else fn();
+}
+const TITLE=(DAG2?'Den hvite varebilen – dag 2 (uten ny forklaring)':(DEL===2?'Den hvite varebilen – del 2: ord og ny situasjon':'Den hvite varebilen, side 12–17 – del 1: forstå og tolke'))+RUNTAG;
+const SESSION_KEY='edels_varebilen_v2_'+(DAG2?'dag2':'del'+DEL)+'_session';
+const GOAL=DAG2?'retention_and_transfer_bekymret_bevis_tolke_day2':(DEL===2?'vocab_bekymret_bevis_before_after_teaching_and_transfer_tolke_new_situation':'literal_vs_inference_and_separate_justification_book_pp12_17_book_open');
+let sessionId=null;
+try{ sessionId=localStorage.getItem(SESSION_KEY); }catch(e){}
+try{
+  if(!sessionId || !EdelsData.getSession(sessionId) || EdelsData.getSession(sessionId).status==='completed'){
+    sessionId=EdelsData.createSession({title:TITLE,researchGoal:GOAL,schoolSubject:'norsk'});
+    try{ localStorage.setItem(SESSION_KEY,sessionId); }catch(e){}
+  }
+}catch(e){ sessionId=EdelsData.createSession({title:TITLE,researchGoal:GOAL,schoolSubject:'norsk'}); }
+
+const STAR='Står i teksten', TOLK='Vi tolker';
+const VOCAB='Å være bekymret betyr at du tenker på noe som kan gå galt.\n• Edel blir bekymret hvis Pipoka løper bort og hun ikke finner henne.\n\nEt bevis er noe som kan vise at noe er sant eller har skjedd.\n• Hvis Pipoka har våte poter og det er våte spor på gulvet, kan sporene være et bevis på at hun har vært ute.\n\nÅ tolke betyr å bruke små hint for å forstå noe som ikke blir sagt direkte.\n• Pipoka sitter foran Edel, ser på maten og logrer med halen. Edel tolker det som at Pipoka vil ha mat.';
+// hjelp-trinn: 1 = si det på en annen måte, 2 = pekepinn fra teksten, 6 = begynnelsen av setningen
+const TOLKETXT='Nå skal du tolke.\nÅ tolke betyr å bruke små hint for å forstå noe som ikke blir sagt direkte.\nDet er ikke alltid vi vet sikkert. Vi prøver å finne en forklaring som passer med hintene.';
+const H=(a,b,c)=>[{lvl:1,type:'reformulation',text:a},{lvl:2,type:'contextual_cue',text:b},{lvl:6,type:'sentence_start',text:c}];
+// type: intro | read | teach | open | yn | vocab (åpent, uten hjelp; retest=true = samme felt etter undervisning)
+const D1A=[
+ {id:'intro',type:'intro'},
+ {id:'read',type:'read'},
+ {id:'t0',stage:'Ord',type:'vocab',tt:'word_meaning',target:'tolke_betydning_varebilen',q:'Hva betyr «tolke»?'},
+ {id:'q1',stage:'Forstå',type:'open',tt:'literal_comprehension',target:'forstaa_emma_bekymret_for',q:'Hva er Emma bekymret for?',hints:H('Hva tenker Emma at kan gå galt?','Tenk på hva Emma sier om grevlingen og barna.','Emma er bekymret for at')},
+ {id:'q2',stage:'Forstå',type:'open',tt:'cause_effect',target:'forstaa_hvorfor_ikke_godteri',q:'Hvorfor vil ikke Emma spise godteri?',hints:H('Hva er grunnen til at Emma ikke vil spise godteri?','Tenk på det Emma er bekymret for.','Emma vil ikke spise godteri fordi')},
+ {id:'q3',stage:'Forstå',type:'open',tt:'inference',target:'inferens_sofia_hjelpe',q:'Hvorfor tror du Sofia vil hjelpe til med å fange grevlingen?',hints:H('Hva tror du er grunnen til at Sofia vil hjelpe?','Tenk på hva Sofia vil gjøre for barna.','Sofia vil hjelpe fordi')},
+ {id:'tteach',type:'teach',head:'Å tolke',text:TOLKETXT},
+ {id:'q4a',stage:'Tolke',type:'open',tt:'interpretation_feeling',target:'tolke_emma_foler',q:'Hva tror du Emma føler når hun tenker på grevlingen?',hints:H('Hvordan har Emma det inni seg når hun tenker på grevlingen?','Tenk på at Emma ikke vil spise godteri.','Jeg tror Emma er')},
+ {id:'q4b',stage:'Tolke',type:'open',tt:'interpretation_justification',target:'tolke_emma_foler_begrunnelse',q:'Hva i teksten får deg til å tro det?',hints:H('Hva står i boka som viser at Emma har det slik?','Se på det Emma gjør eller ikke vil gjøre.','Jeg tror det fordi')},
+ {id:'y1',stage:'Tolke',type:'yn',tt:'stated_vs_inferred',target:'tolke_star_pennalheisen',s:'Iris viser frem en oppfinnelse som heter Pennalheisen.',q:'Står det i teksten, eller må vi tolke?',ans:STAR},
+ {id:'y2',stage:'Tolke',type:'yn',tt:'stated_vs_inferred',target:'tolke_tolker_sofia_modig',s:'Sofia er kanskje modig.',q:'Står det i teksten, eller må vi tolke?',ans:TOLK},
+ {id:'t0r',stage:'Nå en gang til',type:'vocab',retest:'t0',q:'Hva betyr «tolke»? Si det med dine egne ord.'}
+];
+const D1B=[
+ {id:'intro',type:'intro'},
+ {id:'v1',stage:'Ord',type:'vocab',tt:'word_meaning',target:'bekymret',q:'Hva betyr «bekymret»?'},
+ {id:'v2',stage:'Ord',type:'vocab',tt:'word_meaning',target:'bevis',q:'Hva betyr «bevis»?'},
+ {id:'v3',stage:'Ord',type:'vocab',tt:'word_meaning',target:'tolke_betydning_del2',q:'Hva betyr «tolke»?'},
+ {id:'teach',type:'teach'},
+ {id:'v1r',stage:'Ord',type:'vocab',retest:'v1',q:'Nå en gang til: Hva betyr «bekymret»? Si det med dine egne ord.'},
+ {id:'v2r',stage:'Ord',type:'vocab',retest:'v2',q:'Nå en gang til: Hva betyr «bevis»? Si det med dine egne ord.'},
+ {id:'v3r',stage:'Ord',type:'vocab',retest:'v3',q:'Nå en gang til: Hva betyr «tolke»? Si det med dine egne ord.'},
+ {id:'g1',stage:'Ny situasjon',type:'open',tt:'generalization_interpretation',target:'generalisering_pipoka_doren',s:'Pipoka står ved døren og piper. Edel ser på henne.',q:'Hva tror du Pipoka vil?',hints:H('Hva tror du Pipoka prøver å si?','Tenk på hvor Pipoka står.','Jeg tror Pipoka vil')},
+ {id:'g2',stage:'Ny situasjon',type:'open',tt:'generalization_justification',target:'generalisering_pipoka_begrunnelse',s:'Pipoka står ved døren og piper. Edel ser på henne.',q:'Hva fikk deg til å tro det?',hints:H('Hva ser eller hører Edel som viser det?','Se på hvor Pipoka er og hva hun gjør.','Jeg trodde det fordi')}
+];
+// Dag 2: ingen forklaring, ingen hjelp før første svar
+const D2=[
+ {id:'intro',type:'intro'},
+ {id:'v1',stage:'Ord',type:'vocab',tt:'word_meaning_retention',target:'bekymret_dag2',q:'Hva betyr «bekymret»?'},
+ {id:'v2',stage:'Ord',type:'vocab',tt:'word_meaning_retention',target:'bevis_dag2',q:'Hva betyr «bevis»?'},
+ {id:'v3',stage:'Ord',type:'vocab',tt:'word_meaning_retention',target:'tolke_dag2',q:'Hva betyr det å tolke noe?'},
+ {id:'n1',stage:'Ny situasjon',type:'open',tt:'generalization_interpretation',target:'dag2_mia_foler',s:'Mia sitter ved vinduet. Det er sent, og bestemor har ikke ringt.',q:'Hva tror du Mia føler?',hints:H('Hvordan tror du Mia har det inni seg?','Tenk på at Mia sitter ved vinduet og venter.','Jeg tror Mia er')},
+ {id:'n2',stage:'Ny situasjon',type:'open',tt:'generalization_justification',target:'dag2_mia_begrunnelse',s:'Mia sitter ved vinduet. Det er sent, og bestemor har ikke ringt.',q:'Hva fikk deg til å tro det?',hints:H('Hva i teksten viser det?','Se på hva Mia gjør og hva som ikke har skjedd.','Jeg tror det fordi')},
+ {id:'n3',stage:'Ny situasjon',type:'open',tt:'generalization_evidence_word',target:'dag2_vatt_paraply',s:'Det er tørt ute. Men det står en våt paraply i gangen, og det er vann på gulvet.',q:'Hva tror du har skjedd?',hints:H('Hva tror du noen har gjort med paraplyen?','Tenk på hvorfor paraplyen er våt.','Jeg tror at')},
+ {id:'n4',stage:'Ny situasjon',type:'open',tt:'generalization_evidence_word',target:'dag2_vatt_bevis',s:'Det er tørt ute. Men det står en våt paraply i gangen, og det er vann på gulvet.',q:'Hva er beviset for det du tror?',hints:H('Hva i gangen viser at du har rett?','Se på paraplyen og gulvet.','Beviset er at')}
+];
+const PLAN=DAG2?D2:(DEL===2?D1B:D1A);
+const ITEMS=PLAN.filter(s=>['open','yn','vocab'].includes(s.type));
+let planIdx=0; const answers={}, trialIds={}, started=new Set();
+let hintN=0, curHint=null, firstSavedFor=null;
+const host=document.getElementById('stepHost'); let shownAt=Date.now();
+const esc=s=>String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+const NITEMS=ITEMS.length;
+function speak(t,s){ speechSynthesis.cancel(); const u=new SpeechSynthesisUtterance(String(t).replace(/\n/g,' ')); u.lang='nb-NO'; u.rate=0.9; speechSynthesis.speak(u);
+  if(s){ try{ EdelsData.addSupport(sessionId,ensureTrial(s),1,'repetition_read_aloud','Les opp trykket',null); }catch(e){} } }
+function trialOf(s){ return s.retest?PLAN.find(x=>x.id===s.retest):s; }
+function ensureTrial(s){ const b=trialOf(s); if(trialIds[b.id]) return trialIds[b.id];
+  trialIds[b.id]=EdelsData.startTrial(sessionId,{target:b.target,researchGoal:GOAL,taskType:b.tt||'word_meaning',modality:'written',condition:'varebilen|'+(DAG2?'dag2':'del'+DEL)+(DEL===1&&!DAG2?'|boka_ved_siden':'')+'|'+b.type+'|'+(b.stage||''),question:(b.s?b.s+' ':'')+b.q,context:b.id,retentionIntervalDays:DAG2?3:0});
+  return trialIds[b.id]; }
+function markStarted(t){ if(started.has(t))return; started.add(t); EdelsData.responseStarted(sessionId,t); }
+function setProgress(){ const s=PLAN[planIdx]; const n=ITEMS.indexOf(s)+1;
+  document.getElementById('count').textContent=planIdx>=PLAN.length?'Ferdig':(n>0?'Oppgave '+n+' av '+NITEMS:'Start');
+  document.getElementById('bar').style.width=Math.round(Math.min(planIdx,PLAN.length)/PLAN.length*100)+'%';
+  document.getElementById('sendBar').classList.toggle('hidden',Object.keys(answers).length===0||planIdx>=PLAN.length); }
+function summaryText(){
+  return PLAN.filter(s=>answers[s.id]).map(s=>{const a=answers[s.id];
+    let out=(s.s?s.s+'\n':'')+s.q+'\n→ Første svar (uten hjelp): '+a.text;
+    if(s.type==='yn') out+=` (fasit: ${s.ans}; ${a.text===s.ans?'riktig':'feil'})`;
+    (a.hjelp||[]).forEach(h=>{ out+=`\n→ Etter hjelp (nivå ${h.lvl}, ${h.type}): ${h.resp}`; });
+    if(a.after!=null) out+='\n→ Etter forklaring (uten hjelp): '+a.after;
+    return out; }).join('\n\n'); }
+async function post(subject,extra){
+  const r=await fetch('https://formspree.io/f/mqeolldg',{method:'POST',headers:{'Content-Type':'application/json','Accept':'application/json'},keepalive:true,
+    body:JSON.stringify(Object.assign({_subject:subject,oppgave:TITLE,session_id:sessionId,Tekst_hun_skrev:summaryText(),antall_besvart:Object.keys(answers).length+' av '+NITEMS,dato:new Date().toLocaleString('no-NO')},extra))});
+  if(!r.ok) throw new Error('HTTP '+r.status); }
+async function sendPartial(){ const b=document.getElementById('sendBarBtn'),o=b.textContent; b.disabled=true;b.textContent='Sender …';
+  try{ await post(TITLE+' – fremgang underveis',{}); b.textContent='✓ Sendt!'; setTimeout(()=>{b.textContent=o;b.disabled=false},1800); }
+  catch(e){ b.textContent='Kunne ikke sende – trykk for å prøve igjen'; b.disabled=false; } }
+function next(){ planIdx++; hintN=0; curHint=null; render(); }
+function render(){
+  setProgress(); const s=PLAN[planIdx]; if(!s) return renderEnd(); shownAt=Date.now(); window.scrollTo(0,0);
+  if(s.type==='intro'){
+    const t=DAG2?'I dag er det noen oppgaver om ord du har jobbet med, og om nye små situasjoner. Skriv med dine egne ord. Du kan skrive «jeg vet ikke».':(DEL===2?'I dag skal vi snakke om to ord og om en liten situasjon med Pipoka.\nDu skriver med dine egne ord. Du kan skrive «jeg vet ikke».':'Nå skal vi tenke om boka «Det mørke nettet – Den hvite varebilen».\nVi bruker side 12 til 17.\nDu skriver med dine egne ord. Du kan skrive «jeg vet ikke».');
+    host.innerHTML=`<section class="card"><div class="step">Norsk</div><p class="q">${DAG2?'Ord og tolke':(DEL===2?'Ord og Pipoka':'Den hvite varebilen')}</p><div class="laer">${esc(t)}</div><div class="btns"><button onclick="next()">Start →</button></div></section>`;
+  } else if(s.type==='read'){
+    host.innerHTML=`<section class="card"><div class="step">Les</div><p class="q">Les side 12 til 17 i boka</p><div class="laer">Ta fram boka. Les side 12 til 17.\nNår du er ferdig, trykker du på knappen.\nBoka kan ligge ved siden av deg mens du svarer. Det er lov å se i den.</div><div class="btns"><button onclick="next()">Jeg har lest →</button></div></section>`;
+  } else if(s.type==='teach'){
+    host.innerHTML=`<section class="card"><div class="step">Ord</div><p class="q">${esc(s.head||'Tre ord')}</p><div class="laer">${esc(s.text||VOCAB)}</div><div class="btns"><button onclick="next()">Jeg har lest →</button><button class="secondary" onclick="speak(${esc(JSON.stringify(s.text||VOCAB))})">🔊 Les opp</button></div></section>`;
+  } else if(s.type==='yn'){
+    host.innerHTML=`<section class="card"><div class="step">${esc(s.stage)}</div><div class="story" style="font-size:1.05rem;background:var(--paper)">${esc(s.s)}</div><p class="q">${esc(s.q)}</p>
+     <div class="opts"><button data-v="${STAR}">${STAR}</button><button data-v="${TOLK}">${TOLK}</button></div><div class="btns"><button class="secondary" onclick="speak(${esc(JSON.stringify(s.s+' '+s.q))},PLAN[planIdx])">🔊 Les opp</button></div></section>`;
+    const t=ensureTrial(s);
+    document.querySelectorAll('.opts button').forEach(b=>b.addEventListener('click',()=>{ markStarted(t); document.querySelectorAll('.opts button').forEach(x=>x.disabled=true); b.classList.add('picked');
+      EdelsData.saveFirstResponse(sessionId,t,b.dataset.v,{source:'varebilen_ui',latencyMs:Date.now()-shownAt,expected:s.ans,correct:b.dataset.v===s.ans});
+      answers[s.id]={text:b.dataset.v}; setTimeout(next,400); }));
+  } else renderOpen(s);
+}
+function renderOpen(s){
+  const hasHints=!!s.hints, hintBox=curHint?(curHint.lvl===6?`<div class="gloss">Skriv videre på setningen:</div>`:`<div class="gloss">💡 ${esc(curHint.text)}</div>`):'';
+  const field=(curHint&&curHint.lvl===6)?`<div class="inl"><span class="pf">${esc(curHint.text)}</span><input type="text" id="ans" autocomplete="off" autocapitalize="off" spellcheck="false"></div>`:`<textarea id="ans" placeholder="Skriv her …" autocomplete="off"></textarea>`;
+  const more=hasHints&&hintN<s.hints.length;
+  host.innerHTML=`<section class="card"><div class="step">${esc(s.stage||'')}</div>${s.s?'<div class="story" style="font-size:1.05rem;background:var(--paper)">'+esc(s.s)+'</div>':''}<p class="q">${esc(s.q)}</p><div class="mic">Skriv med dine egne ord. Du kan skrive «jeg vet ikke».</div>${hintBox}${field}
+   <div class="btns"><button onclick="saveOpen()">Lagre og gå videre</button>${more?'<button class="secondary" onclick="needHelp()">💡 Trenger du hjelp?</button>':''}<button class="secondary" onclick="speak(${esc(JSON.stringify((s.s?s.s+' ':'')+s.q))},PLAN[planIdx])">🔊 Les opp</button></div></section>`;
+  const t=ensureTrial(s); document.getElementById('ans').addEventListener('input',()=>markStarted(t),{once:true});
+}
+function fullValue(){ const el=document.getElementById('ans'); let v=el.value.trim(); if(curHint&&curHint.lvl===6&&v) v=curHint.text+' '+v; return v; }
+function logPrevHint(s){ if(!curHint) return; const v=fullValue()||'(ingen svar)';
+  try{ EdelsData.addSupport(sessionId,ensureTrial(s),curHint.lvl,curHint.type,curHint.text,v); }catch(e){}
+  answers[s.id].hjelp.push({lvl:curHint.lvl,type:curHint.type,resp:v}); }
+function needHelp(){ const s=PLAN[planIdx]; const t=ensureTrial(s);
+  if(hintN===0){ const v=document.getElementById('ans').value.trim()||'(ingen svar før hjelp)';
+    EdelsData.saveFirstResponse(sessionId,t,v,{source:'varebilen_ui',latencyMs:Date.now()-shownAt,helpRequestedBeforeSubmit:true});
+    answers[s.id]={text:v,hjelp:[]}; }
+  else logPrevHint(s);
+  curHint=s.hints[hintN]; hintN++; renderOpen(s); }
+function saveOpen(){ const s=PLAN[planIdx], el=document.getElementById('ans');
+  if(!el.value.trim()){alert('Skriv et svar først. Du kan skrive «jeg vet ikke».');return}
+  const t=ensureTrial(s);
+  if(hintN===0){ EdelsData.saveFirstResponse(sessionId,t,el.value,{source:'varebilen_ui',latencyMs:Date.now()-shownAt}); answers[s.id]={text:el.value,hjelp:[]}; if(s.type==='vocab'&&!s.retest){} }
+  else logPrevHint(s);
+  if(s.type==='vocab'&&s.retest){ const b=PLAN.find(x=>x.id===s.retest); const bt=ensureTrial(b); EdelsData.saveSupportRemoved(sessionId,bt,el.value);
+    answers[s.retest].after=el.value; answers[s.id]={text:el.value,hjelp:[],isRetest:true}; delete answers[s.id]; }
+  next(); }
+function renderEnd(){ markDone();EdelsData.finishAndSubmit(sessionId);
+  host.innerHTML=`<section class="card"><div class="ok">Bra jobbet, Edel! 🌸 Du har tenkt og tolket.</div><div id="sendStatus" class="small" style="margin-top:.6rem"></div></section>`;
+  const el=document.getElementById('sendStatus'); el.textContent='Sender til mamma …';
+  const sentOK=()=>{ try{ const x=EdelsData.getSession(sessionId); return !!(x&&x.submission&&x.submission.status==='sent'); }catch(e){ return false; } };
+  const manual=async()=>{ el.textContent='Sender …';
+    try{ await post(TITLE+' – fullført økt',{status:'fullført'}); el.textContent='✓ Sendt til mamma'; }
+    catch(e){ el.innerHTML='Det ble ikke sendt. <button class="sendbtn" id="retryBtn">📤 Send til mamma</button>'; document.getElementById('retryBtn').onclick=manual; } };
+  setTimeout(()=>{ if(sentOK()) el.textContent='✓ Sendt til mamma'; else manual(); },4000); setProgress(); }
+lockOrRender(render);
+</script></body></html>
