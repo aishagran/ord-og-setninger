@@ -152,7 +152,8 @@
       }
       try{
         // Leselig sammendrag først (for menneske og filter), full JSON til slutt
-        const lines=(s.trials||[]).map(t=>{
+        const answered=(s.trials||[]).filter(t=>t.firstResponse!=null||(t.supports&&t.supports.length));
+        const lines=answered.map(t=>{
           const r=(t.firstResponse==null?'—':String(t.firstResponse));
           const q=String(t.question||'').slice(-110);
           const sup=(t.supports&&t.supports.length)?' (hjelp: '+t.supports.length+')':'';
@@ -163,7 +164,8 @@
           _subject:'Edel – '+(s.meta.title||'økt')+(when?' – '+when:''),
           oppgave:s.meta.title,
           Tekst_hun_skrev:lines.join('\n\n'),
-          antall_svar:String((s.trials||[]).length),
+          antall_svar:String(answered.length),
+          tomme_forsok:String((s.trials||[]).length-answered.length),
           session_id:s.sessionId,
           title:s.meta.title,
           completed_at:s.completedAt,

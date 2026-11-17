@@ -111,6 +111,7 @@ const D2=[
  FM('f2','dag2_form_juice','Frossen juice i fryseren.','Fast'),
  FM('f3','dag2_form_melk','Melk i et glass.','Flytende'),
  YN('r1','Sorter','dag2_mel_sukker','Du blander mel og sukker i en skål.',NEI),
+ {id:'c1',stage:'Ny situasjon',type:'open',tt:'causal_explanation',target:'dag2_hvorfor_smelter_isen',s:'En isbit ligger på et fat. Etter en stund er den blitt til vann.',q:'Hvorfor smelter isen?',hints:H('Hva er det som skjer med isen, og hvorfor?','Tenk på hvor varmt eller kaldt det er rundt isen.','Isen smelter fordi')},
  {id:'s1',stage:'Ny situasjon',type:'open',tt:'generalization_new_context',target:'dag2_soda_stoffer',q:'Du skal lage brus med en SodaStream. Hvilke stoffer trenger du?',hints:H('Hva er brus laget av?','Tenk på vann og en gass.','Jeg trenger')}
 ];
 const PLAN=DAG2?D2:D1;
